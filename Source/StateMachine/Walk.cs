@@ -1,0 +1,59 @@
+using Godot;
+using System;
+
+public class Walk : State
+{
+	// Declare member variables here. Examples:
+	// private int a = 2;
+	// private string b = "text";
+
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+		StateName = "WALK";
+		player = (Player)GetParent<Player>();
+		stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
+		stateMachine.AddState(this, StateName);
+	}
+
+	public override void Start()
+	{
+		player.player.Play("Walk");
+	}
+
+	public override Vector2 GetInput()
+	{
+		return base.GetInput();
+	}
+
+	public override void FixedUpdate(float delta)
+	{
+		Vector2 inputVelocity = Vector2.Zero;
+		inputVelocity.x = GetInput().x * player.speed;
+		player.Velocity = inputVelocity;
+
+		if (inputVelocity.x < 0)
+		{
+			player.weirdBeard.FlipH = true;
+		}
+		else
+		{
+			player.weirdBeard.FlipH = false;
+		}
+
+		if (Input.IsActionJustPressed("Jump"))
+		{
+			stateMachine.UpdateState("JUMP");
+		}
+
+		if (inputVelocity == Vector2.Zero)
+		{
+			stateMachine.UpdateState("IDLE");
+		}
+	}
+
+	public override void Exit()
+	{
+		player.player.Stop(true);
+	}
+}

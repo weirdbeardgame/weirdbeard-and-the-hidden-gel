@@ -1,0 +1,9 @@
+/home/musungo/coding/weirdbeardMono/.mono/temp/bin/Debug/Weirdbeard Mono.dll
+/home/musungo/coding/weirdbeardMono/.mono/temp/bin/Debug/Weirdbeard Mono.pdb
+/home/musungo/coding/weirdbeardMono/.mono/temp/obj/Debug/Weirdbeard Mono.csproj.AssemblyReference.cache
+/home/musungo/coding/weirdbeardMono/.mono/temp/obj/Debug/Weirdbeard Mono.GeneratedMSBuildEditorConfig.editorconfig
+/home/musungo/coding/weirdbeardMono/.mono/temp/obj/Debug/Weirdbeard Mono.AssemblyInfoInputs.cache
+/home/musungo/coding/weirdbeardMono/.mono/temp/obj/Debug/Weirdbeard Mono.AssemblyInfo.cs
+/home/musungo/coding/weirdbeardMono/.mono/temp/obj/Debug/Weirdbeard Mono.csproj.CoreCompileInputs.cache
+/home/musungo/coding/weirdbeardMono/.mono/temp/obj/Debug/Weirdbeard Mono.dll
+/home/musungo/coding/weirdbeardMono/.mono/temp/obj/Debug/Weirdbeard Mono.pdb
