@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/resources/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/resources/platform_metroidvania asset pack v1.01/tiles and background_foreground (new)/tileset_32x32(new).png" type="Texture" id=2]
 [ext_resource path="res://Assets/resources/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/resources/HUD.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -117,7 +118,9 @@ format = 1
 tile_data = PoolIntArray( -196564, 3, 0, -131072, 1, 0, -131028, 3, 0, -65536, 1, 0, -65492, 3, 0, 0, 0, 0, 44, 3, 0, 65536, 0, 0, 65580, 3, 0, 131072, 0, 0, 131116, 3, 0, 196608, 0, 0, 196652, 3, 0, 262144, 0, 0, 262188, 3, 0, 327680, 0, 0, 327724, 3, 0, 393216, 0, 0, 393260, 3, 0, 458752, 0, 0, 458796, 3, 0, 524288, 0, 0, 524332, 3, 0, 589824, 0, 0, 589868, 3, 0, 655360, 0, 0, 655404, 3, 0, 720896, 0, 0, 720940, 3, 0, 786432, 0, 0, 786476, 3, 0, 851968, 1, 0, 852012, 3, 0, 917504, 1, 0, 917505, 2, 0, 917506, 2, 0, 917507, 2, 0, 917508, 2, 0, 917509, 2, 0, 917510, 2, 0, 917511, 2, 0, 917512, 2, 0, 917513, 2, 0, 917514, 2, 0, 917515, 2, 0, 917516, 2, 0, 917517, 2, 0, 917518, 2, 0, 917519, 2, 0, 917520, 2, 0, 917521, 2, 0, 917522, 2, 0, 917523, 2, 0, 917524, 2, 0, 917525, 2, 0, 917526, 2, 0, 917527, 2, 0, 917528, 2, 0, 917529, 2, 0, 917530, 2, 0, 917531, 2, 0, 917532, 2, 0, 917533, 2, 0, 917534, 2, 0, 917535, 2, 0, 917536, 2, 0, 917537, 2, 0, 917538, 2, 0, 917539, 2, 0, 917540, 2, 0, 917541, 2, 0, 917542, 2, 0, 917543, 2, 0, 917544, 2, 0, 917545, 2, 0, 917546, 2, 0, 917547, 2, 0, 917548, 2, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 387, 239 )
+position = Vector2( 362, 179 )
 
 [node name="TestEnemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 981, 426 )
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]

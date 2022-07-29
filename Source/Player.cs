@@ -9,7 +9,7 @@ public class Player : Actor
     // private string b = "text";
     public AnimationPlayer player;
 
-    int lives = 0;
+    public int lives = 0;
 
     public Sprite weirdBeard;
 
@@ -20,6 +20,7 @@ public class Player : Actor
         stateMachine = (StateMachine)GetNode("StateMachine");
         stateMachine.UpdateState("IDLE");
         weirdBeard = (Sprite)GetNode("WeirdBeard");
+        lives = 3;
     }
 
     public Vector2 Velocity
@@ -33,6 +34,11 @@ public class Player : Actor
         {
             velocity = value;
         }
+    }
+
+    public void SetState(string state)
+    {
+        stateMachine.UpdateState(state);
     }
 
     public override void _PhysicsProcess(float delta)

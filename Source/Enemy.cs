@@ -29,19 +29,22 @@ public class Enemy : Actor
 
     public override void _PhysicsProcess(float delta)
     {
-        velocity.y += gravity * delta;
 
         if (Right.IsColliding())
         {
-            sprite.FlipH = false;
-            velocity.x = speed;
+            sprite.FlipH = true;
+            GD.Print("Detect Right");
+            velocity.x = -speed;
         }
 
         if (Left.IsColliding())
         {
-            sprite.FlipH = true;
-            velocity.x = -speed;
+            sprite.FlipH = false;
+            GD.Print("Detect Left");
+            velocity.x = speed;
         }
+
+        velocity.y += gravity * delta;
 
         velocity.y = MoveAndSlide(velocity, Vector2.Up).y;
     }
@@ -52,7 +55,7 @@ public class Enemy : Actor
         {
             Player dead = area as Player;
             GD.Print("PLAYER TOUCH");
-            dead.QueueFree();
+            dead.SetState("DEATH");
         }
     }
 }
