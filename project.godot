@@ -14,6 +14,10 @@ config/name="Weirdbeard Mono"
 run/main_scene="res://Assets/Scenes/TestLevel.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Player="*res://Assets/resources/Player.tscn"
+
 [display]
 
 window/size/width=640

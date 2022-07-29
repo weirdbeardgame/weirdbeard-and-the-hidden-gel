@@ -17,8 +17,9 @@ public class HUD : Node
         Lives = (Label)GetNode("Lives");
     }
 
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        Lives.Text = ("Lives: " + player.lives.ToString());
+        Lives.Text = ("Lives: " + player.lives);
     }
 }

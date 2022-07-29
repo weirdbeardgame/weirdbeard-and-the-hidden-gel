@@ -21,8 +21,8 @@ public class Death : State
     {
         if (player.lives > 0)
         {
-            player.lives -= 1;
             GetTree().ReloadCurrentScene();
+            player.lives -= 1;
         }
         else
         {
