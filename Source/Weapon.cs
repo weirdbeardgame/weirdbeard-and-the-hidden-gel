@@ -47,20 +47,19 @@ public class Weapon : KinematicBody2D
         velocity.x += dir * speed;
     }
 
-    public void Attack(object body)
-    {
-        if (body is Enemy)
-        {
-            GD.Print("Enemy Detected");
-            Enemy e = body as Enemy;
-            e.QueueFree();
-            QueueFree();
-        }
-    }
-
     public override void _PhysicsProcess(float delta)
     {
         //GD.Print("Velocity: ", velocity);
-        MoveAndSlide(velocity);
+        KinematicCollision2D col = MoveAndCollide(velocity);
+        if (col != null)
+        {
+            if (col.Collider is Enemy)
+            {
+                GD.Print("Enemy Detected");
+                Enemy e = col.Collider as Enemy;
+                e.QueueFree();
+                QueueFree();
+            }
+        }
     }
 }
