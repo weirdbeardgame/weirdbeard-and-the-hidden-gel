@@ -51,6 +51,7 @@ public class Weapon : KinematicBody2D
     {
         if (body is Enemy)
         {
+            GD.Print("Enemy Detected");
             Enemy e = body as Enemy;
             e.QueueFree();
             QueueFree();
@@ -59,7 +60,7 @@ public class Weapon : KinematicBody2D
 
     public override void _PhysicsProcess(float delta)
     {
-        GD.Print("Velocity: ", velocity);
+        //GD.Print("Velocity: ", velocity);
         MoveAndSlide(velocity);
     }
 }

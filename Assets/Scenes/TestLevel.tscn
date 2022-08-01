@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/resources/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/resources/platform_metroidvania asset pack v1.01/tiles and background_foreground (new)/tileset_32x32(new).png" type="Texture" id=2]
+[ext_resource path="res://Assets/resources/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/resources/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/resources/Weapons/Sword.tscn" type="PackedScene" id=5]
 
@@ -126,3 +127,6 @@ weapon = ExtResource( 5 )
 maxCoyoteTimer = 1.0
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
+
+[node name="TestEnemy" parent="." instance=ExtResource( 3 )]
+position = Vector2( 770, 404 )
