@@ -1,13 +1,15 @@
 using Godot;
 using System;
 
-public class Weapon : Node
+public class WeaponSlot : Node
 {
-    [Export]
-    protected Sprite WeaponSprite;
+    // Declare member variables here. Examples:
+    // private int a = 2;
+    // private string b = "text";
 
-    [Export]
-    protected int ID = 0;
+    Weapon SlottedWeapon;
+
+    Sprite weaponBox;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -15,14 +17,12 @@ public class Weapon : Node
 
     }
 
-    public virtual bool Equip()
+    public void Equip(Weapon toEquip)
     {
-        return false;
-    }
-
-    public virtual void Attack()
-    {
-
+        if (SlottedWeapon != toEquip)
+        {
+            SlottedWeapon = toEquip;
+        }
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.

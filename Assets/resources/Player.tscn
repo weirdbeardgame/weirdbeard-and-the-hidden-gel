@@ -152,3 +152,5 @@ anims/Walk = SubResource( 4 )
 
 [node name="Death" type="Node" parent="."]
 script = ExtResource( 21 )
+
+[node name="Timer" type="Timer" parent="."]

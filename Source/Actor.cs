@@ -13,7 +13,7 @@ public class Actor : KinematicBody2D
     public float speed = 400.0f;
 
     [Export]
-    public float jumpForce = 1200f;
+    public float jumpForce = 900f;
 
     protected StateMachine stateMachine;
 

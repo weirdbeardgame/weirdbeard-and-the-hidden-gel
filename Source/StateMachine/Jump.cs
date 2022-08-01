@@ -3,12 +3,6 @@ using System;
 
 public class Jump : State
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
-    bool isFalling;
-
     public override void Start()
     {
         player.player.Play("Jump");
