@@ -10,9 +10,9 @@ public class Weapon : KinematicBody2D
     public float fireRate = 0.2f;
 
     [Export]
-    public float speed = 180.0f;
+    public float speed = 350.0f;
 
-    Vector2 velocity = Vector2.Zero;
+    Vector2 velocity = Vector2.Right;
 
     Sprite sprite;
 
@@ -31,7 +31,7 @@ public class Weapon : KinematicBody2D
         return false;
     }
 
-    public void Throw(float dir)
+    public void Throw(float dir, float delta)
     {
         GD.Print("Dir: ", dir);
 
@@ -44,8 +44,7 @@ public class Weapon : KinematicBody2D
             sprite.FlipH = false;
         }
 
-        Vector2 inputVelocity = new Vector2(dir * speed, 0);
-        velocity = inputVelocity;
+        velocity.x += dir * speed;
     }
 
     public void Attack(object body)
@@ -54,6 +53,7 @@ public class Weapon : KinematicBody2D
         {
             Enemy e = body as Enemy;
             e.QueueFree();
+            QueueFree();
         }
     }
 

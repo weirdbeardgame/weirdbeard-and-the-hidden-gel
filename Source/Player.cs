@@ -104,7 +104,7 @@ public class Player : Actor
                 dir = 1.0f;
             }
 
-            w.Throw(dir);
+            w.Throw(dir, delta);
             canThrowWeapon = false;
             await ToSignal(GetTree().CreateTimer(w.fireRate), "timeout");
             canThrowWeapon = true;
