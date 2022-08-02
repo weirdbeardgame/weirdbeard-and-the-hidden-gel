@@ -16,7 +16,6 @@ public class Weapon : KinematicBody2D
 
     Sprite sprite;
 
-
     AnimationPlayer play;
 
     // Called when the node enters the scene tree for the first time.

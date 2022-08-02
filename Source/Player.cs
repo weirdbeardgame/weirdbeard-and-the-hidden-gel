@@ -11,8 +11,8 @@ public class Player : Actor
 
     bool canThrowWeapon = true;
 
-    [Export]
-    PackedScene weapon;
+    WeaponSlot equipped;
+
 
     [Export]
     public float maxCoyoteTimer = 2f;
@@ -81,30 +81,20 @@ public class Player : Actor
     {
         if (Input.IsActionJustPressed("Attack") && canThrowWeapon)
         {
-            if (weapon == null)
+            if (equipped == null)
             {
                 string path = GetPath();
                 GD.Print("Path: " + path);
             }
 
-            float dir = 0f;
-            Weapon w = (Weapon)weapon.Instance();
+            Weapon w = (Weapon)equipped.Weapon.Instance();
 
             w.Position = GlobalPosition;
-            w.Rotation = GlobalRotation;
+            //w.Rotation = GlobalRotation;
 
             Owner.AddChild(w);
 
-            if (velocity.x < 0)
-            {
-                dir = -1.0f;
-            }
-            else
-            {
-                dir = 1.0f;
-            }
-
-            w.Throw(dir, delta);
+            w.Throw(velocity.x, delta);
             canThrowWeapon = false;
             await ToSignal(GetTree().CreateTimer(w.fireRate), "timeout");
             canThrowWeapon = true;

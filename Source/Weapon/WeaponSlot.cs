@@ -3,13 +3,19 @@ using System;
 
 public class WeaponSlot : Node
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
-    Weapon SlottedWeapon;
+    PackedScene slottedWeapon;
 
     Sprite weaponBox;
+
+    Sprite weaponIcon;
+
+    public PackedScene Weapon
+    {
+        get
+        {
+            return slottedWeapon;
+        }
+    }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -17,11 +23,11 @@ public class WeaponSlot : Node
 
     }
 
-    public void Equip(Weapon toEquip)
+    public void Equip(PackedScene toEquip)
     {
-        if (SlottedWeapon != toEquip)
+        if (slottedWeapon != toEquip)
         {
-            SlottedWeapon = toEquip;
+            slottedWeapon = toEquip;
         }
     }
 
