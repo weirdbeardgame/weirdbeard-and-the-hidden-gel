@@ -40,7 +40,7 @@ tracks/0/keys = {
 
 [node name="SwordBody" type="KinematicBody2D"]
 collision_layer = 8
-collision_mask = 0
+collision_mask = 4
 script = ExtResource( 1 )
 fireRate = 0.5
 

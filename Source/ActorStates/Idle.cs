@@ -34,16 +34,6 @@ public class Idle : State
 
     public override void FixedUpdate(float delta)
     {
-        if (Input.IsActionJustPressed("Left"))
-        {
-            player.weirdBeard.FlipH = true;
-        }
-
-        else if (Input.IsActionJustPressed("Right"))
-        {
-            player.weirdBeard.FlipH = false;
-        }
-
         if (Input.IsActionPressed("Right") || Input.IsActionPressed("Left"))
         {
             stateMachine.UpdateState("WALK");

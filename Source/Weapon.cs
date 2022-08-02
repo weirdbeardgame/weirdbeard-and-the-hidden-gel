@@ -34,8 +34,13 @@ public class Weapon : KinematicBody2D
     public void Throw(float dir, float delta)
     {
         GD.Print("Dir: ", dir);
+        velocity.x = dir * speed * delta;
+    }
 
-        if (dir < 0)
+    public override void _PhysicsProcess(float delta)
+    {
+
+        if (velocity.x < 0)
         {
             sprite.FlipH = true;
         }
@@ -44,15 +49,11 @@ public class Weapon : KinematicBody2D
             sprite.FlipH = false;
         }
 
-        velocity.x += dir * speed;
-    }
-
-    public override void _PhysicsProcess(float delta)
-    {
         //GD.Print("Velocity: ", velocity);
         KinematicCollision2D col = MoveAndCollide(velocity);
         if (col != null)
         {
+            GD.Print("Collision");
             if (col.Collider is Enemy)
             {
                 GD.Print("Enemy Detected");
