@@ -55,7 +55,10 @@ public class StateMachine : Node
             oldState.Exit();
         }
         state = GetNode<State>(Nodes[newState]);
-        stateSet.Text = newState;
+        if (stateSet != null)
+        {
+            stateSet.Text = newState;
+        }
         state.Start();
     }
 
