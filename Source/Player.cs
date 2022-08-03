@@ -35,6 +35,7 @@ public class Player : Actor
         stateMachine.UpdateState("IDLE");
         weirdBeard = (Sprite)GetNode("WeirdBeard");
         timer = (Timer)GetNode("Timer");
+        equipped = (WeaponSlot)Owner.GetNode("HUD/WeaponSlot");
         lives = 3;
     }
 
@@ -87,14 +88,25 @@ public class Player : Actor
                 GD.Print("Path: " + path);
             }
 
+            float weaponDir = 1.0f;
+
             Weapon w = (Weapon)equipped.Weapon.Instance();
 
             w.Position = GlobalPosition;
             //w.Rotation = GlobalRotation;
 
-            Owner.AddChild(w);
+            if (velocity.x < 0)
+            {
+                weaponDir = -1.0f;
+            }
 
-            w.Throw(velocity.x, delta);
+            if (velocity.x > 0)
+            {
+                weaponDir = 1.0f;
+            }
+
+            Owner.AddChild(w);
+            w.Throw(weaponDir, delta);
             canThrowWeapon = false;
             await ToSignal(GetTree().CreateTimer(w.fireRate), "timeout");
             canThrowWeapon = true;
@@ -103,7 +115,6 @@ public class Player : Actor
         wasOnFloor = IsOnFloor();
         velocity.y += gravity * delta;
         velocity = MoveAndSlide(velocity, Vector2.Up);
-
 
         if (wasOnFloor && !IsOnFloor())
         {
