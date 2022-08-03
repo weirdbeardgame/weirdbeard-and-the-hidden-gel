@@ -7,7 +7,7 @@
 [ext_resource path="res://Assets/resources/Sprites/Rat/Run_09.png" type="Texture" id=9]
 [ext_resource path="res://Assets/resources/Sprites/Rat/Run_08.png" type="Texture" id=10]
 [ext_resource path="res://Assets/resources/Sprites/Rat/Run_06.png" type="Texture" id=11]
-[ext_resource path="res://Source/StateMachine/StateMachine.cs" type="Script" id=12]
+[ext_resource path="res://Source/StateMachine.cs" type="Script" id=12]
 [ext_resource path="res://Assets/resources/Sprites/Rat/Run_01.png" type="Texture" id=13]
 [ext_resource path="res://Assets/resources/Sprites/Rat/Run_03.png" type="Texture" id=14]
 [ext_resource path="res://Source/Enemy.cs" type="Script" id=15]
@@ -54,6 +54,8 @@ tracks/0/keys = {
 extents = Vector2( 20, 12.5 )
 
 [node name="TestEnemy" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 9
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_vertical_guides_": [ 167.0 ]

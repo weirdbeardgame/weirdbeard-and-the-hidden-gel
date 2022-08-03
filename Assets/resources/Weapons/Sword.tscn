@@ -1,10 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Source/Weapon.cs" type="Script" id=1]
+[ext_resource path="res://Source/Weapon/Weapon.cs" type="Script" id=1]
 [ext_resource path="res://Assets/resources/scifi_fantasy_swords/scifi_swords0005.png" type="Texture" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 51.1375, 1008.17 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 52, 10 )
@@ -43,19 +40,9 @@ tracks/0/keys = {
 
 [node name="SwordBody" type="KinematicBody2D"]
 collision_layer = 8
-collision_mask = 0
+collision_mask = 4
 script = ExtResource( 1 )
 fireRate = 0.5
-
-[node name="Weapon" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]
-position = Vector2( 10, -8.9407e-08 )
-rotation = 1.5708
-scale = Vector2( 0.0684431, 0.0411636 )
-shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 0 )
@@ -67,8 +54,6 @@ scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Weapon")
+root_node = NodePath("")
 anims/Attack = SubResource( 2 )
 anims/RESET = SubResource( 3 )
-
-[connection signal="body_entered" from="Weapon" to="." method="Attack"]
