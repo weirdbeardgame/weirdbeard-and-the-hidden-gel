@@ -17,7 +17,6 @@ public class Pause : State
     public override void Start()
     {
         // Play screen darken animation. Open UI
-
         PauseGame();
     }
 
@@ -47,10 +46,21 @@ public class Pause : State
         }
     }
 
-    public override void FixedUpdate(float delta)
+    public override void Update(float delta)
     {
         // Handle UI input processing
-
+        if (Input.IsActionJustPressed("Pause"))
+        {
+            GD.Print("PAUSE");
+            if (isPaused)
+            {
+                UnpauseGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
     }
 
     public override void Exit()

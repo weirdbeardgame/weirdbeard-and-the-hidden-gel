@@ -3,6 +3,9 @@ using System;
 
 public class GameOver : State
 {
+
+    [Export]
+    PackedScene gameOverScene;
     public override void _Ready()
     {
         StateName = "GAMEOVER";
