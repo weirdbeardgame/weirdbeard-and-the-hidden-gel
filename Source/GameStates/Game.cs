@@ -8,7 +8,7 @@ public class Game : State
     public override void _Ready()
     {
         StateName = "GAME";
-        manager = (GameManager)GetParent<GameManager>();
+        //manager = (GameManager)GetParent<GameManager>();
         stateMachine = (StateMachine)GetParent<StateMachine>();
         stateMachine.AddState(this, StateName);
     }
