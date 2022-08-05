@@ -31,6 +31,8 @@ public class WeaponSlot : Node
             slottedWeapon = toEquip;
         }
         weaponIcon = weaponSprite;
+        Vector2 S = new Vector2(100, 100);
+        weaponIcon.Scale = S;
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.

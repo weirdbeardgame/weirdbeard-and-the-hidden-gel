@@ -1,29 +1,31 @@
 using Godot;
 using System;
 
-public class Pause : State
+public class GameOver : State
 {
 
-    // Called when the node enters the scene tree for the first time.
+    [Export]
+    PackedScene gameOverScene;
     public override void _Ready()
     {
-        StateName = "PAUSE";
+        StateName = "GAMEOVER";
         stateMachine = (StateMachine)GetParent<StateMachine>();
         stateMachine.AddState(this, StateName);
     }
 
     public override void Start()
     {
-        // Play screen darken animation. Open UI
-        GetTree().Paused = true;
+        base.Start();
     }
+
     public override void FixedUpdate(float delta)
     {
+        // Handle UI input processing
     }
 
     public override void Exit()
     {
-        // Close UI and play animation
-        GetTree().Paused = false;
+        base.Exit();
     }
+
 }

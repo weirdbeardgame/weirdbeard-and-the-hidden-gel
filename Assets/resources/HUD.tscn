@@ -16,4 +16,4 @@ align = 1
 autowrap = true
 
 [node name="WeaponSlot" parent="." instance=ExtResource( 2 )]
-position = Vector2( 277, 28 )
+position = Vector2( 215, 32 )

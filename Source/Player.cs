@@ -13,7 +13,6 @@ public class Player : Actor
 
     WeaponSlot equipped;
 
-
     [Export]
     public float maxCoyoteTimer = 2f;
 
@@ -77,41 +76,41 @@ public class Player : Actor
         return IsOnFloor() || coyoteTime;
     }
 
+    public bool GamaOvar()
+    {
+        return (lives <= 0);
+    }
 
     public override async void _PhysicsProcess(float delta)
     {
-        if (Input.IsActionJustPressed("Attack") && canThrowWeapon)
+        if (equipped.Weapon != null)
         {
-            if (equipped == null)
+            if (Input.IsActionJustPressed("Attack") && canThrowWeapon)
             {
-                string path = GetPath();
-                GD.Print("Path: " + path);
+                float weaponDir = 1.0f;
+
+                Weapon w = (Weapon)equipped.Weapon.Instance();
+
+                w.Position = GlobalPosition;
+                //w.Rotation = GlobalRotation;
+
+                if (velocity.x < 0)
+                {
+                    weaponDir = -1.0f;
+                }
+
+                if (velocity.x > 0)
+                {
+                    weaponDir = 1.0f;
+                }
+
+                Owner.AddChild(w);
+                w.Throw(weaponDir, delta);
+                canThrowWeapon = false;
+                await ToSignal(GetTree().CreateTimer(w.fireRate), "timeout");
+                canThrowWeapon = true;
             }
-
-            float weaponDir = 1.0f;
-
-            Weapon w = (Weapon)equipped.Weapon.Instance();
-
-            w.Position = GlobalPosition;
-            //w.Rotation = GlobalRotation;
-
-            if (velocity.x < 0)
-            {
-                weaponDir = -1.0f;
-            }
-
-            if (velocity.x > 0)
-            {
-                weaponDir = 1.0f;
-            }
-
-            Owner.AddChild(w);
-            w.Throw(weaponDir, delta);
-            canThrowWeapon = false;
-            await ToSignal(GetTree().CreateTimer(w.fireRate), "timeout");
-            canThrowWeapon = true;
         }
-
         wasOnFloor = IsOnFloor();
         velocity.y += gravity * delta;
         velocity = MoveAndSlide(velocity, Vector2.Up);
