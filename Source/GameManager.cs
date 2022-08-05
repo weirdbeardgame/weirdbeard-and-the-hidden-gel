@@ -12,12 +12,23 @@ public class GameManager : Node
 
     Player player;
 
+    SceneManager scenes;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         player = (Player)Owner.GetNode("Player");
         gameState = (StateMachine)GetNode("StateMachine");
+        scenes = (SceneManager)GetNode("SceneManager");
+        NewGame();
     }
+
+    public void NewGame()
+    {
+        scenes.SwitchLevel("TestLevel");
+        gameState.UpdateState("GAME");
+    }
+
 
     public override void _Process(float delta)
     {
@@ -29,9 +40,6 @@ public class GameManager : Node
 
     public override void _PhysicsProcess(float delta)
     {
-        if (Input.IsActionJustPressed("Pause"))
-        {
-            gameState.UpdateState("PAUSE");
-        }
+
     }
 }
