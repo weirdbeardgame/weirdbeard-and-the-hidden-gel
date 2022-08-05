@@ -9,9 +9,7 @@ using System;
 public class GameManager : Node
 {
     StateMachine gameState;
-
     Player player;
-
     SceneManager scenes;
 
     // Called when the node enters the scene tree for the first time.
@@ -28,7 +26,6 @@ public class GameManager : Node
         scenes.SwitchLevel("TestLevel");
         gameState.UpdateState("GAME");
     }
-
 
     public override void _Process(float delta)
     {

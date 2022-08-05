@@ -5,11 +5,10 @@ public class Game : State
 {
     GameManager manager;
 
-    SceneManager scenes;
-
     public override void _Ready()
     {
         StateName = "GAME";
+        manager = (GameManager)GetParent<GameManager>();
         stateMachine = (StateMachine)GetParent<StateMachine>();
         stateMachine.AddState(this, StateName);
     }
