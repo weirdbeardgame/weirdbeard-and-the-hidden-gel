@@ -8,7 +8,15 @@ public class SceneManager : Node
     Dictionary<string, PackedScene> levels;
 
     [Export]
-    PackedScene currentScene;
+    Node currentScene;
+
+    public Node CurrentScene
+    {
+        get
+        {
+            return currentScene;
+        }
+    }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -23,12 +31,12 @@ public class SceneManager : Node
     public void SwitchLevel(string scene)
     {
         PackedScene sceneToLoad = levels[scene];
-        if (currentScene != sceneToLoad)
+        if (currentScene != sceneToLoad.Instance())
         {
             // Play level changing animation.
             // Loat new scene and set it as current
             // This could be called from Game Manager at first but could also be in a hub world
-            currentScene = sceneToLoad;
+            currentScene = sceneToLoad.Instance();
             Error err = GetTree().ChangeScene(sceneToLoad.ResourcePath);
 
             if (err != Error.Ok)

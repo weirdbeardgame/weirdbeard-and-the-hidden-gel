@@ -4,14 +4,9 @@ using System;
 
 public class Player : Actor
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
     public AnimationPlayer player;
 
     bool canThrowWeapon = true;
-
-    WeaponSlot equipped;
 
     [Export]
     public float maxCoyoteTimer = 2f;
@@ -19,8 +14,6 @@ public class Player : Actor
     public bool coyoteTime;
 
     Timer timer;
-
-    public int lives = 0;
 
     public Sprite weirdBeard;
 
@@ -34,8 +27,7 @@ public class Player : Actor
         stateMachine.UpdateState("IDLE");
         weirdBeard = (Sprite)GetNode("WeirdBeard");
         timer = (Timer)GetNode("Timer");
-        equipped = (WeaponSlot)Owner.GetNode("HUD/WeaponSlot");
-        lives = 3;
+        PlayerData.equipped = (WeaponSlot)Owner.GetNode("HUD/WeaponSlot");
     }
 
     public Vector2 Velocity
@@ -78,37 +70,43 @@ public class Player : Actor
 
     public bool GamaOvar()
     {
-        return (lives <= 0);
+        return (PlayerData.playerLives <= 0);
     }
 
-    public override async void _PhysicsProcess(float delta)
+    public async void ThrowWeapon(float delta)
     {
-        if (equipped.Weapon != null)
+        float weaponDir = 1.0f;
+
+        Weapon w = (Weapon)PlayerData.equipped.Weapon.Instance();
+
+        w.Position = GlobalPosition;
+        w.Rotation = GlobalRotation;
+
+        if (velocity.x < 0)
+        {
+            weaponDir = -1.0f;
+        }
+
+        if (velocity.x > 0)
+        {
+            weaponDir = 1.0f;
+        }
+
+        Owner.AddChild(w);
+        w.Throw(weaponDir, delta);
+        canThrowWeapon = false;
+        await ToSignal(GetTree().CreateTimer(w.fireRate), "timeout");
+        canThrowWeapon = true;
+
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        if (PlayerData.equipped.Weapon != null)
         {
             if (Input.IsActionJustPressed("Attack") && canThrowWeapon)
             {
-                float weaponDir = 1.0f;
-
-                Weapon w = (Weapon)equipped.Weapon.Instance();
-
-                w.Position = GlobalPosition;
-                //w.Rotation = GlobalRotation;
-
-                if (velocity.x < 0)
-                {
-                    weaponDir = -1.0f;
-                }
-
-                if (velocity.x > 0)
-                {
-                    weaponDir = 1.0f;
-                }
-
-                Owner.AddChild(w);
-                w.Throw(weaponDir, delta);
-                canThrowWeapon = false;
-                await ToSignal(GetTree().CreateTimer(w.fireRate), "timeout");
-                canThrowWeapon = true;
+                ThrowWeapon(delta);
             }
         }
         wasOnFloor = IsOnFloor();

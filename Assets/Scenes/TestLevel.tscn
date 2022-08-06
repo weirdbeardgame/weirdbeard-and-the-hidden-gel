@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Assets/resources/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/resources/Tiles/Platformer/Tiles/TileSet.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/resources/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/resources/Weapons/Sword.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/resources/Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/resources/Portal.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -704,12 +705,6 @@ __meta__ = {
 "_edit_horizontal_guides_": [ 44.0 ]
 }
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -609, 163 )
-maxCoyoteTimer = 1.0
-
-[node name="HUD" parent="." instance=ExtResource( 4 )]
-
 [node name="Sword" parent="." instance=ExtResource( 3 )]
 position = Vector2( 18, 427 )
 w = ExtResource( 5 )
@@ -717,3 +712,12 @@ w = ExtResource( 5 )
 [node name="TestEnemy" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1069, 422 )
 speed = 200.0
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( -837, 391 )
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]
+
+[node name="LevelSwitch" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1255, 449 )
+teleportTo = "TestLevel2"

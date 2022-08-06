@@ -20,6 +20,6 @@ public class HUD : Node
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        Lives.Text = ("Lives: " + player.lives);
+        Lives.Text = ("Lives: " + PlayerData.playerLives);
     }
 }

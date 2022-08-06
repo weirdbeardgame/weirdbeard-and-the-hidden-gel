@@ -19,10 +19,10 @@ public class Death : State
 
     public override void Update(float delta)
     {
-        if (player.lives > 0)
+        if (PlayerData.playerLives > 0)
         {
             GetTree().ReloadCurrentScene();
-            player.lives -= 1;
+            PlayerData.playerLives -= 1;
         }
         else
         {

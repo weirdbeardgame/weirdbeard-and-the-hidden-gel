@@ -9,13 +9,18 @@ using System;
 public class GameManager : Node
 {
     StateMachine gameState;
+
+    [Export]
+    PackedScene playerScene;
+
     Player player;
+
     SceneManager scenes;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        player = (Player)Owner.GetNode("Player");
+        player = (Player)playerScene.Instance();
         gameState = (StateMachine)GetNode("StateMachine");
         scenes = (SceneManager)GetNode("SceneManager");
         NewGame();
