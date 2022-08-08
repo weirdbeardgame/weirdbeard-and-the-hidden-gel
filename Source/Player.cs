@@ -6,8 +6,6 @@ public class Player : Actor
 {
     public AnimationPlayer player;
 
-    bool canThrowWeapon = true;
-
     [Export]
     public float maxCoyoteTimer = 2f;
 
@@ -73,40 +71,37 @@ public class Player : Actor
         return (PlayerData.playerLives <= 0);
     }
 
-    public async void ThrowWeapon(float delta)
+    void Attack(float delta)
     {
-        float weaponDir = 1.0f;
-
         Weapon w = (Weapon)PlayerData.equipped.Weapon.Instance();
 
-        w.Position = GlobalPosition;
-        w.Rotation = GlobalRotation;
+        float direction = 0f;
 
         if (velocity.x < 0)
         {
-            weaponDir = -1.0f;
+            direction = -1.0f;
         }
-
-        if (velocity.x > 0)
+        else if (velocity.x > 0)
         {
-            weaponDir = 1.0f;
+            direction = 1.0f;
         }
 
-        Owner.AddChild(w);
-        w.Throw(weaponDir, delta);
-        canThrowWeapon = false;
-        await ToSignal(GetTree().CreateTimer(w.fireRate), "timeout");
-        canThrowWeapon = true;
-
+        if (w.canThrowWeapon)
+        {
+            GetParent().AddChild(w);
+            w.Position = GlobalPosition;
+            w.Rotation = GlobalRotation;
+            w.Attack(direction, delta);
+        }
     }
 
     public override void _PhysicsProcess(float delta)
     {
         if (PlayerData.equipped.Weapon != null)
         {
-            if (Input.IsActionJustPressed("Attack") && canThrowWeapon)
+            if (Input.IsActionJustPressed("Attack"))
             {
-                ThrowWeapon(delta);
+                Attack(delta);
             }
         }
         wasOnFloor = IsOnFloor();

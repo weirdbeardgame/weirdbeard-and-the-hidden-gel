@@ -1,16 +1,24 @@
 using Godot;
 using System;
 
+public enum WeaponType { THROW, SWING, SHOOT }
+
+
 public class Weapon : KinematicBody2D
 {
     [Export]
-    string WeaponName;
+    public WeaponType type;
 
     [Export]
-    public float fireRate = 0.2f;
+    public string weaponName;
 
     [Export]
-    public float speed = 350.0f;
+    public float fireRate;
+
+    [Export]
+    public float speed;
+
+    public bool canThrowWeapon = true;
 
     Vector2 velocity = Vector2.Right;
 
@@ -25,16 +33,18 @@ public class Weapon : KinematicBody2D
         play = (AnimationPlayer)GetNode("AnimationPlayer");
     }
 
-    public bool Equip()
+    public void Attack(float dir, float delta)
     {
-        return false;
+        switch (type)
+        {
+            case WeaponType.THROW:
+                Throw(dir, delta);
+                break;
+        }
     }
 
-    public void Throw(float dir, float delta)
+    async void Throw(float dir, float delta)
     {
-        GD.Print("Dir: ", dir);
-        velocity.x = dir * speed * delta;
-
         if (dir < 0)
         {
             sprite.FlipH = true;
@@ -43,6 +53,14 @@ public class Weapon : KinematicBody2D
         {
             sprite.FlipH = false;
         }
+
+        GD.Print("Dir: ", dir);
+
+        canThrowWeapon = false;
+        await ToSignal(GetTree().CreateTimer(fireRate), "timeout");
+        canThrowWeapon = true;
+
+        velocity.x = delta * speed * dir;
     }
 
     public override void _PhysicsProcess(float delta)
@@ -60,5 +78,10 @@ public class Weapon : KinematicBody2D
                 QueueFree();
             }
         }
+    }
+
+    public void _on_VisibilityNotifier2D_viewport_exited()
+    {
+        QueueFree();
     }
 }

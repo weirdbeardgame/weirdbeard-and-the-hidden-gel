@@ -42,7 +42,8 @@ tracks/0/keys = {
 collision_layer = 8
 collision_mask = 4
 script = ExtResource( 1 )
-fireRate = 0.5
+weaponName = "Sword"
+fireRate = 1.0
 speed = 500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -58,3 +59,9 @@ texture = ExtResource( 2 )
 root_node = NodePath("")
 anims/Attack = SubResource( 2 )
 anims/RESET = SubResource( 3 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 1, 0 )
+scale = Vector2( 5.2, 1 )
+
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]

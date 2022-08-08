@@ -34,10 +34,4 @@ public class WeaponSlot : Node
         Vector2 S = new Vector2(100, 100);
         weaponIcon.Scale = S;
     }
-
-    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
-    //  {
-    //      
-    //  }
 }
