@@ -46,11 +46,13 @@ public class Walk : State
 
             if (inputVelocity.x < 0)
             {
+                PlayerData.direction = Vector2.Left;
                 player.weirdBeard.FlipH = true;
             }
 
             else
             {
+                PlayerData.direction = Vector2.Right;
                 player.weirdBeard.FlipH = false;
             }
         }
@@ -59,10 +61,13 @@ public class Walk : State
             stateMachine.UpdateState("JUMP");
         }
 
-        if (inputVelocity == Vector2.Zero)
+        if (player.IsOnFloor() && inputVelocity.x < 0.1 && inputVelocity.x > -player.speed)
         {
             stateMachine.UpdateState("IDLE");
         }
+
+        GD.Print("InputVelocity:", inputVelocity.x);
+
     }
 
     public override void Exit()

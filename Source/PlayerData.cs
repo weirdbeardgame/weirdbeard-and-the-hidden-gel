@@ -8,6 +8,8 @@ public class PlayerData : Node
 
     public static WeaponSlot equipped;
 
+    public static Vector2 direction = Vector2.Right;
+
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()

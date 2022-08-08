@@ -18,6 +18,8 @@ public class Weapon : KinematicBody2D
     [Export]
     public float speed;
 
+    public Vector2 direction;
+
     public bool canThrowWeapon = true;
 
     Vector2 velocity = Vector2.Right;
@@ -31,42 +33,58 @@ public class Weapon : KinematicBody2D
     {
         sprite = (Sprite)GetNode("weaponSprite");
         play = (AnimationPlayer)GetNode("AnimationPlayer");
+        direction = PlayerData.direction;
+
+        GD.Print("Direction:", direction.x);
+
+        velocity.x = speed * direction.x;
     }
 
-    public void Attack(float dir, float delta)
+    public void Attack(float delta)
     {
         switch (type)
         {
             case WeaponType.THROW:
-                Throw(dir, delta);
+                Throw(delta);
+                break;
+
+            case WeaponType.SHOOT:
+                Shoot(delta);
                 break;
         }
     }
 
-    async void Throw(float dir, float delta)
+    async void Throw(float delta)
     {
-        if (dir < 0)
+        if (direction.x < 0)
         {
             sprite.FlipH = true;
         }
-        else if (dir > 0)
+        else if (direction.x > 0)
         {
             sprite.FlipH = false;
         }
 
-        GD.Print("Dir: ", dir);
+        GD.Print("Dir: ", direction);
 
         canThrowWeapon = false;
         await ToSignal(GetTree().CreateTimer(fireRate), "timeout");
         canThrowWeapon = true;
+    }
 
-        velocity.x = delta * speed * dir;
+    async void Shoot(float delta)
+    {
+        // Spawn bullet types in here. Could be blunderbuss shotgun or flintlock
+
+        canThrowWeapon = false;
+        await ToSignal(GetTree().CreateTimer(fireRate), "timeout");
+        canThrowWeapon = true;
     }
 
     public override void _PhysicsProcess(float delta)
     {
         //GD.Print("Velocity: ", velocity);
-        KinematicCollision2D col = MoveAndCollide(velocity);
+        KinematicCollision2D col = MoveAndCollide(velocity * delta);
         if (col != null)
         {
             GD.Print("Collision");

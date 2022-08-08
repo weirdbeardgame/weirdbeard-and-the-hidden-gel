@@ -75,23 +75,12 @@ public class Player : Actor
     {
         Weapon w = (Weapon)PlayerData.equipped.Weapon.Instance();
 
-        float direction = 0f;
-
-        if (velocity.x < 0)
-        {
-            direction = -1.0f;
-        }
-        else if (velocity.x > 0)
-        {
-            direction = 1.0f;
-        }
-
         if (w.canThrowWeapon)
         {
             GetParent().AddChild(w);
             w.Position = GlobalPosition;
             w.Rotation = GlobalRotation;
-            w.Attack(direction, delta);
+            w.Attack(delta);
         }
     }
 
