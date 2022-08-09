@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/resources/Tiles/Platformer/Tiles/TileSet.png" type="Texture" id=2]
 [ext_resource path="res://Assets/resources/Weapons/SwordEquip.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/resources/HUD.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/resources/Weapons/Sword.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Source/Sword.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/resources/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/resources/Portal.tscn" type="PackedScene" id=7]
 
