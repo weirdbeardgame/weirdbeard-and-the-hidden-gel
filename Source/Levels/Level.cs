@@ -4,11 +4,10 @@ using System.Collections.Generic;
 
 public class Level : Node
 {
-
     [Export]
-    Dictionary<Node, string> sublevels;
+    Dictionary<string, PackedScene> sublevels;
 
-    // Set player position to spawnpoint if nessacary. 
+    // Set player position to spawnpoint if nessacary.
     // Reset Enemies and Players states. Set NPC states
     public void EnterLevel()
     {
@@ -18,10 +17,15 @@ public class Level : Node
     // Without changing the engine "CurrentScene" Keep main scene loaded in background.
     public void EnterSubLevel(string sub)
     {
+        var tree = GetTree();
+        Node toLoad = sublevels[sub].Instance();
+        GetParent().AddChild(toLoad);
     }
 
     public void ExitSubLevel(string sub)
     {
+        Node toLoad = this;
+        GetTree().Root.AddChild(toLoad);
     }
 
     // Clear the enemies and other data from the scene.

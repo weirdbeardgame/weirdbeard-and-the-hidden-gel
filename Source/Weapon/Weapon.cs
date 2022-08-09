@@ -98,7 +98,7 @@ public class Weapon : KinematicBody2D
         }
     }
 
-    public void _on_VisibilityNotifier2D_viewport_exited()
+    public void _on_VisibilityNotifier2D_viewport_exited(Viewport view)
     {
         QueueFree();
     }

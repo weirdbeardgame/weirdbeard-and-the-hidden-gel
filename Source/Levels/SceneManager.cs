@@ -8,9 +8,9 @@ public class SceneManager : Node
     Dictionary<string, PackedScene> levels;
 
     [Export]
-    Node currentScene;
+    Level currentScene;
 
-    public Node CurrentScene
+    public Level CurrentScene
     {
         get
         {
@@ -33,16 +33,27 @@ public class SceneManager : Node
     // This could be called from Game Manager at first but could also be in a hub world
     public void SwitchLevel(string scene)
     {
+        if (currentScene != null)
+        {
+            currentScene.ExitLevel();
+            currentScene = null;
+        }
+
         PackedScene sceneToLoad = levels[scene];
         if (currentScene != sceneToLoad.Instance())
         {
-            currentScene = sceneToLoad.Instance();
-            Error err = GetTree().ChangeScene(sceneToLoad.ResourcePath);
+            Error err = GetTree().ChangeSceneTo(sceneToLoad);
 
             if (err != Error.Ok)
             {
                 GD.PrintErr(err.ToString());
                 throw new Exception(err.ToString());
+            }
+
+            if (currentScene != null)
+            {
+                currentScene = (Level)GetTree().Root.GetNode("TileMap");
+                currentScene.EnterLevel();
             }
         }
     }
