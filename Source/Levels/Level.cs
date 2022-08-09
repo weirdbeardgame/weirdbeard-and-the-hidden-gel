@@ -2,11 +2,8 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-
 public class Level : Node
 {
-
-    public PackedScene levelScene;
 
     [Export]
     Dictionary<Node, string> sublevels;

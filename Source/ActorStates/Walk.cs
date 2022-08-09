@@ -61,7 +61,7 @@ public class Walk : State
             stateMachine.UpdateState("JUMP");
         }
 
-        if (player.IsOnFloor() && inputVelocity.x < 0.1 && inputVelocity.x > -player.speed)
+        if (player.IsOnFloor() && inputVelocity.Normalized() == Vector2.Zero)
         {
             stateMachine.UpdateState("IDLE");
         }

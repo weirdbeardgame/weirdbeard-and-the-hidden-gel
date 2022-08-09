@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class SceneManager : Node
 {
     [Export]
-    Dictionary<string, Level> levels;
+    Dictionary<string, PackedScene> levels;
 
     [Export]
     Node currentScene;
@@ -28,16 +28,16 @@ public class SceneManager : Node
         }
     }
 
+    // Play level changing animation.
+    // Loat new scene and set it as current
+    // This could be called from Game Manager at first but could also be in a hub world
     public void SwitchLevel(string scene)
     {
-        Level sceneToLoad = levels[scene];
-        if (currentScene != sceneToLoad.levelScene.Instance())
+        PackedScene sceneToLoad = levels[scene];
+        if (currentScene != sceneToLoad.Instance())
         {
-            // Play level changing animation.
-            // Loat new scene and set it as current
-            // This could be called from Game Manager at first but could also be in a hub world
-            currentScene = sceneToLoad.levelScene.Instance();
-            Error err = GetTree().ChangeScene(sceneToLoad.levelScene.ResourcePath);
+            currentScene = sceneToLoad.Instance();
+            Error err = GetTree().ChangeScene(sceneToLoad.ResourcePath);
 
             if (err != Error.Ok)
             {
