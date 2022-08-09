@@ -33,7 +33,16 @@ public class State : Node
     public virtual Vector2 GetInput()
     {
         Vector2 inputVelocity = Vector2.Zero;
-        inputVelocity.x = (Input.GetActionRawStrength("Right") - Input.GetActionRawStrength("Left"));
+        //inputVelocity.x = (Input.GetActionRawStrength("Right") - Input.GetActionRawStrength("Left"));
+        if (Input.IsActionPressed("Right"))
+        {
+            inputVelocity.x = 1.0f;
+        }
+        else if (Input.IsActionPressed("Left"))
+        {
+            inputVelocity.x = -1.0f;
+        }
+
         if (Input.IsActionPressed("Jump"))
         {
             inputVelocity.y = -player.jumpForce;

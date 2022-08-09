@@ -41,7 +41,7 @@ public class Walk : State
                 currentSpeed = player.speed;
             }
 
-            inputVelocity.x = GetInput().x * currentSpeed;
+            inputVelocity.x = currentSpeed * GetInput().x;
             player.Velocity = inputVelocity;
 
             if (inputVelocity.x < 0)
@@ -61,7 +61,7 @@ public class Walk : State
             stateMachine.UpdateState("JUMP");
         }
 
-        if (player.IsOnFloor() && inputVelocity.Normalized() == Vector2.Zero)
+        if (player.IsOnFloor() && inputVelocity == Vector2.Zero)
         {
             stateMachine.UpdateState("IDLE");
         }
