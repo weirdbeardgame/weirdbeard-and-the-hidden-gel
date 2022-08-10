@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 public class Level : Node
 {
+
+    [Export]
+    public string name;
+
+
     [Export]
     Dictionary<string, PackedScene> sublevels;
 
@@ -17,9 +22,12 @@ public class Level : Node
     // Without changing the engine "CurrentScene" Keep main scene loaded in background.
     public void EnterSubLevel(string sub)
     {
-        var tree = GetTree();
-        Node toLoad = sublevels[sub].Instance();
-        GetParent().AddChild(toLoad);
+        if (sublevels != null)
+        {
+            Node toLoad = sublevels[sub].Instance();
+            GetTree().Root.AddChild(toLoad);
+            GetTree().Root.RemoveChild(this);
+        }
     }
 
     public void ExitSubLevel(string sub)

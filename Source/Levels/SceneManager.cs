@@ -33,28 +33,20 @@ public class SceneManager : Node
     // This could be called from Game Manager at first but could also be in a hub world
     public void SwitchLevel(string scene)
     {
+
+        currentScene = (Level)GetTree().CurrentScene;
         if (currentScene != null)
         {
             currentScene.ExitLevel();
-            currentScene = null;
+            GetTree().Root.RemoveChild(currentScene);
         }
 
-        PackedScene sceneToLoad = levels[scene];
-        if (currentScene != sceneToLoad.Instance())
+        Level sceneToLoad = (Level)levels[scene].Instance();
+        if (currentScene.name != sceneToLoad.name)
         {
-            Error err = GetTree().ChangeSceneTo(sceneToLoad);
-
-            if (err != Error.Ok)
-            {
-                GD.PrintErr(err.ToString());
-                throw new Exception(err.ToString());
-            }
-
-            if (currentScene != null)
-            {
-                currentScene = (Level)GetTree().Root.GetNode("TileMap");
-                currentScene.EnterLevel();
-            }
+            currentScene = sceneToLoad;
+            GetParent().AddChild(currentScene);
+            currentScene.EnterLevel();
         }
     }
 
