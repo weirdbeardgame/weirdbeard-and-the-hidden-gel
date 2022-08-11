@@ -9,6 +9,8 @@ public class SceneManager : Node
 
     [Export]
     Level currentScene;
+    Player player = null;
+
 
     public Level CurrentScene
     {
@@ -33,22 +35,31 @@ public class SceneManager : Node
     // This could be called from Game Manager at first but could also be in a hub world
     public void SwitchLevel(string scene)
     {
-
         currentScene = (Level)GetTree().CurrentScene;
-        if (currentScene != null)
-        {
-            currentScene.ExitLevel();
-            GetTree().Root.RemoveChild(currentScene);
-        }
-
         Level sceneToLoad = (Level)levels[scene].Instance();
-        if (currentScene.name != sceneToLoad.name)
+        CallDeferred(nameof(CallDefferedSwitch), sceneToLoad);
+    }
+
+    void CallDefferedSwitch(Level toLoad)
+    {
+        if (currentScene.name != toLoad.name)
         {
-            currentScene = sceneToLoad;
-            GetParent().AddChild(currentScene);
-            currentScene.EnterLevel();
+            if (currentScene != null)
+            {
+                player = (Player)currentScene.GetNode("Player");
+                currentScene.RemoveChild(player);
+                currentScene.ExitLevel();
+                currentScene.Free();
+            }
+
+            currentScene = toLoad;
+            GetTree().Root.AddChild(currentScene);
+
+            currentScene.EnterLevel(player);
+            GetTree().CurrentScene = currentScene;
         }
     }
+
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)

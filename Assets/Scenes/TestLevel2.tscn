@@ -647,3 +647,6 @@ script = ExtResource( 35 )
 position = Vector2( -1560, 100 )
 
 [node name="HUD" parent="." instance=ExtResource( 34 )]
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2( -284, 0 )
