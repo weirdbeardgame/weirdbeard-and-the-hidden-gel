@@ -41,6 +41,19 @@ public class Player : Actor
         }
     }
 
+    public void NewGame()
+    {
+        velocity = Vector2.Zero;
+        PlayerData.playerLives = 3;
+        SetState("IDLE");
+    }
+
+    public void ResetState()
+    {
+        velocity = Vector2.Zero;
+        SetState("IDLE");
+    }
+
     public void SetState(string state)
     {
         stateMachine.UpdateState(state);

@@ -49,9 +49,10 @@ public class StateMachine : Node
 
     public void UpdateState(string newState)
     {
+
+        oldState = state;
         if (oldState != null)
         {
-            oldState = state;
             oldState.Exit();
         }
         state = GetNode<State>(Nodes[newState]);

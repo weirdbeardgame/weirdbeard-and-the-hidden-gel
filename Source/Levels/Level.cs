@@ -29,6 +29,7 @@ public class Level : Node
         scenes = (SceneManager)GetNode("/root/GameManager/SceneManager");
         Node2D spawn = (Node2D)GetNode("SpawnPoint");
         player.Position = spawn.GlobalPosition;
+        player.ResetState();
     }
 
     // Unload root node or rather suspend it, apply nodes in sub scene
