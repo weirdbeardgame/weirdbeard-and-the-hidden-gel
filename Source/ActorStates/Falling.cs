@@ -28,7 +28,7 @@ public class Falling : State
 
         if (player.IsOnFloor())
         {
-            stateMachine.UpdateState("IDLE");
+            player.ResetState();
         }
     }
 

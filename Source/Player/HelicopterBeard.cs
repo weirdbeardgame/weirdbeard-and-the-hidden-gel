@@ -33,7 +33,10 @@ public class HelicopterBeard : State
 
     public override void FixedUpdate(float delta)
     {
-        base.FixedUpdate(delta);
+        if (player.IsOnFloor())
+        {
+            player.ResetState();
+        }
     }
 
     public override void Exit()
