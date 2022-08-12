@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/resources/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Source/Levels/Level.cs" type="Script" id=4]
 
-[node name="TileMap" type="Node"]
+[node name="Level" type="Node"]
 script = ExtResource( 4 )
 name = "Default"
 

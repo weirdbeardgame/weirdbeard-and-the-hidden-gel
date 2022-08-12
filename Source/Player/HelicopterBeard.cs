@@ -22,11 +22,6 @@ public class HelicopterBeard : State
     // Play animation. Set physics
     public override void Start()
     {
-        StateName = "HELICOPTER";
-        player = (Player)GetParent<Player>();
-        stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, StateName);
-
         player.gravity = gravity;
     }
 

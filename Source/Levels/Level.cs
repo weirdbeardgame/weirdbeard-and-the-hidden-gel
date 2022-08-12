@@ -37,7 +37,7 @@ public class Level : Node
     public void EnterSubLevel(string sub)
     {
         self = scenes.CurrentScene;
-        var tileMap = (CanvasLayer)self.GetNode("/root/MapCanvas");
+        var tileMap = (TileMap)self.GetNode("TileMap");
         if (sublevels != null)
         {
             Node toLoad = sublevels[sub].Instance();
