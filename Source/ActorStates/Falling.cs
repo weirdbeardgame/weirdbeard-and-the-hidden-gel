@@ -21,8 +21,10 @@ public class Falling : State
 
     public override void FixedUpdate(float delta)
     {
-        Vector2 inputVelocity = Vector2.Zero;
-        inputVelocity.y += player.gravity * delta;
+        if (Input.IsActionJustPressed("Jump"))
+        {
+            stateMachine.UpdateState("HELICOPTER");
+        }
 
         if (player.IsOnFloor())
         {

@@ -37,19 +37,20 @@ public class Level : Node
     public void EnterSubLevel(string sub)
     {
         self = scenes.CurrentScene;
-        var tree = GetTree();
+        var tileMap = (CanvasLayer)self.GetNode("/root/MapCanvas");
         if (sublevels != null)
         {
-            self.QueueFree();
             Node toLoad = sublevels[sub].Instance();
+            tileMap.Visible = false;
             GetTree().Root.AddChild(toLoad);
         }
     }
 
     public void ExitSubLevel(string sub)
     {
-        subScene.QueueFree();
-        GetTree().Root.AddChild(self);
+        subScene.Free();
+        var tileMap = (TileMap)self.GetNode("TileMap");
+        tileMap.Visible = true;
     }
 
     // Clear the enemies and other data from the scene.

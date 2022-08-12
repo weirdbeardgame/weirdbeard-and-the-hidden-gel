@@ -43,4 +43,4 @@ position = Vector2( -122, 147 )
 subLevel = "SubScene1"
 
 [node name="SpawnPoint" type="Node2D" parent="."]
-position = Vector2( 528, 104 )
+position = Vector2( -709, 309 )

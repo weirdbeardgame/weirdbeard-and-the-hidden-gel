@@ -17,7 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GameManager="*res://Assets/resources/GameManager.tscn"
-PlayerData="*res://Source/PlayerData.cs"
+PlayerData="*res://Source/Player/PlayerData.cs"
 
 [display]
 
