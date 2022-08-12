@@ -3,6 +3,8 @@ using System;
 
 public class Walk : State
 {
+    Vector2 inputVelocity = Vector2.Zero;
+    float currentSpeed = 0;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -25,9 +27,7 @@ public class Walk : State
 
     public override void FixedUpdate(float delta)
     {
-        Vector2 inputVelocity = Vector2.Zero;
 
-        float currentSpeed = 0;
 
         if (player.IsOnFloor())
         {

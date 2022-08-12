@@ -18,7 +18,6 @@ public class Falling : State
         player.player.Play("Fall");
     }
 
-
     public override void FixedUpdate(float delta)
     {
         if (Input.IsActionJustPressed("Jump"))

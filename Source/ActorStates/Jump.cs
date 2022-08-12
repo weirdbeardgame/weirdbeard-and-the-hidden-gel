@@ -3,6 +3,8 @@ using System;
 
 public class Jump : State
 {
+    Vector2 InputVelocity = Vector2.Zero;
+
     public override void Start()
     {
         player.player.Play("Jump");
@@ -24,7 +26,6 @@ public class Jump : State
 
     public override void FixedUpdate(float delta)
     {
-        Vector2 InputVelocity = Vector2.Zero;
         player.Velocity += GetInput();
         if (player.IsOnFloor() == false && !Input.IsActionJustPressed("Jump"))
         {

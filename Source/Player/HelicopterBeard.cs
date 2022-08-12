@@ -4,8 +4,12 @@ using System;
 public class HelicopterBeard : State
 {
 
+    Vector2 inputVelocity = Vector2.Zero;
+
     [Export]
-    float gravity = 1000;
+    float gravity = 2500;
+
+    float currentSpeed = 300f;
 
     public override void _Ready()
     {
@@ -33,10 +37,14 @@ public class HelicopterBeard : State
 
     public override void FixedUpdate(float delta)
     {
+        inputVelocity.x = currentSpeed * GetInput().x;
+
         if (player.IsOnFloor())
         {
             player.ResetState();
         }
+
+        player.Velocity = inputVelocity;
     }
 
     public override void Exit()
