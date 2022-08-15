@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Dialogue : State
+public class DialogueState : State
 {
     public override void _Ready()
     {

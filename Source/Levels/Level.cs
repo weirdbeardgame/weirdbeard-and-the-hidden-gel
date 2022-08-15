@@ -37,11 +37,11 @@ public class Level : Node
     public void EnterSubLevel(string sub)
     {
         self = scenes.CurrentScene;
-        var tileMap = (TileMap)self.GetNode("TileMap");
+        var tileMap = (TileMap)GetNode("TileMap");
         if (sublevels != null)
         {
             Node toLoad = sublevels[sub].Instance();
-            tileMap.Visible = false;
+            tileMap.Hide();
             GetTree().Root.AddChild(toLoad);
         }
     }
@@ -49,8 +49,8 @@ public class Level : Node
     public void ExitSubLevel(string sub)
     {
         subScene.Free();
-        var tileMap = (TileMap)self.GetNode("TileMap");
-        tileMap.Visible = true;
+        var tileMap = (TileMap)GetNode("TileMap");
+        tileMap.Show();
     }
 
     // Clear the enemies and other data from the scene.
