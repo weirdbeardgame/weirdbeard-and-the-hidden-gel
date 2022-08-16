@@ -6,11 +6,13 @@ public class DialogueBox : Node
 
     Dialogue dialogue;
 
-    Sprite speakerBox;
+    AnimatedTexture speakerBox;
 
     Label textRender;
 
-    ColorRect box;
+    Panel box;
+
+    Tween interp;
 
     int i = 0;
 
@@ -20,12 +22,14 @@ public class DialogueBox : Node
     public override void _Ready()
     {
         textRender = (Label)GetNode("TextRender");
-        box = (ColorRect)GetNode("Box");
+        box = (Panel)GetNode("Box");
     }
 
     void Open()
     {
         // Play opening animation
+        dialogue.Open();
+        interp.InterpolateProperty(textRender, "percent_visible", 0.0, 1.0, dialogue.length * 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
         isOpen = true;
     }
 
@@ -39,10 +43,7 @@ public class DialogueBox : Node
     {
         while (isOpen)
         {
-            // Print text in text box in here.
-            textRender.Text += dialogue.buffer[i];
-
-            i++;
+            interp.Start();
         }
     }
 

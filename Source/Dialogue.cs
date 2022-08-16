@@ -6,10 +6,10 @@ public class Dialogue : Node
     [Export]
     public string buffer;
 
-    int length;
+    public int length;
 
     [Export]
-    Sprite speakerHead;
+    public Sprite speakerHead;
 
     public Dialogue Open()
     {

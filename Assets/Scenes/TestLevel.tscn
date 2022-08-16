@@ -36,13 +36,13 @@ speed = 200.0
 
 [node name="HUD" parent="TileMap" instance=ExtResource( 4 )]
 
-[node name="SpawnPoint" type="Node2D" parent="."]
+[node name="SpawnPoint" type="Node2D" parent="TileMap"]
 position = Vector2( -709, 309 )
 
-[node name="Sub" parent="." instance=ExtResource( 10 )]
+[node name="Sub" parent="TileMap" instance=ExtResource( 10 )]
 position = Vector2( -122, 147 )
 subLevel = "SubScene1"
 
-[node name="LevelSwitch" parent="." instance=ExtResource( 7 )]
+[node name="LevelSwitch" parent="TileMap" instance=ExtResource( 7 )]
 position = Vector2( 1255, 449 )
 teleportTo = "TestLevel2"
