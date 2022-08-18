@@ -30,3 +30,5 @@ margin_left = -769.0
 margin_top = -1.0
 margin_right = -663.0
 margin_bottom = 85.0
+
+[node name="Interp" type="Tween" parent="."]

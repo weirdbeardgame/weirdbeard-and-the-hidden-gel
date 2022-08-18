@@ -15,3 +15,6 @@ name = "Default"
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -576, -8 )
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2( -709, 309 )

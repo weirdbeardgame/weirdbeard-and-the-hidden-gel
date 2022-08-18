@@ -27,8 +27,11 @@ public class Level : Node
         player = p;
         AddChild(player);
         scenes = (SceneManager)GetNode("/root/GameManager/SceneManager");
-        Node2D spawn = (Node2D)GetNode("SpawnPoint");
-        player.Position = spawn.GlobalPosition;
+        Node2D spawn = (Node2D)GetNode("TileMap/SpawnPoint");
+        if (spawn != null)
+        {
+            player.Position = spawn.GlobalPosition;
+        }
         player.ResetState();
     }
 

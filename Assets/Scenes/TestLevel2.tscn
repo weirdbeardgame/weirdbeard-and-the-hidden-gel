@@ -647,5 +647,5 @@ tile_data = PoolIntArray( 393203, 1, 0, 393204, 1, 0, 393205, 1, 0, 393206, 1, 0
 
 [node name="HUD" parent="TileMap" instance=ExtResource( 34 )]
 
-[node name="SpawnPoint" type="Node2D" parent="."]
+[node name="SpawnPoint" type="Node2D" parent="TileMap"]
 position = Vector2( -284, 0 )

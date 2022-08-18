@@ -166,3 +166,4 @@ script = ExtResource( 21 )
 
 [node name="Helicopter" type="Node" parent="."]
 script = ExtResource( 4 )
+gravity = 2700.0

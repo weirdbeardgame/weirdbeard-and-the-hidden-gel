@@ -14,21 +14,24 @@ public class DialogueBox : Node
 
     Tween interp;
 
-    int i = 0;
+    int line = 0;
 
     bool isOpen = false;
-
 
     public override void _Ready()
     {
         textRender = (Label)GetNode("TextRender");
+        interp = (Tween)GetNode("Interp");
         box = (Panel)GetNode("Box");
+
+        box.Visible = isOpen;
     }
 
     void Open()
     {
         // Play opening animation
-        dialogue.Open();
+        dialogue.Open(line);
+        textRender.Text = dialogue.buffer[line];
         interp.InterpolateProperty(textRender, "percent_visible", 0.0, 1.0, dialogue.length * 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
         isOpen = true;
     }
