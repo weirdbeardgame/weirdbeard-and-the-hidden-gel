@@ -65,9 +65,6 @@ public class Walk : State
         {
             stateMachine.UpdateState("IDLE");
         }
-
-        GD.Print("InputVelocity:", inputVelocity.x);
-
     }
 
     public override void Exit()

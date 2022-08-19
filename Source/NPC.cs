@@ -10,12 +10,15 @@ public class NPC : Node
     AnimationPlayer player;
 
     [Export]
-    List<Dialogue> dialogue;
+    List<PackedScene> dialogue;
+
+    DialogueEventPublish dialogueEvent;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-
+        player = (AnimationPlayer)GetNode("AnimationPlayer");
+        player.Play("IDLE");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,9 +29,9 @@ public class NPC : Node
 
     void Interact(object body)
     {
-        if (body is Player && Input.IsActionJustPressed("ui_accept"))
+        if (body is Player && Input.IsActionJustPressed("Submit"))
         {
-            // Open Dialouge
+            dialogueEvent = new DialogueEventPublish((Dialogue)dialogue[0].Instance());
         }
     }
 }

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Source/Dialogue/Dialogue.cs" type="Script" id=1]
+
+[node name="Dialogue" type="Node"]
+script = ExtResource( 1 )
+buffer = [ "Yarr. This be a test Dialoge", "Thar be multiple lines lad" ]
