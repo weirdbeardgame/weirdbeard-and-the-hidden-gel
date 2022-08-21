@@ -3,7 +3,6 @@ using System;
 
 public class DialogueBox : Node
 {
-
     Dialogue dialogue;
 
     AnimatedTexture speakerBox;
@@ -27,8 +26,10 @@ public class DialogueBox : Node
         box.Visible = isOpen;
     }
 
-    void Open()
+    public void Open(Dialogue speak)
     {
+        dialogue = speak;
+
         // Play opening animation
         dialogue.Open(line);
         textRender.Text = dialogue.buffer[line];
@@ -36,7 +37,7 @@ public class DialogueBox : Node
         isOpen = true;
     }
 
-    void Close()
+    public void Close()
     {
         // Play closing animation
         isOpen = false;

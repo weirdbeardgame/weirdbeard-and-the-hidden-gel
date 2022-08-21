@@ -14,24 +14,39 @@ public class NPC : Node
 
     DialogueEventPublish dialogueEvent;
 
+    bool isPlayerCollide;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         player = (AnimationPlayer)GetNode("AnimationPlayer");
         player.Play("IDLE");
+        isPlayerCollide = false;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-
+        if (isPlayerCollide && Input.IsActionPressed("Submit"))
+        {
+            GD.Print("Dialogue Colision");
+            dialogueEvent = new DialogueEventPublish((Dialogue)dialogue[0].Instance());
+        }
     }
 
-    void Interact(object body)
+    public void onBodyEntered(object body)
     {
-        if (body is Player && Input.IsActionJustPressed("Submit"))
+        if (body is Player)
         {
-            dialogueEvent = new DialogueEventPublish((Dialogue)dialogue[0].Instance());
+            isPlayerCollide = true;
+        }
+    }
+
+    public void onBodyExited(object body)
+    {
+        if (body is Player)
+        {
+            isPlayerCollide = false;
         }
     }
 }

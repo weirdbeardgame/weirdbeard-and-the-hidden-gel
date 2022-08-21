@@ -24,37 +24,36 @@ public class Dialogue : Node
     }
 }
 
-public class DialogueEventMessage : EventArgs
-{
-    public Dialogue speech;
-
-    public DialogueEventMessage(Dialogue dialogue)
-    {
-        speech = dialogue;
-    }
-}
-
 public class DialogueEventPublish
 {
+    DialogueBox box;
 
-    public delegate void DialogueEventHandler(object sender, DialogueEventMessage message);
+    public Action<Dialogue> speak;
 
-    public event DialogueEventHandler speak;
+    void OpenDialogueBox(Dialogue toSpeak)
+    {
+        box.Open(toSpeak);
+    }
 
     public DialogueEventPublish()
     {
         speak = null;
     }
 
-    public DialogueEventPublish(Dialogue speak)
+    public DialogueEventPublish(Dialogue message)
     {
-        OnPublish(speak);
+        GD.Print("DIALOGUE EVENT");
+        speak = OpenDialogueBox;
+        OnPublish(message);
     }
 
     public virtual void OnPublish(Dialogue toSpeak)
     {
-        speak(this, new DialogueEventMessage(toSpeak));
-        GD.Print("DIALOGUE EVENT PUBLISHED");
+        if (speak != null)
+        {
+            speak(toSpeak);
+            GD.Print("DIALOGUE EVENT PUBLISHED");
+        }
     }
 
 }
