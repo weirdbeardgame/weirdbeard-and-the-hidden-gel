@@ -17,6 +17,8 @@ public class Player : Actor
 
     public bool wasOnFloor;
 
+    public Action isDie;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -25,6 +27,7 @@ public class Player : Actor
         stateMachine.UpdateState("IDLE");
         weirdBeard = (Sprite)GetNode("WeirdBeard");
         timer = (Timer)GetNode("Timer");
+        isDie += Die;
         PlayerData.equipped = (WeaponSlot)Owner.GetNode("HUD/WeaponSlot");
     }
 
@@ -73,6 +76,11 @@ public class Player : Actor
             timer.Stop();
         }
         coyoteTime = false;
+    }
+
+    public void Die()
+    {
+        PlayerData.playerLives -= 1;
     }
 
     public bool CanJump()

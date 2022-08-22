@@ -14,12 +14,17 @@ public class GameManager : Node
 
     SceneManager scenes;
 
+    bool isLevelReset = false;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         player = (Player)GetTree().CurrentScene.GetNode("Player");
         gameState = (StateMachine)GetNode("StateMachine");
         scenes = (SceneManager)GetNode("SceneManager");
+
+        player.isDie += playerDie;
+
         NewGame();
     }
 
@@ -34,6 +39,15 @@ public class GameManager : Node
         if (player.GamaOvar())
         {
             gameState.UpdateState("GAMEOVER");
+        }
+    }
+
+    void playerDie()
+    {
+        if (!isLevelReset)
+        {
+            scenes.ResetLevel(player);
+            isLevelReset = true;
         }
     }
 

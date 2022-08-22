@@ -8,7 +8,8 @@ public class SceneManager : Node
     Dictionary<string, PackedScene> levels;
 
     [Export]
-    Level currentScene;
+    private static Level currentScene;
+
     Player player = null;
 
 
@@ -30,6 +31,26 @@ public class SceneManager : Node
         }
     }
 
+
+    public void ResetLevel(Player player)
+    {
+        player.ResetState();
+        Level tempScene = currentScene;
+        player = GameManager.player;
+
+        currentScene.RemoveChild(player);
+        if (currentScene != null)
+        {
+            GetTree().Root.RemoveChild(currentScene);
+            //currentScene.Free();
+        }
+        currentScene = tempScene;
+        GetTree().Root.AddChild(tempScene);
+        GetTree().CurrentScene = currentScene;
+
+        currentScene.EnterLevel(player);
+    }
+
     // Play level changing animation.
     // Loat new scene and set it as current
     // This could be called from Game Manager at first but could also be in a hub world
@@ -38,6 +59,8 @@ public class SceneManager : Node
         currentScene = (Level)GetTree().CurrentScene;
         Level sceneToLoad = (Level)levels[scene].Instance();
         CallDeferred(nameof(CallDefferedSwitch), sceneToLoad);
+
+        currentScene = (Level)GetTree().CurrentScene;
     }
 
     void CallDefferedSwitch(Level toLoad)
@@ -54,7 +77,6 @@ public class SceneManager : Node
 
             currentScene = toLoad;
             GetTree().Root.AddChild(currentScene);
-
             currentScene.EnterLevel(player);
             GetTree().CurrentScene = currentScene;
         }

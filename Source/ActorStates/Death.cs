@@ -3,10 +3,6 @@ using System;
 
 public class Death : State
 {
-    public override void Start()
-    {
-        base.Start();
-    }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -17,12 +13,11 @@ public class Death : State
         stateMachine.AddState(this, StateName);
     }
 
-    public override void Update(float delta)
+    public override void Start()
     {
         if (PlayerData.playerLives > 0)
         {
-            GetTree().ReloadCurrentScene();
-            PlayerData.playerLives -= 1;
+            player.isDie();
         }
         else
         {
