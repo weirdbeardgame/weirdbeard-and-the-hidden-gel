@@ -24,36 +24,3 @@ public class Dialogue : Node
     }
 }
 
-public class DialogueEventPublish
-{
-    DialogueBox box;
-
-    public Action<Dialogue> speak;
-
-    void OpenDialogueBox(Dialogue toSpeak)
-    {
-        box.Open(toSpeak);
-    }
-
-    public DialogueEventPublish()
-    {
-        speak = null;
-    }
-
-    public DialogueEventPublish(Dialogue message)
-    {
-        GD.Print("DIALOGUE EVENT");
-        speak = OpenDialogueBox;
-        OnPublish(message);
-    }
-
-    public virtual void OnPublish(Dialogue toSpeak)
-    {
-        if (speak != null)
-        {
-            speak(toSpeak);
-            GD.Print("DIALOGUE EVENT PUBLISHED");
-        }
-    }
-
-}

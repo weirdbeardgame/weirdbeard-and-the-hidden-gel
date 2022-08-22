@@ -40,7 +40,7 @@ public class Level : Node
     public void EnterSubLevel(string sub)
     {
         self = scenes.CurrentScene;
-        var tileMap = (TileMap)GetNode("TileMap");
+        var tileMap = (TileMap)scenes.CurrentScene.GetNode("TileMap");
         if (sublevels != null)
         {
             Node toLoad = sublevels[sub].Instance();

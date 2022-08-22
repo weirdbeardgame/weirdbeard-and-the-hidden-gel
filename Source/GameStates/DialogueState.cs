@@ -6,8 +6,7 @@ public class DialogueState : State
     public override void _Ready()
     {
         StateName = "DIALOGUE";
-        player = (Player)Owner.GetParent<Player>();
-        stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
+        stateMachine = (StateMachine)GetParent<StateMachine>();
         stateMachine.AddState(this, StateName);
     }
 

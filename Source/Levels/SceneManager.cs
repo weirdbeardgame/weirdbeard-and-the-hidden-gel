@@ -46,7 +46,7 @@ public class SceneManager : Node
         {
             if (currentScene != null)
             {
-                player = (Player)currentScene.GetNode("Player");
+                player = GameManager.player;
                 currentScene.RemoveChild(player);
                 currentScene.ExitLevel();
                 currentScene.Free();

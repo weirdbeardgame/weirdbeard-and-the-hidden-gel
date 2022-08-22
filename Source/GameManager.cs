@@ -10,17 +10,14 @@ public class GameManager : Node
 {
     StateMachine gameState;
 
-    [Export]
-    PackedScene playerScene;
-
-    Player player;
+    public static Player player;
 
     SceneManager scenes;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        player = (Player)playerScene.Instance();
+        player = (Player)GetTree().CurrentScene.GetNode("Player");
         gameState = (StateMachine)GetNode("StateMachine");
         scenes = (SceneManager)GetNode("SceneManager");
         NewGame();

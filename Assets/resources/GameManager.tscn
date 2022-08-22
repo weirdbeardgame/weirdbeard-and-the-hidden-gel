@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Source/GameManager.cs" type="Script" id=1]
 [ext_resource path="res://Source/StateMachine.cs" type="Script" id=2]
@@ -8,11 +8,11 @@
 [ext_resource path="res://Source/Levels/SceneManager.cs" type="Script" id=6]
 [ext_resource path="res://Assets/Scenes/TestLevel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Scenes/TestLevel2.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Assets/resources/Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Source/Dialogue/DialogueManager.cs" type="Script" id=9]
+[ext_resource path="res://Source/GameStates/DialogueState.cs" type="Script" id=11]
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
-playerScene = ExtResource( 9 )
 
 [node name="StateMachine" type="Node" parent="."]
 pause_mode = 2
@@ -27,9 +27,15 @@ script = ExtResource( 3 )
 [node name="GameState" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
 
+[node name="Dialogue" type="Node" parent="StateMachine"]
+script = ExtResource( 11 )
+
 [node name="SceneManager" type="Node" parent="."]
 script = ExtResource( 6 )
 levels = {
 "TestLevel": ExtResource( 7 ),
 "TestLevel2": ExtResource( 8 )
 }
+
+[node name="DialogueManager" type="Node" parent="."]
+script = ExtResource( 9 )

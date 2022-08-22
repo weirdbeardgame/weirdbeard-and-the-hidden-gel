@@ -18,7 +18,6 @@ config/icon="res://icon.png"
 
 PlayerData="*res://Source/Player/PlayerData.cs"
 GameManager="*res://Assets/resources/GameManager.tscn"
-TextBox="*res://Assets/resources/TextBox.tscn"
 
 [display]
 

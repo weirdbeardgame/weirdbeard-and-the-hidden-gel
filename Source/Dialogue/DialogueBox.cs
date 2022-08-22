@@ -19,10 +19,9 @@ public class DialogueBox : Node
 
     public override void _Ready()
     {
-        textRender = (Label)GetNode("TextRender");
+        textRender = (Label)GetNode("Box/TextRender");
         interp = (Tween)GetNode("Interp");
         box = (Panel)GetNode("Box");
-
         box.Visible = isOpen;
     }
 
@@ -35,6 +34,7 @@ public class DialogueBox : Node
         textRender.Text = dialogue.buffer[line];
         interp.InterpolateProperty(textRender, "percent_visible", 0.0, 1.0, dialogue.length * 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
         isOpen = true;
+        box.Visible = isOpen;
     }
 
     public void Close()
@@ -47,7 +47,7 @@ public class DialogueBox : Node
     {
         while (isOpen)
         {
-            interp.Start();
+            //interp.Start();
         }
     }
 
