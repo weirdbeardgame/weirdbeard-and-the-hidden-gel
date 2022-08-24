@@ -37,6 +37,19 @@ public class DialogueBox : Node
         box.Visible = isOpen;
     }
 
+    public void Advance()
+    {
+        if (line < dialogue.buffer.Capacity)
+        {
+            line += 1;
+        }
+        else if (line >= dialogue.buffer.Capacity)
+        {
+            Close();
+        }
+    }
+
+
     public void Close()
     {
         // Play closing animation

@@ -25,9 +25,11 @@ public class Level : Node
     public void EnterLevel(Player p)
     {
         player = p;
-        AddChild(player);
         scenes = (SceneManager)GetNode("/root/GameManager/SceneManager");
         Node2D spawn = (Node2D)GetNode("TileMap/SpawnPoint");
+
+        AddChild(player);
+
         if (spawn != null)
         {
             player.Position = spawn.GlobalPosition;
@@ -60,7 +62,8 @@ public class Level : Node
     // Ensure the scene closes properly before changing.
     public void ExitLevel()
     {
-
+        RemoveChild(player);
+        player = null;
     }
 
     // Called when the node enters the scene tree for the first time.

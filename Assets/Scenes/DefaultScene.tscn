@@ -21,4 +21,3 @@ position = Vector2( -576, -8 )
 position = Vector2( -709, 309 )
 
 [node name="TextBox" parent="." instance=ExtResource( 5 )]
-visible = false

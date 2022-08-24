@@ -8,9 +8,9 @@ public class SceneManager : Node
     Dictionary<string, PackedScene> levels;
 
     [Export]
-    private static Level currentScene;
+    private Level currentScene;
 
-    Player player = null;
+    Player player;
 
 
     public Level CurrentScene
@@ -31,24 +31,24 @@ public class SceneManager : Node
         }
     }
 
-
-    public void ResetLevel(Player player)
+    public void ResetLevel()
     {
-        player.ResetState();
-        Level tempScene = currentScene;
-        player = GameManager.player;
-
-        currentScene.RemoveChild(player);
-        if (currentScene != null)
+        if (currentScene != null && GetTree().Root.HasNode(currentScene.GetPath()))
         {
-            GetTree().Root.RemoveChild(currentScene);
-            //currentScene.Free();
-        }
-        currentScene = tempScene;
-        GetTree().Root.AddChild(tempScene);
-        GetTree().CurrentScene = currentScene;
+            RemoveChild(player);
 
-        currentScene.EnterLevel(player);
+            string sceneName = currentScene.name;
+
+            currentScene.ExitLevel();
+            GetTree().Root.RemoveChild(currentScene);
+
+            player = GameManager.player;
+
+            GetTree().Root.AddChild(currentScene);
+            GetTree().CurrentScene = currentScene;
+
+            CurrentScene.EnterLevel(player);
+        }
     }
 
     // Play level changing animation.
@@ -67,9 +67,13 @@ public class SceneManager : Node
     {
         if (currentScene.name != toLoad.name)
         {
-            if (currentScene != null)
+            if (player == null)
             {
                 player = GameManager.player;
+            }
+
+            if (currentScene != null)
+            {
                 currentScene.RemoveChild(player);
                 currentScene.ExitLevel();
                 currentScene.Free();
