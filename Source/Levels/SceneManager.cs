@@ -10,8 +10,6 @@ public class SceneManager : Node
     [Export]
     private Level currentScene;
 
-    Player player;
-
 
     public Level CurrentScene
     {
@@ -31,18 +29,19 @@ public class SceneManager : Node
         }
     }
 
-    public void ResetLevel()
+    public void ResetLevel(Player player)
     {
         if (currentScene != null && GetTree().Root.HasNode(currentScene.GetPath()))
         {
-            RemoveChild(player);
-
             string sceneName = currentScene.name;
 
             currentScene.ExitLevel();
             GetTree().Root.RemoveChild(currentScene);
+            currentScene.Free();
 
-            player = GameManager.player;
+            Level sceneToLoad = (Level)levels[sceneName].Instance();
+
+            currentScene = sceneToLoad;
 
             GetTree().Root.AddChild(currentScene);
             GetTree().CurrentScene = currentScene;
@@ -65,6 +64,7 @@ public class SceneManager : Node
 
     void CallDefferedSwitch(Level toLoad)
     {
+        Player player = null;
         if (currentScene.name != toLoad.name)
         {
             if (player == null)

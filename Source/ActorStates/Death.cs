@@ -20,7 +20,6 @@ public class Death : State
         if (PlayerData.playerLives > 0 && !isDead)
         {
             player.isDie();
-            Exit();
         }
         else
         {
@@ -31,7 +30,6 @@ public class Death : State
     public override void Exit()
     {
         isDead = true;
-        player.ResetState();
     }
 
 }

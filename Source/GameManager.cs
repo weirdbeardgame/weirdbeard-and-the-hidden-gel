@@ -46,7 +46,7 @@ public class GameManager : Node
     {
         if (!isLevelReset)
         {
-            scenes.ResetLevel();
+            CallDeferred(nameof(scenes.ResetLevel), player);
 
             isLevelReset = true;
         }
