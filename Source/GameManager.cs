@@ -23,8 +23,6 @@ public class GameManager : Node
         gameState = (StateMachine)GetNode("StateMachine");
         scenes = (SceneManager)GetNode("SceneManager");
 
-        player.isDie += playerDie;
-
         NewGame();
     }
 
@@ -38,16 +36,7 @@ public class GameManager : Node
     {
         if (player.CurrentState == "DEATH")
         {
-            playerDie();
-        }
-    }
-
-    void playerDie()
-    {
-        if (!isLevelReset)
-        {
             scenes.ResetLevel(player);
-            isLevelReset = true;
         }
     }
 
