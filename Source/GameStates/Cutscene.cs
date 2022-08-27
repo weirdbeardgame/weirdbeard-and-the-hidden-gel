@@ -5,10 +5,10 @@ public class Cutscene : State
 {
     public override void _Ready()
     {
-        StateName = "CUTSCENE";
+        stateName = "CUTSCENE";
         player = (Player)Owner.GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, StateName);
+        stateMachine.AddState(this, stateName);
     }
 
     public override void Start()

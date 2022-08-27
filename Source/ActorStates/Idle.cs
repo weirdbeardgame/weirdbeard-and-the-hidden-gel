@@ -10,10 +10,10 @@ public class Idle : State
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        StateName = "IDLE";
+        stateName = "IDLE";
         player = (Player)GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, StateName);
+        stateMachine.AddState(this, stateName);
     }
 
     public override void Start()

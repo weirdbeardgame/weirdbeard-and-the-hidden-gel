@@ -13,10 +13,10 @@ public class HelicopterBeard : State
 
     public override void _Ready()
     {
-        StateName = "HELICOPTER";
+        stateName = "HELICOPTER";
         player = (Player)GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, StateName);
+        stateMachine.AddState(this, stateName);
     }
 
     // Play animation. Set physics

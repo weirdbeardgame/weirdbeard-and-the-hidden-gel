@@ -44,6 +44,14 @@ public class Player : Actor
         }
     }
 
+    public string CurrentState
+    {
+        get
+        {
+            return stateMachine.CurrentState.stateName;
+        }
+    }
+
     public void NewGame()
     {
         velocity = Vector2.Zero;

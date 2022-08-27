@@ -11,7 +11,7 @@ public class State : Node
 
     protected StateMachine stateMachine;
 
-    public string StateName;
+    public string stateName;
 
     protected bool isPaused;
 

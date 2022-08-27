@@ -5,10 +5,10 @@ public class Store : State
 {
     public override void _Ready()
     {
-        StateName = "STORE";
+        stateName = "STORE";
         player = (Player)Owner.GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, StateName);
+        stateMachine.AddState(this, stateName);
     }
 
     public override void Start()

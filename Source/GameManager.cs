@@ -36,9 +36,9 @@ public class GameManager : Node
 
     public override void _Process(float delta)
     {
-        if (player.GamaOvar())
+        if (player.CurrentState == "DEATH")
         {
-            gameState.UpdateState("GAMEOVER");
+            playerDie();
         }
     }
 
@@ -46,8 +46,7 @@ public class GameManager : Node
     {
         if (!isLevelReset)
         {
-            CallDeferred(nameof(scenes.ResetLevel), player);
-
+            scenes.ResetLevel(player);
             isLevelReset = true;
         }
     }

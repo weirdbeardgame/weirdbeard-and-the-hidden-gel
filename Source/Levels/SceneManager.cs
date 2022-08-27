@@ -31,23 +31,20 @@ public class SceneManager : Node
 
     public void ResetLevel(Player player)
     {
-        if (currentScene != null && GetTree().Root.HasNode(currentScene.GetPath()))
-        {
-            string sceneName = currentScene.name;
+        string sceneName = currentScene.name;
 
-            currentScene.ExitLevel();
-            GetTree().Root.RemoveChild(currentScene);
-            currentScene.Free();
+        currentScene.ExitLevel();
+        GetTree().Root.RemoveChild(currentScene);
+        currentScene.Free();
 
-            Level sceneToLoad = (Level)levels[sceneName].Instance();
+        Level sceneToLoad = (Level)levels[sceneName].Instance();
 
-            currentScene = sceneToLoad;
+        currentScene = sceneToLoad;
 
-            GetTree().Root.AddChild(currentScene);
-            GetTree().CurrentScene = currentScene;
+        GetTree().Root.AddChild(currentScene);
+        GetTree().CurrentScene = currentScene;
 
-            CurrentScene.EnterLevel(player);
-        }
+        CurrentScene.EnterLevel(player);
     }
 
     // Play level changing animation.
