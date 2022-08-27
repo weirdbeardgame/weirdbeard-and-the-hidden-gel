@@ -7,7 +7,6 @@ public class HUD : Node
     // private int a = 2;
     // private string b = "text";
 
-    Player player;
     Label Lives;
 
     // Called when the node enters the scene tree for the first time.

@@ -11,6 +11,8 @@ public class Player : Actor
 
     public bool coyoteTime;
 
+    Camera2D camera;
+
     Timer timer;
 
     public Sprite weirdBeard;
@@ -22,10 +24,12 @@ public class Player : Actor
     {
         player = (AnimationPlayer)GetNode("AnimationPlayer");
         stateMachine = (StateMachine)GetNode("StateMachine");
-        stateMachine.UpdateState("IDLE");
         weirdBeard = (Sprite)GetNode("WeirdBeard");
         timer = (Timer)GetNode("Timer");
-        PlayerData.equipped = (WeaponSlot)Owner.GetNode("HUD/WeaponSlot");
+
+        PlayerData.equipped = (WeaponSlot)GetNode("WeaponSlot");
+
+        ResetState();
     }
 
     public Vector2 Velocity
@@ -51,9 +55,8 @@ public class Player : Actor
 
     public void NewGame()
     {
-        velocity = Vector2.Zero;
         PlayerData.playerLives = 3;
-        SetState("IDLE");
+        ResetState();
     }
 
     public void ResetState()

@@ -20,8 +20,7 @@ public class WeaponSlot : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        weaponSlot = (Sprite)Owner.GetNode("weaponSlot");
-        weaponIcon = (Sprite)GetNode("WeaponIcon");
+        weaponSlot = (Sprite)Owner.GetNode("Camera2D/HUD/WeaponSlot");
     }
 
     public void Equip(PackedScene toEquip, Sprite weaponSprite)
@@ -30,8 +29,8 @@ public class WeaponSlot : Node
         {
             slottedWeapon = toEquip;
         }
-        weaponIcon = weaponSprite;
+        weaponSlot = weaponSprite;
         Vector2 S = new Vector2(100, 100);
-        weaponIcon.Scale = S;
+        weaponSlot.Scale = S;
     }
 }
