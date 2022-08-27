@@ -10,6 +10,11 @@ public class Level : Node
     [Export]
     Dictionary<string, PackedScene> sublevels;
 
+    [Export]
+    List<Checkpoint> checkpoints;
+
+    Checkpoint currentCheckpoint;
+
     Player player;
 
     SceneManager scenes;
@@ -35,6 +40,17 @@ public class Level : Node
             player.Position = spawn.GlobalPosition;
         }
         player.ResetState();
+    }
+
+
+    public void Checkpoint(Checkpoint newCheckpoint)
+    {
+        if (currentCheckpoint != null)
+        {
+            currentCheckpoint.isActive = false;
+        }
+        newCheckpoint.isActive = true;
+        currentCheckpoint = newCheckpoint;
     }
 
     // Unload root node or rather suspend it, apply nodes in sub scene
