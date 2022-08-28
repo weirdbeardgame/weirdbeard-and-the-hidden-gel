@@ -4,9 +4,6 @@ using System.Collections.Generic;
 
 public class StateMachine : Node
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
 
     RichTextLabel stateSet;
 
@@ -49,7 +46,6 @@ public class StateMachine : Node
 
     public void UpdateState(string newState)
     {
-
         oldState = state;
         if (oldState != null)
         {
@@ -69,6 +65,19 @@ public class StateMachine : Node
         {
             state.FixedUpdate(delta);
         }
+    }
+
+    // Take the current state and restart it's logic, IE. You're going to double jump!
+    public void ResetState()
+    {
+        var stateTemp = GetNode<State>(Nodes[CurrentState.stateName]);
+
+        state.Exit();
+        state = null;
+
+        state = stateTemp;
+
+        state.Start();
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

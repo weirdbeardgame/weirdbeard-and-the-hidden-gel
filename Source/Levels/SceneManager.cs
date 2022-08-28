@@ -35,11 +35,6 @@ public class SceneManager : Node
 
         currentScene.ExitLevel();
         GetTree().Root.RemoveChild(currentScene);
-        currentScene.Free();
-
-        Level sceneToLoad = (Level)levels[sceneName].Instance();
-
-        currentScene = sceneToLoad;
 
         GetTree().Root.AddChild(currentScene);
         GetTree().CurrentScene = currentScene;

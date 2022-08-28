@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://Assets/resources/Checkpoint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/resources/Tiles/TestLevel.tres" type="TileSet" id=2]
 [ext_resource path="res://Assets/resources/Weapons/SwordEquip.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/resources/HUD.tscn" type="PackedScene" id=4]
@@ -36,9 +37,6 @@ speed = 200.0
 
 [node name="HUD" parent="TileMap" instance=ExtResource( 4 )]
 
-[node name="SpawnPoint" type="Node2D" parent="TileMap"]
-position = Vector2( -709, 309 )
-
 [node name="Sub" parent="TileMap" instance=ExtResource( 10 )]
 position = Vector2( -122, 147 )
 subLevel = "SubScene1"
@@ -46,3 +44,9 @@ subLevel = "SubScene1"
 [node name="LevelSwitch" parent="TileMap" instance=ExtResource( 7 )]
 position = Vector2( 1255, 449 )
 teleportTo = "TestLevel2"
+
+[node name="1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 824, 64 )
+
+[node name="0" parent="." instance=ExtResource( 1 )]
+position = Vector2( -808, 224 )

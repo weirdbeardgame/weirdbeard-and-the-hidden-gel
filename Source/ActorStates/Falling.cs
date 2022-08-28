@@ -20,9 +20,10 @@ public class Falling : State
 
     public override void FixedUpdate(float delta)
     {
-        if (Input.IsActionJustPressed("Jump"))
+        if (Input.IsActionJustPressed("Jump") && player.canJumpAgain)
         {
-            stateMachine.UpdateState("HELICOPTER");
+            player.canJumpAgain = false;
+            stateMachine.UpdateState("JUMP");
         }
 
         if (player.IsOnFloor())

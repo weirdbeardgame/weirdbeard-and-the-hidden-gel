@@ -33,14 +33,12 @@ public class Enemy : Actor
         if (Right.IsColliding())
         {
             sprite.FlipH = true;
-            GD.Print("Detect Right");
             velocity.x = -speed;
         }
 
         if (Left.IsColliding())
         {
             sprite.FlipH = false;
-            GD.Print("Detect Left");
             velocity.x = speed;
         }
 
@@ -54,7 +52,6 @@ public class Enemy : Actor
         if (area is Player)
         {
             Player dead = area as Player;
-            GD.Print("PLAYER TOUCH");
             dead.SetState("DEATH");
         }
     }

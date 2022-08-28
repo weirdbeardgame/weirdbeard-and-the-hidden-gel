@@ -10,9 +10,6 @@ public class Level : Node
     [Export]
     Dictionary<string, PackedScene> sublevels;
 
-    [Export]
-    List<Checkpoint> checkpoints;
-
     Checkpoint currentCheckpoint;
 
     Player player;
@@ -31,13 +28,17 @@ public class Level : Node
     {
         player = p;
         scenes = (SceneManager)GetNode("/root/GameManager/SceneManager");
-        Node2D spawn = (Node2D)GetNode("TileMap/SpawnPoint");
 
         AddChild(player);
 
-        if (spawn != null)
+        if (currentCheckpoint != null)
         {
-            player.Position = spawn.GlobalPosition;
+            player.Position = currentCheckpoint.GlobalPosition;
+        }
+        else
+        {
+            currentCheckpoint = (Checkpoint)scenes.CurrentScene.GetNode("0");
+            player.Position = currentCheckpoint.GlobalPosition;
         }
         player.ResetState();
     }
@@ -47,7 +48,7 @@ public class Level : Node
     {
         if (currentCheckpoint != null)
         {
-            currentCheckpoint.isActive = false;
+            currentCheckpoint.Deactivate();
         }
         newCheckpoint.isActive = true;
         currentCheckpoint = newCheckpoint;

@@ -29,6 +29,11 @@ public class Jump : State
         player.Velocity += GetInput();
         if (player.IsOnFloor() == false && !Input.IsActionJustPressed("Jump"))
         {
+            if (Input.IsActionJustPressed("Jump") && player.canJumpAgain)
+            {
+                player.canJumpAgain = false;
+                stateMachine.ResetState();
+            }
             stateMachine.UpdateState("FALL");
         }
     }

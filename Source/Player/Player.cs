@@ -61,6 +61,7 @@ public class Player : Actor
 
     public void ResetState()
     {
+        canJumpAgain = true;
         velocity = Vector2.Zero;
         gravity = 4000f;
         SetState("IDLE");
