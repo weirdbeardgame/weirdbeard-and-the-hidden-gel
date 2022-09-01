@@ -10,6 +10,12 @@ public class Level : Node
     [Export]
     Dictionary<string, PackedScene> sublevels;
 
+    [Export]
+    public int maxEnemyAmnt;
+
+    [Export]
+    public List<Enemy> activeEnemies;
+
     Checkpoint currentCheckpoint;
 
     Player player;
@@ -22,12 +28,12 @@ public class Level : Node
     // Currently active subScene. Otherwise null
     Level subScene;
 
-    // Set player position to spawnpoint if nessacary.
-    // Reset Enemies and Players states. Set NPC states
     public void EnterLevel(Player p)
     {
         player = p;
         scenes = (SceneManager)GetNode("/root/GameManager/SceneManager");
+
+        activeEnemies = new List<Enemy>();
 
         AddChild(player);
 
@@ -38,11 +44,26 @@ public class Level : Node
         else
         {
             currentCheckpoint = (Checkpoint)scenes.CurrentScene.GetNode("0");
+            if (currentCheckpoint == null)
+            {
+                GD.PushError("No Active Checkpoints in Scene!");
+            }
             player.Position = currentCheckpoint.GlobalPosition;
         }
         player.ResetState();
     }
 
+    public void ResetLevel()
+    {
+        foreach (var enemy in activeEnemies)
+        {
+            enemy.Destroy();
+            enemy.Free();
+        }
+        activeEnemies.Clear();
+        player.ResetState();
+        player.Position = currentCheckpoint.GlobalPosition;
+    }
 
     public void Checkpoint(Checkpoint newCheckpoint)
     {
@@ -80,12 +101,14 @@ public class Level : Node
     public void ExitLevel()
     {
         RemoveChild(player);
+        if (activeEnemies != null)
+        {
+            foreach (var enemy in activeEnemies)
+            {
+                enemy.Destroy();
+            }
+            activeEnemies.Clear();
+        }
         player = null;
-    }
-
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-
     }
 }

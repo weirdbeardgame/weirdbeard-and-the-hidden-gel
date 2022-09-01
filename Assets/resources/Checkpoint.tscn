@@ -6,6 +6,7 @@
 extents = Vector2( 21, 115.5 )
 
 [node name="Checkpoint" type="Area2D"]
+monitorable = false
 script = ExtResource( 1 )
 
 [node name="DetectionZone" type="CollisionShape2D" parent="."]

@@ -1,11 +1,10 @@
 using Godot;
 using System;
 
+public enum EnemyDirection { LEFT, RIGHT };
+
 public class Enemy : Actor
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
     public AnimationPlayer player;
 
     RayCast2D Right;
@@ -13,7 +12,7 @@ public class Enemy : Actor
 
     Sprite sprite;
 
-    float dir;
+    EnemyDirection dirToWalk;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -25,6 +24,31 @@ public class Enemy : Actor
         player.Play("Walk");
         velocity.x = -speed;
         sprite.FlipH = true;
+    }
+
+
+    public void Spawn(EnemyDirection dir)
+    {
+        sprite = (Sprite)GetNode("Rat");
+
+        switch (dir)
+        {
+            case EnemyDirection.LEFT:
+                velocity.x = -speed;
+                sprite.FlipH = true;
+                break;
+
+            case EnemyDirection.RIGHT:
+                velocity.x = speed;
+                sprite.FlipH = false;
+                break;
+        }
+    }
+
+    public void Destroy()
+    {
+        velocity = Vector2.Zero;
+        sprite = null;
     }
 
     public override void _PhysicsProcess(float delta)
