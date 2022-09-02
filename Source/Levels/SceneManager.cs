@@ -31,7 +31,7 @@ public class SceneManager : Node
 
     public void ResetLevel(Player player)
     {
-        string sceneName = currentScene.name;
+        string sceneName = currentScene.levelName;
 
         currentScene.ExitLevel();
         GetTree().Root.RemoveChild(currentScene);
@@ -57,7 +57,7 @@ public class SceneManager : Node
     void CallDefferedSwitch(Level toLoad)
     {
         Player player = null;
-        if (currentScene.name != toLoad.name)
+        if (currentScene.levelName != toLoad.levelName)
         {
             if (player == null)
             {
