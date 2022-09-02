@@ -8,7 +8,7 @@ public class EnemySpawner : Node
     PackedScene spawn;
 
     [Export]
-    float maxAmnt, amt;
+    float maxAmnt, amt, spawnRate;
 
     [Export]
     EnemyDirection enemyDirection = EnemyDirection.LEFT;
@@ -35,30 +35,32 @@ public class EnemySpawner : Node
     {
         screenSize = GetViewport().GetVisibleRect().Size;
         enePos.x = randNum.RandfRange(0, screenSize.x);
+
         randNum.Randomize();
+
         enePos.y = randNum.RandfRange(0, screenSize.y);
         randNum.Randomize();
     }
 
     public void Spawn()
     {
-        int i = 0;
-
-        amt = randNum.RandfRange(0, maxAmnt);
-        randNum.Randomize();
-
-        while (i < amt && activeScene.activeEnemies.Count < activeScene.maxEnemyAmnt)
+        for (int i = 0; i <= spawnRate; i++)
         {
+            amt = randNum.RandfRange(0, maxAmnt);
+            randNum.Randomize();
+
             GD.Print("Spawn");
+
             Randomize();
             Enemy ene = (Enemy)spawn.Instance();
 
             ene.SetAsToplevel(true);
+
             ene.Position = enePos;
             ene.Spawn(enemyDirection);
+
             activeScene.AddChild(ene);
             activeScene.activeEnemies.Add(ene);
-            i += 1;
         }
     }
 
@@ -70,10 +72,4 @@ public class EnemySpawner : Node
             Spawn();
         }
     }
-
-    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
-    //  {
-    //      
-    //  }
 }

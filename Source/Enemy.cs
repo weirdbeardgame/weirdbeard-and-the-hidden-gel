@@ -26,11 +26,9 @@ public class Enemy : Actor
         sprite.FlipH = true;
     }
 
-
     public void Spawn(EnemyDirection dir)
     {
         sprite = (Sprite)GetNode("Rat");
-
         switch (dir)
         {
             case EnemyDirection.LEFT:
@@ -45,6 +43,26 @@ public class Enemy : Actor
         }
     }
 
+    public void ChangeDirection()
+    {
+        sprite = (Sprite)GetNode("Rat");
+        switch (dirToWalk)
+        {
+            case EnemyDirection.LEFT:
+                sprite.FlipH = false;
+                velocity.x = speed;
+                dirToWalk = EnemyDirection.RIGHT;
+                break;
+
+            case EnemyDirection.RIGHT:
+                sprite.FlipH = true;
+                velocity.x = -speed;
+                dirToWalk = EnemyDirection.LEFT;
+                break;
+        }
+    }
+
+
     public void Destroy()
     {
         velocity = Vector2.Zero;
@@ -53,21 +71,12 @@ public class Enemy : Actor
 
     public override void _PhysicsProcess(float delta)
     {
-
-        if (Right.IsColliding())
+        if (!Right.IsColliding() || !Left.IsColliding() || IsOnWall())
         {
-            sprite.FlipH = true;
-            velocity.x = -speed;
-        }
-
-        if (Left.IsColliding())
-        {
-            sprite.FlipH = false;
-            velocity.x = speed;
+            ChangeDirection();
         }
 
         velocity.y += gravity * delta;
-
         velocity.y = MoveAndSlide(velocity, Vector2.Up).y;
     }
 

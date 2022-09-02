@@ -53,3 +53,4 @@ position = Vector2( -808, 224 )
 position = Vector2( 360, 440 )
 spawn = ExtResource( 6 )
 maxAmnt = 5.0
+spawnRate = 1.5
