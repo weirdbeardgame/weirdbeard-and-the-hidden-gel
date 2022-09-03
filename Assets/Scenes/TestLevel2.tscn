@@ -639,7 +639,7 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 
 [node name="Level" type="Node"]
 script = ExtResource( 35 )
-name = "TestLevel2"
+levelName = "TestLevel2"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )

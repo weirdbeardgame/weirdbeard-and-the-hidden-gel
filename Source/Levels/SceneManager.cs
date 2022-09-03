@@ -8,10 +8,10 @@ public class SceneManager : Node
     Dictionary<string, PackedScene> levels;
 
     [Export]
-    private Level currentScene;
+    private LevelCommon currentScene;
 
 
-    public Level CurrentScene
+    public LevelCommon CurrentScene
     {
         get
         {

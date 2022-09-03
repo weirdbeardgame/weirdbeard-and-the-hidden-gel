@@ -6,9 +6,12 @@ using System;
 
 public class Exit : Node
 {
-
     SceneManager scenes;
+
+    [Export]
     Level toTransportTo;
+
+    Checkpoint checkpoint;
 
 
     // Called when the node enters the scene tree for the first time.
@@ -23,12 +26,7 @@ public class Exit : Node
         if (body is Player)
         {
             // Take player to associated Level
+
         }
     }
-
-    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
-    //  {
-    //      
-    //  }
 }

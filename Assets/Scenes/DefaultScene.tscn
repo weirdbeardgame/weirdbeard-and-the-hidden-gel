@@ -7,7 +7,7 @@
 
 [node name="Level" type="Node"]
 script = ExtResource( 4 )
-name = "Default"
+levelName = "DEFAULT"
 
 [node name="Game" parent="." instance=ExtResource( 1 )]
 

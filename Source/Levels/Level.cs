@@ -59,26 +59,6 @@ public class Level : LevelCommon
         currentCheckpoint = newCheckpoint;
     }
 
-    // Unload root node or rather suspend it, apply nodes in sub scene
-    // Without changing the engine "CurrentScene" Keep main scene loaded in background.
-    public override void EnterSubLevel(string sub)
-    {
-        var tileMap = (TileMap)scenes.CurrentScene.GetNode("TileMap");
-        if (sublevels != null)
-        {
-            Node toLoad = sublevels[sub].Instance();
-            tileMap.Hide();
-            GetTree().Root.AddChild(toLoad);
-        }
-    }
-
-    public override void ExitSubLevel(string sub)
-    {
-        subScene.Free();
-        var tileMap = (TileMap)GetNode("TileMap");
-        tileMap.Show();
-    }
-
     // Clear the enemies and other data from the scene.
     // Ensure the scene closes properly before changing.
     public override void ExitLevel()

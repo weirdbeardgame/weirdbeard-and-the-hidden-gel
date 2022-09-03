@@ -46,15 +46,13 @@ public class LevelCommon : Node
 
     }
 
-    public virtual void EnterSubLevel(string sub)
+    public virtual void EnterSubLevel(Player player, Level parent)
     {
 
     }
 
-    public virtual void ExitSubLevel(string sub)
+    public virtual void ExitSubLevel()
     {
 
     }
-
-
 }
