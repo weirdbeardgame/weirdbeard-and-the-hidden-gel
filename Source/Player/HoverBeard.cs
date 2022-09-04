@@ -10,10 +10,7 @@ public class HoverBeard : PowerUp
     public override void _Ready()
     {
         stateName = "HOVER";
-        player = (Player)GetParent<Player>();
-        stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, stateName);
-        animator = (AnimationPlayer)GetNode("AnimationPlayer");
+        timer = (Timer)GetNode("Timer");
     }
 
     public override void Start()
@@ -21,6 +18,7 @@ public class HoverBeard : PowerUp
         if (!player.IsOnFloor())
         {
             player.gravity = gravity;
+            timer.Start();
         }
         else
         {

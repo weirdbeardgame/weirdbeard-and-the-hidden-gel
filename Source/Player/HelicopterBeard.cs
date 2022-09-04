@@ -6,10 +6,6 @@ public class HelicopterBeard : PowerUp
     public override void _Ready()
     {
         stateName = "HELICOPTER";
-        player = (Player)GetParent<Player>();
-        stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, stateName);
-        animator = (AnimationPlayer)GetNode("AnimationPlayer");
     }
 
     // Play animation. Set physics

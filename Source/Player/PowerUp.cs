@@ -21,9 +21,13 @@ public class PowerUp : State
 
     public void Equip(object body)
     {
+        GD.Print("Equip");
         if (body is Player)
         {
+            player = (Player)body;
             player.EquipPowerup(this);
+            stateMachine = (StateMachine)player.GetNode("StateMachine");
+            stateMachine.AddState(this, stateName);
         }
     }
 }
