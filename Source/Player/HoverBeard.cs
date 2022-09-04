@@ -1,21 +1,31 @@
 using Godot;
 using System;
 
-public class HelicopterBeard : PowerUp
+public class HoverBeard : PowerUp
 {
+
+    Timer timer;
+
+    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        stateName = "HELICOPTER";
+        stateName = "HOVER";
         player = (Player)GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
         stateMachine.AddState(this, stateName);
         animator = (AnimationPlayer)GetNode("AnimationPlayer");
     }
 
-    // Play animation. Set physics
     public override void Start()
     {
-        player.gravity = gravity;
+        if (!player.IsOnFloor())
+        {
+            player.gravity = gravity;
+        }
+        else
+        {
+            Exit();
+        }
     }
 
     public override Vector2 GetInput()
@@ -26,12 +36,17 @@ public class HelicopterBeard : PowerUp
     public override void FixedUpdate(float delta)
     {
         inputVelocity.x = speed * GetInput().x;
-
         player.Velocity = inputVelocity;
+    }
+
+    public void OnTimeout()
+    {
+        Exit();
     }
 
     public override void Exit()
     {
         base.Exit();
     }
+
 }

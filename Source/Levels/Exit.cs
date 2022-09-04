@@ -9,7 +9,7 @@ public class Exit : Node
     SceneManager scenes;
 
     [Export]
-    Level toTransportTo;
+    LevelCommon toTransportTo;
 
     Checkpoint checkpoint;
 
@@ -17,16 +17,15 @@ public class Exit : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-
+        scenes = (SceneManager)GetNode("/root/GameManager/SceneManager");
     }
-
 
     public void OnExit(object body)
     {
         if (body is Player)
         {
-            // Take player to associated Level
-
+            checkpoint.Activate(body);
+            scenes.SwitchLevel(toTransportTo.levelName);
         }
     }
 }

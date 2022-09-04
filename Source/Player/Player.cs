@@ -19,6 +19,8 @@ public class Player : Actor
 
     public bool wasOnFloor;
 
+    PowerUp currentPowerup;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -102,6 +104,26 @@ public class Player : Actor
         return (PlayerData.playerLives <= 0);
     }
 
+    public void EquipPowerup(PowerUp power)
+    {
+        if (currentPowerup != power)
+        {
+            currentPowerup = power;
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    void ActivatePowerup()
+    {
+        if (currentPowerup != null)
+        {
+            stateMachine.UpdateState(currentPowerup.stateName);
+        }
+    }
+
     void Attack(float delta)
     {
         Weapon w = (Weapon)PlayerData.equipped.Weapon.Instance();
@@ -127,6 +149,11 @@ public class Player : Actor
         wasOnFloor = IsOnFloor();
         velocity.y += gravity * delta;
         velocity = MoveAndSlide(velocity, Vector2.Up);
+
+        if (!IsOnFloor() && Input.IsActionJustPressed("Run"))
+        {
+            ActivatePowerup();
+        }
 
         if (wasOnFloor && !IsOnFloor())
         {

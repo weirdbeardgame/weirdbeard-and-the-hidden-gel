@@ -90,13 +90,13 @@ shape = SubResource( 4 )
 position = Vector2( 31, 0 )
 rotation = -1.56333
 enabled = true
-cast_to = Vector2( -12.9996, 0.0970612 )
+cast_to = Vector2( -21.9994, 0.164257 )
 
 [node name="Left" type="RayCast2D" parent="."]
 position = Vector2( -23, 0 )
 rotation = 1.56873
 enabled = true
-cast_to = Vector2( 13, 0.0268631 )
+cast_to = Vector2( 23.9999, 0.0495911 )
 
 [node name="StateSet" type="RichTextLabel" parent="."]
 margin_left = -28.0

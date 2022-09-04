@@ -3,9 +3,6 @@ using System;
 
 public class State : Node
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
 
     protected Player player;
 
@@ -14,6 +11,8 @@ public class State : Node
     public string stateName;
 
     protected bool isPaused;
+
+    protected AnimationPlayer animator;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -27,7 +26,7 @@ public class State : Node
 
     public virtual void Exit()
     {
-
+        player.ResetState();
     }
 
     public virtual Vector2 GetInput()
