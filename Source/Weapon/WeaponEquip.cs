@@ -13,7 +13,7 @@ public class WeaponEquip : Area2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        slot = PlayerData.equipped;
+        //slot = equipped;
         wSprite = (Sprite)GetNode("sprite");
     }
 

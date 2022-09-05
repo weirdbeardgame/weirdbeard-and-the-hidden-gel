@@ -21,6 +21,13 @@ public class Player : Actor
 
     PowerUp currentPowerup;
 
+    public int playerLives = 3;
+
+    public WeaponSlot equipped;
+
+    public Vector2 direction = Vector2.Right;
+
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -29,7 +36,7 @@ public class Player : Actor
         weirdBeard = (Sprite)GetNode("WeirdBeard");
         timer = (Timer)GetNode("Timer");
 
-        PlayerData.equipped = (WeaponSlot)GetNode("WeaponSlot");
+        equipped = (WeaponSlot)GetNode("WeaponSlot");
 
         ResetState();
     }
@@ -57,7 +64,7 @@ public class Player : Actor
 
     public void NewGame()
     {
-        PlayerData.playerLives = 3;
+        playerLives = 3;
         ResetState();
     }
 
@@ -91,7 +98,7 @@ public class Player : Actor
 
     public void Die()
     {
-        PlayerData.playerLives -= 1;
+        playerLives -= 1;
     }
 
     public bool CanJump()
@@ -101,7 +108,7 @@ public class Player : Actor
 
     public bool GamaOvar()
     {
-        return (PlayerData.playerLives <= 0);
+        return (playerLives <= 0);
     }
 
     public void EquipPowerup(PowerUp power)
@@ -126,20 +133,20 @@ public class Player : Actor
 
     void Attack(float delta)
     {
-        Weapon w = (Weapon)PlayerData.equipped.Weapon.Instance();
+        Weapon w = (Weapon)equipped.Weapon.Instance();
 
         if (w.canThrowWeapon)
         {
             GetParent().AddChild(w);
             w.Position = GlobalPosition;
             w.Rotation = GlobalRotation;
-            w.Attack(delta);
+            w.Attack(delta, GlobalPosition);
         }
     }
 
     public override void _PhysicsProcess(float delta)
     {
-        if (PlayerData.equipped.Weapon != null)
+        if (equipped.Weapon != null)
         {
             if (Input.IsActionJustPressed("Attack"))
             {

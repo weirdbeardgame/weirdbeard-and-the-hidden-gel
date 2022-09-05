@@ -17,7 +17,7 @@ public class Death : State
 
     public override void Start()
     {
-        if (PlayerData.playerLives > 0 && !isDead)
+        if (player.playerLives > 0 && !isDead)
         {
             player.Die();
         }

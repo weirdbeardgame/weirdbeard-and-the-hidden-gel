@@ -46,13 +46,13 @@ public class Walk : State
 
             if (inputVelocity.x < 0)
             {
-                PlayerData.direction = Vector2.Left;
+                player.direction = Vector2.Left;
                 player.weirdBeard.FlipH = true;
             }
 
             else
             {
-                PlayerData.direction = Vector2.Right;
+                player.direction = Vector2.Right;
                 player.weirdBeard.FlipH = false;
             }
         }

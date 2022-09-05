@@ -33,19 +33,14 @@ public class Weapon : KinematicBody2D
     {
         sprite = (Sprite)GetNode("weaponSprite");
         play = (AnimationPlayer)GetNode("AnimationPlayer");
-        direction = PlayerData.direction;
-
-        GD.Print("Direction:", direction.x);
-
-        velocity.x = speed * direction.x;
     }
 
-    public void Attack(float delta)
+    public void Attack(float delta, Vector2 direction)
     {
         switch (type)
         {
             case WeaponType.THROW:
-                Throw(delta);
+                Throw(delta, direction);
                 break;
 
             case WeaponType.SHOOT:
@@ -54,7 +49,7 @@ public class Weapon : KinematicBody2D
         }
     }
 
-    async void Throw(float delta)
+    async void Throw(float delta, Vector2 direction)
     {
         if (direction.x < 0)
         {
@@ -65,7 +60,8 @@ public class Weapon : KinematicBody2D
             sprite.FlipH = false;
         }
 
-        GD.Print("Dir: ", direction);
+        GD.Print("Direction:", direction.x);
+        velocity.x = speed * direction.x;
 
         canThrowWeapon = false;
         await ToSignal(GetTree().CreateTimer(fireRate), "timeout");

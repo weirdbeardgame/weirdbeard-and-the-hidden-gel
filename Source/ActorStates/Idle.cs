@@ -35,7 +35,7 @@ public class Idle : State
     public override void FixedUpdate(float delta)
     {
 
-        if (PlayerData.direction == Vector2.Left)
+        if (player.direction == Vector2.Left)
         {
             player.weirdBeard.FlipH = true;
         }
