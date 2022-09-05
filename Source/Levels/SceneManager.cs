@@ -19,6 +19,9 @@ public class SceneManager : Node
         }
     }
 
+    public static Action startNewGame;
+    public static Action<LevelCommon, Player> changeScene;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -27,6 +30,9 @@ public class SceneManager : Node
             GD.PrintErr("ERROR: Scene's not in manager");
             throw new Exception("Scene's not in manager");
         }
+
+        startNewGame += NewGame;
+        changeScene += SwitchLevel;
     }
 
     public void ResetLevel(Player player)
@@ -43,39 +49,37 @@ public class SceneManager : Node
     }
 
     // Play level changing animation.
-    // Loat new scene and set it as current
-    // This could be called from Game Manager at first but could also be in a hub world
-    public void SwitchLevel(LevelCommon scene)
+    // Load new scene and set it as current
+    public void SwitchLevel(LevelCommon scene, Player player)
     {
-        currentScene = (Level)GetTree().CurrentScene;
+        if (currentScene is LevelCommon)
+        {
+            currentScene = (Level)GetTree().CurrentScene;
+        }
         Level sceneToLoad = (Level)levels[scene.levelName].Instance();
-        CallDeferred(nameof(CallDefferedSwitch), sceneToLoad);
+        CallDeferred(nameof(CallDefferedSwitch), sceneToLoad, player);
 
-        currentScene = (Level)GetTree().CurrentScene;
+        //currentScene = (Level)GetTree().CurrentScene;
     }
 
-    void CallDefferedSwitch(Level toLoad)
+    void CallDefferedSwitch(Level toLoad, Player player)
     {
-        Player player = null;
-        if (currentScene.levelName != toLoad.levelName)
+        if (currentScene != null)
         {
-            if (player == null)
-            {
-                player = GameManager.player;
-            }
-
-            if (currentScene != null)
-            {
-                currentScene.RemoveChild(player);
-                currentScene.ExitLevel();
-                currentScene.Free();
-            }
-
-            currentScene = toLoad;
-            GetTree().Root.AddChild(currentScene);
-            currentScene.EnterLevel(player);
-            GetTree().CurrentScene = currentScene;
+            currentScene.RemoveChild(player);
+            currentScene.ExitLevel();
+            currentScene.Free();
         }
+        currentScene = toLoad;
+        GetTree().Root.AddChild(currentScene);
+        currentScene.EnterLevel(player);
+        GetTree().CurrentScene = currentScene;
+    }
+
+    void NewGame()
+    {
+        SwitchLevel((LevelCommon)levels["TestLevel"].Instance(), (Player)GetTree().Root.GetNode("Player"));
+        startNewGame -= NewGame;
     }
 
 

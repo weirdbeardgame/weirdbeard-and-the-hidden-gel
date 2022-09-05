@@ -11,12 +11,12 @@ config_version=4
 [application]
 
 config/name="Weirdbeard Mono"
-run/main_scene="res://Assets/Scenes/DefaultScene.tscn"
+run/main_scene="res://Assets/Scenes/TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-PlayerData="*res://Source/Player/PlayerData.cs"
+SceneManager="*res://Assets/resources/SceneManager.tscn"
 
 [display]
 

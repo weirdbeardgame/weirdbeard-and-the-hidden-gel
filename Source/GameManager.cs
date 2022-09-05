@@ -10,7 +10,7 @@ public class GameManager : Node
 {
     StateMachine gameState;
 
-    public static Player player;
+    public Player player;
 
     SceneManager scenes;
 
@@ -32,10 +32,7 @@ public class GameManager : Node
 
     public override void _Process(float delta)
     {
-        if (player.CurrentState == "DEATH")
-        {
-            scenes.ResetLevel(player);
-        }
+
     }
 
     public override void _PhysicsProcess(float delta)

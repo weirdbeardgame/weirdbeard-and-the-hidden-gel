@@ -25,7 +25,7 @@ public class Exit : Node
         if (body is Player)
         {
             checkpoint.Activate(body);
-            scenes.SwitchLevel(toTransportTo);
+            scenes.SwitchLevel(toTransportTo, (Player)body);
         }
     }
 }

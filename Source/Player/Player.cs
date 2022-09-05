@@ -36,6 +36,8 @@ public class Player : Actor
         weirdBeard = (Sprite)GetNode("WeirdBeard");
         timer = (Timer)GetNode("Timer");
 
+        SceneManager.startNewGame += NewGame;
+
         equipped = (WeaponSlot)GetNode("WeaponSlot");
 
         ResetState();
@@ -66,6 +68,7 @@ public class Player : Actor
     {
         playerLives = 3;
         ResetState();
+        SceneManager.startNewGame -= NewGame;
     }
 
     public void ResetState()
