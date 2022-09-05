@@ -28,8 +28,6 @@ public class GameManager : Node
 
     public void NewGame()
     {
-        scenes.SwitchLevel("TestLevel");
-        gameState.UpdateState("GAME");
     }
 
     public override void _Process(float delta)

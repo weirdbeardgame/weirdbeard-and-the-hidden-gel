@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/JDSherbert - Nostalgia Music Pack - The 90's RomCom.mp3-4d88dbce10aefbf103459707c6f2081c.mp3str"
+
+[deps]
+
+source_file="res://Assets/resources/Audio/TestAudio/JDSherbert - Nostalgia Music Pack - The 90's RomCom.mp3"
+dest_files=[ "res://.import/JDSherbert - Nostalgia Music Pack - The 90's RomCom.mp3-4d88dbce10aefbf103459707c6f2081c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

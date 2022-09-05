@@ -45,10 +45,10 @@ public class SceneManager : Node
     // Play level changing animation.
     // Loat new scene and set it as current
     // This could be called from Game Manager at first but could also be in a hub world
-    public void SwitchLevel(string scene)
+    public void SwitchLevel(LevelCommon scene)
     {
         currentScene = (Level)GetTree().CurrentScene;
-        Level sceneToLoad = (Level)levels[scene].Instance();
+        Level sceneToLoad = (Level)levels[scene.levelName].Instance();
         CallDeferred(nameof(CallDefferedSwitch), sceneToLoad);
 
         currentScene = (Level)GetTree().CurrentScene;

@@ -6,7 +6,7 @@ public class LevelChanger : Area2D
     SceneManager scenes;
 
     [Export]
-    string teleportTo;
+    PackedScene teleportTo;
 
     public override void _Ready()
     {
@@ -17,7 +17,7 @@ public class LevelChanger : Area2D
     {
         if (body is Player)
         {
-            scenes.SwitchLevel(teleportTo);
+            scenes.SwitchLevel((LevelCommon)teleportTo.Instance());
         }
     }
 }
