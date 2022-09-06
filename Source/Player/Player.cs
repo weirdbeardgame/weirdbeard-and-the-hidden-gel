@@ -39,8 +39,6 @@ public class Player : Actor
         SceneManager.startNewGame += NewGame;
 
         equipped = (WeaponSlot)GetNode("WeaponSlot");
-
-        ResetState();
     }
 
     public Vector2 Velocity
@@ -53,14 +51,6 @@ public class Player : Actor
         set
         {
             velocity = value;
-        }
-    }
-
-    public string CurrentState
-    {
-        get
-        {
-            return stateMachine.CurrentState.stateName;
         }
     }
 

@@ -15,7 +15,6 @@ public class Level : LevelCommon
     public override void EnterLevel(Player p)
     {
         player = p;
-        scenes = (SceneManager)GetNode("/root/GameManager/SceneManager");
 
         activeEnemies = new List<Enemy>();
 
@@ -27,14 +26,14 @@ public class Level : LevelCommon
         }
         else
         {
-            currentCheckpoint = (Checkpoint)scenes.CurrentScene.GetNode("0");
+            currentCheckpoint = (Checkpoint)GetNode("0");
             if (currentCheckpoint == null)
             {
                 GD.PushError("No Active Checkpoints in Scene!");
             }
             player.Position = currentCheckpoint.GlobalPosition;
         }
-        player.ResetState();
+        //player.ResetState();
     }
 
     public override void ResetLevel()

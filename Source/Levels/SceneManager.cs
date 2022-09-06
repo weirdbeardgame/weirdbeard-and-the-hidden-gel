@@ -10,6 +10,9 @@ public class SceneManager : Node
     [Export]
     private LevelCommon currentScene;
 
+    ResourceInteractiveLoader loader;
+
+    Node nodeParent;
 
     public LevelCommon CurrentScene
     {
@@ -56,10 +59,22 @@ public class SceneManager : Node
         {
             currentScene = (Level)GetTree().CurrentScene;
         }
-        Level sceneToLoad = (Level)levels[scene.levelName].Instance();
+
+        if (!player.Visible)
+        {
+            player.Visible = true;
+        }
+        LevelCommon sceneToLoad = (LevelCommon)levels[scene.levelName].Instance();
+
         CallDeferred(nameof(CallDefferedSwitch), sceneToLoad, player);
 
         //currentScene = (Level)GetTree().CurrentScene;
+    }
+
+
+    void BackgroundLoadScene(Level toLoad, Player player)
+    {
+
     }
 
     void CallDefferedSwitch(Level toLoad, Player player)
@@ -70,6 +85,10 @@ public class SceneManager : Node
             currentScene.ExitLevel();
             currentScene.Free();
         }
+        else
+        {
+            GetTree().Root.RemoveChild(GetTree().CurrentScene);
+        }
         currentScene = toLoad;
         GetTree().Root.AddChild(currentScene);
         currentScene.EnterLevel(player);
@@ -78,7 +97,7 @@ public class SceneManager : Node
 
     void NewGame()
     {
-        SwitchLevel((LevelCommon)levels["TestLevel"].Instance(), (Player)GetTree().Root.GetNode("Player"));
+        SwitchLevel((LevelCommon)levels["TestLevel"].Instance(), (Player)GetTree().CurrentScene.GetNode("Player"));
         startNewGame -= NewGame;
     }
 

@@ -3,21 +3,19 @@ using System;
 
 public class LevelChanger : Area2D
 {
-    SceneManager scenes;
 
     [Export]
     PackedScene teleportTo;
 
     public override void _Ready()
     {
-        scenes = (SceneManager)GetNode("/root/GameManager/SceneManager");
     }
 
     public void Teleport(object body)
     {
         if (body is Player)
         {
-            scenes.SwitchLevel((LevelCommon)teleportTo.Instance(), (Player)body);
+            //scenes.SwitchLevel((LevelCommon)teleportTo.Instance(), (Player)body);
         }
     }
 }
