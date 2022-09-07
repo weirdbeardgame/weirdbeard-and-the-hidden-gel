@@ -60,10 +60,6 @@ public class SceneManager : Node
             currentScene = (Level)GetTree().CurrentScene;
         }
 
-        if (!player.Visible)
-        {
-            player.Visible = true;
-        }
         LevelCommon sceneToLoad = (LevelCommon)levels[scene.levelName].Instance();
 
         CallDeferred(nameof(CallDefferedSwitch), sceneToLoad, player);
@@ -97,7 +93,7 @@ public class SceneManager : Node
 
     void NewGame()
     {
-        SwitchLevel((LevelCommon)levels["TestLevel"].Instance(), (Player)GetTree().CurrentScene.GetNode("Player"));
+        SwitchLevel((LevelCommon)levels["TestLevel"].Instance(), null);
         startNewGame -= NewGame;
     }
 

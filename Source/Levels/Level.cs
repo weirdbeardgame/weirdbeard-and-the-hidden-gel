@@ -14,26 +14,46 @@ public class Level : LevelCommon
 
     public override void EnterLevel(Player p)
     {
-        player = p;
-
         activeEnemies = new List<Enemy>();
 
-        AddChild(player);
-
-        if (currentCheckpoint != null)
+        if (p != null)
         {
-            player.Position = currentCheckpoint.GlobalPosition;
+            player = p;
+            AddChild(player);
+
+            if (currentCheckpoint != null)
+            {
+                player.Position = currentCheckpoint.GlobalPosition;
+            }
+            else
+            {
+                currentCheckpoint = (Checkpoint)GetNode("0");
+                if (currentCheckpoint == null)
+                {
+                    GD.PushError("No Active Checkpoints in Scene!");
+                }
+                player.Position = currentCheckpoint.GlobalPosition;
+            }
+            player.ResetState();
         }
         else
         {
-            currentCheckpoint = (Checkpoint)GetNode("0");
-            if (currentCheckpoint == null)
+            player = (Player)GetNode("Player");
+            if (currentCheckpoint != null)
             {
-                GD.PushError("No Active Checkpoints in Scene!");
+                player.Position = currentCheckpoint.GlobalPosition;
             }
-            player.Position = currentCheckpoint.GlobalPosition;
+            else
+            {
+                currentCheckpoint = (Checkpoint)GetNode("0");
+                if (currentCheckpoint == null)
+                {
+                    GD.PushError("No Active Checkpoints in Scene!");
+                }
+                player.Position = currentCheckpoint.GlobalPosition;
+            }
+            player.ResetState();
         }
-        //player.ResetState();
     }
 
     public override void ResetLevel()
