@@ -12,6 +12,8 @@ public class SceneManager : Node
 
     ResourceInteractiveLoader loader;
 
+    Exit activeExit;
+
     Node nodeParent;
 
     public LevelCommon CurrentScene
@@ -62,6 +64,11 @@ public class SceneManager : Node
 
         LevelCommon sceneToLoad = (LevelCommon)levels[scene.levelName].Instance();
         CallDeferred(nameof(CallDefferedSwitch), sceneToLoad, player);
+    }
+
+    public void LoadSubScene(LevelCommon Subscene)
+    {
+
     }
 
 
