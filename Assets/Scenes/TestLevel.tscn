@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/resources/Tiles/TestLevel.tres" type="TileSet" id=2]
 [ext_resource path="res://Assets/resources/Weapons/SwordEquip.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/resources/HUD.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/resources/Sword.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/resources/Weapons/Sword.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/resources/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/resources/Portal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Source/Levels/Level.cs" type="Script" id=8]
@@ -38,11 +38,11 @@ w = ExtResource( 5 )
 position = Vector2( 1255, 449 )
 teleportTo = ExtResource( 10 )
 
-[node name="1" parent="." instance=ExtResource( 1 )]
+[node name="1" parent="TileMap" instance=ExtResource( 1 )]
 position = Vector2( 824, 64 )
 
-[node name="0" parent="." instance=ExtResource( 1 )]
+[node name="0" parent="TileMap" instance=ExtResource( 1 )]
 position = Vector2( -808, 224 )
 
-[node name="Player" parent="." instance=ExtResource( 6 )]
+[node name="Player" parent="TileMap" instance=ExtResource( 6 )]
 position = Vector2( -792, 352 )

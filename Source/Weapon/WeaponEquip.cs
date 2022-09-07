@@ -6,14 +6,13 @@ public class WeaponEquip : Area2D
     [Export]
     PackedScene w;
 
-    WeaponSlot slot;
-
     Sprite wSprite;
+
+    Player player;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        //slot = equipped;
         wSprite = (Sprite)GetNode("sprite");
     }
 
@@ -21,7 +20,8 @@ public class WeaponEquip : Area2D
     {
         if (body is Player)
         {
-            slot.Equip(w, wSprite);
+            player = (Player)body;
+            player.equipped.Equip(w, wSprite);
             QueueFree();
         }
     }

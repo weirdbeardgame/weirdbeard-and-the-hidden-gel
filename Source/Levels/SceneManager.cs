@@ -61,10 +61,7 @@ public class SceneManager : Node
         }
 
         LevelCommon sceneToLoad = (LevelCommon)levels[scene.levelName].Instance();
-
         CallDeferred(nameof(CallDefferedSwitch), sceneToLoad, player);
-
-        //currentScene = (Level)GetTree().CurrentScene;
     }
 
 
@@ -79,7 +76,7 @@ public class SceneManager : Node
         {
             currentScene.RemoveChild(player);
             currentScene.ExitLevel();
-            currentScene.Free();
+            //currentScene.Free();
         }
         else
         {
