@@ -18,6 +18,8 @@ public class Level : LevelCommon
 
         if (p != null)
         {
+            var tree = GetTree();
+
             player = p;
             AddChild(player);
 

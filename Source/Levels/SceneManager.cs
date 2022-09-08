@@ -100,9 +100,9 @@ public class SceneManager : Node
     {
         if (currentScene != null)
         {
-            currentScene.RemoveChild(player);
             currentScene.ExitLevel();
-            //currentScene.Free();
+            GetTree().Root.RemoveChild(currentScene);
+            currentScene.Free();
         }
         else
         {
@@ -110,8 +110,8 @@ public class SceneManager : Node
         }
         currentScene = toLoad;
         GetTree().Root.AddChild(currentScene);
-        currentScene.EnterLevel(player);
         GetTree().CurrentScene = currentScene;
+        currentScene.EnterLevel(player);
     }
 
     void NewGame()
