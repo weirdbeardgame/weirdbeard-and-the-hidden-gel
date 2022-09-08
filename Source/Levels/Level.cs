@@ -38,14 +38,14 @@ public class Level : LevelCommon
         }
         else
         {
-            player = (Player)GetNode("TileMap/Player");
+            player = (Player)GetNode("Player");
             if (currentCheckpoint != null)
             {
                 player.Position = currentCheckpoint.GlobalPosition;
             }
             else
             {
-                currentCheckpoint = (Checkpoint)GetNode("TileMap/0");
+                currentCheckpoint = (Checkpoint)GetNode("0");
                 if (currentCheckpoint == null)
                 {
                     GD.PushError("No Active Checkpoints in Scene!");
@@ -82,7 +82,7 @@ public class Level : LevelCommon
     // Ensure the scene closes properly before changing.
     public override void ExitLevel()
     {
-        //RemoveChild(player);
+        RemoveChild(player);
         if (activeEnemies != null)
         {
             foreach (var enemy in activeEnemies)

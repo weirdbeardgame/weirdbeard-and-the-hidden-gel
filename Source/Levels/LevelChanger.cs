@@ -15,7 +15,7 @@ public class LevelChanger : Area2D
     {
         if (body is Player)
         {
-            SceneManager.changeScene((LevelCommon)teleportTo.Instance(), (Player)body);
+            SceneManager.changeScene(teleportTo, (Player)body);
         }
     }
 }

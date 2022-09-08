@@ -51,7 +51,10 @@ public class StateMachine : Node
         {
             oldState.Exit();
         }
-        state = GetNode<State>(Nodes[newState]);
+
+        var owner = Owner;
+        var own = Owner.Owner;
+        state = (State)GetNode(Nodes[newState]);
         if (stateSet != null)
         {
             stateSet.Text = newState;

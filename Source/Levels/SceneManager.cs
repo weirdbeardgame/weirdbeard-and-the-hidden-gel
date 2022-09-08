@@ -10,6 +10,9 @@ public class SceneManager : Node
     [Export]
     private LevelCommon currentScene;
 
+    [Export]
+    private LevelCommon activeSubScene;
+
     ResourceInteractiveLoader loader;
 
     Exit activeExit;
@@ -25,7 +28,8 @@ public class SceneManager : Node
     }
 
     public static Action startNewGame;
-    public static Action<LevelCommon, Player> changeScene;
+    public static Action<PackedScene, Player> changeScene;
+    public static Action<PackedScene, Player, Exit> changeSceneWithExit;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -38,6 +42,7 @@ public class SceneManager : Node
 
         startNewGame += NewGame;
         changeScene += SwitchLevel;
+        changeSceneWithExit += LoadSubScene;
     }
 
     public void ResetLevel(Player player)
@@ -55,26 +60,40 @@ public class SceneManager : Node
 
     // Play level changing animation.
     // Load new scene and set it as current
-    public void SwitchLevel(LevelCommon scene, Player player)
+    public void SwitchLevel(PackedScene scene, Player player)
     {
         if (currentScene is LevelCommon)
         {
             currentScene = (Level)GetTree().CurrentScene;
         }
 
-        LevelCommon sceneToLoad = (LevelCommon)levels[scene.levelName].Instance();
-        CallDeferred(nameof(CallDefferedSwitch), sceneToLoad, player);
+
+        if (levels.ContainsValue(scene))
+        {
+            LevelCommon sceneToLoad = (LevelCommon)scene.Instance();
+            CallDeferred(nameof(CallDefferedSwitch), sceneToLoad, player);
+        }
     }
 
-    public void LoadSubScene(LevelCommon Subscene)
+    public void LoadSubScene(PackedScene subscene, Player p, Exit exit)
     {
-
+        activeExit = exit;
+        CallDeferred(nameof(CallDeferredSub), (LevelCommon)subscene.Instance(), p);
     }
 
 
     void BackgroundLoadScene(Level toLoad, Player player)
     {
 
+    }
+
+    void CallDeferredSub(SubLevel toLoad, Player player)
+    {
+        currentScene.ExitLevel();
+        GetTree().Root.RemoveChild(currentScene);
+        activeSubScene = toLoad;
+        GetTree().Root.AddChild(activeSubScene);
+        activeSubScene.EnterLevel(player);
     }
 
     void CallDefferedSwitch(Level toLoad, Player player)
@@ -97,7 +116,7 @@ public class SceneManager : Node
 
     void NewGame()
     {
-        SwitchLevel((LevelCommon)levels["TestLevel"].Instance(), null);
+        SwitchLevel(levels["TestLevel"], null);
         startNewGame -= NewGame;
     }
 

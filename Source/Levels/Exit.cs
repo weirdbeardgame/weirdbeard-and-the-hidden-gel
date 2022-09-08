@@ -21,7 +21,7 @@ public class Exit : Node2D
     {
         if (body is Player)
         {
-            SceneManager.changeScene((LevelCommon)toTransportTo.Instance(), (Player)body);
+            SceneManager.changeSceneWithExit(toTransportTo, (Player)body, this);
         }
     }
 }

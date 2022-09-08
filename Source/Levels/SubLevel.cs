@@ -16,8 +16,7 @@ public class SubLevel : LevelCommon
     {
         player = p;
         parentLevel = parent;
-        GetTree().Root.RemoveChild(parent);
-        GetTree().Root.AddChild(this);
+        player.ResetState();
     }
 
 
