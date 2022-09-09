@@ -173,6 +173,7 @@ anims/Walk = SubResource( 4 )
 script = ExtResource( 21 )
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 500.0
 
 [node name="Helicopter" type="Node" parent="."]
 script = ExtResource( 4 )

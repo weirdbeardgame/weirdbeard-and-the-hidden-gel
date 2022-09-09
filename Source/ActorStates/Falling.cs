@@ -21,7 +21,7 @@ public class Falling : State
 
     public override void FixedUpdate(float delta)
     {
-        if (Input.IsActionJustPressed("Jump") && player.canJumpAgain)
+        if (Input.IsActionJustPressed("Jump") && player.CanJump())
         {
             player.canJumpAgain = false;
             stateMachine.UpdateState("JUMP");

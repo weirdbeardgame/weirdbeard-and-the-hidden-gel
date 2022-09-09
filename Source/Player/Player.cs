@@ -89,7 +89,7 @@ public class Player : Actor
 
     public bool CanJump()
     {
-        return IsOnFloor() || coyoteTime;
+        return IsOnFloor() || coyoteTime || canJumpAgain;
     }
 
     public bool GamaOvar()
