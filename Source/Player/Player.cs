@@ -117,26 +117,13 @@ public class Player : Actor
         }
     }
 
-    void Attack(float delta)
-    {
-        Weapon w = (Weapon)equipped.Weapon.Instance();
-
-        if (w.canThrowWeapon)
-        {
-            GetParent().AddChild(w);
-            w.Position = GlobalPosition;
-            w.Rotation = GlobalRotation;
-            w.Attack(delta, GlobalPosition);
-        }
-    }
-
     public override void _PhysicsProcess(float delta)
     {
         if (equipped.Weapon != null)
         {
             if (Input.IsActionJustPressed("Attack"))
             {
-                Attack(delta);
+                stateMachine.UpdateState("ATTACK");
             }
         }
         wasOnFloor = IsOnFloor();
