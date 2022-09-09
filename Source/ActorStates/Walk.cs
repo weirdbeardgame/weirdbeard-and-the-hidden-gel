@@ -27,13 +27,11 @@ public class Walk : State
 
     public override void FixedUpdate(float delta)
     {
-
-
         if (player.IsOnFloor())
         {
             if (Input.IsActionPressed("Run"))
             {
-                currentSpeed = player.speed * 2;
+                currentSpeed = player.runSpeed;
             }
 
             else

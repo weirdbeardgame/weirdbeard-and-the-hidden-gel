@@ -6,18 +6,11 @@ public class Player : Actor
 {
     public AnimationPlayer player;
 
-    [Export]
-    public float maxCoyoteTimer = 2f;
-
-    public bool coyoteTime;
-
     Camera2D camera;
 
     Timer timer;
 
     public Sprite weirdBeard;
-
-    public bool wasOnFloor;
 
     PowerUp currentPowerup;
 
