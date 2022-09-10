@@ -60,7 +60,7 @@ public class Idle : State
         }
     }
 
-    public override void Exit()
+    public override void Stop()
     {
         player.player.Stop(true);
     }

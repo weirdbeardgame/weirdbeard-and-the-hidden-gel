@@ -21,7 +21,7 @@ public class Pause : State
     {
     }
 
-    public override void Exit()
+    public override void Stop()
     {
         // Close UI and play animation
         GetTree().Paused = false;

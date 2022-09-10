@@ -22,7 +22,7 @@ public class HoverBeard : PowerUp
         }
         else
         {
-            Exit();
+            Stop();
         }
     }
 
@@ -39,12 +39,12 @@ public class HoverBeard : PowerUp
 
     public void OnTimeout()
     {
-        Exit();
+        Stop();
     }
 
-    public override void Exit()
+    public override void Stop()
     {
-        base.Exit();
+        base.Stop();
     }
 
 }

@@ -24,7 +24,7 @@ public class State : Node
 
     }
 
-    public virtual void Exit()
+    public virtual void Stop()
     {
         player.ResetState();
     }

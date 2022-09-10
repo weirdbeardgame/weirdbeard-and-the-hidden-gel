@@ -65,7 +65,7 @@ public class Walk : State
         }
     }
 
-    public override void Exit()
+    public override void Stop()
     {
         player.player.Stop(true);
     }

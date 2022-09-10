@@ -32,9 +32,9 @@ public class Game : State
         }
     }
 
-    public override void Exit()
+    public override void Stop()
     {
-        base.Exit();
+        base.Stop();
     }
 
     public void QuitGame()

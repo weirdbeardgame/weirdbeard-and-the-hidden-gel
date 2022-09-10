@@ -26,8 +26,8 @@ public class HelicopterBeard : PowerUp
         player.Velocity = inputVelocity;
     }
 
-    public override void Exit()
+    public override void Stop()
     {
-        base.Exit();
+        base.Stop();
     }
 }

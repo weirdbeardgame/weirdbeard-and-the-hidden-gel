@@ -23,7 +23,7 @@ public class TitleScreen : Node
 
     }
 
-    public void Exit()
+    public void Stop()
     {
 
     }

@@ -37,14 +37,13 @@ public class Attack : State
             GetParent().AddChild(w);
             w.Position = player.GlobalPosition;
             w.Rotation = player.GlobalRotation;
-            w.Attack(delta, direction);
+            w.Attack(delta, player.GlobalPosition.Normalized());
         }
-        Exit();
     }
 
-    public override void Exit()
+    public override void Stop()
     {
-        base.Exit();
+        base.Stop();
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.

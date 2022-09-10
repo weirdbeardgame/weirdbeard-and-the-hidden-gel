@@ -27,7 +27,7 @@ public class Death : State
         }
     }
 
-    public override void Exit()
+    public override void Stop()
     {
         isDead = true;
     }

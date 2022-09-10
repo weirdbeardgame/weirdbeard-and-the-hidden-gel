@@ -20,8 +20,8 @@ public class DialogueState : State
         // Handle UI input processing
     }
 
-    public override void Exit()
+    public override void Stop()
     {
-        base.Exit();
+        base.Stop();
     }
 }
