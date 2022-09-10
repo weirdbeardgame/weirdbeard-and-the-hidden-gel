@@ -3,14 +3,12 @@ using System;
 
 public class Attack : State
 {
-
     Vector2 direction;
 
     public override void Start()
     {
         direction = GetInput();
     }
-
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -26,7 +24,6 @@ public class Attack : State
         return base.GetInput();
     }
 
-
     public override void FixedUpdate(float delta)
     {
 
@@ -34,16 +31,17 @@ public class Attack : State
 
         if (w.canThrowWeapon)
         {
-            GetParent().AddChild(w);
+            GetParent().GetParent().AddChild(w);
             w.Position = player.GlobalPosition;
             w.Rotation = player.GlobalRotation;
-            w.Attack(delta, player.GlobalPosition.Normalized());
+            w.Attack(delta, player.GlobalPosition.Sign());
+            Stop();
         }
     }
 
     public override void Stop()
     {
-        base.Stop();
+        stateMachine.ResetToOldState();
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class StateMachine : Node
 {
     RichTextLabel stateSet;
-
     Dictionary<string, NodePath> Nodes;
 
     State oldState;
@@ -31,12 +30,10 @@ public class StateMachine : Node
         {
             Nodes = new Dictionary<string, NodePath>();
         }
-
         if (!Nodes.ContainsKey(name) && Nodes != null)
         {
             Nodes.Add(name, s.GetPath());
         }
-
         else
         {
             return;
@@ -46,14 +43,11 @@ public class StateMachine : Node
     public void UpdateState(string newState)
     {
         oldState = state;
+        state = (State)GetNode(Nodes[newState]);
         if (oldState != null)
         {
             oldState.Stop();
         }
-
-        var owner = Owner;
-        var own = Owner.Owner;
-        state = (State)GetNode(Nodes[newState]);
         if (stateSet != null)
         {
             stateSet.Text = newState;
@@ -73,20 +67,15 @@ public class StateMachine : Node
     public void ResetState()
     {
         var stateTemp = GetNode<State>(Nodes[CurrentState.stateName]);
-
         state.Stop();
         state = null;
-
         state = stateTemp;
-
         state.Start();
     }
 
     public void ResetToOldState()
     {
-        state.Stop();
         state = null;
-
         state = oldState;
         state.Start();
     }
