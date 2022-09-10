@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/LandStatic_01.png" type="Texture" id=1]
 [ext_resource path="res://Source/NPC.cs" type="Script" id=2]
+[ext_resource path="res://Assets/resources/Dialogue/TextBox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Idle/x_02.png" type="Texture" id=4]
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Idle/x_00.png" type="Texture" id=5]
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Idle/x_04.png" type="Texture" id=6]
@@ -69,6 +70,10 @@ shape = SubResource( 2 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/IDLE = SubResource( 3 )
 anims/RESET = SubResource( 4 )
+
+[node name="TextBoxLayer" parent="." instance=ExtResource( 3 )]
+visible = false
+follow_viewport_enable = true
 
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]
 [connection signal="body_exited" from="Area2D" to="." method="onBodyExited"]

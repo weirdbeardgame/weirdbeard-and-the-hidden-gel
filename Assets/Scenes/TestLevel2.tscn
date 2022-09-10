@@ -34,7 +34,7 @@
 [ext_resource path="res://Assets/resources/Tiles/Platformer/Tiles/Tileset/TileSet_09.png" type="Texture" id=32]
 [ext_resource path="res://Assets/resources/Npc.tscn" type="PackedScene" id=33]
 [ext_resource path="res://Source/Levels/Level.cs" type="Script" id=35]
-[ext_resource path="res://Assets/resources/Dialogues/TestDialogue1.tscn" type="PackedScene" id=36]
+[ext_resource path="res://Assets/resources/Dialogue/TestDialogue1.tscn" type="PackedScene" id=36]
 [ext_resource path="res://Assets/resources/Checkpoint.tscn" type="PackedScene" id=37]
 [ext_resource path="res://Assets/resources/Enemy.tscn" type="PackedScene" id=38]
 
