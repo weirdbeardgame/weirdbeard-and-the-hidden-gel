@@ -13,14 +13,18 @@ public class Coin : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        getCoin += Collect;
+        anim = (AnimationPlayer)GetNode("AnimationPlayer");
+        anim.Play("spin");
     }
 
-    public void Collect()
+    public void OnCollide(object body)
     {
-        anim.Play("Collect");
-        getCoin -= Collect;
-        QueueFree();
+        if (body is Player)
+        {
+            anim.Play("Collect");
+            getCoin.Invoke();
+            QueueFree();
+        }
     }
 
 }

@@ -31,7 +31,7 @@ public class Attack : State
 
         if (w.canThrowWeapon)
         {
-            GetParent().GetParent().AddChild(w);
+            Owner.Owner.AddChild(w);
             w.Position = player.GlobalPosition;
             w.Rotation = player.GlobalRotation;
             w.Attack(delta, player.GlobalPosition.Sign());

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Idle_01.png" type="Texture" id=1]
 [ext_resource path="res://Source/ActorStates/Walk.cs" type="Script" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://Assets/resources/HUD.tscn" type="PackedScene" id=29]
 [ext_resource path="res://Source/Weapon/WeaponSlot.cs" type="Script" id=30]
 [ext_resource path="res://Source/ActorStates/Attack.cs" type="Script" id=31]
+[ext_resource path="res://Source/CoinPurse.cs" type="Script" id=32]
 
 [sub_resource type="CapsuleShape2D" id=7]
 
@@ -185,3 +186,6 @@ script = ExtResource( 30 )
 
 [node name="Attack" type="Node" parent="."]
 script = ExtResource( 31 )
+
+[node name="Purse" type="Node" parent="."]
+script = ExtResource( 32 )

@@ -15,6 +15,14 @@ text = "Lives:00"
 align = 1
 autowrap = true
 
+[node name="Coins" type="Label" parent="."]
+margin_left = 429.0
+margin_right = 501.0
+margin_bottom = 21.0
+text = "Coins: 00"
+align = 1
+autowrap = true
+
 [node name="WeaponSlot" parent="." instance=ExtResource( 2 )]
 position = Vector2( 215, 32 )
 script = null

@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+// That's my purse! I don't know you!
 public class CoinPurse : Node
 {
     List<Coin> coins;
@@ -16,6 +17,8 @@ public class CoinPurse : Node
 
         Coin.getCoin += CollectCoin;
     }
+
+    // Add counter to hud and increase
 
     void CollectCoin()
     {

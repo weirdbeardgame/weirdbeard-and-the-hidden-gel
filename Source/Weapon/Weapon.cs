@@ -3,20 +3,17 @@ using System;
 
 public enum WeaponType { THROW, SWING, SHOOT }
 
-
 public class Weapon : KinematicBody2D
 {
-    [Export]
-    public WeaponType type;
+    [Export] public WeaponType type;
 
-    [Export]
-    public string weaponName;
+    [Export] public string weaponName;
 
-    [Export]
-    public float fireRate;
+    [Export] public float fireRate;
 
-    [Export]
-    public float speed;
+    [Export] public float speed;
+
+    [Export] public int dmgAmnt;
 
     public Vector2 direction;
 
@@ -60,7 +57,6 @@ public class Weapon : KinematicBody2D
             sprite.FlipH = false;
         }
 
-        GD.Print("Direction:", direction.x);
         velocity.x = speed * direction.x;
 
         canThrowWeapon = false;
@@ -71,7 +67,6 @@ public class Weapon : KinematicBody2D
     async void Shoot(float delta)
     {
         // Spawn bullet types in here. Could be blunderbuss shotgun or flintlock
-
         canThrowWeapon = false;
         await ToSignal(GetTree().CreateTimer(fireRate), "timeout");
         canThrowWeapon = true;
