@@ -17,7 +17,7 @@ public class Exit : Node2D
     {
     }
 
-    public void OnStop(object body)
+    public void OnExit(object body)
     {
         if (body is Player)
         {

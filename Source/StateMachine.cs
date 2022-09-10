@@ -70,6 +70,7 @@ public class StateMachine : Node
         state.Stop();
         state = null;
         state = stateTemp;
+        stateSet.Text = state.stateName;
         state.Start();
     }
 
@@ -77,6 +78,7 @@ public class StateMachine : Node
     {
         state = null;
         state = oldState;
+        stateSet.Text = state.stateName;
         state.Start();
     }
 

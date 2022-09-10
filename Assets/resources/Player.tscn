@@ -189,3 +189,6 @@ script = ExtResource( 31 )
 
 [node name="Purse" type="Node" parent="."]
 script = ExtResource( 32 )
+
+[node name="WeapSpawn" type="Node2D" parent="."]
+position = Vector2( 22, 2 )

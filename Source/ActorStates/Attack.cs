@@ -5,8 +5,13 @@ public class Attack : State
 {
     Vector2 direction;
 
+    Weapon w;
+
+    Node2D spawnPoint;
+
     public override void Start()
     {
+        w = (Weapon)player.equipped.Weapon.Instance();
         direction = GetInput();
     }
 
@@ -17,24 +22,17 @@ public class Attack : State
         player = (Player)GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
         stateMachine.AddState(this, stateName);
-    }
-
-    public override Vector2 GetInput()
-    {
-        return base.GetInput();
+        spawnPoint = (Node2D)player.GetNode("WeapSpawn");
     }
 
     public override void FixedUpdate(float delta)
     {
-
-        Weapon w = (Weapon)player.equipped.Weapon.Instance();
-
         if (w.canThrowWeapon)
         {
-            Owner.Owner.AddChild(w);
-            w.Position = player.GlobalPosition;
-            w.Rotation = player.GlobalRotation;
-            w.Attack(delta, player.GlobalPosition.Sign());
+            SceneManager.CurrentScene.AddChild(w);
+            w.Position = spawnPoint.GlobalPosition;
+            w.Rotation = spawnPoint.GlobalRotation;
+            w.Attack(delta, spawnPoint.GlobalPosition.Sign());
             Stop();
         }
     }

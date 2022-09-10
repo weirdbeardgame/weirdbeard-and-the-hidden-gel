@@ -3,8 +3,6 @@ using System;
 
 public class DialogueManager : Node
 {
-
-    SceneManager scenes;
     StateMachine states;
     DialogueBox box;
 
@@ -13,7 +11,6 @@ public class DialogueManager : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        scenes = (SceneManager)Owner.GetNode("SceneManager");
         states = (StateMachine)Owner.GetNode("StateMachine");
         box = (DialogueBox)GetTree().CurrentScene.GetNode("TextBox");
 
@@ -23,7 +20,7 @@ public class DialogueManager : Node
     public void Open(Dialogue toSpeak)
     {
         states.UpdateState("DIALOGUE");
-        scenes.CurrentScene.AddChild(box);
+        SceneManager.CurrentScene.AddChild(box);
         box.Open(toSpeak);
     }
 

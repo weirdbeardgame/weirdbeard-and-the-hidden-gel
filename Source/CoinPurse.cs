@@ -18,8 +18,6 @@ public class CoinPurse : Node
         Coin.getCoin += CollectCoin;
     }
 
-    // Add counter to hud and increase
-
     void CollectCoin()
     {
         coins.Add(new Coin());

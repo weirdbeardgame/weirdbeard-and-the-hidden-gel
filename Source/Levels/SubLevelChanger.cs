@@ -13,7 +13,7 @@ public class SubLevelChanger : Area2D
     public override void _Ready()
     {
         scenes = (SceneManager)GetNode("/root/GameManager/SceneManager");
-        currentLevel = (Level)scenes.CurrentScene;
+        currentLevel = (Level)SceneManager.CurrentScene;
     }
 
     public void Teleport(object body)

@@ -8,7 +8,7 @@ public class SceneManager : Node
     Dictionary<string, PackedScene> levels;
 
     [Export]
-    private LevelCommon currentScene;
+    private static LevelCommon currentScene;
 
     [Export]
     private LevelCommon activeSubScene;
@@ -19,7 +19,7 @@ public class SceneManager : Node
 
     Node nodeParent;
 
-    public LevelCommon CurrentScene
+    public static LevelCommon CurrentScene
     {
         get
         {
