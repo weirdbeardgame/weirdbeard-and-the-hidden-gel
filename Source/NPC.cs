@@ -12,14 +12,17 @@ public class NPC : Node
     [Export]
     List<PackedScene> dialogue;
 
-    DialogueManager manager;
+    [Export] PackedScene box;
+
+    DialogueBox boxInstance;
 
     bool isPlayerCollide;
+
+    bool isOpen;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        manager = (DialogueManager)GetNode("/root/GameManager/DialogueManager");
         player = (AnimationPlayer)GetNode("AnimationPlayer");
         player.Play("IDLE");
         isPlayerCollide = false;
@@ -30,8 +33,17 @@ public class NPC : Node
     {
         if (isPlayerCollide && Input.IsActionPressed("Submit"))
         {
-            GD.Print("Dialogue Colision");
-            manager.Open((Dialogue)dialogue[0].Instance());
+            if (!isOpen)
+            {
+                GD.Print("Dialogue Colision");
+                if (box != null)
+                {
+                    boxInstance = (DialogueBox)box.Instance();
+                }
+                SceneManager.CurrentScene.AddChild(boxInstance);
+                boxInstance.Open((Dialogue)dialogue[0].Instance());
+                isOpen = true;
+            }
         }
     }
 
@@ -48,6 +60,7 @@ public class NPC : Node
         if (body is Player)
         {
             isPlayerCollide = false;
+            isOpen = false;
         }
     }
 }

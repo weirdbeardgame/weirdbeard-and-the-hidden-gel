@@ -19,11 +19,16 @@ public class Pause : State
     }
     public override void FixedUpdate(float delta)
     {
+        if (Input.IsActionJustPressed("Pause"))
+        {
+            Stop();
+        }
     }
 
     public override void Stop()
     {
         // Close UI and play animation
         GetTree().Paused = false;
+        stateMachine.ResetToOldState();
     }
 }

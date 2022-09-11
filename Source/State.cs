@@ -26,7 +26,6 @@ public class State : Node
 
     public virtual void Stop()
     {
-        player.ResetState();
     }
 
     public virtual Vector2 GetInput()

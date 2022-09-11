@@ -7,13 +7,18 @@
 size = 12
 font_data = ExtResource( 1 )
 
-[node name="TextBoxLayer" type="CanvasLayer"]
+[node name="DialogueBoxLayer" type="CanvasLayer"]
+follow_viewport_enable = true
 script = ExtResource( 2 )
 
 [node name="Box" type="Panel" parent="."]
-margin_left = -770.0
-margin_right = 84.0
-margin_bottom = 315.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -427.0
+margin_top = -315.0
+margin_right = 427.0
 
 [node name="TextRender" type="Label" parent="Box"]
 margin_left = 96.0

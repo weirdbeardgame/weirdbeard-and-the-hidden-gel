@@ -12,8 +12,6 @@ public class DialogueManager : Node
     public override void _Ready()
     {
         states = (StateMachine)Owner.GetNode("StateMachine");
-        box = (DialogueBox)GetTree().CurrentScene.GetNode("TextBox");
-
         GetTree().CurrentScene.RemoveChild(box);
     }
 

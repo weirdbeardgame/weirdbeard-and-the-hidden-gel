@@ -7,6 +7,8 @@ public class DialogueBox : Node
 
     AnimatedTexture speakerBox;
 
+    StateMachine state;
+
     Label textRender;
 
     Panel box;
@@ -19,22 +21,30 @@ public class DialogueBox : Node
 
     public override void _Ready()
     {
+        state = (StateMachine)GetNode("/root/GameStates");
         textRender = (Label)GetNode("Box/TextRender");
         interp = (Tween)GetNode("Interp");
         box = (Panel)GetNode("Box");
         box.Visible = isOpen;
+        box.GrabFocus();
     }
 
     public void Open(Dialogue speak)
     {
         dialogue = speak;
 
+        //box.RectPosition = GetViewport().Size / 2;
+
         // Play opening animation
         dialogue.Open(line);
         textRender.Text = dialogue.buffer[line];
         interp.InterpolateProperty(textRender, "percent_visible", 0.0, 1.0, dialogue.length * 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
         isOpen = true;
-        box.Visible = isOpen;
+        box.Visible = true;
+
+        interp.Start();
+
+        state.UpdateState("DIALOGUE");
     }
 
     public void Advance()
@@ -54,13 +64,15 @@ public class DialogueBox : Node
     {
         // Play closing animation
         isOpen = false;
+        RemoveChild(this);
+        QueueFree();
     }
 
-    public override void _Process(float delta)
+    public override void _PhysicsProcess(float delta)
     {
-        while (isOpen)
+        if (Input.IsActionJustPressed("ui_select"))
         {
-            //interp.Start();
+            Advance();
         }
     }
 
