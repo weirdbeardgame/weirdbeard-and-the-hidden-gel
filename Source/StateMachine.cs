@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class StateMachine : Node
 {
-    [Export] RichTextLabel stateSet;
+    RichTextLabel stateSet;
     Dictionary<string, NodePath> Nodes;
 
     State oldState;
@@ -21,7 +21,7 @@ public class StateMachine : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        //stateSet = (RichTextLabel)Owner.GetNode("StateSet");
+        stateSet = (RichTextLabel)Owner.GetNode("StateSet");
     }
 
     public void AddState(State s, string name)

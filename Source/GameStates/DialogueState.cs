@@ -12,7 +12,8 @@ public class DialogueState : State
 
     public override void Start()
     {
-        base.Start();
+        player = (Player)SceneManager.CurrentScene.GetNode("Player");
+        player.canMove = false;
     }
 
     public override void FixedUpdate(float delta)
@@ -22,6 +23,6 @@ public class DialogueState : State
 
     public override void Stop()
     {
-        base.Stop();
+        player.canMove = true;
     }
 }

@@ -12,7 +12,7 @@ public class TitleScreen : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        states = (StateMachine)GetNode("/root/GameStates");
+        states = (StateMachine)GetNode("/root/GameStates/GameState");
         GetNode<Button>("Grid/NewGame").GrabFocus();
     }
 

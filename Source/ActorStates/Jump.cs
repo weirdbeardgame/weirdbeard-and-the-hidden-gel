@@ -3,7 +3,7 @@ using System;
 
 public class Jump : State
 {
-    Vector2 InputVelocity = Vector2.Zero;
+    Vector2 inputVelocity = Vector2.Zero;
 
     public override void Start()
     {
@@ -21,19 +21,22 @@ public class Jump : State
 
     public override Vector2 GetInput()
     {
-        return base.GetInput();
+        inputVelocity.x = player.Velocity.x;
+        inputVelocity.y = -player.maxJumpImpulse;
+
+        if (Input.IsActionJustReleased("Jump") && player.Velocity.y < 0)
+        {
+            inputVelocity.y = player.minJumpImpulse;
+        }
+
+        return inputVelocity;
     }
 
     public override void FixedUpdate(float delta)
     {
-        player.Velocity += GetInput();
-        if (player.IsOnFloor() == false && !Input.IsActionJustPressed("Jump"))
+        player.Velocity = GetInput();
+        if (player.IsOnFloor() == false && player.Velocity.y > 0)
         {
-            if (Input.IsActionJustPressed("Jump") && player.canJumpAgain)
-            {
-                player.canJumpAgain = false;
-                stateMachine.ResetState();
-            }
             stateMachine.UpdateState("FALL");
         }
     }

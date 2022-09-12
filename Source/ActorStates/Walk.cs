@@ -22,7 +22,16 @@ public class Walk : State
 
     public override Vector2 GetInput()
     {
-        return base.GetInput();
+        //inputVelocity.x = (Input.GetActionRawStrength("Right") - Input.GetActionRawStrength("Left"));
+        if (Input.IsActionPressed("Right"))
+        {
+            inputVelocity.x = 1.0f;
+        }
+        else if (Input.IsActionPressed("Left"))
+        {
+            inputVelocity.x = -1.0f;
+        }
+        return inputVelocity;
     }
 
     public override void FixedUpdate(float delta)

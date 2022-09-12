@@ -5,17 +5,24 @@
 [ext_resource path="res://Source/GameStates/Game.cs" type="Script" id=5]
 [ext_resource path="res://Source/GameStates/DialogueState.cs" type="Script" id=11]
 
-[node name="GameState" type="Node"]
+[node name="Root" type="Node"]
+
+[node name="StateSet" type="RichTextLabel" parent="."]
+margin_right = 64.0
+margin_bottom = 40.0
+text = "Test"
+
+[node name="GameState" type="Node" parent="."]
 pause_mode = 2
 script = ExtResource( 2 )
 
-[node name="Game" type="Node" parent="."]
+[node name="Game" type="Node" parent="GameState"]
 pause_mode = 2
 script = ExtResource( 5 )
 
-[node name="Dialogue" type="Node" parent="."]
+[node name="Dialogue" type="Node" parent="GameState"]
 script = ExtResource( 11 )
 
-[node name="Pause" type="Node" parent="."]
+[node name="Pause" type="Node" parent="GameState"]
 pause_mode = 2
 script = ExtResource( 3 )

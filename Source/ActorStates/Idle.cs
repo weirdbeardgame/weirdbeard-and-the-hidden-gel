@@ -34,29 +34,31 @@ public class Idle : State
 
     public override void FixedUpdate(float delta)
     {
+        if (player.canMove)
+        {
+            if (player.direction == Vector2.Left)
+            {
+                player.weirdBeard.FlipH = true;
+            }
+            else
+            {
+                player.weirdBeard.FlipH = false;
+            }
 
-        if (player.direction == Vector2.Left)
-        {
-            player.weirdBeard.FlipH = true;
-        }
-        else
-        {
-            player.weirdBeard.FlipH = false;
-        }
+            if (Input.IsActionPressed("Right") || Input.IsActionPressed("Left"))
+            {
+                stateMachine.UpdateState("WALK");
+            }
 
-        if (Input.IsActionPressed("Right") || Input.IsActionPressed("Left"))
-        {
-            stateMachine.UpdateState("WALK");
-        }
+            if (Input.IsActionJustPressed("Jump") && player.CanJump())
+            {
+                stateMachine.UpdateState("JUMP");
+            }
 
-        if (Input.IsActionJustPressed("Jump") && player.CanJump())
-        {
-            stateMachine.UpdateState("JUMP");
-        }
-
-        if (!player.IsOnFloor())
-        {
-            stateMachine.UpdateState("FALL");
+            if (!player.IsOnFloor() || (!player.CanJump() && !Input.IsActionJustPressed("Jump")))
+            {
+                stateMachine.UpdateState("FALL");
+            }
         }
     }
 

@@ -16,7 +16,7 @@ public class Falling : State
     public override void Start()
     {
         player.player.Play("Fall");
-        player.gravity = 3500f;
+        player.gravity = 4500f;
     }
 
     public override void FixedUpdate(float delta)
@@ -24,7 +24,7 @@ public class Falling : State
         if (Input.IsActionJustPressed("Jump") && player.CanJump())
         {
             player.canJumpAgain = false;
-            stateMachine.UpdateState("JUMP");
+            stateMachine.ResetToOldState();
         }
 
         if (player.IsOnFloor())

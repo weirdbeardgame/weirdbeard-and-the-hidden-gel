@@ -19,7 +19,6 @@ public class Player : Actor
 
     public Vector2 direction = Vector2.Right;
 
-
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -27,9 +26,7 @@ public class Player : Actor
         stateMachine = (StateMachine)GetNode("StateMachine");
         weirdBeard = (Sprite)GetNode("WeirdBeard");
         timer = (Timer)GetNode("Timer");
-
         SceneManager.startNewGame += NewGame;
-
         equipped = (WeaponSlot)GetNode("WeaponSlot");
     }
 
@@ -59,6 +56,7 @@ public class Player : Actor
         velocity = Vector2.Zero;
         gravity = 4000f;
         SetState("IDLE");
+        canMove = true;
     }
 
     public void SetState(string state)
@@ -88,7 +86,7 @@ public class Player : Actor
 
     public bool CanJump()
     {
-        return IsOnFloor() || coyoteTime || canJumpAgain;
+        return ((IsOnFloor() || coyoteTime || canJumpAgain) && canMove);
     }
 
     public bool GamaOvar()

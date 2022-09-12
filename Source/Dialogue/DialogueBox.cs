@@ -59,7 +59,6 @@ public class DialogueBox : Node
         }
     }
 
-
     public void Close()
     {
         // Play closing animation
