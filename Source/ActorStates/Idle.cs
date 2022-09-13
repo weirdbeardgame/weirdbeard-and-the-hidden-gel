@@ -54,11 +54,6 @@ public class Idle : State
             {
                 stateMachine.UpdateState("JUMP");
             }
-
-            if (!player.IsOnFloor() || (!player.CanJump() && !Input.IsActionJustPressed("Jump")))
-            {
-                stateMachine.UpdateState("FALL");
-            }
         }
     }
 

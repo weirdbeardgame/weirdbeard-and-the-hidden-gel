@@ -28,6 +28,10 @@ public class Player : Actor
         timer = (Timer)GetNode("Timer");
         SceneManager.startNewGame += NewGame;
         equipped = (WeaponSlot)GetNode("WeaponSlot");
+
+        jumpVelocity = ((2.0f * jumpHeight) / jumpPeak) * -1.0f;
+        jumpGravity = ((-2.0f * jumpHeight) / (jumpPeak * jumpPeak)) * -1.0f;
+        fallGravity = ((-2.0f * jumpHeight) / (jumpDescent * jumpDescent)) * -1.0f;
     }
 
     public Vector2 Velocity
@@ -54,7 +58,7 @@ public class Player : Actor
     {
         canJumpAgain = true;
         velocity = Vector2.Zero;
-        gravity = 4000f;
+        gravity = 1000f;
         SetState("IDLE");
         canMove = true;
     }
@@ -116,6 +120,8 @@ public class Player : Actor
 
     public override void _PhysicsProcess(float delta)
     {
+
+
         if (equipped.Weapon != null)
         {
             if (Input.IsActionJustPressed("Attack"))

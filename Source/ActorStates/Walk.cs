@@ -22,14 +22,21 @@ public class Walk : State
 
     public override Vector2 GetInput()
     {
-        //inputVelocity.x = (Input.GetActionRawStrength("Right") - Input.GetActionRawStrength("Left"));
+        if (Input.IsActionPressed("Run"))
+        {
+            currentSpeed = player.runSpeed;
+        }
+        else
+        {
+            currentSpeed = player.speed;
+        }
         if (Input.IsActionPressed("Right"))
         {
-            inputVelocity.x = 1.0f;
+            inputVelocity.x = 1.0f * currentSpeed;
         }
         else if (Input.IsActionPressed("Left"))
         {
-            inputVelocity.x = -1.0f;
+            inputVelocity.x = -1.0f * currentSpeed;
         }
         return inputVelocity;
     }
@@ -38,18 +45,7 @@ public class Walk : State
     {
         if (player.IsOnFloor())
         {
-            if (Input.IsActionPressed("Run"))
-            {
-                currentSpeed = player.runSpeed;
-            }
-
-            else
-            {
-                currentSpeed = player.speed;
-            }
-
-            inputVelocity.x = currentSpeed * GetInput().x;
-            player.Velocity = inputVelocity;
+            GetInput();
 
             if (inputVelocity.x < 0)
             {
@@ -62,6 +58,11 @@ public class Walk : State
                 player.direction = Vector2.Right;
                 player.weirdBeard.FlipH = false;
             }
+
+            GD.Print("InputVelocity: ", inputVelocity);
+
+            player.Velocity = inputVelocity;
+
         }
         if (Input.IsActionJustPressed("Jump") && player.CanJump())
         {
