@@ -38,6 +38,10 @@ public class Walk : State
         {
             inputVelocity.x = -1.0f * currentSpeed;
         }
+        if (!Input.IsActionPressed("Left") && !Input.IsActionPressed("Right"))
+        {
+            inputVelocity.x = 0;
+        }
         return inputVelocity;
     }
 
@@ -59,19 +63,18 @@ public class Walk : State
                 player.weirdBeard.FlipH = false;
             }
 
+            if (inputVelocity == Vector2.Zero)
+            {
+                stateMachine.UpdateState("IDLE");
+            }
+
             GD.Print("InputVelocity: ", inputVelocity);
 
             player.Velocity = inputVelocity;
-
         }
         if (Input.IsActionJustPressed("Jump") && player.CanJump())
         {
             stateMachine.UpdateState("JUMP");
-        }
-
-        if (player.IsOnFloor() && inputVelocity == Vector2.Zero)
-        {
-            stateMachine.UpdateState("IDLE");
         }
     }
 
