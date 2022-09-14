@@ -61,7 +61,7 @@ public class Player : Actor
     {
         canJumpAgain = true;
         velocity = Vector2.Zero;
-        gravity = 1000f;
+        gravity = 5000f;
         SetState("IDLE");
         canMove = true;
     }

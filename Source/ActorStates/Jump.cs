@@ -17,42 +17,28 @@ public class Jump : State
     public override void Start()
     {
         player.player.Play("Jump");
+        if (!player.projectileMotionJump)
+        {
+            inputVelocity.y = -player.maxJumpImpulse;
+        }
         if (player.projectileMotionJump)
         {
             player.gravity = player.jumpGravity;
+            inputVelocity.y = player.jumpVelocity;
             GD.Print("Jump Gravity: ", player.jumpGravity);
         }
+        inputVelocity.x = player.Velocity.x;
+        player.Velocity = inputVelocity;
     }
 
     public override Vector2 GetInput()
     {
-        inputVelocity.x = player.Velocity.x;
-        if (!player.projectileMotionJump)
-        {
-            if (Input.IsActionPressed("Jump"))
-            {
-                inputVelocity.y = -player.maxJumpImpulse;
-            }
-            if (Input.IsActionJustReleased("Jump"))
-            {
-                inputVelocity.y = -player.minJumpImpulse;
-            }
-        }
-        else
-        {
-            // JumpVelocity is calculated as a negative
-            if (Input.IsActionPressed("Jump"))
-            {
-                inputVelocity.y = player.jumpVelocity;
-            }
-        }
-        return inputVelocity;
+        return base.GetInput();
     }
 
     public override void FixedUpdate(float delta)
     {
-        player.Velocity = GetInput();
-        if (player.Position.y <= -player.jumpHeight)
+        if (player.Position.y > 0)
         {
             stateMachine.UpdateState("FALL");
         }
