@@ -18,10 +18,16 @@ public class Actor : KinematicBody2D
     [Export] public float jumpPeak;
     [Export] public float jumpDescent;
 
+    [Export] public float maxJumpImpulse = 600f;
+    [Export] public float minJumpImpulse = 300f;
+
     public float jumpVelocity;
     public float jumpGravity;
     public float fallGravity;
+
     public bool canJumpAgain;
     public bool wasOnFloor;
     public bool coyoteTime;
+
+    [Export] public bool projectileMotionJump;
 }

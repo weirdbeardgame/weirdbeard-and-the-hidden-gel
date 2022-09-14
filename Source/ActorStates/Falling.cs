@@ -16,9 +16,11 @@ public class Falling : State
     public override void Start()
     {
         player.player.Play("Fall");
-        player.gravity = player.fallGravity;
-
-        GD.Print("Fall Gravity: ", player.gravity);
+        if (player.projectileMotionJump)
+        {
+            player.gravity = player.fallGravity;
+            GD.Print("Fall Gravity: ", player.gravity);
+        }
     }
 
     public override void FixedUpdate(float delta)

@@ -17,17 +17,34 @@ public class Jump : State
     public override void Start()
     {
         player.player.Play("Jump");
-        player.gravity = player.jumpGravity;
-
-        GD.Print("Jump Gravity: ", player.jumpGravity);
+        if (player.projectileMotionJump)
+        {
+            player.gravity = player.jumpGravity;
+            GD.Print("Jump Gravity: ", player.jumpGravity);
+        }
     }
 
     public override Vector2 GetInput()
     {
         inputVelocity.x = player.Velocity.x;
-        if (Input.IsActionPressed("Jump"))
+        if (!player.projectileMotionJump)
         {
-            inputVelocity.y = player.jumpVelocity;
+            if (Input.IsActionPressed("Jump"))
+            {
+                inputVelocity.y = -player.maxJumpImpulse;
+            }
+            if (Input.IsActionJustReleased("Jump"))
+            {
+                inputVelocity.y = -player.minJumpImpulse;
+            }
+        }
+        else
+        {
+            // JumpVelocity is calculated as a negative
+            if (Input.IsActionPressed("Jump"))
+            {
+                inputVelocity.y = player.jumpVelocity;
+            }
         }
         return inputVelocity;
     }

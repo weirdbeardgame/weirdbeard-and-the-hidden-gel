@@ -121,10 +121,13 @@ position = Vector2( 17, 0 )
 collision_layer = 2
 collision_mask = 5
 script = ExtResource( 28 )
-gravity = 1000.0
-jumpHeight = 350.0
-jumpPeak = 0.4
-jumpDescent = 0.3
+gravity = 5000.0
+jumpHeight = 100.0
+jumpPeak = 0.2
+jumpDescent = 0.15
+maxJumpImpulse = 400.0
+minJumpImpulse = 200.0
+projectileMotionJump = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.5, 3 )

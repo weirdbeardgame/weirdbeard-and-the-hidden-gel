@@ -29,9 +29,12 @@ public class Player : Actor
         SceneManager.startNewGame += NewGame;
         equipped = (WeaponSlot)GetNode("WeaponSlot");
 
-        jumpVelocity = ((2.0f * jumpHeight) / jumpPeak) * -1.0f;
-        jumpGravity = ((-2.0f * jumpHeight) / (jumpPeak * jumpPeak)) * -1.0f;
-        fallGravity = ((-2.0f * jumpHeight) / (jumpDescent * jumpDescent)) * -1.0f;
+        if (projectileMotionJump)
+        {
+            jumpVelocity = ((2.0f * jumpHeight) / jumpPeak) * -1.0f;
+            jumpGravity = ((-2.0f * jumpHeight) / (jumpPeak * jumpPeak)) * -1.0f;
+            fallGravity = ((-2.0f * jumpHeight) / (jumpDescent * jumpDescent)) * -1.0f;
+        }
     }
 
     public Vector2 Velocity
@@ -120,8 +123,7 @@ public class Player : Actor
 
     public override void _PhysicsProcess(float delta)
     {
-
-
+        GD.Print("Velocity: ", velocity);
         if (equipped.Weapon != null)
         {
             if (Input.IsActionJustPressed("Attack"))
@@ -137,7 +139,6 @@ public class Player : Actor
         {
             ActivatePowerup();
         }
-
         if (wasOnFloor && !IsOnFloor())
         {
             StartCoyoteTimer();
