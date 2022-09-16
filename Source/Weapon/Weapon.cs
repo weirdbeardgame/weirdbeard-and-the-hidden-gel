@@ -48,16 +48,17 @@ public class Weapon : KinematicBody2D
 
     async void Throw(float delta, Vector2 direction)
     {
-        if (direction.x < 0)
+        float dir = direction.Sign().x;
+        if (dir < 0)
         {
             sprite.FlipH = true;
         }
-        else if (direction.x > 0)
+        else if (dir > 0)
         {
             sprite.FlipH = false;
         }
 
-        velocity.x = speed * direction.x;
+        velocity.x = speed * dir;
 
         canThrowWeapon = false;
         await ToSignal(GetTree().CreateTimer(fireRate), "timeout");

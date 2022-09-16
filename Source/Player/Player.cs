@@ -19,6 +19,8 @@ public class Player : Actor
 
     public Vector2 direction = Vector2.Right;
 
+    float defaultGravity;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -28,6 +30,8 @@ public class Player : Actor
         timer = (Timer)GetNode("Timer");
         SceneManager.startNewGame += NewGame;
         equipped = (WeaponSlot)GetNode("WeaponSlot");
+
+        defaultGravity = gravity;
 
         if (projectileMotionJump)
         {
@@ -61,7 +65,7 @@ public class Player : Actor
     {
         canJumpAgain = true;
         velocity = Vector2.Zero;
-        gravity = 5000f;
+        gravity = defaultGravity;
         SetState("IDLE");
         canMove = true;
     }
@@ -93,7 +97,7 @@ public class Player : Actor
 
     public bool CanJump()
     {
-        return ((IsOnFloor() || coyoteTime || canJumpAgain) && canMove);
+        return ((IsOnFloor() || coyoteTime) && canMove);
     }
 
     public bool GamaOvar()

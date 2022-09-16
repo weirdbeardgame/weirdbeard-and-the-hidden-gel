@@ -51,13 +51,13 @@ public class Walk : State
         {
             GetInput();
 
-            if (inputVelocity.x < 0)
+            if (inputVelocity.Sign().x < 0)
             {
                 player.direction = Vector2.Left;
                 player.weirdBeard.FlipH = true;
             }
 
-            else
+            else if (inputVelocity.Sign().x > 0)
             {
                 player.direction = Vector2.Right;
                 player.weirdBeard.FlipH = false;
