@@ -29,19 +29,13 @@ public class Jump : State
         }
         inputVelocity.x = player.Velocity.x;
         player.Velocity = inputVelocity;
+
+        stateMachine.UpdateState("AIR");
     }
 
     public override Vector2 GetInput()
     {
         return base.GetInput();
-    }
-
-    public override void FixedUpdate(float delta)
-    {
-        if (player.Position.y > 0)
-        {
-            stateMachine.UpdateState("FALL");
-        }
     }
 
     public override void Stop()

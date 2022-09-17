@@ -68,6 +68,12 @@ public class Walk : State
                 stateMachine.UpdateState("IDLE");
             }
 
+            // Oops, fell off platform.
+            if (player.wasOnFloor && !player.IsOnFloor())
+            {
+                stateMachine.UpdateState("FALL");
+            }
+
             GD.Print("InputVelocity: ", inputVelocity);
 
             player.Velocity = inputVelocity;

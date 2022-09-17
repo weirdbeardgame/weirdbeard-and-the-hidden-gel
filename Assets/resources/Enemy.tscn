@@ -60,6 +60,7 @@ script = ExtResource( 15 )
 __meta__ = {
 "_edit_vertical_guides_": [ 167.0 ]
 }
+speed = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 5.5, 7.5 )
