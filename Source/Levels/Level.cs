@@ -12,6 +12,13 @@ public class Level : LevelCommon
     // Currently active subScene. Otherwise null
     Level subScene;
 
+    TileMap tileMap;
+
+    Camera2D camera;
+
+    Rect2 mapLimits;
+    Vector2 mapCellsize;
+
     public override void EnterLevel(Player p)
     {
         activeEnemies = new List<Enemy>();
@@ -56,6 +63,22 @@ public class Level : LevelCommon
             }
             player.ResetState();
         }
+
+        tileMap = (TileMap)GetNode("TileMap");
+        camera = (Camera2D)player.GetNode("Camera2D");
+
+        mapCellsize = tileMap.CellSize;
+        mapLimits = tileMap.GetUsedRect();
+
+        SetCameraBounds();
+    }
+
+    public void SetCameraBounds()
+    {
+        camera.LimitLeft = (int)(mapLimits.Position.x * mapCellsize.x);
+        camera.LimitRight = (int)(mapLimits.End.x * mapCellsize.x);
+        camera.LimitTop = (int)(mapLimits.Position.y * mapCellsize.y);
+        camera.LimitBottom = (int)(mapLimits.End.y * mapCellsize.y);
     }
 
     public override void ResetLevel()

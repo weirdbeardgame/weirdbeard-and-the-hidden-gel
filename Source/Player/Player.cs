@@ -5,8 +5,6 @@ public class Player : Actor
 {
     public AnimationPlayer player;
 
-    Camera2D camera;
-
     Timer timer;
 
     public Sprite weirdBeard;
@@ -24,12 +22,12 @@ public class Player : Actor
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        player = (AnimationPlayer)GetNode("AnimationPlayer");
         stateMachine = (StateMachine)GetNode("StateMachine");
+        player = (AnimationPlayer)GetNode("AnimationPlayer");
+        equipped = (WeaponSlot)GetNode("WeaponSlot");
         weirdBeard = (Sprite)GetNode("WeirdBeard");
         timer = (Timer)GetNode("Timer");
         SceneManager.startNewGame += NewGame;
-        equipped = (WeaponSlot)GetNode("WeaponSlot");
 
         defaultGravity = gravity;
 
