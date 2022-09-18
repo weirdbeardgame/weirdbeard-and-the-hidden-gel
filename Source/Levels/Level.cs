@@ -75,10 +75,11 @@ public class Level : LevelCommon
 
     public void SetCameraBounds()
     {
-        camera.LimitLeft = (int)(mapLimits.Position.x * mapCellsize.x);
         camera.LimitRight = (int)(mapLimits.End.x * mapCellsize.x);
-        camera.LimitTop = (int)(mapLimits.Position.y * mapCellsize.y);
+        camera.LimitLeft = (int)(mapLimits.Position.x * mapCellsize.x);
+
         camera.LimitBottom = (int)(mapLimits.End.y * mapCellsize.y);
+        camera.LimitTop = (int)(mapLimits.Position.y * mapCellsize.y);
     }
 
     public override void ResetLevel()

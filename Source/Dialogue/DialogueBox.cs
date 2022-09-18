@@ -21,7 +21,7 @@ public class DialogueBox : Node
 
     public override void _Ready()
     {
-        state = (StateMachine)GetNode("/root/GameStates");
+        state = (StateMachine)GetNode("/root/GameStates/GameState");
         textRender = (Label)GetNode("Box/TextRender");
         interp = (Tween)GetNode("Interp");
         box = (Panel)GetNode("Box");
