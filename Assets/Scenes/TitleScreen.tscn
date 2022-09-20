@@ -1,29 +1,45 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Source/TitleScreen.cs" type="Script" id=1]
+[ext_resource path="res://Assets/resources/Game_Logo.png" type="Texture" id=2]
 
 [node name="TitleScreen" type="CanvasLayer"]
 script = ExtResource( 1 )
 
-[node name="Grid" type="GridContainer" parent="."]
-margin_right = 640.0
-margin_bottom = 480.0
+[node name="GameLogo" type="Sprite" parent="."]
+position = Vector2( 0, 120 )
+scale = Vector2( 0.4125, 0.425 )
+texture = ExtResource( 2 )
 
-[node name="NewGame" type="Button" parent="Grid"]
-margin_right = 84.0
-margin_bottom = 20.0
+[node name="NewGame" type="Button" parent="."]
+margin_left = -64.0
+margin_top = 248.0
+margin_right = 64.0
+margin_bottom = 304.0
 text = "New Game"
+flat = true
+icon_align = 1
 
-[node name="LoadGame" type="Button" parent="Grid"]
-margin_top = 24.0
-margin_right = 84.0
-margin_bottom = 44.0
+[node name="LoadGame" type="Button" parent="."]
+margin_left = -64.0
+margin_top = 312.0
+margin_right = 64.0
+margin_bottom = 368.0
 text = "Load Game"
+flat = true
+icon_align = 1
 
-[node name="ExitGame" type="Button" parent="Grid"]
-margin_top = 48.0
-margin_right = 84.0
-margin_bottom = 68.0
+[node name="ExitGame" type="Button" parent="."]
+margin_left = -64.0
+margin_top = 376.0
+margin_right = 64.0
+margin_bottom = 432.0
 text = "Exit Game"
+flat = true
+icon_align = 1
 
-[connection signal="pressed" from="Grid/NewGame" to="." method="NewGame"]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, 248 )
+current = true
+
+[connection signal="pressed" from="NewGame" to="." method="NewGame"]

@@ -27,16 +27,15 @@ public class Air : State
         {
             if (player.Velocity.y < player.minJumpImpulse && Input.IsActionJustReleased("Jump") || !Input.IsActionPressed("Jump"))
             {
+                inputVelocity.x = player.Velocity.x;
                 inputVelocity.y += player.minJumpImpulse;
                 player.Velocity = inputVelocity;
             }
         }
-
         if (player.Velocity.y > 0)
         {
             stateMachine.UpdateState("FALL");
         }
-
     }
 
     public override void Stop()

@@ -82,7 +82,7 @@ public class Level : LevelCommon
 
     void CreateAudioStream()
     {
-        backgroundPlayer.Stream = GD.Load<AudioStream>(audioFile.GetPath());
+        backgroundPlayer.Stream = GD.Load<AudioStream>(audioFile.ResourcePath);
         backgroundPlayer.Play();
     }
 

@@ -13,7 +13,7 @@ public class TitleScreen : Node
     public override void _Ready()
     {
         states = (StateMachine)GetNode("/root/GameStates/GameState");
-        GetNode<Button>("Grid/NewGame").GrabFocus();
+        GetNode<Button>("NewGame").GrabFocus();
     }
 
     public void NewGame()
@@ -27,7 +27,7 @@ public class TitleScreen : Node
 
     }
 
-    public void Stop()
+    public void Exit()
     {
 
     }
