@@ -19,9 +19,15 @@ public class Level : LevelCommon
     Rect2 mapLimits;
     Vector2 mapCellsize;
 
+    AudioStreamPlayer backgroundPlayer;
+
+    [Export] Resource audioFile;
+
     public override void EnterLevel(Player p)
     {
         activeEnemies = new List<Enemy>();
+
+        backgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
 
         if (p != null)
         {
@@ -71,6 +77,13 @@ public class Level : LevelCommon
         mapLimits = tileMap.GetUsedRect();
 
         SetCameraBounds();
+        CreateAudioStream();
+    }
+
+    void CreateAudioStream()
+    {
+        backgroundPlayer.Stream = GD.Load<AudioStream>(audioFile.GetPath());
+        backgroundPlayer.Play();
     }
 
     public void SetCameraBounds()

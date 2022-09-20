@@ -23,20 +23,14 @@ public class Air : State
 
     public override void FixedUpdate(float delta)
     {
-        if (Input.IsActionJustPressed("Jump") && player.canJumpAgain)
-        {
-            player.canJumpAgain = false;
-            stateMachine.ResetToOldState();
-        }
-
-        /*if (!player.projectileMotionJump)
+        if (!player.projectileMotionJump)
         {
             if (player.Velocity.y < player.minJumpImpulse && Input.IsActionJustReleased("Jump") || !Input.IsActionPressed("Jump"))
             {
                 inputVelocity.y += player.minJumpImpulse;
                 player.Velocity = inputVelocity;
             }
-        }*/
+        }
 
         if (player.Velocity.y > 0)
         {

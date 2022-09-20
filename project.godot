@@ -23,6 +23,8 @@ GameStates="*res://Assets/resources/GameStates.tscn"
 
 window/size/width=640
 window/size/height=480
+window/size/test_width=1920
+window/size/test_height=1080
 window/stretch/mode="2d"
 window/stretch/aspect="keep_height"
 
@@ -106,4 +108,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+2d/snapping/use_gpu_pixel_snap=true
 environment/default_environment="res://default_env.tres"

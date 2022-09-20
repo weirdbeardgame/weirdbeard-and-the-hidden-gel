@@ -1,8 +1,10 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class Audio : Node
 {
+    [Export] List<Audio> audioClips;
 
     [Export]
     AudioStreamPlayer audio;
