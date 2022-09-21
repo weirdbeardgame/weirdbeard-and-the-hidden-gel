@@ -67,17 +67,19 @@ public class Walk : State
             {
                 stateMachine.UpdateState("IDLE");
             }
-
-            // Oops, fell off platform.
-            if (player.wasOnFloor && !player.IsOnFloor())
-            {
-                stateMachine.UpdateState("FALL");
-            }
-
-            GD.Print("InputVelocity: ", inputVelocity);
-
             player.Velocity = inputVelocity;
         }
+    }
+
+    public override void Update(float delta)
+    {
+        // Oops, fell off platform.
+        if (player.Velocity.y > 0)
+        {
+            player.wasOnFloor = true;
+            stateMachine.UpdateState("FALL");
+        }
+
         if (Input.IsActionJustPressed("Jump") && player.CanJump())
         {
             stateMachine.UpdateState("JUMP");

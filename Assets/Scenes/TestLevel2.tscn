@@ -667,3 +667,5 @@ position = Vector2( 864, 432 )
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2( -284, 0 )
+
+[node name="BackgroundAudio" type="AudioStreamPlayer" parent="."]

@@ -45,6 +45,7 @@ script = ExtResource( 1 )
 weaponName = "Sword"
 fireRate = 1.0
 speed = 500.0
+dmgAmnt = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 0 )

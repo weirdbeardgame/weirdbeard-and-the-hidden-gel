@@ -13,13 +13,14 @@ public class Actor : KinematicBody2D
     public bool canMove;
 
     //Jump properties
-    [Export] public float maxCoyoteTimer = 2f;
-    [Export] public float jumpHeight;
-    [Export] public float jumpPeak;
-    [Export] public float jumpDescent;
 
     [Export] public float maxJumpImpulse = 600f;
     [Export] public float minJumpImpulse = 300f;
+    [Export] public bool projectileMotionJump;
+    [Export] public float maxCoyoteTimer = 2f;
+    [Export] public float jumpDescent;
+    [Export] public float jumpHeight;
+    [Export] public float jumpPeak;
 
     public float jumpVelocity;
     public float jumpGravity;
@@ -27,7 +28,5 @@ public class Actor : KinematicBody2D
 
     public bool canJumpAgain;
     public bool wasOnFloor;
-    public bool coyoteTime;
 
-    [Export] public bool projectileMotionJump;
 }

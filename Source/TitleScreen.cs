@@ -13,7 +13,7 @@ public class TitleScreen : Node
     public override void _Ready()
     {
         states = (StateMachine)GetNode("/root/GameStates/GameState");
-        GetNode<Button>("NewGame").GrabFocus();
+        GetNode<Button>("Camera2D/NewGame").GrabFocus();
     }
 
     public void NewGame()

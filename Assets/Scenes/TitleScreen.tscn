@@ -1,45 +1,47 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Source/TitleScreen.cs" type="Script" id=1]
-[ext_resource path="res://Assets/resources/Game_Logo.png" type="Texture" id=2]
+[ext_resource path="res://Assets/resources/Sprites/Game_Logo_Background.png" type="Texture" id=2]
+[ext_resource path="res://Assets/resources/Sprites/Game_Logo.png" type="Texture" id=3]
 
 [node name="TitleScreen" type="CanvasLayer"]
 script = ExtResource( 1 )
 
-[node name="GameLogo" type="Sprite" parent="."]
-position = Vector2( 0, 120 )
-scale = Vector2( 0.4125, 0.425 )
-texture = ExtResource( 2 )
-
-[node name="NewGame" type="Button" parent="."]
-margin_left = -64.0
-margin_top = 248.0
-margin_right = 64.0
-margin_bottom = 304.0
-text = "New Game"
-flat = true
-icon_align = 1
-
-[node name="LoadGame" type="Button" parent="."]
-margin_left = -64.0
-margin_top = 312.0
-margin_right = 64.0
-margin_bottom = 368.0
-text = "Load Game"
-flat = true
-icon_align = 1
-
-[node name="ExitGame" type="Button" parent="."]
-margin_left = -64.0
-margin_top = 376.0
-margin_right = 64.0
-margin_bottom = 432.0
-text = "Exit Game"
-flat = true
-icon_align = 1
-
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 0, 248 )
+position = Vector2( 464, 240 )
 current = true
 
-[connection signal="pressed" from="NewGame" to="." method="NewGame"]
+[node name="ExitGame" type="Button" parent="Camera2D"]
+margin_left = -72.0
+margin_top = 128.0
+margin_right = 56.0
+margin_bottom = 184.0
+text = "Exit Game"
+icon_align = 1
+
+[node name="NewGame" type="Button" parent="Camera2D"]
+margin_left = -72.0
+margin_right = 56.0
+margin_bottom = 56.0
+text = "New Game"
+icon_align = 1
+
+[node name="LoadGame" type="Button" parent="Camera2D"]
+margin_left = -72.0
+margin_top = 64.0
+margin_right = 56.0
+margin_bottom = 120.0
+text = "Load Game"
+icon_align = 1
+
+[node name="GameLogoBackground" type="Sprite" parent="Camera2D"]
+show_behind_parent = true
+position = Vector2( 40, 8 )
+texture = ExtResource( 2 )
+
+[node name="GameLogo" type="Sprite" parent="Camera2D"]
+position = Vector2( -8, -120 )
+scale = Vector2( 0.263291, 0.233971 )
+texture = ExtResource( 3 )
+
+[connection signal="pressed" from="Camera2D/NewGame" to="." method="NewGame"]

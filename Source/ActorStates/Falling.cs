@@ -18,6 +18,10 @@ public class Falling : State
     public override void Start()
     {
         player.player.Play("Fall");
+        if (player.wasOnFloor)
+        {
+            player.StartCoyoteTimer();
+        }
         if (player.projectileMotionJump)
         {
             player.gravity = player.fallGravity;
@@ -27,12 +31,11 @@ public class Falling : State
 
     public override void FixedUpdate(float delta)
     {
-        if (Input.IsActionJustPressed("Jump") && player.canJumpAgain)
+        if (Input.IsActionJustPressed("Jump") && player.canJumpAgain || Input.IsActionJustPressed("Jump") && player.CanJump())
         {
             player.canJumpAgain = false;
             stateMachine.UpdateState("JUMP");
         }
-
         if (player.IsOnFloor())
         {
             player.ResetState();

@@ -3,18 +3,14 @@ using System;
 
 public class Player : Actor
 {
-    public AnimationPlayer player;
-
-    Timer timer;
-
-    public Sprite weirdBeard;
-
+    Timer coyoteTimer;
+    Timer bufferedJumpTimer;
     PowerUp currentPowerup;
 
+    public Sprite weirdBeard;
     public int playerLives = 3;
-
     public WeaponSlot equipped;
-
+    public AnimationPlayer player;
     public Vector2 direction = Vector2.Right;
 
     float defaultGravity;
@@ -24,9 +20,10 @@ public class Player : Actor
     {
         stateMachine = (StateMachine)GetNode("StateMachine");
         player = (AnimationPlayer)GetNode("AnimationPlayer");
+        bufferedJumpTimer = (Timer)GetNode("BufferedJump");
         equipped = (WeaponSlot)GetNode("WeaponSlot");
+        coyoteTimer = (Timer)GetNode("CoyoteTimer");
         weirdBeard = (Sprite)GetNode("WeirdBeard");
-        timer = (Timer)GetNode("Timer");
         SceneManager.startNewGame += NewGame;
 
         defaultGravity = gravity;
@@ -62,6 +59,7 @@ public class Player : Actor
     public void ResetState()
     {
         canJumpAgain = true;
+        wasOnFloor = false;
         velocity = Vector2.Zero;
         gravity = defaultGravity;
         SetState("IDLE");
@@ -75,17 +73,18 @@ public class Player : Actor
 
     public void StartCoyoteTimer()
     {
-        timer.Start(maxCoyoteTimer);
-        coyoteTime = true;
+        if (coyoteTimer.IsStopped())
+        {
+            coyoteTimer.Start(maxCoyoteTimer);
+        }
     }
 
-    public void StopCoyoteTimer()
+    public void BufferJump()
     {
-        if (!timer.IsStopped())
+        if (bufferedJumpTimer.IsStopped())
         {
-            timer.Stop();
+            bufferedJumpTimer.Start();
         }
-        coyoteTime = false;
     }
 
     public void Die()
@@ -95,7 +94,19 @@ public class Player : Actor
 
     public bool CanJump()
     {
-        return ((IsOnFloor() || coyoteTime) && canMove);
+        if (IsOnFloor())
+        {
+            GD.Print("Floor");
+        }
+        if (!coyoteTimer.IsStopped())
+        {
+            GD.Print("Coyote Time");
+        }
+        if (bufferedJumpTimer.IsStopped())
+        {
+            GD.Print("Buffered Timer");
+        }
+        return ((IsOnFloor() || !coyoteTimer.IsStopped()) || bufferedJumpTimer.IsStopped());
     }
 
     public bool GamaOvar()
@@ -125,7 +136,6 @@ public class Player : Actor
 
     public override void _PhysicsProcess(float delta)
     {
-        GD.Print("Velocity: ", velocity);
         if (equipped.Weapon != null)
         {
             if (Input.IsActionJustPressed("Attack"))
@@ -140,14 +150,6 @@ public class Player : Actor
         if (!IsOnFloor() && Input.IsActionJustPressed("Run"))
         {
             ActivatePowerup();
-        }
-        if (wasOnFloor && !IsOnFloor())
-        {
-            StartCoyoteTimer();
-        }
-        else if (IsOnFloor() || timer.IsStopped())
-        {
-            StopCoyoteTimer();
         }
     }
 }

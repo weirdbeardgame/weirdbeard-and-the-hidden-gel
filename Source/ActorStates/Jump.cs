@@ -30,6 +30,8 @@ public class Jump : State
         inputVelocity.x = player.Velocity.x;
         player.Velocity = inputVelocity;
 
+        player.BufferJump();
+
         stateMachine.UpdateState("AIR");
     }
 
