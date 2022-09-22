@@ -641,7 +641,6 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 32/z_index = 0
 
 [node name="Level" type="Node2D"]
-position = Vector2( 0, 160 )
 script = ExtResource( 35 )
 levelName = "TestLevel2"
 audioFile = ExtResource( 39 )

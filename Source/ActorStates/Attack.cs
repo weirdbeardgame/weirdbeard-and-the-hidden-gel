@@ -28,6 +28,7 @@ public class Attack : State
         {
             w.Position = spawnPoint.GlobalPosition;
             w.Rotation = spawnPoint.GlobalRotation;
+            var scene = SceneManager.CurrentScene;
             SceneManager.CurrentScene.AddChild(w);
             w.Attack(spawnPoint.GlobalPosition.Sign());
             Stop();

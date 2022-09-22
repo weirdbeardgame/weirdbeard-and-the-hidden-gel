@@ -26,7 +26,6 @@ public class Level : LevelCommon
     public override void EnterLevel(Player p)
     {
         activeEnemies = new List<Enemy>();
-
         backgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
 
         if (p != null)
