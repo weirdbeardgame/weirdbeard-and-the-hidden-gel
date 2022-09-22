@@ -94,18 +94,6 @@ public class Player : Actor
 
     public bool CanJump()
     {
-        if (IsOnFloor())
-        {
-            GD.Print("Floor");
-        }
-        if (!coyoteTimer.IsStopped())
-        {
-            GD.Print("Coyote Time");
-        }
-        if (bufferedJumpTimer.IsStopped())
-        {
-            GD.Print("Buffered Timer");
-        }
         return ((IsOnFloor() || !coyoteTimer.IsStopped()) || bufferedJumpTimer.IsStopped());
     }
 

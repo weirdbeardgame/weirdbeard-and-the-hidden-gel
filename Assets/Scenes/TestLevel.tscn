@@ -57,3 +57,4 @@ position = Vector2( -104, 136 )
 position = Vector2( -56, 432 )
 
 [node name="BackgroundAudio" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0

@@ -9,12 +9,6 @@ public class Attack : State
 
     Node2D spawnPoint;
 
-    public override void Start()
-    {
-        w = (Weapon)player.equipped.Weapon.Instance();
-        direction = GetInput();
-    }
-
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -25,14 +19,17 @@ public class Attack : State
         spawnPoint = (Node2D)player.GetNode("WeapSpawn");
     }
 
-    public override void FixedUpdate(float delta)
+    public override void Start()
     {
+        w = (Weapon)player.equipped.Weapon.Instance();
+        direction = GetInput().Sign();
+
         if (w.canThrowWeapon)
         {
-            SceneManager.CurrentScene.AddChild(w);
             w.Position = spawnPoint.GlobalPosition;
             w.Rotation = spawnPoint.GlobalRotation;
-            w.Attack(delta, spawnPoint.GlobalPosition.Sign());
+            SceneManager.CurrentScene.AddChild(w);
+            w.Attack(spawnPoint.GlobalPosition.Sign());
             Stop();
         }
     }
@@ -41,10 +38,4 @@ public class Attack : State
     {
         stateMachine.ResetToOldState();
     }
-
-    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
-    //  {
-    //      
-    //  }
 }

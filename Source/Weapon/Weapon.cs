@@ -32,21 +32,21 @@ public class Weapon : KinematicBody2D
         play = (AnimationPlayer)GetNode("AnimationPlayer");
     }
 
-    public void Attack(float delta, Vector2 direction)
+    public void Attack(Vector2 direction)
     {
         switch (type)
         {
             case WeaponType.THROW:
-                Throw(delta, direction);
+                Throw(direction);
                 break;
 
             case WeaponType.SHOOT:
-                Shoot(delta);
+                Shoot();
                 break;
         }
     }
 
-    async void Throw(float delta, Vector2 direction)
+    async void Throw(Vector2 direction)
     {
         float dir = direction.Sign().x;
         if (dir < 0)
@@ -65,7 +65,7 @@ public class Weapon : KinematicBody2D
         canThrowWeapon = true;
     }
 
-    async void Shoot(float delta)
+    async void Shoot()
     {
         // Spawn bullet types in here. Could be blunderbuss shotgun or flintlock
         canThrowWeapon = false;

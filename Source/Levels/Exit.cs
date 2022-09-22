@@ -12,16 +12,19 @@ public class Exit : Node2D
     [Export]
     Exit connectedExit;
 
+    Level currentLevel;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        currentLevel = (Level)Owner;
     }
 
     public void OnExit(object body)
     {
         if (body is Player)
         {
-            SceneManager.changeScene(toTransportTo, (Player)body);
+            SceneManager.changeScene(toTransportTo, (Player)currentLevel.GetNode("Player"));
         }
     }
 }
