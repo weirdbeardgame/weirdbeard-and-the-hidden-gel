@@ -9,8 +9,8 @@ public class Dialogue : Node
 
     public int length;
 
-    [Export]
-    public Sprite speakerHead;
+    //[Export]
+    //public Sprite speakerHead;
 
     public Dialogue Open(int i)
     {

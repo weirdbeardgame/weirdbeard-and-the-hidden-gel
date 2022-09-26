@@ -94,7 +94,7 @@ public class Player : Actor
 
     public bool CanJump()
     {
-        return ((IsOnFloor() || !coyoteTimer.IsStopped()) || bufferedJumpTimer.IsStopped());
+        return ((IsOnFloor() || !coyoteTimer.IsStopped()) || bufferedJumpTimer.IsStopped() || canJumpAgain);
     }
 
     public bool GamaOvar()
@@ -122,6 +122,18 @@ public class Player : Actor
         }
     }
 
+    void ApplyGravity(float delta, float currentGrav = 0f)
+    {
+        if (!projectileMotionJump)
+        {
+            velocity.y += gravity * delta;
+        }
+        else
+        {
+            velocity.y += currentGrav * delta;
+        }
+    }
+
     public override void _PhysicsProcess(float delta)
     {
         if (equipped.Weapon != null)
@@ -131,6 +143,7 @@ public class Player : Actor
                 stateMachine.UpdateState("ATTACK");
             }
         }
+
         wasOnFloor = IsOnFloor();
         velocity.y += gravity * delta;
         velocity = MoveAndSlide(velocity, Vector2.Up);

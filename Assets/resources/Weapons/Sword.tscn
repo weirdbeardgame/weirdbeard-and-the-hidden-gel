@@ -42,10 +42,10 @@ tracks/0/keys = {
 collision_layer = 8
 collision_mask = 4
 script = ExtResource( 1 )
-weaponName = "Sword"
-fireRate = 1.0
-speed = 500.0
 dmgAmnt = 1
+speed = 500.0
+fireRate = 1.0
+weaponName = "Sword"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 0 )

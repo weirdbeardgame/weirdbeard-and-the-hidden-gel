@@ -16,6 +16,7 @@ public class Jump : State
 
     public override void Start()
     {
+        GD.Print("JUMP");
         player.player.Play("Jump");
         if (!player.projectileMotionJump)
         {
@@ -27,17 +28,13 @@ public class Jump : State
             inputVelocity.y = player.jumpVelocity;
             GD.Print("Jump Gravity: ", player.jumpGravity);
         }
+
         inputVelocity.x = player.Velocity.x;
         player.Velocity = inputVelocity;
 
         player.BufferJump();
 
         stateMachine.UpdateState("AIR");
-    }
-
-    public override Vector2 GetInput()
-    {
-        return base.GetInput();
     }
 
     public override void Stop()

@@ -25,13 +25,13 @@ public class Falling : State
         if (player.projectileMotionJump)
         {
             player.gravity = player.fallGravity;
-            GD.Print("Fall Gravity: ", player.gravity);
+            //GD.Print("Fall Gravity: ", player.gravity);
         }
     }
 
-    public override void FixedUpdate(float delta)
+    public override void Update(float delta)
     {
-        if (Input.IsActionJustPressed("Jump") && player.canJumpAgain || Input.IsActionJustPressed("Jump") && player.CanJump())
+        if (Input.IsActionJustPressed("Jump") && player.CanJump())
         {
             player.canJumpAgain = false;
             stateMachine.UpdateState("JUMP");

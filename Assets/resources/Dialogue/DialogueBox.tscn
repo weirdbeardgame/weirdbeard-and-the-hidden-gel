@@ -16,15 +16,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -427.0
-margin_top = -315.0
-margin_right = 427.0
+margin_left = -1085.0
+margin_top = -10.0
+margin_right = -567.0
+margin_bottom = 144.0
 
 [node name="TextRender" type="Label" parent="Box"]
 margin_left = 96.0
 margin_top = 1.0
-margin_right = 853.0
-margin_bottom = 313.0
+margin_right = 517.0
+margin_bottom = 153.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 1 )
@@ -36,4 +37,4 @@ margin_top = -1.0
 margin_right = -663.0
 margin_bottom = 85.0
 
-[node name="Interp" type="Tween" parent="."]
+[node name="Typing" type="Timer" parent="."]

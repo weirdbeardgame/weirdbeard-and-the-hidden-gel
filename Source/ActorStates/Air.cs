@@ -14,29 +14,28 @@ public class Air : State
 
     public override void Start()
     {
-        if (player.projectileMotionJump)
-        {
-            player.gravity = player.jumpGravity;
-            GD.Print("jump Gravity: ", player.gravity);
-        }
+
     }
 
     public override void FixedUpdate(float delta)
     {
-
-        if (Input.IsActionJustPressed("Jump") && player.canJumpAgain || Input.IsActionJustPressed("Jump") && player.CanJump())
-        {
-            player.canJumpAgain = false;
-            stateMachine.UpdateState("JUMP");
-        }
-
-        if (player.Velocity.y < player.minJumpImpulse && Input.IsActionJustReleased("Jump") || !Input.IsActionPressed("Jump"))
+        if (Input.IsActionJustReleased("Jump") || !Input.IsActionPressed("Jump"))
         {
             inputVelocity.x = player.Velocity.x;
             inputVelocity.y = player.Velocity.y * 0.5f;
             player.Velocity = inputVelocity;
         }
-        if (player.Velocity.y > 0)
+    }
+
+    public override void Update(float delta)
+    {
+        if (Input.IsActionJustPressed("Jump") && player.CanJump())
+        {
+            player.canJumpAgain = false;
+            stateMachine.UpdateState("JUMP");
+        }
+
+        if (player.Velocity.y >= 0)
         {
             stateMachine.UpdateState("FALL");
         }

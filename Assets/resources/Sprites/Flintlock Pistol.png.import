@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/OIL.jpg-fa32b49558eb27d43283f455890e7618.stex"
+path="res://.import/Flintlock Pistol.png-b0e7e04f3b76b54e39f12b9cb973d6b8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/resources/Sprites/OIL.jpg"
-dest_files=[ "res://.import/OIL.jpg-fa32b49558eb27d43283f455890e7618.stex" ]
+source_file="res://Assets/resources/Sprites/Flintlock Pistol.png"
+dest_files=[ "res://.import/Flintlock Pistol.png-b0e7e04f3b76b54e39f12b9cb973d6b8.stex" ]
 
 [params]
 

@@ -6,26 +6,21 @@ public class DialogueBox : Node
     Dialogue dialogue;
 
     AnimatedTexture speakerBox;
-
     StateMachine state;
 
-    Label textRender;
-
+    Label speakerName;
+    Label dialogueRender;
     Panel box;
 
-    Tween interp;
+    Timer typing;
 
-    int line = 0;
-
-    bool isOpen = false;
+    int line = 0, textRendered;
 
     public override void _Ready()
     {
         state = (StateMachine)GetNode("/root/GameStates/GameState");
-        textRender = (Label)GetNode("Box/TextRender");
-        interp = (Tween)GetNode("Interp");
+        dialogueRender = (Label)GetNode("Box/TextRender");
         box = (Panel)GetNode("Box");
-        box.Visible = isOpen;
         box.GrabFocus();
     }
 
@@ -36,43 +31,27 @@ public class DialogueBox : Node
         //box.RectPosition = GetViewport().Size / 2;
 
         // Play opening animation
+        textRendered = 0;
         dialogue.Open(line);
-        textRender.Text = dialogue.buffer[line];
-        interp.InterpolateProperty(textRender, "percent_visible", 0.0, 1.0, dialogue.length * 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
-        isOpen = true;
-        box.Visible = true;
-
-        interp.Start();
-
         state.UpdateState("DIALOGUE");
-    }
+        typing = (Timer)GetNode("Typing");
+        dialogueRender.Text = dialogue.buffer[line];
+        dialogueRender.VisibleCharacters = 0;
 
-    public void Advance()
-    {
-        if (line < dialogue.buffer.Capacity)
-        {
-            line += 1;
-        }
-        else if (line >= dialogue.buffer.Capacity)
-        {
-            Close();
-        }
+        typing.Start();
     }
 
     public void Close()
     {
         // Play closing animation
-        isOpen = false;
         RemoveChild(this);
         QueueFree();
     }
 
-    public override void _PhysicsProcess(float delta)
+    public void OnTimeout()
     {
-        if (Input.IsActionJustPressed("ui_select"))
-        {
-            Advance();
-        }
+        dialogueRender.VisibleCharacters += 1;
+        Close();
     }
 
 }
