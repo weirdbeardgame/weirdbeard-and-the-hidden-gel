@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/resources/Checkpoint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/resources/Tiles/TestLevel.tres" type="TileSet" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/Scenes/SubLevels/SubScene1.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Scenes/TestLevel2.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/resources/Audio/TestAudio/JDSherbert - Nostalgia Music Pack - Treehouse Party.mp3" type="AudioStream" id=11]
+[ext_resource path="res://Assets/resources/Helicopter.tscn" type="PackedScene" id=12]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 8 )
@@ -58,3 +59,6 @@ position = Vector2( -56, 432 )
 
 [node name="BackgroundAudio" type="AudioStreamPlayer" parent="."]
 volume_db = -20.0
+
+[node name="Helicopter" parent="." instance=ExtResource( 12 )]
+position = Vector2( 96, 432 )

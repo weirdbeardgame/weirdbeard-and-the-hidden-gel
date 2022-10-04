@@ -13,11 +13,7 @@ public class PowerUp : State
 
     protected Vector2 inputVelocity;
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-
-    }
+    bool isActivated;
 
     public void Equip(object body)
     {
@@ -29,5 +25,20 @@ public class PowerUp : State
             stateMachine = (StateMachine)player.GetNode("StateMachine");
             stateMachine.AddState(this, stateName);
         }
+    }
+
+    public void Activate()
+    {
+        if (!isActivated)
+        {
+            stateMachine.UpdateState(stateName);
+            isActivated = true;
+        }
+    }
+
+    public override void Stop()
+    {
+        isActivated = false;
+        stateMachine.ResetToOldState();
     }
 }

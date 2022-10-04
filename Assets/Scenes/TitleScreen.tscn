@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Source/TitleScreen.cs" type="Script" id=1]
 [ext_resource path="res://Assets/resources/Sprites/Game_Logo_Background.png" type="Texture" id=2]
-[ext_resource path="res://Assets/resources/Sprites/Game_Logo.png" type="Texture" id=3]
+[ext_resource path="res://Assets/resources/Game_Logo_02.png" type="Texture" id=3]
 
 [node name="TitleScreen" type="CanvasLayer"]
 script = ExtResource( 1 )

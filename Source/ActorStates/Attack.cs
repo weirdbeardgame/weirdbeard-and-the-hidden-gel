@@ -18,7 +18,7 @@ public class Attack : State
 
     public override void Start()
     {
-        w = (Weapon)player.equipped.Weapon.Instance();
+        w = (Weapon)player.equipped.CurrentWeapon;
         direction = player.direction.Sign();
         if (w.canThrowWeapon)
         {

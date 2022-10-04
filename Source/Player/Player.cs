@@ -102,6 +102,15 @@ public class Player : Actor
         return (playerLives <= 0);
     }
 
+    public void EquipWeapon(Weapon weapon)
+    {
+        if (HasNode(equipped.CurrentWeapon.GetPath()))
+        {
+            RemoveChild(equipped.CurrentWeapon);
+        }
+        AddChild(weapon);
+    }
+
     public void EquipPowerup(PowerUp power)
     {
         if (currentPowerup != power)
@@ -111,14 +120,6 @@ public class Player : Actor
         else
         {
             return;
-        }
-    }
-
-    void ActivatePowerup()
-    {
-        if (currentPowerup != null)
-        {
-            stateMachine.UpdateState(currentPowerup.stateName);
         }
     }
 
@@ -136,7 +137,7 @@ public class Player : Actor
 
     public override void _PhysicsProcess(float delta)
     {
-        if (equipped.Weapon != null)
+        if (equipped.CurrentWeapon != null)
         {
             if (Input.IsActionJustPressed("Attack"))
             {
@@ -148,9 +149,9 @@ public class Player : Actor
         velocity.y += gravity * delta;
         velocity = MoveAndSlide(velocity, Vector2.Up);
 
-        if (!IsOnFloor() && Input.IsActionJustPressed("Run"))
+        if (!IsOnFloor() && Input.IsActionJustPressed("Run") && currentPowerup != null)
         {
-            ActivatePowerup();
+            currentPowerup.Activate();
         }
     }
 }

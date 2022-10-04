@@ -3,13 +3,15 @@ using System;
 
 public class WeaponSlot : Node
 {
-    PackedScene slottedWeapon;
+    Weapon slottedWeapon;
 
     Sprite weaponSlot;
 
     Sprite weaponIcon;
 
-    public PackedScene Weapon
+    Player player;
+
+    public Weapon CurrentWeapon
     {
         get
         {
@@ -21,13 +23,19 @@ public class WeaponSlot : Node
     public override void _Ready()
     {
         weaponSlot = (Sprite)Owner.GetNode("Camera2D/HUD/WeaponSlot");
+        player = (Player)Owner;
     }
 
     public void Equip(PackedScene toEquip, Sprite weaponSprite)
     {
-        if (slottedWeapon != toEquip)
+        if (slottedWeapon != (Weapon)toEquip.Instance())
         {
-            slottedWeapon = toEquip;
+            slottedWeapon = (Weapon)toEquip.Instance();
+            
+            if (slottedWeapon.type == WeaponType.SHOOT)
+            {
+                player.EquipWeapon(slottedWeapon);
+            }
         }
         weaponSlot = weaponSprite;
         Vector2 S = new Vector2(100, 100);

@@ -3,6 +3,8 @@ using System;
 
 public class HelicopterBeard : PowerUp
 {
+
+    [Export] float gravityPercent;
     public override void _Ready()
     {
         stateName = "HELICOPTER";
@@ -11,7 +13,7 @@ public class HelicopterBeard : PowerUp
     // Play animation. Set physics
     public override void Start()
     {
-        player.gravity = gravity;
+        player.gravity = (player.gravity * gravityPercent);
     }
 
     public override Vector2 GetInput()
@@ -22,12 +24,12 @@ public class HelicopterBeard : PowerUp
     public override void FixedUpdate(float delta)
     {
         inputVelocity.x = speed * GetInput().x;
-
         player.Velocity = inputVelocity;
-    }
 
-    public override void Stop()
-    {
-        base.Stop();
+        if (player.IsOnFloor())
+        {
+            Stop();
+        }
+
     }
 }
