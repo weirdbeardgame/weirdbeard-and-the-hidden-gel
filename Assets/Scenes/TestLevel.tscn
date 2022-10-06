@@ -61,4 +61,4 @@ position = Vector2( -56, 432 )
 volume_db = -20.0
 
 [node name="Helicopter" parent="." instance=ExtResource( 12 )]
-position = Vector2( 96, 432 )
+position = Vector2( 160, 432 )

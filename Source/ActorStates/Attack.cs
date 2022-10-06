@@ -5,7 +5,7 @@ public class Attack : State
 {
     Vector2 direction;
 
-    Weapon w;
+    WeaponCommon w;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -18,13 +18,11 @@ public class Attack : State
 
     public override void Start()
     {
-        w = (Weapon)player.equipped.CurrentWeapon;
+        w = (WeaponCommon)player.equipped.CurrentWeapon;
         direction = player.direction.Sign();
-        if (w.canThrowWeapon)
-        {
-            w.Attack(direction);
-            Stop();
-        }
+
+        w.Attack(direction);
+        Stop();
     }
 
     public override void Stop()

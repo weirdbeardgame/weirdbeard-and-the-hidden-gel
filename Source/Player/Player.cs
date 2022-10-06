@@ -102,13 +102,13 @@ public class Player : Actor
         return (playerLives <= 0);
     }
 
-    public void EquipWeapon(Weapon weapon)
+    public void EquipWeapon(WeaponCommon weapon)
     {
         if (HasNode(equipped.CurrentWeapon.GetPath()))
         {
             RemoveChild(equipped.CurrentWeapon);
         }
-        AddChild(weapon);
+        GetNode("WeapSpawn").AddChild(weapon);
     }
 
     public void EquipPowerup(PowerUp power)

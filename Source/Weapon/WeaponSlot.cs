@@ -3,7 +3,7 @@ using System;
 
 public class WeaponSlot : Node
 {
-    Weapon slottedWeapon;
+    WeaponCommon slottedWeapon;
 
     Sprite weaponSlot;
 
@@ -11,7 +11,7 @@ public class WeaponSlot : Node
 
     Player player;
 
-    public Weapon CurrentWeapon
+    public WeaponCommon CurrentWeapon
     {
         get
         {
@@ -28,17 +28,9 @@ public class WeaponSlot : Node
 
     public void Equip(PackedScene toEquip, Sprite weaponSprite)
     {
-        if (slottedWeapon != (Weapon)toEquip.Instance())
+        if (slottedWeapon != (WeaponCommon)toEquip.Instance())
         {
-            slottedWeapon = (Weapon)toEquip.Instance();
-            
-            if (slottedWeapon.type == WeaponType.SHOOT)
-            {
-                player.EquipWeapon(slottedWeapon);
-            }
+            slottedWeapon = (WeaponCommon)toEquip.Instance();
         }
-        weaponSlot = weaponSprite;
-        Vector2 S = new Vector2(100, 100);
-        weaponSlot.Scale = S;
     }
 }

@@ -18,13 +18,26 @@ public class HelicopterBeard : PowerUp
 
     public override Vector2 GetInput()
     {
-        return base.GetInput();
+        if (Input.IsActionPressed("Right"))
+        {
+            inputVelocity.x = 1.0f * speed;
+        }
+        else if (Input.IsActionPressed("Left"))
+        {
+            inputVelocity.x = -1.0f * speed;
+        }
+        if (!Input.IsActionPressed("Left") && !Input.IsActionPressed("Right"))
+        {
+            inputVelocity.x = 0;
+        }
+        return inputVelocity;
     }
 
     public override void FixedUpdate(float delta)
     {
-        inputVelocity.x = speed * GetInput().x;
-        player.Velocity = inputVelocity;
+        player.Velocity = GetInput();
+
+        GD.Print(player.Velocity);
 
         if (player.IsOnFloor())
         {

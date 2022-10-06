@@ -8,7 +8,7 @@ extents = Vector2( 7, 12 )
 
 [node name="Helicopter" type="Area2D"]
 script = ExtResource( 1 )
-gravityPercent = 0.5
+gravityPercent = 0.8
 
 [node name="Oil" type="Sprite" parent="."]
 position = Vector2( -7.62939e-06, 0 )
