@@ -31,6 +31,16 @@ public class WeaponSlot : Node
         if (slottedWeapon != (WeaponCommon)toEquip.Instance())
         {
             slottedWeapon = (WeaponCommon)toEquip.Instance();
+            AddChild(slottedWeapon);
+        }
+    }
+
+    public void AttachToPlayer(PackedScene toEquip, Sprite weaponSprite)
+    {
+        if (slottedWeapon != (WeaponCommon)toEquip.Instance())
+        {
+            slottedWeapon = (WeaponCommon)toEquip.Instance();
+            player.GetNode("WeapSpawn").AddChild(slottedWeapon);
         }
     }
 }

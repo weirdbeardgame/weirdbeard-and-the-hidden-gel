@@ -3,8 +3,10 @@ using System;
 
 public class Gun : WeaponCommon
 {
-    PackedScene bulletSpawn;
+    [Export] PackedScene bulletSpawn;
     Node2D bulletSpawner;
+
+    KinematicBody2D spawnedAmmo;
 
     [Export] float spreadAmt = 0f;
 
@@ -20,13 +22,43 @@ public class Gun : WeaponCommon
 
     public override void Attack(Vector2 direction)
     {
-        var ammoSpawn = (KinematicBody2D)bulletSpawn.Instance();
+        spawnedAmmo = (KinematicBody2D)bulletSpawn.Instance();
         bulletSpawner = (Node2D)GetNode("spawner");
-        ammoSpawn.Position = bulletSpawner.GlobalPosition;
-        ammoSpawn.Rotation = bulletSpawner.GlobalRotation;
+        spawnedAmmo.Position = bulletSpawner.GlobalPosition;
+        spawnedAmmo.Rotation = bulletSpawner.GlobalRotation;
 
-        SceneManager.CurrentScene.AddChild(ammoSpawn);
+        SceneManager.CurrentScene.AddChild(spawnedAmmo);
         velocity.x = speed * direction.x;
-        ammoSpawn.MoveAndSlide(velocity);
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+
+        if (player.direction.x >= 0)
+        {
+            sprite.FlipH = true;
+        }
+        else
+        {
+            sprite.FlipH = false;
+        }
+
+        GlobalRotation = player.Rotation;
+
+        if (spawnedAmmo != null)
+        {
+            KinematicCollision2D col = spawnedAmmo.MoveAndCollide(velocity * delta);
+            if (col != null)
+            {
+                GD.Print("Collision");
+                if (col.Collider is Enemy)
+                {
+                    GD.Print("Enemy Detected");
+                    Enemy e = col.Collider as Enemy;
+                    e.QueueFree();
+                    spawnedAmmo.QueueFree();
+                }
+            }
+        }
     }
 }
