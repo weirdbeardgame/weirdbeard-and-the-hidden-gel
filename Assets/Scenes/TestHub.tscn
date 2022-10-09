@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Source/Levels/HubWorld/HubWorld.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Scenes/TestLevel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/resources/LevelSpace.tscn" type="PackedScene" id=3]
+
+[node name="Level" type="Node"]
+script = ExtResource( 1 )
+levelName = "Test Hub"
+containedLevels = [ NodePath("Space") ]
+
+[node name="Space" parent="." instance=ExtResource( 3 )]
+attachedLevel = ExtResource( 2 )
