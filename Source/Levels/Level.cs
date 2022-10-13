@@ -28,45 +28,24 @@ public class Level : LevelCommon
         activeEnemies = new List<Enemy>();
         backgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
 
-        if (p != null)
-        {
-            player = p;
-            AddChild(player);
+        base.EnterLevel(p);
 
-            if (currentCheckpoint != null)
-            {
-                player.Position = currentCheckpoint.GlobalPosition;
-            }
-            else
-            {
-                currentCheckpoint = (Checkpoint)GetNode("0");
-                if (currentCheckpoint == null)
-                {
-                    GD.PushError("No Active Checkpoints in Scene!");
-                }
-                player.Position = currentCheckpoint.GlobalPosition;
-            }
-            player.ResetState();
+        AddChild(player);
+
+        if (currentCheckpoint != null)
+        {
+            player.Position = currentCheckpoint.GlobalPosition;
         }
         else
         {
-            player = (Player)GetNode("Player");
-            if (currentCheckpoint != null)
+            currentCheckpoint = (Checkpoint)GetNode("0");
+            if (currentCheckpoint == null)
             {
-                player.Position = currentCheckpoint.GlobalPosition;
+                GD.PushError("No Active Checkpoints in Scene!");
             }
-            else
-            {
-                currentCheckpoint = (Checkpoint)GetNode("0");
-                if (currentCheckpoint == null)
-                {
-                    GD.PushError("No Active Checkpoints in Scene!");
-                }
-                player.Position = currentCheckpoint.GlobalPosition;
-            }
-            player.ResetState();
+            player.Position = currentCheckpoint.GlobalPosition;
         }
-
+        player.ResetState();
         tileMap = (TileMap)GetNode("TileMap");
         camera = (Camera2D)player.GetNode("Camera2D");
 

@@ -10,6 +10,8 @@ public class LevelSpaces : Node2D
 
     [Export] private Dictionary<Direction, NodePath> attachedPaths;
 
+    Action playerTouched;
+
     public Dictionary<Direction, NodePath> AttachedPaths
     {
         get
@@ -22,19 +24,25 @@ public class LevelSpaces : Node2D
 
     public void Enter(object body)
     {
+        //playerTouched.Invoke();
         if (body is Player)
         {
             player = (Player)body;
-            if (Input.IsActionJustPressed("Submit"))
-            {
-                attachedLevel.EnterLevel(player);
-            }
         }
+    }
+
+    public void EnterLevel()
+    {
+        attachedLevel.EnterLevel(player);
     }
 
     public bool CanMove(Direction dir)
     {
-        return attachedPaths.ContainsKey(dir);
+        if (attachedPaths != null)
+        {
+            return attachedPaths.ContainsKey(dir);
+        }
+        return false;
     }
 
 }

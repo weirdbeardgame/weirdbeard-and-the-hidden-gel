@@ -12,28 +12,34 @@ public class HubWorld : LevelCommon
 
     LevelSpaces currentSpace;
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-
-    }
-
     public override void EnterLevel(Player p)
     {
-        player = p;
-        currentSpace = (LevelSpaces)GetNode(containedLevels[0]);
-        player.Position = currentSpace.GlobalPosition;
-        AddChild(player);
+        base.EnterLevel(p);
+        if (player != null)
+        {
+            RemoveChild(player);
+            player.gravity = 0;
+            currentSpace = (LevelSpaces)GetNode(containedLevels[0]);
+            player.Position = currentSpace.GlobalPosition;
+            AddChild(player);
+        }
     }
 
     public override void ResetLevel()
     {
         currentSpace = (LevelSpaces)GetNode(containedLevels[0]);
-        player.Position = currentSpace.GlobalPosition;
+        player.Position = currentSpace.Position;
+        player.Rotation = currentSpace.Rotation;
     }
 
-    public override void _PhysicsProcess(float delta)
+    void GetInput()
     {
+
+        if (Input.IsActionJustPressed("Submit"))
+        {
+            currentSpace.EnterLevel();
+        }
+
         Direction dir = 0;
         if (Input.IsActionJustPressed("Up"))
         {
@@ -58,16 +64,22 @@ public class HubWorld : LevelCommon
         if (currentSpace.CanMove(dir))
         {
 
-            path = (Path2D)GetNode(currentSpace.AttachedPaths[dir]);
+            path = (Path2D)currentSpace.GetNode(currentSpace.AttachedPaths[dir]);
             interpolate = (Tween)path.GetNode("Tween");
-            follow2D = (PathFollow2D)path.GetNode("follow");
+            follow2D = (PathFollow2D)path.GetNode("PathFollow2D");
+            RemoveChild(player);
             follow2D.AddChild(player);
             interpolate.InterpolateProperty(follow2D, "UnitOffset", 0.0f, 1.0f, 3.0f, Tween.TransitionType.Back, Tween.EaseType.InOut);
-
+            interpolate.Start();
             // Add player child of next space
         }
+    }
 
 
+
+    public override void _PhysicsProcess(float delta)
+    {
+        GetInput();
     }
 
     public override void ExitLevel()

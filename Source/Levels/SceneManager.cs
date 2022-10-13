@@ -4,20 +4,21 @@ using System.Collections.Generic;
 
 public class SceneManager : Node
 {
-    [Export]
-    Dictionary<string, PackedScene> levels;
+    [Export] Dictionary<string, PackedScene> levels;
 
-    [Export]
-    private static LevelCommon currentScene;
+    [Export] private static LevelCommon currentScene;
 
-    [Export]
-    private LevelCommon activeSubScene;
+    [Export] private LevelCommon activeSubScene;
+
+    [Export] private PackedScene newGameScene;
 
     ResourceInteractiveLoader loader;
 
     Exit activeExit;
 
     Node nodeParent;
+
+
 
     public static LevelCommon CurrentScene
     {
@@ -115,7 +116,7 @@ public class SceneManager : Node
 
     void NewGame()
     {
-        SwitchLevel(levels["TestLevel"], null);
+        SwitchLevel(newGameScene, null);
         startNewGame -= NewGame;
     }
 

@@ -34,6 +34,16 @@ public class LevelCommon : Node
     public virtual void EnterLevel(Player p)
     {
 
+        if (p != null)
+        {
+            player = p;
+        }
+
+        else
+        {
+            player = (Player)GetNode("Player");
+        }
+
     }
 
     public virtual void ExitLevel()
