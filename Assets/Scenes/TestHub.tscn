@@ -25,5 +25,5 @@ attachedPaths = {
 position = Vector2( 208, -8 )
 
 [node name="Space2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 640, 0 )
+position = Vector2( 280, 0 )
 attachedLevel = ExtResource( 4 )

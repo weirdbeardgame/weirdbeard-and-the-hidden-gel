@@ -6,7 +6,7 @@ public enum Direction { N, S, E, W };
 
 public class LevelSpaces : Node2D
 {
-    [Export] LevelCommon attachedLevel;
+    [Export] PackedScene attachedLevel;
 
     [Export] private Dictionary<Direction, NodePath> attachedPaths;
 
@@ -33,7 +33,7 @@ public class LevelSpaces : Node2D
 
     public void EnterLevel()
     {
-        attachedLevel.EnterLevel(player);
+        SceneManager.changeScene(attachedLevel, player);
     }
 
     public bool CanMove(Direction dir)

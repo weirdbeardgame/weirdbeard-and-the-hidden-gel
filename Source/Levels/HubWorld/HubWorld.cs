@@ -63,19 +63,19 @@ public class HubWorld : LevelCommon
 
         if (currentSpace.CanMove(dir))
         {
-
             path = (Path2D)currentSpace.GetNode(currentSpace.AttachedPaths[dir]);
             interpolate = (Tween)path.GetNode("Tween");
             follow2D = (PathFollow2D)path.GetNode("PathFollow2D");
+
             RemoveChild(player);
             follow2D.AddChild(player);
             interpolate.InterpolateProperty(follow2D, "UnitOffset", 0.0f, 1.0f, 3.0f, Tween.TransitionType.Back, Tween.EaseType.InOut);
             interpolate.Start();
-            // Add player child of next space
+
+            follow2D.RemoveChild(player);
+            AddChild(player);
         }
     }
-
-
 
     public override void _PhysicsProcess(float delta)
     {
@@ -85,5 +85,7 @@ public class HubWorld : LevelCommon
     public override void ExitLevel()
     {
         base.ExitLevel();
+        RemoveChild(player);
+        player = null;
     }
 }

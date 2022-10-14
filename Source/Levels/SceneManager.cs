@@ -65,7 +65,7 @@ public class SceneManager : Node
     {
         if (currentScene is LevelCommon)
         {
-            currentScene = (Level)GetTree().CurrentScene;
+            currentScene = (LevelCommon)GetTree().CurrentScene;
         }
 
         if (levels.ContainsValue(scene))
