@@ -66,13 +66,16 @@ public class HubWorld : LevelCommon
             path = (Path2D)currentSpace.GetNode(currentSpace.AttachedPaths[dir]);
             interpolate = (Tween)path.GetNode("Tween");
             follow2D = (PathFollow2D)path.GetNode("PathFollow2D");
+            GD.Print("Move");
 
             RemoveChild(player);
             follow2D.AddChild(player);
-            interpolate.InterpolateProperty(follow2D, "UnitOffset", 0.0f, 1.0f, 3.0f, Tween.TransitionType.Back, Tween.EaseType.InOut);
+            interpolate.InterpolateProperty(follow2D, "unit_offset", 0.0f, 1.0f, 3.0f, Tween.TransitionType.Back, Tween.EaseType.InOut);
             interpolate.Start();
 
-            follow2D.RemoveChild(player);
+            
+
+            //follow2D.RemoveChild(player);
             AddChild(player);
         }
     }
