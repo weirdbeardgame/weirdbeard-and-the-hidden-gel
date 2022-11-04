@@ -39,9 +39,9 @@ show_behind_parent = true
 position = Vector2( 40, 8 )
 texture = ExtResource( 2 )
 
-[node name="GameLogo" type="Sprite" parent="Camera2D"]
-position = Vector2( -8, -120 )
-scale = Vector2( 0.263291, 0.233971 )
+[node name="GameLogo02" type="Sprite" parent="."]
+position = Vector2( 455, 113 )
+scale = Vector2( 0.203255, 0.206944 )
 texture = ExtResource( 3 )
 
 [connection signal="pressed" from="Camera2D/NewGame" to="." method="NewGame"]

@@ -137,9 +137,9 @@ public class Player : Actor
 
     public override void _PhysicsProcess(float delta)
     {
-        if (equipped.CurrentWeapon != null)
+        if (Input.IsActionJustPressed("Attack"))
         {
-            if (Input.IsActionJustPressed("Attack"))
+            if (equipped.CurrentWeapon != null)
             {
                 stateMachine.UpdateState("ATTACK");
             }

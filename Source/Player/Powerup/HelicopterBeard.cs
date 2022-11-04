@@ -3,7 +3,6 @@ using System;
 
 public class HelicopterBeard : PowerUp
 {
-
     [Export] float gravityPercent;
     public override void _Ready()
     {
@@ -13,6 +12,7 @@ public class HelicopterBeard : PowerUp
     // Play animation. Set physics
     public override void Start()
     {
+        player.player.Play("Heli_Jump");
         player.gravity = (player.gravity * gravityPercent);
     }
 
@@ -33,6 +33,11 @@ public class HelicopterBeard : PowerUp
         return inputVelocity;
     }
 
+    public override void PlayAnimation()
+    {
+        player.player.Play("Heli_Jump");
+    }
+
     public override void FixedUpdate(float delta)
     {
         player.Velocity = GetInput();
@@ -43,6 +48,11 @@ public class HelicopterBeard : PowerUp
         {
             Stop();
         }
-
     }
+
+    public override void Stop()
+    {
+        player.player.Play("Heli_Fall");
+    }
+
 }

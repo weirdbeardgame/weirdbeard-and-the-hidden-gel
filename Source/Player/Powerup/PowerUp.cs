@@ -15,16 +15,24 @@ public class PowerUp : State
 
     bool isActivated;
 
+    AnimationPlayer playerAnimator;
+
     public void Equip(object body)
     {
         GD.Print("Equip");
         if (body is Player)
         {
             player = (Player)body;
+            playerAnimator = player.player;
             player.EquipPowerup(this);
             stateMachine = (StateMachine)player.GetNode("StateMachine");
             stateMachine.AddState(this, stateName);
         }
+    }
+
+    public virtual void PlayAnimation()
+    {
+
     }
 
     public void Activate()
@@ -32,6 +40,7 @@ public class PowerUp : State
         if (!isActivated)
         {
             stateMachine.UpdateState(stateName);
+            playerAnimator.Play(stateName);
             isActivated = true;
         }
     }
