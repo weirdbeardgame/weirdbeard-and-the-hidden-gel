@@ -33,7 +33,7 @@ public class NPC : Node
             {
                 GD.Print("Dialogue Colision");
                 isOpen = true;
-                Owner.GetNode<InterfaceManager>("InterfaceManager").Open((Dialogue)dialogue[0].Instance());
+                Owner.GetNode<InterfaceManager>("InterfaceManager").Open(dialogue);
             }
         }
     }

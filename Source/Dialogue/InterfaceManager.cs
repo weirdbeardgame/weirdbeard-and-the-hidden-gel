@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class InterfaceManager : CanvasLayer
 {
@@ -12,7 +13,7 @@ public class InterfaceManager : CanvasLayer
         manager = GetNode("DialogueManager") as DialogueManager;
     }
 
-    public void Open(Dialogue d)
+    public void Open(List<PackedScene> d)
     {
          manager.Open(d);
     }

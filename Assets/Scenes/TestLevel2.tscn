@@ -674,7 +674,4 @@ volume_db = -20.0
 
 [node name="InterfaceManager" parent="." instance=ExtResource( 34 )]
 
-[node name="DialogueBox" parent="InterfaceManager/DialogueManager" index="0"]
-visible = false
-
 [editable path="InterfaceManager"]
