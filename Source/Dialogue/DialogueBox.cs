@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class DialogueBox : Node
+public class DialogueBox : Popup
 {
     Dialogue dialogue;
 
@@ -46,6 +46,15 @@ public class DialogueBox : Node
         // Play closing animation
         RemoveChild(this);
         QueueFree();
+    }
+
+    public override void _Process(float delta)
+    {
+        if (Input.IsActionJustPressed("Submit"))
+        {
+            dialogueRender.VisibleCharacters = dialogueRender.Text.Length;
+            typing.Stop();
+        }
     }
 
     public void OnTimeout()

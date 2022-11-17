@@ -12,10 +12,6 @@ public class NPC : Node
     [Export]
     List<PackedScene> dialogue;
 
-    [Export] PackedScene box;
-
-    DialogueBox boxInstance;
-
     bool isPlayerCollide;
 
     bool isOpen;
@@ -36,13 +32,8 @@ public class NPC : Node
             if (!isOpen)
             {
                 GD.Print("Dialogue Colision");
-                if (box != null)
-                {
-                    boxInstance = (DialogueBox)box.Instance();
-                }
-                SceneManager.CurrentScene.AddChild(boxInstance);
-                boxInstance.Open((Dialogue)dialogue[0].Instance());
                 isOpen = true;
+                Owner.GetNode<InterfaceManager>("InterfaceManager").Open((Dialogue)dialogue[0].Instance());
             }
         }
     }

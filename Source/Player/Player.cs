@@ -23,7 +23,7 @@ public class Player : Actor
         bufferedJumpTimer = (Timer)GetNode("BufferedJump");
         equipped = (WeaponSlot)GetNode("WeaponSlot");
         coyoteTimer = (Timer)GetNode("CoyoteTimer");
-        weirdBeard = (Sprite)GetNode("WeirdBeard");
+        weirdBeard = (Sprite)GetNode("CenterContainer/WeirdBeard");
         SceneManager.startNewGame += NewGame;
 
         defaultGravity = gravity;

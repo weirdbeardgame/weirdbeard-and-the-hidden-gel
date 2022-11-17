@@ -12,7 +12,7 @@ public class HelicopterBeard : PowerUp
     // Play animation. Set physics
     public override void Start()
     {
-        player.player.Play("Heli_Jump");
+        PlayAnimation();
         player.gravity = (player.gravity * gravityPercent);
     }
 
@@ -36,6 +36,7 @@ public class HelicopterBeard : PowerUp
     public override void PlayAnimation()
     {
         player.player.Play("Heli_Jump");
+        player.player.Play(stateName);
     }
 
     public override void FixedUpdate(float delta)

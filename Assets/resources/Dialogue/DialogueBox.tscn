@@ -1,40 +1,46 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/resources/Font/OpenSans-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Source/Dialogue/DialogueBox.cs" type="Script" id=2]
+[ext_resource path="res://Assets/DialogueBoxTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Source/Dialogue/InterfaceManager.cs" type="Script" id=3]
+[ext_resource path="res://Source/Dialogue/DialogueManager.cs" type="Script" id=4]
 
-[sub_resource type="DynamicFont" id=1]
-size = 12
-font_data = ExtResource( 1 )
+[node name="InterfaceManager" type="CanvasLayer"]
+script = ExtResource( 3 )
 
-[node name="DialogueBoxLayer" type="CanvasLayer"]
-follow_viewport_enable = true
-script = ExtResource( 2 )
-
-[node name="Box" type="Panel" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="DialogueManager" type="Control" parent="."]
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1085.0
-margin_top = -10.0
-margin_right = -567.0
-margin_bottom = 144.0
+script = ExtResource( 4 )
 
-[node name="TextRender" type="Label" parent="Box"]
-margin_left = 96.0
-margin_top = 1.0
-margin_right = 517.0
-margin_bottom = 153.0
-size_flags_horizontal = 3
-size_flags_vertical = 6
-custom_fonts/font = SubResource( 1 )
-text = "TEXT"
+[node name="DialogueBox" type="Popup" parent="DialogueManager"]
+visible = true
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -87.0
 
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_left = -769.0
-margin_top = -1.0
-margin_right = -663.0
-margin_bottom = 85.0
+[node name="ColorRect" type="ColorRect" parent="DialogueManager/DialogueBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.105882, 0.0862745, 0.0862745, 1 )
 
-[node name="Typing" type="Timer" parent="."]
+[node name="Label" type="Label" parent="DialogueManager/DialogueBox"]
+margin_right = 640.0
+margin_bottom = 14.0
+theme = ExtResource( 1 )
+text = "Test NPC NAME"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogueManager/DialogueBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 20.0
+margin_bottom = -22.0
+
+[node name="Typing" type="Timer" parent="DialogueManager/DialogueBox"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -24.0
+alignment = 1

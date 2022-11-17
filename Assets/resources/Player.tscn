@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Idle_01.png" type="Texture" id=1]
 [ext_resource path="res://Source/ActorStates/Walk.cs" type="Script" id=2]
@@ -33,14 +33,25 @@
 [ext_resource path="res://Source/ActorStates/Attack.cs" type="Script" id=31]
 [ext_resource path="res://Source/CoinPurse.cs" type="Script" id=32]
 [ext_resource path="res://Source/ActorStates/Air.cs" type="Script" id=33]
+[ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_04.png" type="Texture" id=34]
+[ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_05.png" type="Texture" id=35]
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_08.png" type="Texture" id=36]
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_14.png" type="Texture" id=37]
+[ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_06.png" type="Texture" id=38]
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_12.png" type="Texture" id=39]
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_07.png" type="Texture" id=40]
+[ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_03.png" type="Texture" id=41]
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_10.png" type="Texture" id=42]
+[ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_01.png" type="Texture" id=43]
+[ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_02.png" type="Texture" id=44]
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_11.png" type="Texture" id=45]
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_13.png" type="Texture" id=46]
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_09.png" type="Texture" id=47]
+[ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_19.png" type="Texture" id=48]
+[ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_17.png" type="Texture" id=49]
+[ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_15.png" type="Texture" id=50]
+[ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_16.png" type="Texture" id=51]
+[ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/x_18.png" type="Texture" id=52]
 
 [sub_resource type="CapsuleShape2D" id=7]
 
@@ -48,7 +59,7 @@
 resource_name = "Fall"
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("WeirdBeard:texture")
+tracks/0/path = NodePath("CenterContainer/WeirdBeard:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -65,7 +76,7 @@ resource_name = "HELICOPTER"
 length = 0.7
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("WeirdBeard:texture")
+tracks/0/path = NodePath("CenterContainer/WeirdBeard:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -77,19 +88,36 @@ tracks/0/keys = {
 "values": [ ExtResource( 40 ), ExtResource( 36 ), ExtResource( 47 ), ExtResource( 42 ), ExtResource( 45 ), ExtResource( 39 ), ExtResource( 46 ), ExtResource( 37 ) ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "Heli_Jump"
+[sub_resource type="Animation" id=10]
+resource_name = "Heli_Fall"
+length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("WeirdBeard:texture")
+tracks/0/path = NodePath("CenterContainer/WeirdBeard:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ), ExtResource( 10 ) ]
+"values": [ ExtResource( 50 ), ExtResource( 51 ), ExtResource( 49 ), ExtResource( 52 ), ExtResource( 48 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Heli_Jump"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/WeirdBeard:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 41 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 38 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -97,7 +125,7 @@ resource_name = "Idle"
 length = 0.5
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("WeirdBeard:texture")
+tracks/0/path = NodePath("CenterContainer/WeirdBeard:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -113,7 +141,7 @@ tracks/0/keys = {
 resource_name = "Jump"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("WeirdBeard:texture")
+tracks/0/path = NodePath("CenterContainer/WeirdBeard:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -128,7 +156,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("WeirdBeard:texture")
+tracks/0/path = NodePath("CenterContainer/WeirdBeard:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -145,7 +173,7 @@ resource_name = "Walk"
 length = 0.7
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("WeirdBeard:texture")
+tracks/0/path = NodePath("CenterContainer/WeirdBeard:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -156,6 +184,46 @@ tracks/0/keys = {
 "update": 0,
 "values": [ ExtResource( 10 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 15 ), ExtResource( 9 ), ExtResource( 14 ), ExtResource( 13 ) ]
 }
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "Heli_Fall"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "Heli_Jump"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "Jump"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/Heli_Fall/node = SubResource( 13 )
+states/Heli_Fall/position = Vector2( 789, 191 )
+states/Heli_Jump/node = SubResource( 14 )
+states/Heli_Jump/position = Vector2( 422, 243 )
+states/Idle/node = SubResource( 15 )
+states/Idle/position = Vector2( 799, 39 )
+states/Jump/node = SubResource( 16 )
+states/Jump/position = Vector2( 627, 129 )
+states/Walk/node = SubResource( 17 )
+states/Walk/position = Vector2( 990, 129 )
+transitions = [ "Idle", "Walk", SubResource( 18 ), "Idle", "Jump", SubResource( 19 ), "Jump", "Heli_Jump", SubResource( 20 ), "Heli_Jump", "Heli_Fall", SubResource( 21 ), "Heli_Fall", "Idle", SubResource( 22 ) ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 17, 0 )
@@ -174,10 +242,6 @@ jumpPeak = 0.4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.5, 3 )
 shape = SubResource( 7 )
-
-[node name="WeirdBeard" type="Sprite" parent="."]
-position = Vector2( 0, -3 )
-texture = ExtResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -216,6 +280,7 @@ script = ExtResource( 7 )
 autoplay = "Idle"
 anims/Fall = SubResource( 6 )
 anims/HELICOPTER = SubResource( 8 )
+anims/Heli_Fall = SubResource( 10 )
 anims/Heli_Jump = SubResource( 9 )
 anims/Idle = SubResource( 2 )
 anims/Jump = SubResource( 5 )
@@ -247,3 +312,19 @@ script = ExtResource( 33 )
 [node name="BufferedJump" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_left = -20.0
+margin_top = -27.0
+margin_right = 20.0
+margin_bottom = 28.0
+input_pass_on_modal_close_click = false
+
+[node name="WeirdBeard" type="Sprite" parent="CenterContainer"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 11 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 12 )
