@@ -19,18 +19,19 @@ position = Vector2( -135, -88 )
 [node name="Space" parent="." instance=ExtResource( 3 )]
 attachedLevel = ExtResource( 2 )
 attachedPaths = {
-2: NodePath("../Path2D")
+2: NodePath("../0")
 }
 
 [node name="Space2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 280, 0 )
 attachedLevel = ExtResource( 4 )
+attachedPaths = {
+3: NodePath("../0")
+}
 
-[node name="Path2D" parent="." instance=ExtResource( 5 )]
+[node name="0" parent="." instance=ExtResource( 5 )]
 position = Vector2( 0, -2 )
 levelAttached = {
 2: NodePath("../Space2"),
 3: NodePath("../Space")
 }
-
-[editable path="Path2D"]
