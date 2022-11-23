@@ -4,12 +4,13 @@
 [ext_resource path="res://Assets/Scenes/TestLevel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/resources/Levels/LevelSpace.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Scenes/TestLevel2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/resources/Levels/LevelPath.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/resources/Levels/Level Path.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/resources/Player.tscn" type="PackedScene" id=6]
 
 [node name="Level" type="Node"]
 script = ExtResource( 1 )
 levelName = "TestHub"
+activeEnemies = [  ]
 containedLevels = [ NodePath("Space"), NodePath("Space2") ]
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
@@ -18,12 +19,18 @@ position = Vector2( -135, -88 )
 [node name="Space" parent="." instance=ExtResource( 3 )]
 attachedLevel = ExtResource( 2 )
 attachedPaths = {
-2: NodePath("Path1")
+2: NodePath("../Path2D")
 }
-
-[node name="Path1" parent="Space" instance=ExtResource( 5 )]
-position = Vector2( 208, -8 )
 
 [node name="Space2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 280, 0 )
 attachedLevel = ExtResource( 4 )
+
+[node name="Path2D" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, -2 )
+levelAttached = {
+2: NodePath("../Space2"),
+3: NodePath("../Space")
+}
+
+[editable path="Path2D"]

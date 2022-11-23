@@ -10,7 +10,7 @@ public class LevelSpaces : Node2D
 
     [Export] private Dictionary<Direction, NodePath> attachedPaths;
 
-    Action playerTouched;
+    public Player player;
 
     public Dictionary<Direction, NodePath> AttachedPaths
     {
@@ -20,19 +20,9 @@ public class LevelSpaces : Node2D
         }
     }
 
-    Player player;
-
-    public void Enter(object body)
-    {
-        //playerTouched.Invoke();
-        if (body is Player)
-        {
-            player = (Player)body;
-        }
-    }
-
     public void EnterLevel()
     {
+        RemoveChild(player);
         SceneManager.changeScene(attachedLevel, player);
     }
 

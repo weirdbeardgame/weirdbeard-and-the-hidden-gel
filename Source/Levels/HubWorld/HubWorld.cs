@@ -6,9 +6,8 @@ public class HubWorld : LevelCommon
 {
     [Export] List<NodePath> containedLevels;
 
-    Path2D path;
+    Paths path;
     PathFollow2D follow2D;
-    Tween interpolate;
 
     LevelSpaces currentSpace;
 
@@ -21,7 +20,8 @@ public class HubWorld : LevelCommon
             player.gravity = 0;
             currentSpace = (LevelSpaces)GetNode(containedLevels[0]);
             player.Position = currentSpace.GlobalPosition;
-            AddChild(player);
+            currentSpace.AddChild(player);
+            currentSpace.player = player;
         }
     }
 
@@ -63,26 +63,25 @@ public class HubWorld : LevelCommon
 
         if (currentSpace.CanMove(dir))
         {
-            path = (Path2D)currentSpace.GetNode(currentSpace.AttachedPaths[dir]);
-            interpolate = (Tween)path.GetNode("Tween");
-            follow2D = (PathFollow2D)path.GetNode("PathFollow2D");
-            GD.Print("Move");
+            path = (Paths)currentSpace.GetNode(currentSpace.AttachedPaths[dir]);
+            currentSpace.RemoveChild(player);
+            path.Start(player, dir);
+        }
+    }
 
-            RemoveChild(player);
-            follow2D.AddChild(player);
-            interpolate.InterpolateProperty(follow2D, "unit_offset", 0.0f, 1.0f, 3.0f, Tween.TransitionType.Back, Tween.EaseType.InOut);
-            interpolate.Start();
-
-            
-
-            //follow2D.RemoveChild(player);
-            AddChild(player);
+    public void ChangeSpace(LevelSpaces space)
+    {
+        if (space != null)
+        {
+            currentSpace = space;
         }
     }
 
     public override void _PhysicsProcess(float delta)
     {
         GetInput();
+        if (path != null)
+        ChangeSpace(path.space);
     }
 
     public override void ExitLevel()
