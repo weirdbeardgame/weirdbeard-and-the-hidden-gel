@@ -10,7 +10,7 @@ public class LevelSpaces : Node2D
 
     [Export] private Dictionary<Direction, NodePath> attachedPaths;
 
-    public Player player;
+    public HubActor actor;
 
     public Dictionary<Direction, NodePath> AttachedPaths
     {
@@ -22,8 +22,9 @@ public class LevelSpaces : Node2D
 
     public void EnterLevel()
     {
-        RemoveChild(player);
-        SceneManager.changeScene(attachedLevel, player);
+        LevelCommon scene = (LevelCommon)attachedLevel.Instance();
+        actor.Deactivate();
+        SceneManager.changeScene(scene.levelName, actor.Player);
     }
 
     public bool CanMove(Direction dir)

@@ -18,8 +18,6 @@ public class SceneManager : Node
 
     Node nodeParent;
 
-
-
     public static LevelCommon CurrentScene
     {
         get
@@ -29,7 +27,7 @@ public class SceneManager : Node
     }
 
     public static Action startNewGame;
-    public static Action<PackedScene, Player> changeScene;
+    public static Action<string, Player> changeScene;
     public static Action<PackedScene, Player, Exit> changeSceneWithExit;
 
     // Called when the node enters the scene tree for the first time.
@@ -61,16 +59,16 @@ public class SceneManager : Node
 
     // Play level changing animation.
     // Load new scene and set it as current
-    public void SwitchLevel(PackedScene scene, Player player)
+    public void SwitchLevel(string scene, Player player)
     {
         if (currentScene is LevelCommon)
         {
             currentScene = (LevelCommon)GetTree().CurrentScene;
         }
 
-        if (levels.ContainsValue(scene))
+        if (levels.ContainsKey(scene))
         {
-            LevelCommon sceneToLoad = (LevelCommon)scene.Instance();
+            LevelCommon sceneToLoad = (LevelCommon)levels[scene].Instance();
             CallDeferred(nameof(CallDefferedSwitch), sceneToLoad, player);
         }
     }
@@ -116,7 +114,8 @@ public class SceneManager : Node
 
     void NewGame()
     {
-        SwitchLevel(newGameScene, null);
+        LevelCommon scene = (LevelCommon)newGameScene.Instance();
+        SwitchLevel(scene.levelName, null);
         startNewGame -= NewGame;
     }
 

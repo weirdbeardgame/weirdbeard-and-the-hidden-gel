@@ -40,19 +40,35 @@ public class StateMachine : Node
         }
     }
 
-    public void UpdateState(string newState)
+    public void InitState(string defaultState)
     {
-        oldState = state;
-        state = (State)GetNode(Nodes[newState]);
-        if (oldState != null)
-        {
-            oldState.Stop();
-        }
+        state = (State)GetNode(Nodes[defaultState]);
         if (stateSet != null)
         {
-            stateSet.Text = newState;
+            stateSet.Text = defaultState;
         }
         state.Start();
+    }
+
+    public void UpdateState(string newState)
+    {
+        if (state != null)
+        {
+            if (state.stateName != newState)
+            {
+                oldState = state;
+                state = (State)GetNode(Nodes[newState]);
+                if (oldState != null)
+                {
+                    oldState.Stop();
+                }
+                if (stateSet != null)
+                {
+                    stateSet.Text = newState;
+                }
+                state.Start();
+            }
+        }
     }
 
     public override void _PhysicsProcess(float delta)

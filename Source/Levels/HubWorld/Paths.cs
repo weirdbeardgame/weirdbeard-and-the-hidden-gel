@@ -8,32 +8,32 @@ public class Paths : Node
     Tween interpolate;
     PathFollow2D follow2D;
 
-    Player player;
+    HubActor actor;
 
     public LevelSpaces space;
 
     Direction direction;
 
-    public void Start(Player p, Direction dir)
+    public void Start(HubActor p, Direction dir)
     {
         interpolate = (Tween)GetNode("Tween");
         follow2D = (PathFollow2D)GetNode("PathFollow2D");
         GD.Print("Move");
 
-        player = p;
+        actor = p;
         direction = dir;
 
-        follow2D.AddChild(player);
+        follow2D.AddChild(p);
         interpolate.InterpolateProperty(follow2D, "unit_offset", 0.0f, 1.0f, 3.0f, Tween.TransitionType.Back, Tween.EaseType.InOut);
         interpolate.Start();
     }
 
     public void TweenComplete()
     {
-        follow2D.RemoveChild(player);
+        follow2D.RemoveChild(actor);
         space = GetNode<LevelSpaces>(levelAttached[direction]);
-        space.AddChild(player);
-        space.player = player;
+        space.AddChild(actor);
+        space.actor = actor;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

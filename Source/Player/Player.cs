@@ -13,6 +13,8 @@ public class Player : Actor
     public AnimationPlayer player;
     public Vector2 direction = Vector2.Right;
 
+    Camera2D camera;
+
     float defaultGravity;
 
     // Called when the node enters the scene tree for the first time.
@@ -25,8 +27,11 @@ public class Player : Actor
         coyoteTimer = (Timer)GetNode("CoyoteTimer");
         weirdBeard = (Sprite)GetNode("CenterContainer/WeirdBeard");
         SceneManager.startNewGame += NewGame;
-
         defaultGravity = gravity;
+
+        camera = (Camera2D)GetNode("Camera2D");
+
+        stateMachine.InitState("IDLE");
 
         if (projectileMotionJump)
         {
@@ -68,7 +73,10 @@ public class Player : Actor
 
     public void SetState(string state)
     {
-        stateMachine.UpdateState(state);
+        if (stateMachine != null)
+        {
+            stateMachine.UpdateState(state);
+        }
     }
 
     public void StartCoyoteTimer()
@@ -85,6 +93,16 @@ public class Player : Actor
         {
             bufferedJumpTimer.Start();
         }
+    }
+
+    public void ActivateCamera()
+    {
+        camera.Current = true;
+    }
+
+    public void DeactivateCamera()
+    {
+        camera.Current = false;
     }
 
     public void Die()

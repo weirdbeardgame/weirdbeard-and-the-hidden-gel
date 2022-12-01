@@ -22,9 +22,10 @@ public class Exit : Node2D
 
     public void OnExit(object body)
     {
+        LevelCommon scene = (LevelCommon)toTransportTo.Instance();
         if (body is Player)
         {
-            SceneManager.changeScene(toTransportTo, (Player)currentLevel.GetNode("Player"));
+            SceneManager.changeScene(scene.levelName, (Player)currentLevel.GetNode("Player"));
         }
     }
 }

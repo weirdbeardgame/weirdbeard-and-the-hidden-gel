@@ -25,6 +25,25 @@ public class LevelCommon : Node
 
     public LevelTypes levelType;
 
+    bool unlocked;
+    bool complete;
+
+    public bool isComplete
+    {
+        get
+        {
+            return complete;
+        }
+    }
+
+    public bool isUnlocked
+    {
+        get
+        {
+            return unlocked;
+        }
+    }
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -33,17 +52,22 @@ public class LevelCommon : Node
 
     public virtual void EnterLevel(Player p)
     {
-
-        if (p != null)
+        if ((player = (Player)GetNode("Player")) != null)
         {
-            player = p;
+            GD.Print("Player Found");
         }
 
         else
         {
-            player = (Player)GetNode("Player");
+            player = p;
         }
+    }
 
+    public void CompleteLevel()
+    {
+        complete = true;
+        player.ResetState();
+        ExitLevel();
     }
 
     public virtual void ExitLevel()

@@ -49,6 +49,8 @@ public class Level : LevelCommon
         tileMap = (TileMap)GetNode("TileMap");
         camera = (Camera2D)player.GetNode("Camera2D");
 
+        camera.Current = true;
+
         mapCellsize = tileMap.CellSize;
         mapLimits = tileMap.GetUsedRect();
 

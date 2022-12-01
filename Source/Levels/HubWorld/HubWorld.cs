@@ -8,33 +8,38 @@ public class HubWorld : LevelCommon
 
     Paths path;
     PathFollow2D follow2D;
-
     LevelSpaces currentSpace;
+    AudioStreamPlayer backgroundPlayer;
+
+    HubActor actor;
 
     public override void EnterLevel(Player p)
     {
+        activeEnemies = new List<Enemy>();
+        backgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
+
+        actor = (HubActor)GetNode("Actor");
+
         base.EnterLevel(p);
         if (player != null)
         {
             RemoveChild(player);
-            player.gravity = 0;
+            actor.Activate(player);
             currentSpace = (LevelSpaces)GetNode(containedLevels[0]);
-            player.Position = currentSpace.GlobalPosition;
-            currentSpace.AddChild(player);
-            currentSpace.player = player;
+            currentSpace.AddChild(actor);
+            currentSpace.actor = actor;
         }
     }
 
     public override void ResetLevel()
     {
         currentSpace = (LevelSpaces)GetNode(containedLevels[0]);
-        player.Position = currentSpace.Position;
-        player.Rotation = currentSpace.Rotation;
+        actor.Position = currentSpace.Position;
+        actor.Rotation = currentSpace.Rotation;
     }
 
     void GetInput()
     {
-
         if (Input.IsActionJustPressed("Submit"))
         {
             currentSpace.EnterLevel();
@@ -63,9 +68,10 @@ public class HubWorld : LevelCommon
 
         if (currentSpace.CanMove(dir))
         {
+            RemoveChild(actor);
             path = (Paths)currentSpace.GetNode(currentSpace.AttachedPaths[dir]);
-            currentSpace.RemoveChild(player);
-            path.Start(player, dir);
+            currentSpace.RemoveChild(actor);
+            path.Start(actor, dir);
         }
     }
 
@@ -81,13 +87,14 @@ public class HubWorld : LevelCommon
     {
         GetInput();
         if (path != null)
-        ChangeSpace(path.space);
+        {
+            ChangeSpace(path.space);
+        }
     }
 
     public override void ExitLevel()
     {
         base.ExitLevel();
         RemoveChild(player);
-        player = null;
     }
 }

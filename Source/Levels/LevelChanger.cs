@@ -13,9 +13,10 @@ public class LevelChanger : Area2D
 
     public void Teleport(object body)
     {
+        LevelCommon scene = (LevelCommon)teleportTo.Instance();
         if (body is Player)
         {
-            SceneManager.changeScene(teleportTo, (Player)body);
+            SceneManager.changeScene(scene.levelName, (Player)body);
         }
     }
 }

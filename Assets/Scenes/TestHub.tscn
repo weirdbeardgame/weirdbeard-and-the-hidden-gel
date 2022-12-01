@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Source/Levels/HubWorld/HubWorld.cs" type="Script" id=1]
 [ext_resource path="res://Assets/Scenes/TestLevel.tscn" type="PackedScene" id=2]
@@ -6,15 +6,14 @@
 [ext_resource path="res://Assets/Scenes/TestLevel2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/resources/Levels/Level Path.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/resources/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/resources/Levels/Actor.tscn" type="PackedScene" id=7]
 
 [node name="Level" type="Node"]
 script = ExtResource( 1 )
 levelName = "TestHub"
 activeEnemies = [  ]
+exits = [  ]
 containedLevels = [ NodePath("Space"), NodePath("Space2") ]
-
-[node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( -135, -88 )
 
 [node name="Space" parent="." instance=ExtResource( 3 )]
 attachedLevel = ExtResource( 2 )
@@ -35,3 +34,11 @@ levelAttached = {
 2: NodePath("../Space2"),
 3: NodePath("../Space")
 }
+
+[node name="BackgroundAudio" type="AudioStreamPlayer" parent="."]
+
+[node name="Actor" parent="." instance=ExtResource( 7 )]
+position = Vector2( -3, -2 )
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( -140, -142 )
