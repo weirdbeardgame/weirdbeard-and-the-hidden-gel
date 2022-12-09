@@ -3,7 +3,7 @@ using System;
 
 public class WeaponSlot : Node
 {
-    WeaponCommon slottedWeapon;
+    PackedScene slottedWeapon;
 
     Sprite weaponSlot;
 
@@ -11,7 +11,7 @@ public class WeaponSlot : Node
 
     Player player;
 
-    public WeaponCommon CurrentWeapon
+    public PackedScene CurrentWeapon
     {
         get
         {
@@ -28,19 +28,19 @@ public class WeaponSlot : Node
 
     public void Equip(PackedScene toEquip, Sprite weaponSprite)
     {
-        if (slottedWeapon != (WeaponCommon)toEquip.Instance())
+        if (slottedWeapon != toEquip)
         {
-            slottedWeapon = (WeaponCommon)toEquip.Instance();
-            AddChild(slottedWeapon);
+            slottedWeapon = toEquip;
         }
     }
 
+    // Weapons like Blunder bluss or Flintlock he'll actually be holding
     public void AttachToPlayer(PackedScene toEquip, Sprite weaponSprite)
     {
-        if (slottedWeapon != (WeaponCommon)toEquip.Instance())
+        if (slottedWeapon != toEquip)
         {
-            slottedWeapon = (WeaponCommon)toEquip.Instance();
-            player.GetNode("WeapSpawn").AddChild(slottedWeapon);
+            slottedWeapon = toEquip;
+            //player.GetNode("WeapSpawn").AddChild(slottedWeapon.Instance());
         }
     }
 }

@@ -120,15 +120,6 @@ public class Player : Actor
         return (playerLives <= 0);
     }
 
-    public void EquipWeapon(WeaponCommon weapon)
-    {
-        if (HasNode(equipped.CurrentWeapon.GetPath()))
-        {
-            RemoveChild(equipped.CurrentWeapon);
-        }
-        GetNode("WeapSpawn").AddChild(weapon);
-    }
-
     public void EquipPowerup(PowerUp power)
     {
         if (currentPowerup != power)
@@ -159,7 +150,8 @@ public class Player : Actor
         {
             if (equipped.CurrentWeapon != null)
             {
-                stateMachine.UpdateState("ATTACK");
+                WeaponCommon w = (WeaponCommon)equipped.CurrentWeapon.Instance();
+                w.Attack(direction.Sign());
             }
         }
 

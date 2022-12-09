@@ -5,6 +5,8 @@ public class Sword : WeaponCommon
 {
     Node2D spawnPoint;
 
+    Sword toSpawn;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -20,6 +22,7 @@ public class Sword : WeaponCommon
         spawnPoint = (Node2D)player.GetNode("WeapSpawn");
         Position = spawnPoint.GlobalPosition;
         Rotation = spawnPoint.GlobalRotation;
+
         SceneManager.CurrentScene.AddChild(this);
 
         velocity.x = speed * direction.x;
