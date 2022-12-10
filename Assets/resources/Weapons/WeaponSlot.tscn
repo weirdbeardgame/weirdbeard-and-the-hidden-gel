@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Source/Weapon/WeaponSlot.cs" type="Script" id=1]
+[ext_resource path="res://Source/Weapon/Weapon.cs" type="Script" id=1]
 [ext_resource path="res://Assets/resources/WeaponIconBox.png" type="Texture" id=2]
 
 [node name="WeaponSlot" type="Sprite"]

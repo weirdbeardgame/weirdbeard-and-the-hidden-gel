@@ -9,7 +9,7 @@ public class Player : Actor
 
     public Sprite weirdBeard;
     public int playerLives = 3;
-    public WeaponSlot equipped;
+    public Weapon equipped;
     public AnimationPlayer player;
     public Vector2 direction = Vector2.Right;
 
@@ -20,12 +20,16 @@ public class Player : Actor
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        weirdBeard = (Sprite)GetNode("CenterContainer/WeirdBeard");
         stateMachine = (StateMachine)GetNode("StateMachine");
         player = (AnimationPlayer)GetNode("AnimationPlayer");
         bufferedJumpTimer = (Timer)GetNode("BufferedJump");
-        equipped = (WeaponSlot)GetNode("WeaponSlot");
+        equipped = (Weapon)GetNode("WeaponSlot");
+        if (equipped == null)
+        {
+            GD.PrintErr("Weapon NULL");
+        }
         coyoteTimer = (Timer)GetNode("CoyoteTimer");
-        weirdBeard = (Sprite)GetNode("CenterContainer/WeirdBeard");
         SceneManager.startNewGame += NewGame;
         defaultGravity = gravity;
 
@@ -148,11 +152,7 @@ public class Player : Actor
     {
         if (Input.IsActionJustPressed("Attack"))
         {
-            if (equipped.CurrentWeapon != null)
-            {
-                WeaponCommon w = (WeaponCommon)equipped.CurrentWeapon.Instance();
-                w.Attack(direction.Sign());
-            }
+            equipped.Attack();
         }
 
         wasOnFloor = IsOnFloor();

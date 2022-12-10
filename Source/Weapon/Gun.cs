@@ -3,7 +3,6 @@ using System;
 
 public class Gun : WeaponCommon
 {
-    [Export] PackedScene bulletSpawn;
     Node2D bulletSpawner;
 
     KinematicBody2D spawnedAmmo;

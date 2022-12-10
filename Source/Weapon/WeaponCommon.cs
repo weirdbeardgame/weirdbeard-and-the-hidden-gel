@@ -9,6 +9,7 @@ public class WeaponCommon : KinematicBody2D
     [Export] public float speed;
     [Export] public float fireRate;
     [Export] public string weaponName;
+    [Export] public WeaponType weaponType;
 
     public bool canThrowWeapon;
 
@@ -17,6 +18,8 @@ public class WeaponCommon : KinematicBody2D
     protected Vector2 velocity;
     protected Vector2 direction;
     protected AnimationPlayer animationPlayer;
+
+    [Export] protected PackedScene bulletSpawn;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
