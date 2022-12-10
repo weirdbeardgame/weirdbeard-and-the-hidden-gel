@@ -6,7 +6,7 @@ public class Weapon : Node
     // Packed scene to hold a throwable.
     PackedScene slottedWeapon;
 
-    WeaponCommon gun;
+    WeaponCommon active;
 
     Sprite weaponBox;
     Sprite weaponIcon;
@@ -41,30 +41,25 @@ public class Weapon : Node
         // ToDo - Added equipped weapon into active box
         if (w != current)
         {
-            switch (w.weaponType)
-            {
-                case WeaponType.THROW:
-                    slottedWeapon = toEquip;
-                    break;
-
-                case WeaponType.SHOOT:
-                    slottedWeapon = toEquip;
-                    gun = w;
-                    break;
-            }
+            slottedWeapon = toEquip;
+            active = w;
+            equipped = true;
         }
     }
-
 
     public void Attack()
     {
         if (equipped)
         {
-            WeaponCommon current = (WeaponCommon)slottedWeapon.Instance();
-            switch (current.weaponType)
+            switch (active.weaponType)
             {
                 case WeaponType.THROW:
+                    WeaponCommon current = (WeaponCommon)slottedWeapon.Instance();
                     current.Attack(player.direction.Sign());
+                    break;
+
+                case WeaponType.SHOOT:
+                    active.Attack(player.direction.Sign());
                     break;
             }
         }

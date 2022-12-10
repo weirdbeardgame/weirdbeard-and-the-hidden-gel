@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class InterfaceManager : CanvasLayer
 {
-
     public DialogueManager manager;
 
     // Called when the node enters the scene tree for the first time.
@@ -15,12 +14,12 @@ public class InterfaceManager : CanvasLayer
 
     public void Open(List<PackedScene> d)
     {
-         manager.Open(d);
+        manager.Open(d);
     }
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
+    //  public override void _Process(float delta)
+    //  {
+    //      
+    //  }
 }

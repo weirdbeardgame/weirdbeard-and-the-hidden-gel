@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/resources/Checkpoint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/resources/Tiles/TestLevel.tres" type="TileSet" id=2]
-[ext_resource path="res://Assets/resources/Weapons/SwordEquip.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/resources/Weapons/GunEquip.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/resources/Coin.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/resources/Weapons/Sword.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/resources/Levels/GoalPost.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Source/Levels/Level.cs" type="Script" id=8]
 [ext_resource path="res://Assets/Scenes/SubLevels/SubScene1.tscn" type="PackedScene" id=9]
@@ -28,10 +27,6 @@ tile_data = PoolIntArray( -196638, 24, 0, -131102, 24, 0, -65566, 24, 0, -131028
 __meta__ = {
 "_edit_horizontal_guides_": [ 44.0 ]
 }
-
-[node name="Sword" parent="." instance=ExtResource( 3 )]
-position = Vector2( 29, 432 )
-w = ExtResource( 5 )
 
 [node name="1" parent="." instance=ExtResource( 1 )]
 position = Vector2( 824, 64 )
@@ -57,3 +52,6 @@ position = Vector2( 160, 432 )
 [node name="Goal" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1364, 394 )
 hub = "TestHub"
+
+[node name="Area2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 15, 434 )

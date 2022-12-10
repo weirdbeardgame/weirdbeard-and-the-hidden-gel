@@ -42,7 +42,7 @@ public class DialogueManager : Control
 
     void PrintText()
     {
-        if(textVisible < text.Text.Length)
+        if (textVisible < text.Text.Length)
         {
             textVisible += 1;
             text.VisibleCharacters = textVisible;
@@ -52,7 +52,7 @@ public class DialogueManager : Control
                 text.VisibleCharacters = text.Text.Length;
             }
         }
-        if (line < currentDialogue.buffer.Count)
+        if ((line + 1) < currentDialogue.buffer.Count)
         {
             line += 1;
             text.Text = currentDialogue.buffer[line];
