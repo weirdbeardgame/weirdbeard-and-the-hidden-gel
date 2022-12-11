@@ -42,34 +42,47 @@ public class DialogueManager : Control
 
     void PrintText()
     {
-        if (textVisible < text.Text.Length)
+        if (isOpen)
         {
-            textVisible += 1;
-            text.VisibleCharacters = textVisible;
-
-            if (Input.IsActionJustPressed("Submit"))
+            if (textVisible < text.Text.Length)
             {
-                text.VisibleCharacters = text.Text.Length;
+                textVisible += 1;
+                text.VisibleCharacters = textVisible;
+
+                if (Input.IsActionJustPressed("Submit"))
+                {
+                    text.VisibleCharacters = text.Text.Length;
+                }
             }
-        }
-        if ((line + 1) < currentDialogue.buffer.Count)
-        {
-            line += 1;
-            text.Text = currentDialogue.buffer[line];
-            text.VisibleCharacters = 0;
+            if ((line + 1) < currentDialogue.buffer.Count)
+            {
+                line += 1;
+                text.Text = currentDialogue.buffer[line];
+                text.VisibleCharacters = 0;
+            }
+            else
+            {
+                if (Input.IsActionJustPressed("Submit"))
+                {
+                    Close();
+                }
+            }
         }
     }
 
     public override void _Process(float delta)
     {
-        if (isOpen)
-        {
-            PrintText();
-        }
+        PrintText();
     }
 
     public void Close()
     {
-
+        line = 0;
+        index = 0;
+        textVisible = 0;
+        currentDialogue = null;
+        currentBuffer = null;
+        box.Visible = false;
+        isOpen = false;
     }
 }
