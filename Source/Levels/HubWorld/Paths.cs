@@ -24,7 +24,7 @@ public class Paths : Node
         direction = dir;
 
         follow2D.AddChild(p);
-        interpolate.InterpolateProperty(follow2D, "unit_offset", 0.0f, 1.0f, 3.0f, Tween.TransitionType.Back, Tween.EaseType.InOut);
+        interpolate.InterpolateProperty(follow2D, "unit_offset", 0.0f, 1.0f, 3.0f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
         interpolate.Start();
     }
 
