@@ -25,6 +25,8 @@ public class PowerUp : State
             player = (Player)body;
             playerAnimator = player.player;
             player.EquipPowerup(this);
+            weirdBeard = (Sprite)player.GetNode("CenterContainer/WeirdBeard");
+            animator = (AnimationPlayer)player.GetNode("AnimationPlayer");
             stateMachine = (StateMachine)player.GetNode("StateMachine");
             stateMachine.AddState(this, stateName);
         }
@@ -48,6 +50,6 @@ public class PowerUp : State
     public override void Stop()
     {
         isActivated = false;
-        stateMachine.ResetToOldState();
+        player.ResetState();
     }
 }
