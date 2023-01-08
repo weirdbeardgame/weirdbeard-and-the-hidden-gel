@@ -29,7 +29,7 @@ public class HoverBeard : PowerUp
             animator.Play("Hover_Start");
             timer.Start();
             animator.Play("Hover_Loop");
-            Hover();
+            isHover = true;
         }
         else
         {
@@ -55,12 +55,12 @@ public class HoverBeard : PowerUp
     }
 
 
-    void Hover()
+    public override void _PhysicsProcess(float delta)
     {
-        while (isHover)
+        if (isHover) // Dis is bad
         {
-            inputVelocity.x = speed * GetInput().x;
-            player.Velocity = inputVelocity;
+            GD.Print("Hover");
+            player.Velocity = GetInput();
         }
     }
 

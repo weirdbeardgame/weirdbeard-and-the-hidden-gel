@@ -119,6 +119,7 @@ public class Player : Actor
         return ((IsOnFloor() || !coyoteTimer.IsStopped()) || bufferedJumpTimer.IsStopped() || canJumpAgain);
     }
 
+    // Game Grumps joke
     public bool GamaOvar()
     {
         return (playerLives <= 0);

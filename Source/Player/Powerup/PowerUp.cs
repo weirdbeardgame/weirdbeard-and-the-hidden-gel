@@ -41,6 +41,7 @@ public class PowerUp : State
     {
         if (!isActivated)
         {
+            player.ResetState();
             stateMachine.UpdateState(stateName);
             playerAnimator.Play(stateName);
             isActivated = true;
