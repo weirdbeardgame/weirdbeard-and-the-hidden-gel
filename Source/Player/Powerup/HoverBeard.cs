@@ -54,12 +54,10 @@ public class HoverBeard : PowerUp
         return inputVelocity;
     }
 
-
     public override void _PhysicsProcess(float delta)
     {
-        if (isHover) // Dis is bad
+        if (isHover)
         {
-            GD.Print("Hover");
             player.Velocity = GetInput();
         }
     }
