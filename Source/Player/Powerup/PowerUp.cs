@@ -54,11 +54,6 @@ public class PowerUp : State
         return false;
     }
 
-    public virtual void PlayAnimation()
-    {
-
-    }
-
     public void Activate()
     {
         if (!isActivated)

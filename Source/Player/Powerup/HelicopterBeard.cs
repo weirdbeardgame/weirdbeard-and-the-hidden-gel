@@ -5,8 +5,11 @@ public class HelicopterBeard : PowerUp
 {
     [Export] float gravityPercent;
 
+    Sprite helicopter;
+
     public override void Equip(Player p)
     {
+        helicopter = (Sprite)p.GetNode("CenterContainer/HelicopterBeard");
         stateName = "HELICOPTER";
         base.Equip(p);
     }
@@ -14,8 +17,12 @@ public class HelicopterBeard : PowerUp
     // Play animation. Set physics
     public override void Start()
     {
-        PlayAnimation();
+        weirdBeard.Visible = false;
+        helicopter.Visible = true;
+
+        animator.Play("Heli_start");
         player.gravity = (player.gravity * gravityPercent);
+        animator.Play("Heli_Loop");
     }
 
     public override Vector2 GetInput()
@@ -35,12 +42,6 @@ public class HelicopterBeard : PowerUp
         return inputVelocity;
     }
 
-    public override void PlayAnimation()
-    {
-        player.player.Play("Heli_Jump");
-        player.player.Play(stateName);
-    }
-
     public override void FixedUpdate(float delta)
     {
         player.Velocity = GetInput();
@@ -55,7 +56,10 @@ public class HelicopterBeard : PowerUp
 
     public override void Stop()
     {
-        player.player.Play("Heli_Fall");
+        animator.Play("Heli_End");
+        helicopter.Visible = false;
+        weirdBeard.Visible = true;
+        base.Stop();
     }
 
 }

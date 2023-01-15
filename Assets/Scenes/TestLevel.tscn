@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/resources/Tiles/TestLevel.tres" type="TileSet" id=2]
 [ext_resource path="res://Assets/resources/Weapons/GunEquip.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/resources/Coin.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/resources/Player/Powerup/HoverBeardEquip.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/resources/Player/Powerup/HelicopterEquip.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/resources/Levels/GoalPost.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/resources/Audio/Island_Theme.wav" type="AudioStream" id=7]
 [ext_resource path="res://Source/Levels/Level.cs" type="Script" id=8]
@@ -53,5 +53,6 @@ hub = "TestHub"
 [node name="Area2D" parent="." instance=ExtResource( 3 )]
 position = Vector2( 15, 434 )
 
-[node name="HoverBeard" parent="." instance=ExtResource( 5 )]
-position = Vector2( 101, 423 )
+[node name="Heli" parent="." instance=ExtResource( 5 )]
+position = Vector2( 67, 432 )
+scale = Vector2( 0.0888793, 0.042396 )
