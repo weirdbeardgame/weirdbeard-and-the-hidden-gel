@@ -5,31 +5,53 @@ public class PowerUp : State
 {
     Sprite powerupSprite;
 
-    [Export]
-    protected float gravity;
+    [Export] protected float gravity;
 
-    [Export]
-    protected float speed;
+    [Export] protected float speed;
 
     protected Vector2 inputVelocity;
 
     bool isActivated;
+    bool wasActivated;
 
-    AnimationPlayer playerAnimator;
+    public Timer regenTimer;
 
-    public void Equip(object body)
+    public AnimationPlayer playerAnimator;
+
+    public virtual void Equip(Player p)
     {
+        player = p;
         GD.Print("Equip");
-        if (body is Player)
+        playerAnimator = player.player;
+        regenTimer = (Timer)GetNode("RegenTimer");
+        animator = (AnimationPlayer)player.GetNode("AnimationPlayer");
+        weirdBeard = (Sprite)player.GetNode("CenterContainer/WeirdBeard");
+        stateMachine = player.StateMachine;
+    }
+
+    public bool CanBeActivated()
+    {
+        if (!wasActivated && regenTimer.TimeLeft <= 0)
         {
-            player = (Player)body;
-            playerAnimator = player.player;
-            player.EquipPowerup(this);
-            weirdBeard = (Sprite)player.GetNode("CenterContainer/WeirdBeard");
-            animator = (AnimationPlayer)player.GetNode("AnimationPlayer");
-            stateMachine = (StateMachine)player.GetNode("StateMachine");
-            stateMachine.AddState(this, stateName);
+            return true;
         }
+
+        if (!player.IsOnFloor() && !wasActivated && !isActivated)
+        {
+            return true;
+        }
+
+        if (wasActivated && regenTimer.TimeLeft <= 0)
+        {
+            wasActivated = false;
+        }
+
+        if (isActivated)
+        {
+            return false;
+        }
+
+        return false;
     }
 
     public virtual void PlayAnimation()
@@ -52,5 +74,6 @@ public class PowerUp : State
     {
         isActivated = false;
         player.ResetState();
+        regenTimer.Start();
     }
 }

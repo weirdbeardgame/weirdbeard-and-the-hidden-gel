@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/resources/Levels/LevelSpace.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Scenes/TestLevel2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/resources/Levels/Level Path.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/resources/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/resources/Player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/resources/Levels/Actor.tscn" type="PackedScene" id=7]
 
 [node name="Level" type="Node"]

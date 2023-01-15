@@ -129,6 +129,8 @@ public class Player : Actor
     {
         if (currentPowerup != power)
         {
+            RemoveChild(currentPowerup);
+            AddChild(power);
             currentPowerup = power;
         }
         else
@@ -160,9 +162,12 @@ public class Player : Actor
         velocity.y += gravity * delta;
         velocity = MoveAndSlide(velocity, Vector2.Up);
 
-        if (!IsOnFloor() && Input.IsActionJustPressed("Run") && currentPowerup != null)
+        if (currentPowerup != null)
         {
-            currentPowerup.Activate();
+            if (currentPowerup.CanBeActivated() && Input.IsActionJustPressed("Run"))
+            {
+                currentPowerup.Activate();
+            }
         }
     }
 }

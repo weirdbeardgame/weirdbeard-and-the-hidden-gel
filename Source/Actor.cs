@@ -5,6 +5,14 @@ public class Actor : KinematicBody2D
 {
     protected StateMachine stateMachine;
 
+    public StateMachine StateMachine
+    {
+        get
+        {
+            return stateMachine;
+        }
+    }
+
     // Movement properties
     [Export] public float gravity;
     [Export] public float speed = 400f;
@@ -28,5 +36,4 @@ public class Actor : KinematicBody2D
 
     public bool canJumpAgain;
     public bool wasOnFloor;
-
 }

@@ -9,17 +9,16 @@ public class HoverBeard : PowerUp
 
     bool isHover;
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+    public override void Equip(Player p)
     {
         stateName = "HOVER";
         timer = (Timer)GetNode("Timer");
+        hoverBeard = (Sprite)p.GetNode("CenterContainer/HoverBeard");
+        base.Equip(p);
     }
 
     public override void Start()
     {
-        hoverBeard = (Sprite)player.GetNode("CenterContainer/HoverBeard");
-
         weirdBeard.Visible = false;
         hoverBeard.Visible = true;
 
@@ -56,9 +55,13 @@ public class HoverBeard : PowerUp
 
     public override void _PhysicsProcess(float delta)
     {
-        if (isHover)
+        if (isHover && Input.IsActionPressed("Run"))
         {
             player.Velocity = GetInput();
+        }
+        if (!Input.IsActionPressed("Run") && isHover)
+        {
+            Stop();
         }
     }
 
@@ -69,10 +72,12 @@ public class HoverBeard : PowerUp
 
     public override void Stop()
     {
+        GD.Print("STOP HOVER");
         animator.Play("Hover_End");
         weirdBeard.Visible = true;
         hoverBeard.Visible = false;
         isHover = false;
+        timer.Stop();
         base.Stop();
     }
 

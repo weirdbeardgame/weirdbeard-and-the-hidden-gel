@@ -4,9 +4,11 @@ using System;
 public class HelicopterBeard : PowerUp
 {
     [Export] float gravityPercent;
-    public override void _Ready()
+
+    public override void Equip(Player p)
     {
         stateName = "HELICOPTER";
+        base.Equip(p);
     }
 
     // Play animation. Set physics
