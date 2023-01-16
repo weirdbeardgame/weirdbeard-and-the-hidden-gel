@@ -50,7 +50,7 @@ volume_db = -20.0
 position = Vector2( 1364, 394 )
 hub = "TestHub"
 
-[node name="Area2D" parent="." instance=ExtResource( 3 )]
+[node name="Flintlock" parent="." instance=ExtResource( 3 )]
 position = Vector2( 15, 434 )
 
 [node name="Heli" parent="." instance=ExtResource( 5 )]

@@ -34,6 +34,13 @@ public class Weapon : Node
     {
         WeaponCommon current = new WeaponCommon();
         WeaponCommon w = (WeaponCommon)toEquip.Instance();
+
+        if (w.weaponType == WeaponType.SHOOT)
+        {
+            Node2D equip = (Node2D)player.GetNode("WeapSpawn");
+            equip.AddChild(w);
+        }
+
         if (slottedWeapon != null)
         {
             current = (WeaponCommon)slottedWeapon.Instance();

@@ -61,5 +61,4 @@ public class HelicopterBeard : PowerUp
         weirdBeard.Visible = true;
         base.Stop();
     }
-
 }
