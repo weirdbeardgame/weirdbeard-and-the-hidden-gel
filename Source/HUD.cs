@@ -3,21 +3,28 @@ using System;
 
 public class HUD : Node
 {
-    Label lives;
+    Label lifeCounter;
 
     Label coinCounter;
 
-    int coins;
+    Sprite equipedWeaponSprite;
 
-    Player player;
+    int coins;
+    int lives;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         coinCounter = (Label)GetNode("Coins");
-        lives = (Label)GetNode("Lives");
-        //player = (Player)Owner.Owner;
+        lifeCounter = (Label)GetNode("Lives");
         Coin.getCoin += IncreaseCoinCounter;
+        Coin.looseCoin += DecreaseCoinCounter;
+    }
+
+    public void Init(int c, int l)
+    {
+        coins = c;
+        lives = l;
     }
 
     void IncreaseCoinCounter()
@@ -26,9 +33,27 @@ public class HUD : Node
         coinCounter.Text = ("Coins: " + coins.ToString());
     }
 
+    void DecreaseCoinCounter()
+    {
+        coins -= 1;
+        coinCounter.Text = ("Coins: " + coins.ToString());
+    }
+
+    void IncreaseLifeCounter()
+    {
+        lives += 1;
+        lifeCounter.Text = ("Lives: " + coins.ToString());
+    }
+
+    void DecreaseLifeCounter()
+    {
+        lives -= 1;
+        lifeCounter.Text = ("Lives: " + coins.ToString());
+    }
+
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        //lives.Text = ("Lives: " + player.playerLives);
+
     }
 }

@@ -26,6 +26,10 @@ public class Bullet : KinematicBody2D
                 e.QueueFree();
                 QueueFree();
             }
+            else
+            {
+                QueueFree();
+            }
         }
     }
 }
