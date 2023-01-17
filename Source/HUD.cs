@@ -7,7 +7,7 @@ public class HUD : Node
 
     Label coinCounter;
 
-    Sprite equipedWeaponSprite;
+    Sprite equippedWeaponSprite;
 
     int coins;
     int lives;
@@ -17,8 +17,10 @@ public class HUD : Node
     {
         coinCounter = (Label)GetNode("Coins");
         lifeCounter = (Label)GetNode("Lives");
+        equippedWeaponSprite = (Sprite)GetNode("WeaponBox/WeaponIcon");
         Coin.getCoin += IncreaseCoinCounter;
         Coin.looseCoin += DecreaseCoinCounter;
+        WeaponSlot.updateWSprite += UpdateWeaponSprite;
     }
 
     public void Init(int c, int l)
@@ -49,6 +51,14 @@ public class HUD : Node
     {
         lives -= 1;
         lifeCounter.Text = ("Lives: " + coins.ToString());
+    }
+
+    void UpdateWeaponSprite(Texture s)
+    {
+        if (equippedWeaponSprite.Texture != s)
+        {
+            equippedWeaponSprite.Texture = s;
+        }
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,27 +1,19 @@
 using Godot;
 using System;
 
-public class Weapon : Node
+public class WeaponSlot : Node
 {
-    // Packed scene to hold a throwable.
     PackedScene slottedWeapon;
 
     WeaponCommon active;
+    WeaponCommon current;
 
     Sprite weaponBox;
     Sprite weaponIcon;
 
     Player player;
 
-    bool equipped;
-
-    public PackedScene CurrentWeapon
-    {
-        get
-        {
-            return slottedWeapon;
-        }
-    }
+    public static Action<Texture> updateWSprite;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -32,7 +24,6 @@ public class Weapon : Node
 
     public void Equip(PackedScene toEquip, Sprite weaponSprite)
     {
-        WeaponCommon current = new WeaponCommon();
         WeaponCommon w = (WeaponCommon)toEquip.Instance();
 
         if (slottedWeapon != null)
@@ -44,25 +35,22 @@ public class Weapon : Node
         {
             slottedWeapon = toEquip;
             active = w;
-            equipped = true;
+            updateWSprite.Invoke(weaponSprite.Texture);
         }
     }
 
     public void Attack()
     {
-        if (equipped)
+        switch (active.weaponType)
         {
-            switch (active.weaponType)
-            {
-                case WeaponType.THROW:
-                    WeaponCommon current = (WeaponCommon)slottedWeapon.Instance();
-                    current.Attack(player.direction.Sign());
-                    break;
+            case WeaponType.THROW:
+                WeaponCommon current = (WeaponCommon)slottedWeapon.Instance();
+                current.Attack(player.direction.Sign());
+                break;
 
-                case WeaponType.SHOOT:
-                    active.Attack(player.direction.Sign());
-                    break;
-            }
+            case WeaponType.SHOOT:
+                active.Attack(player.direction.Sign());
+                break;
         }
     }
 }

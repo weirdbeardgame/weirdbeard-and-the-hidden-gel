@@ -3,6 +3,7 @@
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Idle_01.png" type="Texture" id=1]
 [ext_resource path="res://Source/ActorStates/Walk.cs" type="Script" id=2]
 [ext_resource path="res://Source/StateMachine.cs" type="Script" id=3]
+[ext_resource path="res://Source/Weapon/WeaponSlot.cs" type="Script" id=4]
 [ext_resource path="res://Source/ActorStates/Jump.cs" type="Script" id=5]
 [ext_resource path="res://Source/ActorStates/Idle.cs" type="Script" id=6]
 [ext_resource path="res://Source/ActorStates/Falling.cs" type="Script" id=7]
@@ -28,7 +29,6 @@
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Idle/x_01.png" type="Texture" id=27]
 [ext_resource path="res://Source/Player/Player.cs" type="Script" id=28]
 [ext_resource path="res://Assets/resources/HUD.tscn" type="PackedScene" id=29]
-[ext_resource path="res://Source/Weapon/Weapon.cs" type="Script" id=30]
 [ext_resource path="res://Assets/resources/Sprites/WeirdBeard/Hover/Weirdbeard_Hover_98x82.png" type="Texture" id=31]
 [ext_resource path="res://Source/CoinPurse.cs" type="Script" id=32]
 [ext_resource path="res://Source/ActorStates/Air.cs" type="Script" id=33]
@@ -365,7 +365,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="WeaponSlot" type="Node" parent="."]
-script = ExtResource( 30 )
+script = ExtResource( 4 )
 
 [node name="Purse" type="Node" parent="."]
 script = ExtResource( 32 )

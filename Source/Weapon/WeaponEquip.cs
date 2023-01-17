@@ -18,10 +18,11 @@ public class WeaponEquip : Area2D
 
     public void Equip(object body)
     {
+        WeaponSlot equip = (WeaponSlot)w.Instance();
         if (body is Player)
         {
             player = (Player)body;
-            player.equipped.Equip(w, wSprite);
+            player.EquipWeapon(equip, wSprite);
             QueueFree();
         }
     }
