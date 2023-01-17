@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/resources/Checkpoint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/resources/Tiles/TestLevel.tres" type="TileSet" id=2]
+[ext_resource path="res://Assets/resources/Weapons/SwordEquip.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/resources/Coin.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/resources/Player/Powerup/HelicopterEquip.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/resources/Levels/GoalPost.tscn" type="PackedScene" id=6]
@@ -10,6 +11,7 @@
 [ext_resource path="res://Assets/Scenes/SubLevels/SubScene1.tscn" type="PackedScene" id=9]
 
 [node name="Level" type="Node2D"]
+position = Vector2( 6, -2 )
 script = ExtResource( 8 )
 levelName = "TestLevel"
 maxEnemyAmnt = 5
@@ -52,3 +54,6 @@ hub = "TestHub"
 [node name="Heli" parent="." instance=ExtResource( 5 )]
 position = Vector2( 67, 432 )
 scale = Vector2( 0.0888793, 0.042396 )
+
+[node name="Sword" parent="." instance=ExtResource( 3 )]
+position = Vector2( -14, 439 )

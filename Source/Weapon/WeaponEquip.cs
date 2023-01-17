@@ -18,7 +18,7 @@ public class WeaponEquip : Area2D
 
     public void Equip(object body)
     {
-        WeaponSlot equip = (WeaponSlot)w.Instance();
+        WeaponCommon equip = (WeaponCommon)w.Instance();
         if (body is Player)
         {
             player = (Player)body;

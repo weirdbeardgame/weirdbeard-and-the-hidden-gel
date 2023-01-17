@@ -125,8 +125,10 @@ public class Player : Actor
         return (playerLives <= 0);
     }
 
-    public void EquipWeapon(WeaponSlot w, Sprite weapSprite)
+    public void EquipWeapon(WeaponCommon w, Sprite weapSprite)
     {
+        currentWeapon.slottedWeapon = w;
+        WeaponSlot.updateWSprite.Invoke(weapSprite.Texture);
     }
 
     public void EquipPowerup(PowerUp power)

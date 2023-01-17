@@ -3,17 +3,11 @@ using System;
 
 public class WeaponSlot : Node
 {
-    WeaponCommon slottedWeapon;
+    public WeaponCommon slottedWeapon;
 
     Player player;
 
     public static Action<Texture> updateWSprite;
-
-    public void Equip(WeaponCommon toEquip, Sprite weaponSprite)
-    {
-        slottedWeapon = toEquip;
-        updateWSprite.Invoke(weaponSprite.Texture);
-    }
 
     public void Attack()
     {
