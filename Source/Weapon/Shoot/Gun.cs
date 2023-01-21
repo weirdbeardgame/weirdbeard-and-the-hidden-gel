@@ -9,6 +9,8 @@ public class Gun : WeaponCommon
 
     Node2D bulletSpawner;
 
+    Vector2 oldPos;
+
     [Export] float kickback = 0f;
 
     [Export] float spreadAmt = 0f;
@@ -17,12 +19,11 @@ public class Gun : WeaponCommon
 
     [Export] int maxRoundsInScene = 3;
 
-    [Export] protected PackedScene bulletSpawn;
-
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        sprite = (Sprite)GetNode("sprite");
+        sprite = (Sprite)GetNode("Gun");
+        bulletSpawner = (Node2D)GetNode("Gun/spawner");
         player = (Player)SceneManager.CurrentScene.GetNode("Player");
         animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
     }
@@ -31,9 +32,7 @@ public class Gun : WeaponCommon
     {
         if (firedRounds != maxRoundsInScene)
         {
-            spawnedAmmo = (Bullet)bulletSpawn.Instance();
-            bulletSpawner = (Node2D)GetNode("spawner");
-
+            spawnedAmmo = (Bullet)shootable.Instance();
             spawnedAmmo.Position = bulletSpawner.GlobalPosition;
             spawnedAmmo.Rotation = bulletSpawner.GlobalRotation;
 
@@ -59,7 +58,11 @@ public class Gun : WeaponCommon
             sprite.FlipH = false;
         }
 
+        oldPos = GlobalPosition;
+
+        GlobalPosition = oldPos * direction;
+
         bulletDirection = player.direction.x;
-        GlobalRotation = player.Rotation;
+        bulletSpawner.GlobalRotation = player.Rotation;
     }
 }

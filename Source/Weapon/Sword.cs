@@ -5,7 +5,7 @@ public class Sword : WeaponCommon
 {
     Node2D spawnPoint;
 
-    Sword toSpawn;
+    KinematicBody2D toSpawn;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -19,9 +19,11 @@ public class Sword : WeaponCommon
         player = (Player)SceneManager.CurrentScene.GetNode("Player");
         sprite = (Sprite)GetNode("sprite");
 
+        toSpawn = (KinematicBody2D)shootable.Instance();
+
         spawnPoint = (Node2D)player.GetNode("WeapSpawn");
-        Position = spawnPoint.GlobalPosition;
-        Rotation = spawnPoint.GlobalRotation;
+        toSpawn.Position = spawnPoint.GlobalPosition;
+        toSpawn.Rotation = spawnPoint.GlobalRotation;
 
         SceneManager.CurrentScene.AddChild(this);
 
@@ -39,7 +41,7 @@ public class Sword : WeaponCommon
 
     public override void _PhysicsProcess(float delta)
     {
-        KinematicCollision2D col = MoveAndCollide(velocity * delta);
+        KinematicCollision2D col = toSpawn.MoveAndCollide(velocity * delta);
         if (col != null)
         {
             GD.Print("Collision");

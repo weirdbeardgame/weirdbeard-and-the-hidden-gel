@@ -9,7 +9,7 @@ public class Player : Actor
 
     public Sprite weirdBeard;
     public int playerLives = 3;
-    public WeaponSlot currentWeapon;
+    public WeaponCommon currentWeapon;
     public AnimationPlayer player;
     public Vector2 direction = Vector2.Right;
 
@@ -24,7 +24,6 @@ public class Player : Actor
         stateMachine = (StateMachine)GetNode("StateMachine");
         player = (AnimationPlayer)GetNode("AnimationPlayer");
         bufferedJumpTimer = (Timer)GetNode("BufferedJump");
-        currentWeapon = (WeaponSlot)GetNode("WeaponSlot");
         if (currentWeapon == null)
         {
             GD.PrintErr("Weapon NULL");
@@ -125,9 +124,18 @@ public class Player : Actor
         return (playerLives <= 0);
     }
 
-    public void EquipWeapon(WeaponCommon w, Sprite weapSprite)
+    public void EquipWeapon(PackedScene w, Sprite weapSprite)
     {
-        currentWeapon.slottedWeapon = w;
+        WeaponCommon weapon = (WeaponCommon)w.Instance();
+        currentWeapon = weapon;
+
+        if (weapon.weaponType == WeaponType.SHOOT)
+        {
+            AddChild(weapon);
+
+            weapon.GlobalPosition = GlobalPosition + new Vector2(20, 0);
+            weapon.GlobalRotation = GlobalRotation;
+        }
         WeaponSlot.updateWSprite.Invoke(weapSprite.Texture);
     }
 
@@ -161,7 +169,7 @@ public class Player : Actor
     {
         if (Input.IsActionJustPressed("Attack"))
         {
-            currentWeapon.Attack();
+            currentWeapon.Attack(direction.Sign());
         }
 
         wasOnFloor = IsOnFloor();

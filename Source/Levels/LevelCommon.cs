@@ -52,14 +52,14 @@ public class LevelCommon : Node
 
     public virtual void EnterLevel(Player p)
     {
-        if ((player = (Player)GetNode("Player")) != null)
-        {
-            GD.Print("Player Found");
-        }
-
-        else
+        if (p != null)
         {
             player = p;
+        }
+
+        else if ((player = (Player)GetNode("Player")) != null)
+        {
+            GD.Print("Player Found");
         }
     }
 

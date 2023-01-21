@@ -3,13 +3,14 @@ using System;
 
 public enum WeaponType { THROW, SWING, SHOOT }
 
-public class WeaponCommon : KinematicBody2D
+public class WeaponCommon : Node2D
 {
     [Export] public int dmgAmnt;
     [Export] public float speed;
     [Export] public float fireRate;
     [Export] public string weaponName;
     [Export] public WeaponType weaponType;
+    [Export] protected PackedScene shootable;
 
     public bool canThrowWeapon;
 

@@ -18,11 +18,10 @@ public class WeaponEquip : Area2D
 
     public void Equip(object body)
     {
-        WeaponCommon equip = (WeaponCommon)w.Instance();
         if (body is Player)
         {
             player = (Player)body;
-            player.EquipWeapon(equip, wSprite);
+            player.EquipWeapon(w, wSprite);
             QueueFree();
         }
     }
