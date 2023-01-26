@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/resources/Font/OpenSans.tres" type="DynamicFont" id=1]
+[ext_resource path="res://addons/Levels/NewLevelButton.cs" type="Script" id=2]
+
+[node name="Button" type="Button"]
+margin_left = 4.0
+margin_top = 2.0
+margin_right = 91.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 1 )
+text = "New Level"
+script = ExtResource( 2 )
