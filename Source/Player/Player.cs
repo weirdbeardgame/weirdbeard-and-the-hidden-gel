@@ -111,6 +111,7 @@ public class Player : Actor
     public void Die()
     {
         playerLives -= 1;
+        SceneManager.resetLev();
     }
 
     public bool CanJump()
@@ -136,7 +137,10 @@ public class Player : Actor
             weapon.GlobalPosition = GlobalPosition + new Vector2(20, 0);
             weapon.GlobalRotation = GlobalRotation;
         }
-        WeaponSlot.updateWSprite.Invoke(weapSprite.Texture);
+        if (weapSprite != null)
+        {
+            WeaponSlot.updateWSprite.Invoke(weapSprite.Texture);
+        }
     }
 
     public void EquipPowerup(PowerUp power)
@@ -167,7 +171,7 @@ public class Player : Actor
 
     public override void _PhysicsProcess(float delta)
     {
-        if (Input.IsActionJustPressed("Attack"))
+        if (Input.IsActionJustPressed("Attack") && currentWeapon != null)
         {
             currentWeapon.Attack(direction.Sign());
         }

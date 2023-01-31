@@ -8,6 +8,7 @@ public class LevelEditor : EditorPlugin
     Control dock;
 
     public static Action CreateLevel;
+    public static Action CreateSubLevel;
 
     LevelCommon level;
     List<LevelCommon> levels;
@@ -29,6 +30,14 @@ public class LevelEditor : EditorPlugin
     {
         level = new Level();
         level.levelName = "New Level";
+
+        levels.Add(level);
+    }
+
+    public void CreateNewSubLevel()
+    {
+        level = new SubLevel();
+        level.levelName = "New Sub Level";
 
         levels.Add(level);
     }

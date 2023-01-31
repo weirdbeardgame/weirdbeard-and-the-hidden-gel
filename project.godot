@@ -28,10 +28,6 @@ window/size/test_height=1080
 window/stretch/mode="2d"
 window/stretch/aspect="keep_height"
 
-[editor_plugins]
-
-enabled=PoolStringArray( "res://addons/Levels/plugin.cfg" )
-
 [global]
 
 editor=false
@@ -129,6 +125,10 @@ Submit={
 2d_physics/layer_4="Weapon"
 2d_physics/layer_5="Coin"
 2d_physics/layer_6="NPC"
+
+[mono]
+
+project/assembly_name="Weirdbeard Mono"
 
 [physics]
 

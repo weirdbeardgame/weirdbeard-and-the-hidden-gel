@@ -29,6 +29,8 @@ public class SceneManager : Node
     public static Action startNewGame;
     public static Action<string, Player> changeScene;
     public static Action<PackedScene, Player, Exit> changeSceneWithExit;
+    public static Action resetLev;
+
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -42,19 +44,12 @@ public class SceneManager : Node
         startNewGame += NewGame;
         changeScene += SwitchLevel;
         changeSceneWithExit += LoadSubScene;
+        resetLev += ResetLevel;
     }
 
-    public void ResetLevel(Player player)
+    void ResetLevel()
     {
-        string sceneName = currentScene.levelName;
-
-        currentScene.ExitLevel();
-        GetTree().Root.RemoveChild(currentScene);
-
-        GetTree().Root.AddChild(currentScene);
-        GetTree().CurrentScene = currentScene;
-
-        CurrentScene.EnterLevel(player);
+        currentScene.ResetLevel();
     }
 
     // Play level changing animation.
@@ -118,7 +113,6 @@ public class SceneManager : Node
         SwitchLevel(scene.levelName, null);
         startNewGame -= NewGame;
     }
-
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)

@@ -5,6 +5,7 @@ public enum WeaponType { THROW, SWING, SHOOT }
 
 public class WeaponCommon : Node2D
 {
+    [Export] public Sprite icon;
     [Export] public int dmgAmnt;
     [Export] public float speed;
     [Export] public float fireRate;
@@ -12,10 +13,9 @@ public class WeaponCommon : Node2D
     [Export] public WeaponType weaponType;
     [Export] protected PackedScene shootable;
 
-    public bool canThrowWeapon;
-
     protected Sprite sprite;
     protected Player player;
+    public bool canThrowWeapon;
     protected Vector2 velocity;
     protected Vector2 direction;
     protected AnimationPlayer animationPlayer;
@@ -25,6 +25,7 @@ public class WeaponCommon : Node2D
     {
         player = (Player)SceneManager.CurrentScene.GetNode("Player");
         animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
+        icon = ResourceLoader.Load<Sprite>("icon.png");
     }
 
     public virtual void Equip()
