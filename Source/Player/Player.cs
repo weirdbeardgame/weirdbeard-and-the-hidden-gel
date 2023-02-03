@@ -110,8 +110,11 @@ public class Player : Actor
 
     public void Die()
     {
-        playerLives -= 1;
-        SceneManager.resetLev();
+        if (playerLives > 0)
+        {
+            playerLives -= 1;
+            SceneManager.resetLev();
+        }
     }
 
     public bool CanJump()

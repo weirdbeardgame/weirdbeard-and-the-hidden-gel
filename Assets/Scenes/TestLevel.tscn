@@ -1,15 +1,22 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/resources/Checkpoint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/resources/Tiles/TestLevel.tres" type="TileSet" id=2]
 [ext_resource path="res://Assets/resources/Weapons/SwordEquip.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/resources/Coin.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/resources/Player/Powerup/HelicopterEquip.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/resources/Levels/GoalPost.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Background/Layers/1.png" type="Texture" id=6]
 [ext_resource path="res://Assets/resources/Audio/Island_Theme.wav" type="AudioStream" id=7]
 [ext_resource path="res://Source/Levels/Level.cs" type="Script" id=8]
 [ext_resource path="res://Assets/Scenes/SubLevels/SubScene1.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/resources/Levels/DeathBarier.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Background/Layers/2.png" type="Texture" id=11]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Background/Layers/6.png" type="Texture" id=12]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Background/Layers/3.png" type="Texture" id=13]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Background/Layers/8.png" type="Texture" id=14]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Background/Layers/4.png" type="Texture" id=15]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Background/Layers/5.png" type="Texture" id=16]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Background/Layers/7.png" type="Texture" id=17]
 
 [node name="Level" type="Node2D"]
 position = Vector2( 6, -2 )
@@ -25,7 +32,7 @@ audioFile = ExtResource( 7 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( -196638, 24, 0, -131102, 24, 0, -65566, 24, 0, -131028, 24, 0, -30, 24, 0, -65492, 24, 0, 65506, 24, 0, 44, 24, 0, 131042, 24, 0, 65580, 24, 0, 196578, 24, 0, 131116, 24, 0, 262114, 24, 0, 196652, 24, 0, 327650, 24, 0, 262188, 24, 0, 393186, 24, 0, 393211, 1, 0, 393212, 1, 0, 393213, 1, 0, 393214, 1, 0, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 327696, 1, 0, 327724, 24, 0, 458722, 24, 0, 393260, 24, 0, 524258, 24, 0, 458781, 1, 0, 458782, 1, 0, 458783, 1, 0, 458784, 1, 0, 458785, 1, 0, 458796, 24, 0, 589794, 24, 0, 524332, 24, 0, 655330, 24, 0, 655347, 1, 0, 655348, 1, 0, 655349, 1, 0, 655350, 1, 0, 589848, 1, 0, 589849, 1, 0, 589850, 1, 0, 589851, 1, 0, 589868, 24, 0, 720866, 24, 0, 655404, 24, 0, 786402, 24, 0, 720940, 24, 0, 851938, 24, 0, 786476, 24, 0, 917474, 24, 0, 852012, 24, 0, 983010, 1, 0, 983011, 1, 0, 983012, 1, 0, 983013, 1, 0, 983014, 1, 0, 983015, 1, 0, 983016, 1, 0, 983017, 1, 0, 983018, 1, 0, 983019, 1, 0, 983020, 1, 0, 983021, 1, 0, 983022, 1, 0, 983023, 1, 0, 983024, 1, 0, 983025, 1, 0, 983026, 1, 0, 983027, 1, 0, 983028, 1, 0, 983029, 1, 0, 983030, 1, 0, 983031, 1, 0, 983032, 1, 0, 983033, 1, 0, 983034, 1, 0, 983035, 1, 0, 983036, 1, 0, 983037, 1, 0, 983038, 1, 0, 983039, 1, 0, 917504, 1, 0, 917505, 1, 0, 917506, 1, 0, 917507, 1, 0, 917508, 1, 0, 917509, 1, 0, 917510, 1, 0, 917511, 1, 0, 917512, 1, 0, 917513, 1, 0, 917514, 1, 0, 917515, 1, 0, 917516, 1, 0, 917517, 1, 0, 917518, 1, 0, 917519, 1, 0, 917520, 1, 0, 917521, 1, 0, 917522, 1, 0, 917523, 1, 0, 917524, 1, 0, 917525, 1, 0, 917526, 1, 0, 917527, 1, 0, 917528, 1, 0, 917529, 1, 0, 917530, 1, 0, 917531, 1, 0, 917532, 1, 0, 917533, 1, 0, 917534, 1, 0, 917535, 1, 0, 917536, 1, 0, 917537, 1, 0, 917538, 1, 0, 917539, 1, 0, 917540, 1, 0, 917541, 1, 0, 917542, 1, 0, 917543, 1, 0, 917544, 1, 0, 917545, 1, 0, 917546, 1, 0, 917547, 1, 0, 917548, 1, 0 )
+tile_data = PoolIntArray( 393211, 1, 0, 393212, 1, 0, 393213, 1, 0, 393214, 1, 0, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 327696, 1, 0, 458781, 1, 0, 458782, 1, 0, 458783, 1, 0, 458784, 1, 0, 458785, 1, 0, 655347, 1, 0, 655348, 1, 0, 655349, 1, 0, 655350, 1, 0, 983010, 1, 0, 983011, 1, 0, 983012, 1, 0, 983013, 1, 0, 983014, 1, 0, 983015, 1, 0, 983016, 1, 0, 983017, 1, 0, 983018, 1, 0, 983019, 1, 0, 983020, 1, 0, 983021, 1, 0, 983022, 1, 0, 983023, 1, 0, 983024, 1, 0, 983025, 1, 0, 983026, 1, 0, 983027, 1, 0, 983028, 1, 0, 983029, 1, 0, 983030, 1, 0, 983031, 1, 0, 983032, 1, 0, 983033, 1, 0, 983034, 1, 0, 983035, 1, 0, 983036, 1, 0, 983037, 1, 0, 983038, 1, 0, 983039, 1, 0, 917504, 1, 0, 917505, 1, 0, 917506, 1, 0, 917507, 1, 0, 917508, 1, 0, 917509, 1, 0, 917510, 1, 0, 917511, 1, 0, 917512, 1, 0, 917513, 1, 0, 917514, 1, 0, 917515, 1, 0, 917516, 1, 0, 917517, 1, 0, 917518, 1, 0, 917519, 1, 0, 917520, 1, 0, 917521, 1, 0, 917525, 1, 0, 917526, 1, 0, 917527, 1, 0, 917528, 1, 0, 917529, 1, 0, 917530, 1, 0, 917531, 1, 0, 917532, 1, 0, 917533, 1, 0, 917534, 1, 0, 917535, 1, 0, 917536, 1, 0, 917537, 1, 0, 917538, 1, 0, 917539, 1, 0, 917540, 1, 0, 917541, 1, 0, 917542, 1, 0, 917543, 1, 0, 917544, 1, 0, 917545, 1, 0, 917546, 1, 0, 917547, 1, 0, 917548, 1, 0, 917549, 1, 0, 917550, 1, 0, 917551, 1, 0, 917552, 1, 0 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 44.0 ]
 }
@@ -48,10 +55,6 @@ position = Vector2( -56, 432 )
 [node name="BackgroundAudio" type="AudioStreamPlayer" parent="."]
 volume_db = -20.0
 
-[node name="Goal" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1364, 394 )
-hub = "TestHub"
-
 [node name="Heli" parent="." instance=ExtResource( 5 )]
 position = Vector2( 67, 432 )
 scale = Vector2( 0.0888793, 0.042396 )
@@ -60,9 +63,72 @@ scale = Vector2( 0.0888793, 0.042396 )
 position = Vector2( -16, 435 )
 
 [node name="Death" parent="." instance=ExtResource( 10 )]
-position = Vector2( -508, 404 )
+position = Vector2( -236, 657 )
 
 [node name="CollisionShape2D" parent="Death" index="0"]
-position = Vector2( 55, -27 )
+position = Vector2( 538, -17.5 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 3, 1 )
+motion_mirroring = Vector2( 576, 324 )
+
+[node name="8" type="Sprite" parent="ParallaxBackground/1"]
+position = Vector2( 3, 0 )
+z_as_relative = false
+texture = ExtResource( 14 )
+centered = false
+offset = Vector2( 3, 0 )
+
+[node name="2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 576, 0 )
+
+[node name="7" type="Sprite" parent="ParallaxBackground/2"]
+position = Vector2( 294, 384 )
+texture = ExtResource( 17 )
+
+[node name="3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 576, 0 )
+
+[node name="6" type="Sprite" parent="ParallaxBackground/3"]
+position = Vector2( 297, 378 )
+texture = ExtResource( 12 )
+
+[node name="4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 576, 0 )
+
+[node name="5" type="Sprite" parent="ParallaxBackground/4"]
+position = Vector2( 296, 372 )
+texture = ExtResource( 16 )
+offset = Vector2( 3, 0 )
+
+[node name="5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 576, 0 )
+
+[node name="4" type="Sprite" parent="ParallaxBackground/5"]
+position = Vector2( 314, 359 )
+texture = ExtResource( 15 )
+
+[node name="6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 576, 0 )
+
+[node name="3" type="Sprite" parent="ParallaxBackground/6"]
+position = Vector2( 327, 345 )
+texture = ExtResource( 13 )
+
+[node name="7" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 576, 0 )
+
+[node name="2" type="Sprite" parent="ParallaxBackground/7"]
+position = Vector2( 313, 331 )
+texture = ExtResource( 11 )
+
+[node name="8" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 575, 0 )
+
+[node name="1" type="Sprite" parent="ParallaxBackground/8"]
+position = Vector2( 324, 294 )
+texture = ExtResource( 6 )
 
 [editable path="Death"]
