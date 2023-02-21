@@ -63,11 +63,19 @@ public class Enemy : Actor
         sprite = null;
     }
 
+    public void FollowPlayer()
+    {
+
+    }
+
     public void Attack()
     {
-        if (playerDetect.CollideWithBodies)
+        if (playerDetect.IsColliding())
         {
             // Play attacking Anim. Chase player ... YARRR!
+            // Yer going to be needin ya a hitbox as well laddy.
+            player.Play("Attack");
+            FollowPlayer();
         }
     }
 

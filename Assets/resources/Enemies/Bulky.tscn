@@ -112,3 +112,9 @@ margin_top = -41.0
 margin_right = 25.0
 margin_bottom = -24.0
 text = "test"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( -5, -18 )
+enabled = true
+cast_to = Vector2( 33, 0 )
+collision_mask = 2
