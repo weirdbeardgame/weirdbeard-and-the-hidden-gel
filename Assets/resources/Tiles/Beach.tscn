@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Objects/Boxes/Box1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Objects/Boxes/Box2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Objects/Boxes/Box3.png" type="Texture" id=3]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Objects/Ladders/Ladder_down_1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Objects/Ladders/Ladder_top_1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Objects/Spikes/Spike.tscn" type="PackedScene" id=6]
+
+[node name="Node" type="Node"]
+
+[node name="LadderTop1" type="Sprite" parent="."]
+position = Vector2( -48, 280 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LadderTop1"]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="LadderTop1/StaticBody2D"]
+polygon = PoolVector2Array( -16, -16, 16, -16, 16, 16, -16, 16 )
+
+[node name="Box1" type="Sprite" parent="."]
+position = Vector2( -296, 280 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Box1"]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Box1/StaticBody2D"]
+polygon = PoolVector2Array( -16, -8, 16, -8, 16, 16, -16, 16 )
+
+[node name="Box2" type="Sprite" parent="."]
+position = Vector2( -232, 280 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Box2"]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Box2/StaticBody2D"]
+polygon = PoolVector2Array( -16, -8, 16, -8, 16, 16, -16, 16 )
+
+[node name="Box3" type="Sprite" parent="."]
+position = Vector2( -176, 280 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Box3"]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Box3/StaticBody2D"]
+polygon = PoolVector2Array( -16, -8, 16, -8, 16, 16, -16, 16 )
+
+[node name="LadderDown1" type="Sprite" parent="."]
+position = Vector2( -112, 280 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LadderDown1"]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="LadderDown1/StaticBody2D"]
+polygon = PoolVector2Array( -16, -16, 16, -16, 16, 16, -16, 16 )
+
+[node name="Spike" parent="." instance=ExtResource( 6 )]
+position = Vector2( 16, 280 )

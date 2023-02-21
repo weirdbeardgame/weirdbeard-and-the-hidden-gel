@@ -24,10 +24,9 @@ public class Player : Actor
         stateMachine = (StateMachine)GetNode("StateMachine");
         player = (AnimationPlayer)GetNode("AnimationPlayer");
         bufferedJumpTimer = (Timer)GetNode("BufferedJump");
-        if (currentWeapon == null)
-        {
-            GD.PrintErr("Weapon NULL");
-        }
+
+        currentWeapon = new WeaponCommon();
+
         coyoteTimer = (Timer)GetNode("CoyoteTimer");
         SceneManager.startNewGame += NewGame;
         defaultGravity = gravity;
@@ -108,6 +107,11 @@ public class Player : Actor
         camera.Current = false;
     }
 
+    public void MoveCamera()
+    {
+        camera.Position = Position;
+    }
+
     public void Die()
     {
         if (playerLives > 0)
@@ -144,6 +148,11 @@ public class Player : Actor
         {
             WeaponSlot.updateWSprite.Invoke(weapSprite.Texture);
         }
+
+        if (currentWeapon == null)
+        {
+            GD.PrintErr("Weapon NULL");
+        }
     }
 
     public void EquipPowerup(PowerUp power)
@@ -178,6 +187,8 @@ public class Player : Actor
         {
             currentWeapon.Attack(direction.Sign());
         }
+
+        MoveCamera();
 
         wasOnFloor = IsOnFloor();
         velocity.y += gravity * delta;

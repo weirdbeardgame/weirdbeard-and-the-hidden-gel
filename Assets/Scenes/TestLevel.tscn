@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/resources/Checkpoint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/resources/Tiles/TestLevel.tres" type="TileSet" id=2]
@@ -17,9 +17,14 @@
 [ext_resource path="res://Assets/resources/Tiles/Platformer/Background/Layers/4.png" type="Texture" id=15]
 [ext_resource path="res://Assets/resources/Tiles/Platformer/Background/Layers/5.png" type="Texture" id=16]
 [ext_resource path="res://Assets/resources/Tiles/Platformer/Background/Layers/7.png" type="Texture" id=17]
+[ext_resource path="res://Assets/resources/Tiles/spike.tres" type="TileSet" id=18]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Objects/Spikes/Spike.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Assets/resources/Enemies/Rat.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Assets/resources/Enemies/Bulky.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Assets/resources/Levels/GoalPost.tscn" type="PackedScene" id=22]
 
 [node name="Level" type="Node2D"]
-position = Vector2( 6, -2 )
+position = Vector2( 1, 152 )
 script = ExtResource( 8 )
 levelName = "TestLevel"
 maxEnemyAmnt = 5
@@ -28,7 +33,7 @@ sublevels = {
 }
 audioFile = ExtResource( 7 )
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Layer1" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 format = 1
@@ -68,10 +73,32 @@ position = Vector2( -236, 657 )
 [node name="CollisionShape2D" parent="Death" index="0"]
 position = Vector2( 538, -17.5 )
 
+[node name="Pirate" parent="Death" instance=ExtResource( 21 )]
+position = Vector2( 22, -237 )
+
+[node name="Layer2" type="TileMap" parent="."]
+z_index = 1
+tile_set = ExtResource( 18 )
+cell_size = Vector2( 32, 32 )
+format = 1
+
+[node name="Spike" parent="." instance=ExtResource( 19 )]
+position = Vector2( 170, 433 )
+
+[node name="TestEnemy" parent="." instance=ExtResource( 20 )]
+position = Vector2( -356, 255 )
+gravity = 50.0
+
+[node name="TestEnemy2" parent="." instance=ExtResource( 20 )]
+position = Vector2( 869, 416 )
+gravity = 50.0
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_enable = true
 
 [node name="1" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 3, 1 )
+motion_offset = Vector2( 3, 0 )
 motion_mirroring = Vector2( 576, 324 )
 
 [node name="8" type="Sprite" parent="ParallaxBackground/1"]
@@ -130,5 +157,9 @@ motion_mirroring = Vector2( 575, 0 )
 [node name="1" type="Sprite" parent="ParallaxBackground/8"]
 position = Vector2( 324, 294 )
 texture = ExtResource( 6 )
+
+[node name="Goal" parent="." instance=ExtResource( 22 )]
+position = Vector2( 1545, 395 )
+hub = "TestHub"
 
 [editable path="Death"]

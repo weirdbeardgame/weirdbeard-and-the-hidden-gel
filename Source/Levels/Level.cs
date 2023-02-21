@@ -46,7 +46,7 @@ public class Level : LevelCommon
             player.Position = currentCheckpoint.GlobalPosition;
         }
         player.ResetState();
-        tileMap = (TileMap)GetNode("TileMap");
+        tileMap = (TileMap)GetNode("Layer1");
         camera = (Camera2D)player.GetNode("Camera2D");
 
         camera.Current = true;

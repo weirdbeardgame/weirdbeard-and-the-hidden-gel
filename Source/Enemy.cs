@@ -10,6 +10,8 @@ public class Enemy : Actor
     RayCast2D Right;
     RayCast2D Left;
 
+    RayCast2D playerDetect;
+
     Sprite sprite;
 
     EnemyDirection dirToWalk;
@@ -20,32 +22,14 @@ public class Enemy : Actor
         player = (AnimationPlayer)GetNode("AnimationPlayer");
         Right = (RayCast2D)GetNode("Right");
         Left = (RayCast2D)GetNode("Left");
-        sprite = (Sprite)GetNode("Rat");
-        player.Play("Walk");
-        velocity.x = -speed;
-        sprite.FlipH = true;
-    }
-
-    public void Spawn(EnemyDirection dir)
-    {
-        sprite = (Sprite)GetNode("Rat");
-        switch (dir)
-        {
-            case EnemyDirection.LEFT:
-                velocity.x = -speed;
-                sprite.FlipH = true;
-                break;
-
-            case EnemyDirection.RIGHT:
-                velocity.x = speed;
-                sprite.FlipH = false;
-                break;
-        }
+        sprite = (Sprite)GetNode("Enemy");
+        stateMachine = (StateMachine)GetNode("StateMachine");
+        player.Play("Idle");
     }
 
     public void ChangeDirection()
     {
-        sprite = (Sprite)GetNode("Rat");
+        sprite = (Sprite)GetNode("Enemy");
         switch (dirToWalk)
         {
             case EnemyDirection.LEFT:
@@ -62,14 +46,7 @@ public class Enemy : Actor
         }
     }
 
-
-    public void Destroy()
-    {
-        velocity = Vector2.Zero;
-        sprite = null;
-    }
-
-    public override void _PhysicsProcess(float delta)
+    public void Move(float delta)
     {
         if (!Right.IsColliding() || !Left.IsColliding() || IsOnWall())
         {
@@ -78,6 +55,25 @@ public class Enemy : Actor
 
         velocity.y += gravity * delta;
         velocity.y = MoveAndSlide(velocity, Vector2.Up).y;
+    }
+
+    public void Destroy()
+    {
+        velocity = Vector2.Zero;
+        sprite = null;
+    }
+
+    public void Attack()
+    {
+        if (playerDetect.CollideWithBodies)
+        {
+            // Play attacking Anim. Chase player ... YARRR!
+        }
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+
     }
 
     public void OnArea2DAreaEntered(object area)

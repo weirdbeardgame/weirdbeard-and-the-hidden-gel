@@ -57,7 +57,6 @@ public class EnemySpawner : Node
             ene.SetAsToplevel(true);
 
             ene.Position = enePos;
-            ene.Spawn(enemyDirection);
 
             activeScene.AddChild(ene);
             activeScene.activeEnemies.Add(ene);

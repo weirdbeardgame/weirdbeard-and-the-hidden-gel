@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Source/Weapon/Sword.cs" type="Script" id=1]
 [ext_resource path="res://Assets/resources/Sprites/scifi_fantasy_swords/scifi_swords0001.png" type="Texture" id=2]
+[ext_resource path="res://Assets/resources/Weapons/TestSpawn.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 52, 10 )
@@ -45,6 +46,7 @@ script = ExtResource( 1 )
 dmgAmnt = 1
 speed = 200.0
 fireRate = 2.0
+shootable = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 0 )
