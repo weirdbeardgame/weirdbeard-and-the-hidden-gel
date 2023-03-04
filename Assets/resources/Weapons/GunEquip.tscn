@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Source/Weapon/WeaponEquip.cs" type="Script" id=1]
 [ext_resource path="res://Assets/resources/Weapons/Flintlock.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/resources/Sprites/Flintlock Pistol.png" type="Texture" id=3]
+[ext_resource path="res://Assets/resources/Sprites/Flintlock Pistol.png" type="Texture2D" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 17, 10 )
+size = Vector2( 17, 10 )
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource( 1 )
@@ -14,7 +14,7 @@ w = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="sprite" type="Sprite" parent="."]
+[node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="Equip"]

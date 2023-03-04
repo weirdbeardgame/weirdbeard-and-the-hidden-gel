@@ -1,8 +1,8 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
-public class StateMachine : Node
+public partial class StateMachine : Node
 {
     RichTextLabel stateSet;
     Dictionary<string, NodePath> Nodes;
@@ -71,7 +71,7 @@ public class StateMachine : Node
         }
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (state != null)
         {
@@ -102,7 +102,7 @@ public class StateMachine : Node
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (state != null)
         {

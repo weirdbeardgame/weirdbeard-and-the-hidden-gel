@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class PowerUpEquip : Node
+public partial class PowerUpEquip : Node
 {
     [Export] PackedScene toEquip;
 
@@ -9,7 +9,7 @@ public class PowerUpEquip : Node
     {
         if (body is Player)
         {
-            PowerUp p = (PowerUp)toEquip.Instance();
+            PowerUp p = toEquip.Instantiate<PowerUp>();
             Player play = (Player)body;
 
             p.Equip((Player)body);

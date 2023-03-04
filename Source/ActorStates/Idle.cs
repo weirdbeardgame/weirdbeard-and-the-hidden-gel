@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Idle : State
+public partial class Idle : State
 {
     // Declare member variables here. Examples:
     // private int a = 2;
@@ -27,12 +27,12 @@ public class Idle : State
         return base.GetInput();
     }
 
-    public override void Update(float delta)
+    public override void Update(double delta)
     {
         base.Update(delta);
     }
 
-    public override void FixedUpdate(float delta)
+    public override void FixedUpdate(double delta)
     {
         if (player.canMove)
         {

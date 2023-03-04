@@ -1,11 +1,11 @@
 using Godot;
 using System;
 
-public class HoverBeard : PowerUp
+public partial class HoverBeard : PowerUp
 {
     Timer timer;
 
-    Sprite hoverBeard;
+    Sprite2D hoverBeard;
 
     bool isHover;
 
@@ -13,7 +13,7 @@ public class HoverBeard : PowerUp
     {
         stateName = "HOVER";
         timer = (Timer)GetNode("Timer");
-        hoverBeard = (Sprite)p.GetNode("CenterContainer/HoverBeard");
+        hoverBeard = (Sprite2D)p.GetNode("CenterContainer/HoverBeard");
         base.Equip(p);
     }
 
@@ -40,20 +40,20 @@ public class HoverBeard : PowerUp
     {
         if (Input.IsActionPressed("Right"))
         {
-            inputVelocity.x = 1.0f * speed;
+            inputVelocity.X = 1.0f * speed;
         }
         else if (Input.IsActionPressed("Left"))
         {
-            inputVelocity.x = -1.0f * speed;
+            inputVelocity.X = -1.0f * speed;
         }
         if (!Input.IsActionPressed("Left") && !Input.IsActionPressed("Right"))
         {
-            inputVelocity.x = 0;
+            inputVelocity.X = 0;
         }
         return inputVelocity;
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (isHover && Input.IsActionPressed("Run"))
         {

@@ -1,15 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://bayndgsyvyesq"]
 
-[ext_resource path="res://Source/Levels/SceneManager.cs" type="Script" id=1]
-[ext_resource path="res://Assets/Scenes/TestLevel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Scenes/TestLevel2.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Scenes/TestHub.tscn" type="PackedScene" id=4]
+[ext_resource type="Script" path="res://Source/Levels/SceneManager.cs" id="1"]
+[ext_resource type="PackedScene" uid="uid://csf2gtg28oryt" path="res://Assets/Scenes/GrassLand1.tscn" id="2_bxorf"]
 
 [node name="SceneManager" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 levels = {
-"TestHub": ExtResource( 4 ),
-"TestLevel": ExtResource( 2 ),
-"TestLevel2": ExtResource( 3 )
+"GrassLand1": ExtResource("2_bxorf")
 }
-newGameScene = ExtResource( 4 )
+newGameScene = ExtResource("2_bxorf")

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Gun : WeaponCommon
+public partial class Gun : WeaponCommon
 {
     int firedRounds;
 
@@ -22,7 +22,7 @@ public class Gun : WeaponCommon
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        sprite = (Sprite)GetNode("Gun");
+        sprite = (Sprite2D)GetNode("Gun");
         bulletSpawner = (Node2D)GetNode("Gun/spawner");
         player = (Player)SceneManager.CurrentScene.GetNode("Player");
         animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
@@ -32,7 +32,7 @@ public class Gun : WeaponCommon
     {
         if (firedRounds != maxRoundsInScene)
         {
-            spawnedAmmo = (Bullet)shootable.Instance();
+            spawnedAmmo = shootable.Instantiate<Bullet>();
             spawnedAmmo.Position = bulletSpawner.GlobalPosition;
             spawnedAmmo.Rotation = bulletSpawner.GlobalRotation;
 
@@ -46,10 +46,10 @@ public class Gun : WeaponCommon
         }
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
 
-        if (player.direction.x >= 0)
+        if (player.direction.X >= 0)
         {
             sprite.FlipH = true;
         }
@@ -62,7 +62,7 @@ public class Gun : WeaponCommon
 
         GlobalPosition = oldPos * direction;
 
-        bulletDirection = player.direction.x;
+        bulletDirection = player.direction.X;
         bulletSpawner.GlobalRotation = player.Rotation;
     }
 }

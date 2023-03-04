@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Jump : State
+public partial class Jump : State
 {
     Vector2 inputVelocity = Vector2.Zero;
 
@@ -20,16 +20,16 @@ public class Jump : State
         player.player.Play("Jump");
         if (!player.projectileMotionJump)
         {
-            inputVelocity.y = -player.maxJumpImpulse;
+            inputVelocity.Y = -player.maxJumpImpulse;
         }
         if (player.projectileMotionJump)
         {
             player.gravity = player.jumpGravity;
-            inputVelocity.y = player.jumpVelocity;
+            inputVelocity.Y = player.jumpVelocity;
             GD.Print("Jump Gravity: ", player.jumpGravity);
         }
 
-        inputVelocity.x = player.Velocity.x;
+        inputVelocity.X = player.Velocity.X;
         player.Velocity = inputVelocity;
 
         player.BufferJump();

@@ -17,7 +17,7 @@ visible = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -87.0
+offset_top = -87.0
 
 [node name="ColorRect" type="ColorRect" parent="DialogueManager/DialogueBox"]
 anchor_right = 1.0
@@ -25,16 +25,16 @@ anchor_bottom = 1.0
 color = Color( 0.105882, 0.0862745, 0.0862745, 1 )
 
 [node name="Label" type="Label" parent="DialogueManager/DialogueBox"]
-margin_right = 640.0
-margin_bottom = 14.0
+offset_right = 640.0
+offset_bottom = 14.0
 theme = ExtResource( 1 )
 text = "Test NPC NAME"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="DialogueManager/DialogueBox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 20.0
-margin_bottom = -22.0
+offset_top = 20.0
+offset_bottom = -22.0
 
 [node name="Typing" type="Timer" parent="DialogueManager/DialogueBox"]
 
@@ -42,5 +42,5 @@ margin_bottom = -22.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -24.0
+offset_top = -24.0
 alignment = 1

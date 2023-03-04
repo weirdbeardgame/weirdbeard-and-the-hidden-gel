@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Source/Weapon/Sword.cs" type="Script" id=1]
-[ext_resource path="res://Assets/resources/Sprites/scifi_fantasy_swords/scifi_swords0001.png" type="Texture" id=2]
+[ext_resource path="res://Assets/resources/Sprites/scifi_fantasy_swords/scifi_swords0001.png" type="Texture2D" id=2]
 [ext_resource path="res://Assets/resources/Weapons/TestSpawn.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 52, 10 )
+size = Vector2( 52, 10 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Attack"
@@ -18,8 +18,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 2, 0 ), Vector2( 4, 0 ), Vector2( 6, 0 ), Vector2( 8, 0 ) ]
 }
@@ -33,13 +33,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[node name="SwordBody" type="KinematicBody2D"]
+[node name="SwordBody" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource( 1 )
@@ -52,7 +52,7 @@ shootable = ExtResource( 3 )
 position = Vector2( 1, 0 )
 shape = SubResource( 4 )
 
-[node name="sprite" type="Sprite" parent="."]
+[node name="sprite" type="Sprite2D" parent="."]
 rotation = 1.5708
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 2 )
@@ -62,8 +62,8 @@ root_node = NodePath("")
 anims/Attack = SubResource( 2 )
 anims/RESET = SubResource( 3 )
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2( 1, 0 )
 scale = Vector2( 5.2, 1 )
 
-[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
+[connection signal="viewport_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]

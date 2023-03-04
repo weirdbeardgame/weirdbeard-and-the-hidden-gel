@@ -1,8 +1,8 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
-public class NPC : Node
+public partial class NPC : Node
 {
     [Export]
     string npcName;
@@ -10,7 +10,7 @@ public class NPC : Node
     AnimationPlayer player;
 
     [Export]
-    List<PackedScene> dialogue;
+    Array<PackedScene> dialogue;
 
     bool isPlayerCollide;
 
@@ -25,7 +25,7 @@ public class NPC : Node
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (isPlayerCollide && Input.IsActionPressed("Submit"))
         {

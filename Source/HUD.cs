@@ -1,13 +1,13 @@
 using Godot;
 using System;
 
-public class HUD : Node
+public partial class HUD : Node
 {
     Label lifeCounter;
 
     Label coinCounter;
 
-    Sprite equippedWeaponSprite;
+    Sprite2D equippedWeaponSprite;
 
     int coins;
     int lives;
@@ -17,7 +17,7 @@ public class HUD : Node
     {
         coinCounter = (Label)GetNode("Coins");
         lifeCounter = (Label)GetNode("Lives");
-        equippedWeaponSprite = (Sprite)GetNode("WeaponBox/WeaponIcon");
+        equippedWeaponSprite = (Sprite2D)GetNode("WeaponBox/WeaponIcon");
         Coin.getCoin += IncreaseCoinCounter;
         Coin.looseCoin += DecreaseCoinCounter;
         WeaponSlot.updateWSprite += UpdateWeaponSprite;
@@ -53,7 +53,7 @@ public class HUD : Node
         lifeCounter.Text = ("Lives: " + coins.ToString());
     }
 
-    void UpdateWeaponSprite(Texture s)
+    void UpdateWeaponSprite(Texture2D s)
     {
         if (equippedWeaponSprite.Texture != s)
         {
@@ -62,7 +62,7 @@ public class HUD : Node
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
 
     }

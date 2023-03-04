@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/resources/Sprites/scifi_fantasy_swords/scifi_swords0001.png" type="Texture" id=1]
+[ext_resource path="res://Assets/resources/Sprites/scifi_fantasy_swords/scifi_swords0001.png" type="Texture2D" id=1]
 [ext_resource path="res://Source/Weapon/WeaponEquip.cs" type="Script" id=2]
 [ext_resource path="res://Assets/resources/Weapons/Sword.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 128, 521.5 )
+size = Vector2( 128, 521.5 )
 
 [node name="Sword" type="Area2D"]
 rotation = -1.5708
@@ -13,7 +13,7 @@ scale = Vector2( 0.063, 0.04 )
 script = ExtResource( 2 )
 w = ExtResource( 3 )
 
-[node name="sprite" type="Sprite" parent="."]
+[node name="sprite" type="Sprite2D" parent="."]
 position = Vector2( 61, 211 )
 texture = ExtResource( 1 )
 

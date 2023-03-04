@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Falling : State
+public partial class Falling : State
 {
     bool doubleJump = true;
 
@@ -29,7 +29,7 @@ public class Falling : State
         }
     }
 
-    public override void Update(float delta)
+    public override void Update(double delta)
     {
         if (Input.IsActionJustPressed("Jump") && player.CanJump())
         {

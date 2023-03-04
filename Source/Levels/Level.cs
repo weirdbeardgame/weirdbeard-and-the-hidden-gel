@@ -1,8 +1,8 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
-public class Level : LevelCommon
+public partial class Level : LevelCommon
 {
     [Export]
     Dictionary<string, PackedScene> sublevels;
@@ -25,7 +25,6 @@ public class Level : LevelCommon
 
     public override void EnterLevel(Player p)
     {
-        activeEnemies = new List<Enemy>();
         backgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
 
         base.EnterLevel(p);
@@ -49,9 +48,9 @@ public class Level : LevelCommon
         tileMap = (TileMap)GetNode("Layer1");
         camera = (Camera2D)player.GetNode("Camera2D");
 
-        camera.Current = true;
+        camera.Enabled = true;
 
-        mapCellsize = tileMap.CellSize;
+
         mapLimits = tileMap.GetUsedRect();
 
         SetCameraBounds();
@@ -66,11 +65,11 @@ public class Level : LevelCommon
 
     public void SetCameraBounds()
     {
-        camera.LimitRight = (int)(mapLimits.End.x * mapCellsize.x);
-        camera.LimitLeft = (int)(mapLimits.Position.x * mapCellsize.x);
+        camera.LimitRight = (int)(mapLimits.End.X * mapCellsize.X);
+        camera.LimitLeft = (int)(mapLimits.Position.X * mapCellsize.X);
 
-        camera.LimitBottom = (int)(mapLimits.End.y * mapCellsize.y);
-        camera.LimitTop = (int)(mapLimits.Position.y * mapCellsize.y);
+        camera.LimitBottom = (int)(mapLimits.End.Y * mapCellsize.Y);
+        camera.LimitTop = (int)(mapLimits.Position.Y * mapCellsize.Y);
     }
 
     public override void ResetLevel()

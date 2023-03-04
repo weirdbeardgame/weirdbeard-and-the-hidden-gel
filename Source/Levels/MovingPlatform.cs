@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class MovingPlatform : Node
+public partial class MovingPlatform : Node
 {
 
     Vector2 dir;
@@ -14,7 +14,7 @@ public class MovingPlatform : Node
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
+    //  public override void _Process(double delta)
     //  {
     //      
     //  }

@@ -1,10 +1,10 @@
 using Godot;
+using Godot.Collections;
 using System;
-using System.Collections.Generic;
 
-public class Audio : Node
+public partial class Audio : Node
 {
-    [Export] List<Audio> audioClips;
+    [Export] Array<Audio> audioClips;
 
     [Export]
     AudioStreamPlayer audio;

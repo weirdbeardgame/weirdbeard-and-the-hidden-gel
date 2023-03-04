@@ -1,8 +1,8 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
-public class DialogueManager : Control
+public partial class DialogueManager : Control
 {
     StateMachine states;
     RichTextLabel text;
@@ -12,7 +12,7 @@ public class DialogueManager : Control
     int index = 0;
     int textVisible = 0;
 
-    List<PackedScene> currentBuffer;
+    Array<PackedScene> currentBuffer;
     Dialogue currentDialogue;
 
     bool isOpen = false;
@@ -24,17 +24,17 @@ public class DialogueManager : Control
         states = node.GetNode<StateMachine>("GameState");
     }
 
-    public void Open(List<PackedScene> toSpeak)
+    public void Open(Array<PackedScene> toSpeak)
     {
         states.UpdateState("DIALOGUE");
         SceneManager.CurrentScene.AddChild(box);
         box = GetNode<Popup>("DialogueBox");
         text = box.GetNode<RichTextLabel>("RichTextLabel");
         box.Visible = true;
-        box.Popup_();
+        box.Popup();
 
         currentBuffer = toSpeak;
-        currentDialogue = (Dialogue)currentBuffer[index].Instance();
+        currentDialogue = (Dialogue)currentBuffer[index].Instantiate<Dialogue>();
         text.Text = currentDialogue.buffer[line];
         text.VisibleCharacters = 0;
         isOpen = true;
@@ -70,7 +70,7 @@ public class DialogueManager : Control
         }
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         PrintText();
     }

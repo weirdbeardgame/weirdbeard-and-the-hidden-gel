@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class WeaponEquip : Area2D
+public partial class WeaponEquip : Area2D
 {
     [Export]
     PackedScene w;
@@ -15,7 +15,7 @@ public class WeaponEquip : Area2D
 
     public void Equip(object body)
     {
-        WeaponCommon weap = (WeaponCommon)w.Instance();
+        WeaponCommon weap = w.Instantiate<WeaponCommon>();
         if (body is Player)
         {
             player = (Player)body;

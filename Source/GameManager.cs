@@ -6,7 +6,7 @@ using System;
 // The purpose of this class is to track Game State. Player State to some small degree though the player
 // Has a state machine of it's own and as such is mostly independant of this class.
 // This will track progress, will handle basic save logic. UI processing if needed
-public class GameManager : Node
+public partial class GameManager : Node
 {
     StateMachine gameState;
 
@@ -30,12 +30,12 @@ public class GameManager : Node
     {
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
 
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
 
     }

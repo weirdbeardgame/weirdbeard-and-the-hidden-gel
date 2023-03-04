@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Death : State
+public partial class Death : State
 {
 
     bool isDead = false;

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Island_Theme.wav-676ea37be7cf744e1774e4c854a4d1ae.sample"
+type="AudioStreamWAV"
+uid="uid://bkblhq7dchuhh"
+path="res://.godot/imported/Island_Theme.wav-676ea37be7cf744e1774e4c854a4d1ae.sample"
 
 [deps]
 
 source_file="res://Assets/resources/Audio/Island_Theme.wav"
-dest_files=[ "res://.import/Island_Theme.wav-676ea37be7cf744e1774e4c854a4d1ae.sample" ]
+dest_files=["res://.godot/imported/Island_Theme.wav-676ea37be7cf744e1774e4c854a4d1ae.sample"]
 
 [params]
 

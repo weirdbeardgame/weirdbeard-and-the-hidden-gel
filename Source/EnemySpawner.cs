@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 // Basically the Abstract Factory Pattern
-public class EnemySpawner : Node
+public partial class EnemySpawner : Node
 {
     [Export]
     PackedScene spawn;
@@ -34,11 +34,11 @@ public class EnemySpawner : Node
     public void Randomize()
     {
         screenSize = GetViewport().GetVisibleRect().Size;
-        enePos.x = randNum.RandfRange(0, screenSize.x);
+        enePos.X = randNum.RandfRange(0, screenSize.X);
 
         randNum.Randomize();
 
-        enePos.y = randNum.RandfRange(0, screenSize.y);
+        enePos.Y = randNum.RandfRange(0, screenSize.Y);
         randNum.Randomize();
     }
 
@@ -52,9 +52,9 @@ public class EnemySpawner : Node
             GD.Print("Spawn");
 
             Randomize();
-            Enemy ene = (Enemy)spawn.Instance();
+            Enemy ene = spawn.Instantiate<Enemy>();
 
-            ene.SetAsToplevel(true);
+            ene.TopLevel = true;
 
             ene.Position = enePos;
 
@@ -65,7 +65,7 @@ public class EnemySpawner : Node
 
     void TimeOut()
     {
-        if (activeScene.activeEnemies.Capacity < activeScene.maxEnemyAmnt)
+        if (activeScene.activeEnemies.Count < activeScene.maxEnemyAmnt)
         {
             GD.Print("Call Spawn");
             Spawn();

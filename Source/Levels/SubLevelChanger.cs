@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class SubLevelChanger : Area2D
+public partial class SubLevelChanger : Area2D
 {
     SceneManager scenes;
     Level currentLevel;

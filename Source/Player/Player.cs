@@ -1,13 +1,13 @@
 using Godot;
 using System;
 
-public class Player : Actor
+public partial class Player : Actor
 {
     Timer coyoteTimer;
     Timer bufferedJumpTimer;
     PowerUp currentPowerup;
 
-    public Sprite weirdBeard;
+    public Sprite2D weirdBeard;
     public int playerLives = 3;
     public WeaponCommon currentWeapon;
     public AnimationPlayer player;
@@ -20,7 +20,7 @@ public class Player : Actor
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        weirdBeard = (Sprite)GetNode("CenterContainer/WeirdBeard");
+        weirdBeard = (Sprite2D)GetNode("CenterContainer/WeirdBeard");
         stateMachine = (StateMachine)GetNode("StateMachine");
         player = (AnimationPlayer)GetNode("AnimationPlayer");
         bufferedJumpTimer = (Timer)GetNode("BufferedJump");
@@ -43,19 +43,6 @@ public class Player : Actor
         }
     }
 
-    public Vector2 Velocity
-    {
-        get
-        {
-            return velocity;
-        }
-
-        set
-        {
-            velocity = value;
-        }
-    }
-
     public void NewGame()
     {
         playerLives = 3;
@@ -67,7 +54,7 @@ public class Player : Actor
     {
         canJumpAgain = true;
         wasOnFloor = false;
-        velocity = Vector2.Zero;
+        Velocity = Vector2.Zero;
         gravity = defaultGravity;
         SetState("IDLE");
         canMove = true;
@@ -99,12 +86,12 @@ public class Player : Actor
 
     public void ActivateCamera()
     {
-        camera.Current = true;
+        camera.Enabled = true;
     }
 
     public void DeactivateCamera()
     {
-        camera.Current = false;
+        camera.Enabled = false;
     }
 
     public void MoveCamera()
@@ -132,9 +119,9 @@ public class Player : Actor
         return (playerLives <= 0);
     }
 
-    public void EquipWeapon(PackedScene w, Sprite weapSprite)
+    public void EquipWeapon(PackedScene w, Sprite2D weapSprite)
     {
-        WeaponCommon weapon = (WeaponCommon)w.Instance();
+        WeaponCommon weapon = w.Instantiate<WeaponCommon>();
         currentWeapon = weapon;
 
         if (weapon.weaponType == WeaponType.SHOOT)
@@ -169,30 +156,27 @@ public class Player : Actor
         }
     }
 
-    void ApplyGravity(float delta, float currentGrav = 0f)
+    public override void _Process(double delta)
     {
-        if (!projectileMotionJump)
-        {
-            velocity.y += gravity * delta;
-        }
-        else
-        {
-            velocity.y += currentGrav * delta;
-        }
+        GD.Print("Procexsss");
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
+        base._PhysicsProcess(delta);
         if (Input.IsActionJustPressed("Attack") && currentWeapon != null)
         {
             currentWeapon.Attack(direction.Sign());
         }
 
+        GD.Print("Phizix");
+
         MoveCamera();
 
         wasOnFloor = IsOnFloor();
-        velocity.y += gravity * delta;
-        velocity = MoveAndSlide(velocity, Vector2.Up);
+        Velocity = ApplyGravity(delta, gravity);
+        GD.Print("Velocity: ", Velocity);
+        MoveAndSlide();
 
         if (currentPowerup != null)
         {

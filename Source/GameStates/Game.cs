@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Game : State
+public partial class Game : State
 {
     GameManager manager;
 
@@ -21,7 +21,7 @@ public class Game : State
         GD.Print("New Game");
     }
 
-    public override void FixedUpdate(float delta)
+    public override void FixedUpdate(double delta)
     {
         if (Input.IsActionJustPressed("Pause"))
         {

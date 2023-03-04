@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/resources/box.png" type="Texture" id=1]
+[ext_resource path="res://Assets/resources/box.png" type="Texture2D" id=1]
 [ext_resource path="res://Source/Levels/GoalPost.cs" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15.5, 31.5 )
+size = Vector2( 15.5, 31.5 )
 
 [node name="Goal" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="Box" type="Sprite" parent="Area2D"]
+[node name="Box" type="Sprite2D" parent="Area2D"]
 position = Vector2( 5, 22 )
 scale = Vector2( 0.207692, 0.563636 )
 texture = ExtResource( 1 )

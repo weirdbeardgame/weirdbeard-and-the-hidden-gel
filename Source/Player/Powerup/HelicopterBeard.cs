@@ -1,15 +1,15 @@
 using Godot;
 using System;
 
-public class HelicopterBeard : PowerUp
+public partial class HelicopterBeard : PowerUp
 {
     [Export] float gravityPercent;
 
-    Sprite helicopter;
+    Sprite2D helicopter;
 
     public override void Equip(Player p)
     {
-        helicopter = (Sprite)p.GetNode("CenterContainer/HelicopterBeard");
+        helicopter = (Sprite2D)p.GetNode("CenterContainer/HelicopterBeard");
         stateName = "HELICOPTER";
         base.Equip(p);
     }
@@ -29,20 +29,20 @@ public class HelicopterBeard : PowerUp
     {
         if (Input.IsActionPressed("Right"))
         {
-            inputVelocity.x = 1.0f * speed;
+            inputVelocity.X = 1.0f * speed;
         }
         else if (Input.IsActionPressed("Left"))
         {
-            inputVelocity.x = -1.0f * speed;
+            inputVelocity.X = -1.0f * speed;
         }
         if (!Input.IsActionPressed("Left") && !Input.IsActionPressed("Right"))
         {
-            inputVelocity.x = 0;
+            inputVelocity.X = 0;
         }
         return inputVelocity;
     }
 
-    public override void FixedUpdate(float delta)
+    public override void FixedUpdate(double delta)
     {
         player.Velocity = GetInput();
 

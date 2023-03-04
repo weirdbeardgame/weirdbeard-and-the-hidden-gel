@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Store : State
+public partial class Store : State
 {
     public override void _Ready()
     {
@@ -16,7 +16,7 @@ public class Store : State
         base.Start();
     }
 
-    public override void FixedUpdate(float delta)
+    public override void FixedUpdate(double delta)
     {
         // Handle UI input processing
     }

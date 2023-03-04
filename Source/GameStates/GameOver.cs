@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class GameOver : State
+public partial class GameOver : State
 {
 
     [Export]
@@ -18,7 +18,7 @@ public class GameOver : State
         base.Start();
     }
 
-    public override void FixedUpdate(float delta)
+    public override void FixedUpdate(double delta)
     {
         // Handle UI input processing
     }

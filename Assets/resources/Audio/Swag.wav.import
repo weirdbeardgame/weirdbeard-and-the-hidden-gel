@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Swag.wav-8fbe8bcf6d3afab444ec4f6d270a4b96.sample"
+type="AudioStreamWAV"
+uid="uid://di234v33g0ebn"
+path="res://.godot/imported/Swag.wav-8fbe8bcf6d3afab444ec4f6d270a4b96.sample"
 
 [deps]
 
 source_file="res://Assets/resources/Audio/Swag.wav"
-dest_files=[ "res://.import/Swag.wav-8fbe8bcf6d3afab444ec4f6d270a4b96.sample" ]
+dest_files=["res://.godot/imported/Swag.wav-8fbe8bcf6d3afab444ec4f6d270a4b96.sample"]
 
 [params]
 

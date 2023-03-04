@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Bullet : KinematicBody2D
+public partial class Bullet : CharacterBody2D
 {
     [Export] float speed;
     Vector2 velocity;
@@ -10,19 +10,19 @@ public class Bullet : KinematicBody2D
     public void Shoot(float vel)
     {
         isActive = true;
-        velocity.x = vel * speed;
+        velocity.X = vel * speed;
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
-        var col = MoveAndCollide(velocity * delta);
+        var col = MoveAndCollide(velocity * (float)(delta));
         if (col != null)
         {
             GD.Print("Collision");
-            if (col.Collider is Enemy)
+            if (col.GetCollider() is Enemy)
             {
                 GD.Print("Enemy Detected");
-                Enemy e = col.Collider as Enemy;
+                Enemy e = col.GetCollider() as Enemy;
                 e.QueueFree();
                 QueueFree();
             }

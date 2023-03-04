@@ -1,8 +1,8 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
-public class Paths : Node
+public partial class Paths : Node
 {
     [Export] Dictionary<Direction, NodePath> levelAttached;
     Tween interpolate;
@@ -16,7 +16,7 @@ public class Paths : Node
 
     public void Start(HubActor p, Direction dir)
     {
-        interpolate = (Tween)GetNode("Tween");
+        interpolate = GetNode<Tween>("Tween");
         follow2D = (PathFollow2D)GetNode("PathFollow2D");
         GD.Print("Move");
 
@@ -24,8 +24,8 @@ public class Paths : Node
         direction = dir;
 
         follow2D.AddChild(p);
-        interpolate.InterpolateProperty(follow2D, "unit_offset", 0.0f, 1.0f, 3.0f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
-        interpolate.Start();
+        //interpolate.TweenProperty(follow2D, "unit_offset", 0.0f, 1.0f, 3.0f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+        //interpolate.Start();
     }
 
     public void TweenComplete()
@@ -37,7 +37,7 @@ public class Paths : Node
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
 
     }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class SubLevel : LevelCommon
+public partial class SubLevel : LevelCommon
 {
 
     Level parentLevel;
@@ -28,7 +28,7 @@ public class SubLevel : LevelCommon
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
+    //  public override void _Process(double delta)
     //  {
     //      
     //  }

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Port Town.wav-89785f1df92c3eb091e47dd6af2c31b9.sample"
+type="AudioStreamWAV"
+uid="uid://cqii208oeqejq"
+path="res://.godot/imported/Port Town.wav-89785f1df92c3eb091e47dd6af2c31b9.sample"
 
 [deps]
 
 source_file="res://Assets/resources/Audio/Port Town.wav"
-dest_files=[ "res://.import/Port Town.wav-89785f1df92c3eb091e47dd6af2c31b9.sample" ]
+dest_files=["res://.godot/imported/Port Town.wav-89785f1df92c3eb091e47dd6af2c31b9.sample"]
 
 [params]
 

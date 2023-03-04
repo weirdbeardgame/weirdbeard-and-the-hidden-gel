@@ -1,11 +1,11 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
 public enum LevelTypes { LEVEL, SUB, HUB }
 
 
-public class LevelCommon : Node
+public partial class LevelCommon : Node2D
 {
     [Export]
     public string levelName;
@@ -18,10 +18,10 @@ public class LevelCommon : Node
     public int maxEnemyAmnt;
 
     [Export]
-    public List<Enemy> activeEnemies;
+    public Array<Enemy> activeEnemies;
 
     [Export]
-    public List<Exit> exits;
+    public Array<Exit> exits;
 
     public LevelTypes levelType;
 

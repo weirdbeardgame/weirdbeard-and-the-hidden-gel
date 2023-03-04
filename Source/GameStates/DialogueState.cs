@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class DialogueState : State
+public partial class DialogueState : State
 {
     public override void _Ready()
     {
@@ -16,7 +16,7 @@ public class DialogueState : State
         player.canMove = false;
     }
 
-    public override void FixedUpdate(float delta)
+    public override void FixedUpdate(double delta)
     {
         // Handle UI input processing
     }

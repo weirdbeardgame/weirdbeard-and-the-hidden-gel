@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Air : State
+public partial class Air : State
 {
     Vector2 inputVelocity;
     public override void _Ready()
@@ -17,17 +17,17 @@ public class Air : State
 
     }
 
-    public override void FixedUpdate(float delta)
+    public override void FixedUpdate(double delta)
     {
         if (Input.IsActionJustReleased("Jump") || !Input.IsActionPressed("Jump"))
         {
-            inputVelocity.x = player.Velocity.x;
-            inputVelocity.y = player.Velocity.y * 0.5f;
+            inputVelocity.X = player.Velocity.X;
+            inputVelocity.Y = player.Velocity.Y * 0.5f;
             player.Velocity = inputVelocity;
         }
     }
 
-    public override void Update(float delta)
+    public override void Update(double delta)
     {
         if (Input.IsActionJustPressed("Jump") && player.CanJump())
         {
@@ -35,7 +35,7 @@ public class Air : State
             stateMachine.UpdateState("JUMP");
         }
 
-        if (player.Velocity.y >= 0)
+        if (player.Velocity.Y >= 0)
         {
             stateMachine.UpdateState("FALL");
         }

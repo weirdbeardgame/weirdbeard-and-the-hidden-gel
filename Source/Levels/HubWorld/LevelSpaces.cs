@@ -1,10 +1,10 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
 public enum Direction { N, S, E, W };
 
-public class LevelSpaces : Node2D
+public partial class LevelSpaces : Node2D
 {
     [Export] PackedScene attachedLevel;
 
@@ -22,7 +22,7 @@ public class LevelSpaces : Node2D
 
     public void EnterLevel()
     {
-        LevelCommon scene = (LevelCommon)attachedLevel.Instance();
+        LevelCommon scene = attachedLevel.Instantiate<LevelCommon>();
         actor.Deactivate();
         SceneManager.changeScene(scene.levelName, actor.Player);
     }

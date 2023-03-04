@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class LevelChanger : Area2D
+public partial class LevelChanger : Area2D
 {
 
     [Export]
@@ -13,7 +13,7 @@ public class LevelChanger : Area2D
 
     public void Teleport(object body)
     {
-        LevelCommon scene = (LevelCommon)teleportTo.Instance();
+        LevelCommon scene = teleportTo.Instantiate<LevelCommon>();
         if (body is Player)
         {
             SceneManager.changeScene(scene.levelName, (Player)body);

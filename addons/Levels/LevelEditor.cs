@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 [Tool]
-public class LevelEditor : EditorPlugin
+public partial class LevelEditor : EditorPlugin
 {
     Control dock;
 
@@ -18,10 +18,10 @@ public class LevelEditor : EditorPlugin
         CreateLevel += CreateNewLevel;
         levels = new List<LevelCommon>();
 
-        dock = (Control)GD.Load<PackedScene>("res://addons/Levels/LevelEditor.tscn").Instance();
+        dock = GD.Load<PackedScene>("res://addons/Levels/LevelEditor.tscn").Instantiate<Control>();
 
         var newLevelS = GD.Load<Script>("res://addons/Levels/NewLevelButton.cs");
-        var textureLevel = GD.Load<Texture>("icon.png");
+        var textureLevel = GD.Load<Texture2D>("icon.png");
 
         AddControlToDock(DockSlot.LeftUl, dock);
     }

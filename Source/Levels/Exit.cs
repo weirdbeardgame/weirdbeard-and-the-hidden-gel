@@ -4,7 +4,7 @@ using System;
 // The idea would be to take the player back to the other spot they entered or left from like a door
 // Or just take a player to the associated level / screen that's attached to this exit.
 
-public class Exit : Node2D
+public partial class Exit : Node2D
 {
     [Export]
     PackedScene toTransportTo;

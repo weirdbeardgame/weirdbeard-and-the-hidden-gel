@@ -1,0 +1,17 @@
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/obj/Debug/Weirdbeard Mono.csproj.AssemblyReference.cache
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/obj/Debug/Weirdbeard Mono.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/obj/Debug/Weirdbeard Mono.AssemblyInfoInputs.cache
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/obj/Debug/Weirdbeard Mono.AssemblyInfo.cs
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/obj/Debug/Weirdbeard Mono.csproj.CoreCompileInputs.cache
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/bin/Debug/Weirdbeard Mono.deps.json
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/bin/Debug/Weirdbeard Mono.runtimeconfig.json
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/bin/Debug/Weirdbeard Mono.dll
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/bin/Debug/Weirdbeard Mono.pdb
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/bin/Debug/GodotSharp.dll
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/obj/Debug/Weirdbeard Mono.csproj.CopyComplete
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/obj/Debug/Weirdbeard Mono.dll
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/obj/Debug/refint/Weirdbeard Mono.dll
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/obj/Debug/Weirdbeard Mono.pdb
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/obj/Debug/Weirdbeard Mono.genruntimeconfig.cache
+/mnt/data/coding/weirdbeardMono4/.godot/mono/temp/obj/Debug/ref/Weirdbeard Mono.dll

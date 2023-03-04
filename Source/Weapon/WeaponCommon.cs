@@ -3,9 +3,9 @@ using System;
 
 public enum WeaponType { THROW, SWING, SHOOT }
 
-public class WeaponCommon : Node2D
+public partial class WeaponCommon : Node2D
 {
-    [Export] public Sprite icon;
+    [Export] public Sprite2D icon;
     [Export] public int dmgAmnt;
     [Export] public float speed;
     [Export] public float fireRate;
@@ -13,7 +13,7 @@ public class WeaponCommon : Node2D
     [Export] public WeaponType weaponType;
     [Export] protected PackedScene shootable;
 
-    protected Sprite sprite;
+    protected Sprite2D sprite;
     protected Player player;
     public bool canThrowWeapon;
     protected Vector2 velocity;
@@ -25,7 +25,7 @@ public class WeaponCommon : Node2D
     {
         player = (Player)SceneManager.CurrentScene.GetNode("Player");
         animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
-        icon = ResourceLoader.Load<Sprite>("icon.png");
+        icon = ResourceLoader.Load<Sprite2D>("icon.png");
     }
 
     public virtual void Equip()
@@ -39,7 +39,7 @@ public class WeaponCommon : Node2D
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
+    //  public override void _Process(double delta)
     //  {
     //      
     //  }

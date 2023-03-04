@@ -1,23 +1,23 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
 enum ObjectCategories
 {
     PLATFORM, ENEMIES, CHECKPOINTS, FLOOR, BACKGROUND_ITEMS
 }
 
-public class LevelObject : TileSet
+public partial class LevelObject : TileSet
 {
     ObjectCategories category;
 
     Vector2 position;
 
-    Sprite icon;
+    Sprite2D icon;
 
     public void Create()
     {
-        
+
     }
 
 }

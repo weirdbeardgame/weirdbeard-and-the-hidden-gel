@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/resources/Tiles/Platformer/Objects/Boxes/Box4.png" type="Texture" id=1]
+[ext_resource path="res://Assets/resources/Tiles/Platformer/Objects/Boxes/Box4.png" type="Texture2D" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 35.5, 10 )
+size = Vector2( 35.5, 10 )
 
-[node name="Platform" type="KinematicBody2D"]
+[node name="Platform" type="CharacterBody2D"]
 position = Vector2( -1, 0 )
 
-[node name="Box" type="Sprite" parent="."]
+[node name="Box" type="Sprite2D" parent="."]
 position = Vector2( -4.5, -3 )
 scale = Vector2( 2.21875, 0.8125 )
 texture = ExtResource( 1 )

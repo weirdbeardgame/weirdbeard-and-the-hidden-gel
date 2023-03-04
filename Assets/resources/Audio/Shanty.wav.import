@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Shanty.wav-13762dda7f428178aca7be228469f8e5.sample"
+type="AudioStreamWAV"
+uid="uid://18ylixu4rs3r"
+path="res://.godot/imported/Shanty.wav-13762dda7f428178aca7be228469f8e5.sample"
 
 [deps]
 
 source_file="res://Assets/resources/Audio/Shanty.wav"
-dest_files=[ "res://.import/Shanty.wav-13762dda7f428178aca7be228469f8e5.sample" ]
+dest_files=["res://.godot/imported/Shanty.wav-13762dda7f428178aca7be228469f8e5.sample"]
 
 [params]
 

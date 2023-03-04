@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class State : Node
+public partial class State : Node
 {
     protected Player player;
 
@@ -9,7 +9,7 @@ public class State : Node
 
     public string stateName;
 
-    protected Sprite weirdBeard;
+    protected Sprite2D weirdBeard;
 
     protected AnimationPlayer animator;
 
@@ -32,12 +32,12 @@ public class State : Node
         return Vector2.Zero;
     }
 
-    public virtual void Update(float delta)
+    public virtual void Update(double delta)
     {
 
     }
 
-    public virtual void FixedUpdate(float delta)
+    public virtual void FixedUpdate(double delta)
     {
 
     }

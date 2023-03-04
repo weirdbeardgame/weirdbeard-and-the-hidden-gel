@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Pause : State
+public partial class Pause : State
 {
 
     // Called when the node enters the scene tree for the first time.
@@ -17,7 +17,7 @@ public class Pause : State
         // Play screen darken animation. Open UI
         GetTree().Paused = true;
     }
-    public override void FixedUpdate(float delta)
+    public override void FixedUpdate(double delta)
     {
         if (Input.IsActionJustPressed("Pause"))
         {

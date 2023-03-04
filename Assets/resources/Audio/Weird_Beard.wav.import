@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Weird_Beard.wav-634de1216a0bc3767a3d20796eb45a42.sample"
+type="AudioStreamWAV"
+uid="uid://c3qi7wk85b34v"
+path="res://.godot/imported/Weird_Beard.wav-634de1216a0bc3767a3d20796eb45a42.sample"
 
 [deps]
 
 source_file="res://Assets/resources/Audio/Weird_Beard.wav"
-dest_files=[ "res://.import/Weird_Beard.wav-634de1216a0bc3767a3d20796eb45a42.sample" ]
+dest_files=["res://.godot/imported/Weird_Beard.wav-634de1216a0bc3767a3d20796eb45a42.sample"]
 
 [params]
 

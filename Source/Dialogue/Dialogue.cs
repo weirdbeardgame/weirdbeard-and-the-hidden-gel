@@ -1,20 +1,20 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
-public class Dialogue : Node
+public partial class Dialogue : Node
 {
     [Export]
-    public List<string> buffer;
+    public Array<string> buffer;
 
     public int length;
 
     //[Export]
-    //public Sprite speakerHead;
+    //public Sprite2D speakerHead;
 
     public Dialogue Open(int i)
     {
-        if (i <= buffer.Capacity)
+        if (i <= buffer.Count)
         {
             length = buffer[i].Length;
             return this;

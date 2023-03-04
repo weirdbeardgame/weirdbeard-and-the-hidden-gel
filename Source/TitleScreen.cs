@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class TitleScreen : Node
+public partial class TitleScreen : Node
 {
 
     // To playback screne transitions

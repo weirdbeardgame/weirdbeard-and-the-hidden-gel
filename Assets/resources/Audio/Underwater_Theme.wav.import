@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Underwater_Theme.wav-c3d7be14d56c30e516afe3fe5fe89ae8.sample"
+type="AudioStreamWAV"
+uid="uid://b076heh4elhr1"
+path="res://.godot/imported/Underwater_Theme.wav-c3d7be14d56c30e516afe3fe5fe89ae8.sample"
 
 [deps]
 
 source_file="res://Assets/resources/Audio/Underwater_Theme.wav"
-dest_files=[ "res://.import/Underwater_Theme.wav-c3d7be14d56c30e516afe3fe5fe89ae8.sample" ]
+dest_files=["res://.godot/imported/Underwater_Theme.wav-c3d7be14d56c30e516afe3fe5fe89ae8.sample"]
 
 [params]
 

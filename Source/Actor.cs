@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Actor : KinematicBody2D
+public partial class Actor : CharacterBody2D
 {
     protected StateMachine stateMachine;
 
@@ -13,11 +13,25 @@ public class Actor : KinematicBody2D
         }
     }
 
+    protected Vector2 ApplyGravity(double delta, float currentGrav = 0f)
+    {
+        Vector2 Gravity = Velocity;
+        if (!projectileMotionJump)
+        {
+            Gravity.Y += gravity * (float)(delta);
+        }
+        else
+        {
+            Gravity.Y += currentGrav * (float)(delta);
+        }
+
+        return Gravity;
+    }
+
     // Movement properties
     [Export] public float gravity;
     [Export] public float speed = 400f;
     [Export] public float runSpeed = 800f;
-    protected Vector2 velocity;
     public bool canMove;
 
     //Jump properties

@@ -1,10 +1,10 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
-public class HubWorld : LevelCommon
+public partial class HubWorld : LevelCommon
 {
-    [Export] List<NodePath> containedLevels;
+    [Export] Array<NodePath> containedLevels;
 
     Paths path;
     PathFollow2D follow2D;
@@ -15,7 +15,7 @@ public class HubWorld : LevelCommon
 
     public override void EnterLevel(Player p)
     {
-        activeEnemies = new List<Enemy>();
+        activeEnemies = new Array<Enemy>();
         backgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
 
         actor = (HubActor)GetNode("Actor");
@@ -83,7 +83,7 @@ public class HubWorld : LevelCommon
         }
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         GetInput();
         if (path != null)

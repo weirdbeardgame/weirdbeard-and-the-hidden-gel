@@ -2,11 +2,11 @@ using Godot;
 using System;
 
 [Tool]
-public class NewSubLevelButton : Button
+public partial class NewSubLevelButton : Button
 {
     public override void _EnterTree()
     {
-        Connect("pressed", this, "OnClick");
+        Connect("pressed",new Callable(this,"OnClick"));
     }
 
     public void OnClick()

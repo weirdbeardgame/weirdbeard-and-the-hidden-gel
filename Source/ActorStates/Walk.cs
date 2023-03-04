@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Walk : State
+public partial class Walk : State
 {
     Vector2 inputVelocity = Vector2.Zero;
     float currentSpeed = 0;
@@ -32,32 +32,32 @@ public class Walk : State
         }
         if (Input.IsActionPressed("Right"))
         {
-            inputVelocity.x = 1.0f * currentSpeed;
+            inputVelocity.X = 1.0f * currentSpeed;
         }
         else if (Input.IsActionPressed("Left"))
         {
-            inputVelocity.x = -1.0f * currentSpeed;
+            inputVelocity.X = -1.0f * currentSpeed;
         }
         if (!Input.IsActionPressed("Left") && !Input.IsActionPressed("Right"))
         {
-            inputVelocity.x = 0;
+            inputVelocity.X = 0;
         }
         return inputVelocity;
     }
 
-    public override void FixedUpdate(float delta)
+    public override void FixedUpdate(double delta)
     {
         if (player.IsOnFloor())
         {
             GetInput();
 
-            if (inputVelocity.Sign().x < 0)
+            if (inputVelocity.Sign().X < 0)
             {
                 player.direction = Vector2.Left;
                 player.weirdBeard.FlipH = true;
             }
 
-            else if (inputVelocity.Sign().x > 0)
+            else if (inputVelocity.Sign().X > 0)
             {
                 player.direction = Vector2.Right;
                 player.weirdBeard.FlipH = false;
@@ -71,10 +71,10 @@ public class Walk : State
         }
     }
 
-    public override void Update(float delta)
+    public override void Update(double delta)
     {
         // Oops, fell off platform.
-        if (player.Velocity.y > 0)
+        if (player.Velocity.Y > 0)
         {
             player.wasOnFloor = true;
             stateMachine.UpdateState("FALL");

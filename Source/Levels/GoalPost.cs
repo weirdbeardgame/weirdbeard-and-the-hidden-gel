@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class GoalPost : Node2D
+public partial class GoalPost : Node2D
 {
     // To Do add gui selector in here for hub to transition to from SceneManager
     [Export] string hub;

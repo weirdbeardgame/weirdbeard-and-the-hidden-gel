@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class HubActor : Node2D
+public partial class HubActor : Node2D
 {
 
     // This just holds the active refrence but doesn't allow the player to act.
@@ -10,7 +10,7 @@ public class HubActor : Node2D
     // Playable sprite bobs up and down.
     AnimationPlayer animation;
 
-   [Export] Sprite currentSprite;
+   [Export] Sprite2D currentSprite;
 
     public Player Player
     {

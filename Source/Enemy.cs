@@ -3,16 +3,18 @@ using System;
 
 public enum EnemyDirection { LEFT, RIGHT };
 
-public class Enemy : Actor
+public partial class Enemy : Actor
 {
     public AnimationPlayer player;
 
-    RayCast2D Right;
     RayCast2D Left;
-
+    RayCast2D Right;
     RayCast2D playerDetect;
+    RayCast2D playerDetect2;
 
-    Sprite sprite;
+    Sprite2D sprite;
+
+    Vector2 dir;
 
     EnemyDirection dirToWalk;
 
@@ -22,66 +24,73 @@ public class Enemy : Actor
         player = (AnimationPlayer)GetNode("AnimationPlayer");
         Right = (RayCast2D)GetNode("Right");
         Left = (RayCast2D)GetNode("Left");
-        sprite = (Sprite)GetNode("Enemy");
+        playerDetect = (RayCast2D)GetNode("PlayerDetect");
+        playerDetect2 = (RayCast2D)GetNode("PlayerDetect2");
+        sprite = (Sprite2D)GetNode("Enemy");
         stateMachine = (StateMachine)GetNode("StateMachine");
         player.Play("Idle");
+
+        dir = new Vector2();
     }
 
     public void ChangeDirection()
     {
-        sprite = (Sprite)GetNode("Enemy");
+        sprite = (Sprite2D)GetNode("Enemy");
         switch (dirToWalk)
         {
             case EnemyDirection.LEFT:
                 sprite.FlipH = false;
-                velocity.x = speed;
+                dir.X = speed;
                 dirToWalk = EnemyDirection.RIGHT;
                 break;
 
             case EnemyDirection.RIGHT:
                 sprite.FlipH = true;
-                velocity.x = -speed;
+                dir.X = -speed;
                 dirToWalk = EnemyDirection.LEFT;
                 break;
         }
     }
 
-    public void Move(float delta)
+    public void Move(double delta)
     {
         if (!Right.IsColliding() || !Left.IsColliding() || IsOnWall())
         {
             ChangeDirection();
         }
 
-        velocity.y += gravity * delta;
-        velocity.y = MoveAndSlide(velocity, Vector2.Up).y;
+        Velocity = ApplyGravity(delta, gravity);
     }
 
     public void Destroy()
     {
-        velocity = Vector2.Zero;
         sprite = null;
     }
 
-    public void FollowPlayer()
+    public void FollowPlayer(Player body)
     {
-
+        dir = (body.GlobalPosition - GlobalPosition);
+        LookAt(dir);
     }
 
     public void Attack()
     {
-        if (playerDetect.IsColliding())
+        Node2D rayArray = (Node2D)GetNode("raycasts");
+
+        if (playerDetect.IsColliding() || playerDetect2.IsColliding())
         {
             // Play attacking Anim. Chase player ... YARRR!
             // Yer going to be needin ya a hitbox as well laddy.
+            GD.Print("Detected Player");
             player.Play("Attack");
-            FollowPlayer();
+            FollowPlayer((Player)playerDetect.GetCollider());
         }
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
-
+        Attack();
+        MoveAndSlide();
     }
 
     public void OnArea2DAreaEntered(object area)

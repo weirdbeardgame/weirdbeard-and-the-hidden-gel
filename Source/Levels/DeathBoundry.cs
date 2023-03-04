@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class DeathBoundry : Area2D
+public partial class DeathBoundry : Area2D
 {
 
     public void OnTouch(object body)

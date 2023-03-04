@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Checkpoint : Area2D
+public partial class Checkpoint : Area2D
 {
     [Export]
     public bool isActive;
@@ -34,7 +34,7 @@ public class Checkpoint : Area2D
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
 
     }

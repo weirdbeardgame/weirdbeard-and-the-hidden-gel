@@ -1,8 +1,8 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
-public class InterfaceManager : CanvasLayer
+public partial class InterfaceManager : CanvasLayer
 {
     public DialogueManager manager;
 
@@ -12,13 +12,13 @@ public class InterfaceManager : CanvasLayer
         manager = GetNode("DialogueManager") as DialogueManager;
     }
 
-    public void Open(List<PackedScene> d)
+    public void Open(Array<PackedScene> d)
     {
         manager.Open(d);
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
+    //  public override void _Process(double delta)
     //  {
     //      
     //  }

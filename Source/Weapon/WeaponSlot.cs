@@ -1,11 +1,11 @@
 using Godot;
 using System;
 
-public class WeaponSlot : Node
+public partial class WeaponSlot : Node
 {
     public WeaponCommon weapon;
 
-    public static Action<Texture> updateWSprite;
+    public static Action<Texture2D> updateWSprite;
 
     public void Attack(Vector2 dir)
     {

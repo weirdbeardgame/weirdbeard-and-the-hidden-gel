@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public class PowerUp : State
+public partial class PowerUp : State
 {
-    Sprite powerupSprite;
+    Sprite2D powerupSprite;
 
     [Export] protected float gravity;
 
@@ -25,7 +25,7 @@ public class PowerUp : State
         playerAnimator = player.player;
         regenTimer = (Timer)GetNode("RegenTimer");
         animator = (AnimationPlayer)player.GetNode("AnimationPlayer");
-        weirdBeard = (Sprite)player.GetNode("CenterContainer/WeirdBeard");
+        weirdBeard = (Sprite2D)player.GetNode("CenterContainer/WeirdBeard");
         stateMachine = player.StateMachine;
     }
 

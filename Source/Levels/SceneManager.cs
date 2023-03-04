@@ -1,8 +1,8 @@
 using Godot;
+using Godot.Collections;
 using System;
-using System.Collections.Generic;
 
-public class SceneManager : Node
+public partial class SceneManager : Node
 {
     [Export] Dictionary<string, PackedScene> levels;
 
@@ -11,8 +11,6 @@ public class SceneManager : Node
     [Export] private LevelCommon activeSubScene;
 
     [Export] private PackedScene newGameScene;
-
-    ResourceInteractiveLoader loader;
 
     Exit activeExit;
 
@@ -63,7 +61,7 @@ public class SceneManager : Node
 
         if (levels.ContainsKey(scene))
         {
-            LevelCommon sceneToLoad = (LevelCommon)levels[scene].Instance();
+            LevelCommon sceneToLoad = levels[scene].Instantiate<LevelCommon>();
             CallDeferred(nameof(CallDefferedSwitch), sceneToLoad, player);
         }
     }
@@ -71,7 +69,7 @@ public class SceneManager : Node
     public void LoadSubScene(PackedScene subscene, Player p, Exit exit)
     {
         activeExit = exit;
-        CallDeferred(nameof(CallDeferredSub), (LevelCommon)subscene.Instance(), p);
+        CallDeferred(nameof(CallDeferredSub), subscene.Instantiate<LevelCommon>(), p);
     }
 
 
@@ -109,13 +107,13 @@ public class SceneManager : Node
 
     void NewGame()
     {
-        LevelCommon scene = (LevelCommon)newGameScene.Instance();
+        LevelCommon scene = newGameScene.Instantiate<LevelCommon>();
         SwitchLevel(scene.levelName, null);
         startNewGame -= NewGame;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
 
     }
