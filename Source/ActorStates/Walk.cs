@@ -32,10 +32,12 @@ public partial class Walk : State
         }
         if (Input.IsActionPressed("Right"))
         {
+            GD.Print("Right");
             inputVelocity.X = 1.0f * currentSpeed;
         }
         else if (Input.IsActionPressed("Left"))
         {
+            GD.Print("Left");
             inputVelocity.X = -1.0f * currentSpeed;
         }
         if (!Input.IsActionPressed("Left") && !Input.IsActionPressed("Right"))
