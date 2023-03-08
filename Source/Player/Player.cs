@@ -87,6 +87,7 @@ public partial class Player : Actor
     public void ActivateCamera()
     {
         camera.Enabled = true;
+        camera.MakeCurrent();
     }
 
     public void DeactivateCamera()
@@ -156,11 +157,6 @@ public partial class Player : Actor
         }
     }
 
-    public override void _Process(double delta)
-    {
-        GD.Print("Procexsss");
-    }
-
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
@@ -169,13 +165,10 @@ public partial class Player : Actor
             currentWeapon.Attack(direction.Sign());
         }
 
-        GD.Print("Phizix");
-
         MoveCamera();
 
         wasOnFloor = IsOnFloor();
         Velocity = ApplyGravity(delta, gravity);
-        GD.Print("Velocity: ", Velocity);
         MoveAndSlide();
 
         if (currentPowerup != null)

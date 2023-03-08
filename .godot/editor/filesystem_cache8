@@ -1,6 +1,6 @@
 2a60927148abd1d33b818b535e306557
-::res://::1677879172
-default_env.tres::Environment::1432974638749756412::1677878684::0::1::::<><>::
+::res://::1678285094
+default_env.tres::Environment::1432974638749756412::1678208631::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1673220958::0::1::::<><>::
 icon.png::CompressedTexture2D::7266795267477240611::1658785773::1677879068::1::::<><>::
 README.md::TextFile::-1::1659387923::0::1::::<><>::
@@ -98,17 +98,17 @@ OpenSans_SemiCondensed-MediumItalic.ttf::FontFile::196047006277294437::129663000
 OpenSans_SemiCondensed-Regular.ttf::FontFile::3789736817692041903::1296630000::1677879068::1::::<><>::
 OpenSans_SemiCondensed-SemiBold.ttf::FontFile::3836951151935056917::1296630000::1677879068::1::::<><>::
 OpenSans_SemiCondensed-SemiBoldItalic.ttf::FontFile::2279390014444455438::1296630000::1677879068::1::::<><>::
-::res://Assets/resources/Levels/::1677878684
+::res://Assets/resources/Levels/::1678122752
 Actor.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Assets/resources/Sprites/WeirdBeard/Idle_01.png<>res://Source/Levels/HubWorld/HubActor.cs
-Checkpoint.tscn::PackedScene::6732212720885988810::1677878684::0::1::::<><>::res://Source/Levels/Checkpoint.cs
+Checkpoint.tscn::PackedScene::6732212720885988810::1678122752::0::1::::<><>::res://Source/Levels/Checkpoint.cs
 DeathBarier.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Source/Levels/DeathBoundry.cs
 GoalPost.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Assets/resources/box.png<>res://Source/Levels/GoalPost.cs
 Level Path.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Source/Levels/HubWorld/Paths.cs
 LevelExit.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Assets/resources/portal.png<>res://Source/Levels/Exit.cs
 LevelSpace.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Assets/resources/box.png<>res://Source/Levels/HubWorld/LevelSpaces.cs
 Moving_Platform.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Assets/resources/Tiles/Platformer/Objects/Boxes/Box4.png
-::res://Assets/resources/Player/::1677878684
-Player.tscn::PackedScene::4035557572476502151::1677878684::0::1::::<><>::uid://dvumkhaud4kn4<>res://Source/ActorStates/Walk.cs<>res://Source/StateMachine.cs<>res://Source/Weapon/WeaponSlot.cs<>res://Source/ActorStates/Jump.cs<>res://Source/ActorStates/Idle.cs<>res://Source/ActorStates/Falling.cs<>uid://iagra5l5ernu<>uid://d3oe17fraycee<>uid://l61kg8xklb5s<>uid://c8wh06gs6wg33<>uid://c02loum5c6rm4<>uid://dhyb40o5f0bdw<>uid://dc4rbxkpvd680<>uid://lsb3l1uk6o2<>uid://blh6u58rfa5q5<>uid://bx4t8mxfcv1t8<>uid://i6788y3rdhyx<>uid://csnm2rtf2pr8w<>uid://bj4ei8ehbup2q<>res://Source/ActorStates/Death.cs<>uid://bnu3ax7py3t1k<>uid://d0wqau5sfwkd2<>uid://b4r0ocwy4l48t<>uid://cqkvr5kordy4q<>uid://c8cidwcp6ccp7<>uid://dcltwa1e73mma<>res://Source/Player/Player.cs<>res://Assets/resources/HUD.tscn<>uid://cinug0bho4ddl<>res://Source/CoinPurse.cs<>res://Source/ActorStates/Air.cs<>uid://dmms46s0woccn
+::res://Assets/resources/Player/::1678198780
+Player.tscn::PackedScene::4035557572476502151::1678198780::0::1::::<><>::uid://dvumkhaud4kn4<>res://Source/ActorStates/Walk.cs<>res://Source/StateMachine.cs<>res://Source/Weapon/WeaponSlot.cs<>res://Source/ActorStates/Jump.cs<>res://Source/ActorStates/Idle.cs<>res://Source/ActorStates/Falling.cs<>uid://iagra5l5ernu<>uid://d3oe17fraycee<>uid://l61kg8xklb5s<>uid://c8wh06gs6wg33<>uid://c02loum5c6rm4<>uid://dhyb40o5f0bdw<>uid://dc4rbxkpvd680<>uid://lsb3l1uk6o2<>uid://blh6u58rfa5q5<>uid://bx4t8mxfcv1t8<>uid://i6788y3rdhyx<>uid://csnm2rtf2pr8w<>uid://bj4ei8ehbup2q<>res://Source/ActorStates/Death.cs<>uid://bnu3ax7py3t1k<>uid://d0wqau5sfwkd2<>uid://b4r0ocwy4l48t<>uid://cqkvr5kordy4q<>uid://c8cidwcp6ccp7<>uid://dcltwa1e73mma<>res://Source/Player/Player.cs<>res://Assets/resources/HUD.tscn<>uid://cinug0bho4ddl<>res://Source/CoinPurse.cs<>res://Source/ActorStates/Air.cs<>uid://dmms46s0woccn
 ::res://Assets/resources/Player/Powerup/::1673842904
 HelicopterBeard.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Source/Player/Powerup/HelicopterBeard.cs
 HelicopterEquip.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Assets/resources/Sprites/OIL.png<>res://Source/Player/Powerup/PowerUpEquip.cs<>res://Assets/resources/Player/Powerup/HelicopterBeard.tscn
@@ -388,11 +388,11 @@ x_03.png::CompressedTexture2D::5465553972407409557::1663786620::1677879068::1:::
 x_04.png::CompressedTexture2D::4197768938298433466::1663786620::1677879068::1::::<><>::
 x_05.png::CompressedTexture2D::2174383278856589443::1663786620::1677879068::1::::<><>::
 x_06.png::CompressedTexture2D::5192903659880615447::1663786620::1677879068::1::::<><>::
-::res://Assets/resources/Tiles/::1677879068
+::res://Assets/resources/Tiles/::1678205315
 backgrounds.png::CompressedTexture2D::2354340233508234247::1615484571::1677879068::1::::<><>::
 Beach.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Assets/resources/Tiles/Platformer/Objects/Boxes/Box1.png<>res://Assets/resources/Tiles/Platformer/Objects/Boxes/Box2.png<>res://Assets/resources/Tiles/Platformer/Objects/Boxes/Box3.png<>res://Assets/resources/Tiles/Platformer/Objects/Ladders/Ladder_down_1.png<>res://Assets/resources/Tiles/Platformer/Objects/Ladders/Ladder_top_1.png<>res://Assets/resources/Tiles/Platformer/Objects/Spikes/Spike.tscn
-BeachObjects.tres::TileSet::-1::1677685266::0::1::::<><>::res://Assets/resources/Tiles/Platformer/Objects/Ladders/Ladder_top_1.png<>res://Assets/resources/Tiles/Platformer/Objects/Boxes/Box3.png<>res://Assets/resources/Tiles/Platformer/Objects/Boxes/Box2.png<>res://Assets/resources/Tiles/Platformer/Objects/Boxes/Box1.png<>res://Assets/resources/Tiles/Platformer/Objects/Spikes/Spikes1_2.png<>res://Assets/resources/Tiles/Platformer/Objects/Ladders/Ladder_down_1.png
-spike.tres::TileSet::-1::1677685266::0::1::::<><>::res://Assets/resources/Tiles/Platformer/Objects/Spikes/Spikes1_2.png
+BeachObjects.tres::TileSet::4219539704959154294::1678205315::0::1::::<><>::uid://dhtuhf7s86w62<>uid://cxeic3gjyqovc<>uid://cchuatweuve3t<>uid://co54p8x2mq6t<>uid://yac5vbvhvx7k<>uid://3s8xf36ginr0
+spike.tres::TileSet::4030746171243952702::1678205315::0::1::::<><>::uid://yac5vbvhvx7k
 TestLevel.tres::TileSet::-1::1677685266::0::1::::<><>::res://Assets/resources/Tiles/Platformer/Tiles/TileSet.png<>res://Assets/resources/Tiles/Platformer/Tiles/Back_TileSet.png
 tileset.png::CompressedTexture2D::1872919812863877443::1615484571::1677879068::1::::<><>::
 ::res://Assets/resources/Tiles/Platformer/::1667342775
@@ -474,8 +474,8 @@ Rock_Small1.png::CompressedTexture2D::1828686254323099878::1659720718::167787906
 Rock_Small2.png::CompressedTexture2D::9154914442020064881::1659720718::1677879068::1::::<><>::
 Rock_Small3.png::CompressedTexture2D::2903670887554905547::1659720718::1677879068::1::::<><>::
 Rock_Small4.png::CompressedTexture2D::1810580684754493414::1659720718::1677879068::1::::<><>::
-::res://Assets/resources/Tiles/Platformer/Objects/Spikes/::1677879068
-Spike.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Assets/resources/Tiles/Platformer/Objects/Spikes/Spikes1_2.png<>res://Source/Levels/DeathBoundry.cs
+::res://Assets/resources/Tiles/Platformer/Objects/Spikes/::1678205315
+Spike.tscn::PackedScene::2654183089908985712::1678205315::0::1::::<><>::uid://yac5vbvhvx7k<>res://Source/Levels/DeathBoundry.cs
 Spikes1_1.png::CompressedTexture2D::6377480308519055267::1659720718::1677879068::1::::<><>::
 Spikes1_2.png::CompressedTexture2D::1684708360614965790::1659720718::1677879068::1::::<><>::
 Spikes2_1.png::CompressedTexture2D::8412766776119217485::1659720718::1677879068::1::::<><>::
@@ -573,9 +573,9 @@ GunEquip.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Source/Weapon/We
 Sword.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Source/Weapon/Sword.cs<>res://Assets/resources/Sprites/scifi_fantasy_swords/scifi_swords0001.png<>res://Assets/resources/Weapons/TestSpawn.tscn
 SwordEquip.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Assets/resources/Sprites/scifi_fantasy_swords/scifi_swords0001.png<>res://Source/Weapon/WeaponEquip.cs<>res://Assets/resources/Weapons/Sword.tscn
 TestSpawn.tscn::PackedScene::-1::1677685266::0::1::::<><>::res://Assets/resources/Sprites/Ball.png
-::res://Assets/Scenes/::1677878684
-GrassLand1.tscn::PackedScene::6048213523693113319::1677878684::0::1::::<><>::uid://beogmiq20h8bc<>res://Source/Levels/Level.cs<>uid://bkblhq7dchuhh<>uid://c26etbjjeycvy<>uid://bxq4bqokdiwhr
-TitleScreen.tscn::PackedScene::3182938418961543809::1677878684::0::1::::<><>::res://Source/TitleScreen.cs<>uid://bm83nutqyl0ed<>uid://clk2thfhf7u6w<>uid://18ylixu4rs3r
+::res://Assets/Scenes/::1678208631
+GrassLand1.tscn::PackedScene::6048213523693113319::1678208631::0::1::::<><>::uid://beogmiq20h8bc<>res://Source/Levels/Level.cs<>uid://bkblhq7dchuhh<>uid://c26etbjjeycvy<>uid://bd2yai6a47y85<>uid://bxq4bqokdiwhr
+TitleScreen.tscn::PackedScene::3182938418961543809::1678118471::0::1::::<><>::res://Source/TitleScreen.cs<>uid://bm83nutqyl0ed<>uid://clk2thfhf7u6w<>uid://18ylixu4rs3r
 ::res://obj/::1672711445
 ::res://Source/::1670561755
 Actor.cs::CSharpScript::-1::1677862679::0::1::::<><>::
@@ -614,7 +614,7 @@ Checkpoint.cs::CSharpScript::-1::1677688885::0::1::::<><>::
 DeathBoundry.cs::CSharpScript::-1::1677685266::0::1::::<><>::
 Exit.cs::CSharpScript::-1::1677685266::0::1::::<><>::
 GoalPost.cs::CSharpScript::-1::1677685266::0::1::::<><>::
-Level.cs::CSharpScript::-1::1677862113::0::1::::<><>::
+Level.cs::CSharpScript::-1::1678118067::0::1::::<><>::
 LevelChanger.cs::CSharpScript::-1::1677688810::0::1::::<><>::
 LevelCommon.cs::CSharpScript::-1::1677767169::0::1::::<><>::
 LevelObject.cs::CSharpScript::-1::1677689718::0::1::::<><>::
@@ -628,7 +628,7 @@ HubWorld.cs::CSharpScript::-1::1677689749::0::1::::<><>::
 LevelSpaces.cs::CSharpScript::-1::1677689718::0::1::::<><>::
 Paths.cs::CSharpScript::-1::1677689718::0::1::::<><>::
 ::res://Source/Player/::1674616571
-Player.cs::CSharpScript::-1::1677878397::0::1::::<><>::
+Player.cs::CSharpScript::-1::1678118385::0::1::::<><>::
 ::res://Source/Player/Powerup/::1673801412
 HelicopterBeard.cs::CSharpScript::-1::1677688979::0::1::::<><>::
 HoverBeard.cs::CSharpScript::-1::1677686917::0::1::::<><>::

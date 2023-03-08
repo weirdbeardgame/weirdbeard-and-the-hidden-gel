@@ -12,8 +12,6 @@ public partial class Level : LevelCommon
     // Currently active subScene. Otherwise null
     Level subScene;
 
-    TileMap tileMap;
-
     Camera2D camera;
 
     Rect2 mapLimits;
@@ -29,8 +27,10 @@ public partial class Level : LevelCommon
 
         base.EnterLevel(p);
 
-        AddChild(player);
-
+        if (!HasNode(player.GetPath()))
+        {
+            AddChild(player);
+        }
         if (currentCheckpoint != null)
         {
             player.Position = currentCheckpoint.GlobalPosition;
@@ -45,15 +45,6 @@ public partial class Level : LevelCommon
             player.Position = currentCheckpoint.GlobalPosition;
         }
         player.ResetState();
-        tileMap = (TileMap)GetNode("Layer1");
-        camera = (Camera2D)player.GetNode("Camera2D");
-
-        camera.Enabled = true;
-
-
-        mapLimits = tileMap.GetUsedRect();
-
-        SetCameraBounds();
         CreateAudioStream();
     }
 
@@ -61,15 +52,6 @@ public partial class Level : LevelCommon
     {
         backgroundPlayer.Stream = GD.Load<AudioStream>(audioFile.ResourcePath);
         backgroundPlayer.Play();
-    }
-
-    public void SetCameraBounds()
-    {
-        camera.LimitRight = (int)(mapLimits.End.X * mapCellsize.X);
-        camera.LimitLeft = (int)(mapLimits.Position.X * mapCellsize.X);
-
-        camera.LimitBottom = (int)(mapLimits.End.Y * mapCellsize.Y);
-        camera.LimitTop = (int)(mapLimits.Position.Y * mapCellsize.Y);
     }
 
     public override void ResetLevel()
