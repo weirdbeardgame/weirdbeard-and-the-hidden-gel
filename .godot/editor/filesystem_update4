@@ -1,5 +1,4 @@
 res://default_env.tres
-res://Assets/Scenes/GrassLand1.tscn
 res://Assets/Scenes/TitleScreen.tscn
+res://Assets/Scenes/GrassLand1.tscn
 res://Assets/resources/Player/Player.tscn
-res://Assets/resources/Tiles/Platformer/Objects/Spikes/Spike.tscn

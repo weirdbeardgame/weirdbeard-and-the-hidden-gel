@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "Tcl82ztnh+T0UZR1FyhkhJ+fgXD3/46TK/5kGxLi9jvHrs0IvF7yib8WUrUZpIew7iaY/aMRAWC/GV5r8XvY8w==",
+  "dgSpecHash": "RAcsjTa53VEEwsAMk29Zn6kuGZQqVsJyEmt05y84e2m9OPotuW8YRmE65oSi8rkfzuDuEGeyBz8Zem0NQ+TwUg==",
   "success": true,
   "projectFilePath": "/mnt/data/coding/weirdbeardMono4/Weirdbeard Mono.csproj",
   "expectedPackageFiles": [
     "/home/musungo/.local/share/godot/mono/GodotNuGetFallbackFolder/godot.sourcegenerators/4.0.0/godot.sourcegenerators.4.0.0.nupkg.sha512",
     "/home/musungo/.local/share/godot/mono/GodotNuGetFallbackFolder/godotsharp/4.0.0/godotsharp.4.0.0.nupkg.sha512",
     "/home/musungo/.local/share/godot/mono/GodotNuGetFallbackFolder/godotsharpeditor/4.0.0/godotsharpeditor.4.0.0.nupkg.sha512",
-    "/home/musungo/.nuget/packages/microsoft.netcore.app.ref/6.0.13/microsoft.netcore.app.ref.6.0.13.nupkg.sha512",
-    "/home/musungo/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.13/microsoft.aspnetcore.app.ref.6.0.13.nupkg.sha512"
+    "/home/musungo/.nuget/packages/microsoft.netcore.app.ref/6.0.14/microsoft.netcore.app.ref.6.0.14.nupkg.sha512",
+    "/home/musungo/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.14/microsoft.aspnetcore.app.ref.6.0.14.nupkg.sha512"
   ],
   "logs": []
 }

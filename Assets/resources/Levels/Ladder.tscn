@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwlvxfbgfp8mh"]
+
+[ext_resource type="Texture2D" uid="uid://3s8xf36ginr0" path="res://Assets/resources/Tiles/Platformer/Objects/Ladders/Ladder_down_1.png" id="1_n32ij"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqfmp"]
+size = Vector2(30, 31)
+
+[node name="Ladder" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_n32ij")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_hqfmp")

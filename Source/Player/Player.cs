@@ -157,6 +157,19 @@ public partial class Player : Actor
         }
     }
 
+    public void DetectObject(object body)
+    {
+        GD.Print("Detecting");
+        if (body is TileData)
+        {
+            TileData d = (TileData)body;
+            if (((int)d.GetCustomData("objects")) == 1)
+            {
+                GD.Print("Ladder");
+            }
+        }
+    }
+
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
