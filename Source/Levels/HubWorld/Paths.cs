@@ -2,7 +2,9 @@ using Godot;
 using System;
 using Godot.Collections;
 
-public partial class Paths : Node
+public enum Direction { N, S, E, W };
+
+public partial class Paths : Node2D
 {
     [Export] Dictionary<Direction, NodePath> levelAttached;
     Tween interpolate;

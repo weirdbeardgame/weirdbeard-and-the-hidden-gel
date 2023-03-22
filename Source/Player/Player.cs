@@ -7,6 +7,8 @@ public partial class Player : Actor
     Timer bufferedJumpTimer;
     PowerUp currentPowerup;
 
+    Area2D body;
+
     public Sprite2D weirdBeard;
     public int playerLives = 3;
     public WeaponCommon currentWeapon;
@@ -25,6 +27,8 @@ public partial class Player : Actor
         player = (AnimationPlayer)GetNode("AnimationPlayer");
         bufferedJumpTimer = (Timer)GetNode("BufferedJump");
 
+        body = GetNode<Area2D>("ObjectDetect");
+
         currentWeapon = new WeaponCommon();
 
         coyoteTimer = (Timer)GetNode("CoyoteTimer");
@@ -34,6 +38,8 @@ public partial class Player : Actor
         camera = (Camera2D)GetNode("Camera2D");
 
         stateMachine.InitState("IDLE");
+
+        body.BodyEntered += DetectObject;
 
         if (projectileMotionJump)
         {
@@ -159,9 +165,9 @@ public partial class Player : Actor
 
     public void DetectObject(object body)
     {
-        GD.Print("Detecting");
         if (body is TileData)
         {
+            GD.Print("Detecting");
             TileData d = (TileData)body;
             if (((int)d.GetCustomData("objects")) == 1)
             {

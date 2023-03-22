@@ -66,13 +66,6 @@ public partial class HubWorld : LevelCommon
             dir = Direction.E;
         }
 
-        if (currentSpace.CanMove(dir))
-        {
-            RemoveChild(actor);
-            path = (Paths)currentSpace.GetNode(currentSpace.AttachedPaths[dir]);
-            currentSpace.RemoveChild(actor);
-            path.Start(actor, dir);
-        }
     }
 
     public void ChangeSpace(LevelSpaces space)

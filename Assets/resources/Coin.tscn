@@ -1,58 +1,64 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://crt8hklu6m07x"]
 
-[ext_resource path="res://Assets/resources/Sprites/Coin/MonedaD.png" type="Texture2D" id=1]
-[ext_resource path="res://Source/Coin.cs" type="Script" id=2]
+[ext_resource type="Texture2D" uid="uid://cm7y5bm25ky24" path="res://Assets/resources/Sprites/Coin/MonedaD.png" id="1"]
+[ext_resource type="Script" path="res://Source/Coin.cs" id="2"]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 0.0
 height = 0.0
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 0 ]
+"values": [0]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 resource_name = "spin"
 length = 0.5
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4 ]
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_50d0q"]
+_data = {
+"RESET": SubResource("2"),
+"spin": SubResource("3")
 }
 
 [node name="Coin" type="Area2D"]
 collision_layer = 16
 collision_mask = 2
-script = ExtResource( 2 )
+script = ExtResource("2")
 value = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 2 )
-anims/spin = SubResource( 3 )
+libraries = {
+"": SubResource("AnimationLibrary_50d0q")
+}
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource( 1 )
+texture = ExtResource("1")
 hframes = 5
-
-[connection signal="body_entered" from="." to="." method="OnCollide"]

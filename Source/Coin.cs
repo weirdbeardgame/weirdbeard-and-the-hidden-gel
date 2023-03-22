@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Coin : Node
+public partial class Coin : Area2D
 {
     [Export]
     int value;
@@ -15,6 +15,7 @@ public partial class Coin : Node
     public override void _Ready()
     {
         anim = (AnimationPlayer)GetNode("AnimationPlayer");
+        BodyEntered += OnCollide;
         anim.Play("spin");
     }
 

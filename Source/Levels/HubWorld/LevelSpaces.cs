@@ -1,39 +1,24 @@
 using Godot;
 using System;
 using Godot.Collections;
-
-public enum Direction { N, S, E, W };
-
 public partial class LevelSpaces : Node2D
 {
-    [Export] PackedScene attachedLevel;
-
-    [Export] private Dictionary<Direction, NodePath> attachedPaths;
-
     public HubActor actor;
 
-    public Dictionary<Direction, NodePath> AttachedPaths
+    TileSet set;
+    TileData data;
+    public override void _Ready()
     {
-        get
-        {
-            return attachedPaths;
-        }
+        base._Ready();
+        set = Owner.GetNode<TileSet>("TileSet");
+        data = GetNode<TileData>("TileData");
     }
 
     public void EnterLevel()
     {
-        LevelCommon scene = attachedLevel.Instantiate<LevelCommon>();
         actor.Deactivate();
-        SceneManager.changeScene(scene.levelName, actor.Player);
-    }
-
-    public bool CanMove(Direction dir)
-    {
-        if (attachedPaths != null)
-        {
-            return attachedPaths.ContainsKey(dir);
-        }
-        return false;
+        LevelCommon level = (LevelCommon)data.GetCustomData("Level");
+        SceneManager.changeScene(level.levelName, actor.Player);
     }
 
 }
