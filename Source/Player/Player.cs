@@ -6,8 +6,9 @@ public partial class Player : Actor
     Timer coyoteTimer;
     Timer bufferedJumpTimer;
     PowerUp currentPowerup;
-
     Area2D body;
+
+    TileCommon map;
 
     public Sprite2D weirdBeard;
     public int playerLives = 3;
@@ -34,6 +35,8 @@ public partial class Player : Actor
         coyoteTimer = (Timer)GetNode("CoyoteTimer");
         SceneManager.startNewGame += NewGame;
         defaultGravity = gravity;
+
+        map = GetNode<TileCommon>("TileMap");
 
         camera = (Camera2D)GetNode("Camera2D");
 
@@ -185,6 +188,24 @@ public partial class Player : Actor
         }
 
         MoveCamera();
+
+        if (map.Collided(this) != Objects.NOTHING)
+        {
+            switch (map.Collided(this))
+            {
+                case Objects.LADDER:
+                    // Activate ladder state
+                    break;
+
+                case Objects.SPIKE:
+                    // U ded bitch!
+                    break;
+
+                case Objects.WATER:
+                    // I think my day is going swimmingly!
+                    break;
+            }
+        }
 
         wasOnFloor = IsOnFloor();
         Velocity = ApplyGravity(delta, gravity);

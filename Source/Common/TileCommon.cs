@@ -7,20 +7,23 @@ public partial class TileCommon : TileMap
 {
     TileData data;
 
-    Player player;
-
-
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
     }
 
 
-    public Objects Collided()
+    public Objects Collided(Player player)
     {
         Objects obj = Objects.NOTHING;
-        //data = GetCellTileData(1, player.Position);
-        obj = (Objects)((int)data.GetCustomDataByLayerId(1));
+
+        var pos = LocalToMap(player.Position);
+        data = GetCellTileData(1, pos);
+
+        if (data.HasMeta("Objects"))
+        {
+            obj = (Objects)((int)data.GetMeta("Objects"));
+        }
 
         return obj;
     }
