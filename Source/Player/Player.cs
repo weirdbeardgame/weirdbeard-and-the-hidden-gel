@@ -36,7 +36,7 @@ public partial class Player : Actor
         SceneManager.startNewGame += NewGame;
         defaultGravity = gravity;
 
-        map = GetNode<TileCommon>("TileMap");
+        map = Owner.GetNode<TileCommon>("TileMap");
 
         camera = (Camera2D)GetNode("Camera2D");
 
@@ -179,6 +179,31 @@ public partial class Player : Actor
         }
     }
 
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        Objects collision = map.Collided(this);
+
+        if (collision != Objects.NOTHING)
+        {
+            switch (collision)
+            {
+                case Objects.LADDER:
+                    // Activate ladder state
+                    GD.Print("Ladder");
+                    break;
+
+                case Objects.SPIKE:
+                    Die();
+                    break;
+
+                case Objects.WATER:
+                    // I think my day is going swimmingly!
+                    break;
+            }
+        }
+    }
+
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
@@ -188,24 +213,6 @@ public partial class Player : Actor
         }
 
         MoveCamera();
-
-        if (map.Collided(this) != Objects.NOTHING)
-        {
-            switch (map.Collided(this))
-            {
-                case Objects.LADDER:
-                    // Activate ladder state
-                    break;
-
-                case Objects.SPIKE:
-                    // U ded bitch!
-                    break;
-
-                case Objects.WATER:
-                    // I think my day is going swimmingly!
-                    break;
-            }
-        }
 
         wasOnFloor = IsOnFloor();
         Velocity = ApplyGravity(delta, gravity);

@@ -1,11 +1,12 @@
 using Godot;
 using System;
 
-public enum Objects { NOTHING = 0, SPIKE = 1, LADDER = 2, WATER = 3 }
+public enum Objects { NOTHING = 0, SPIKE = 2, LADDER = 1, WATER = 3 }
 
 public partial class TileCommon : TileMap
 {
     TileData data;
+    Objects obj;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -15,16 +16,16 @@ public partial class TileCommon : TileMap
 
     public Objects Collided(Player player)
     {
-        Objects obj = Objects.NOTHING;
+        obj = new Objects();
 
         var pos = LocalToMap(player.Position);
-        data = GetCellTileData(1, pos);
+        data = GetCellTileData(0, pos);
 
-        if (data.HasMeta("Objects"))
+        if (data != null)
         {
-            obj = (Objects)((int)data.GetMeta("Objects"));
+            obj = (Objects)((int)data.GetCustomData("ObjectType"));
+            GD.Print("Data: ", obj);
         }
-
         return obj;
     }
 

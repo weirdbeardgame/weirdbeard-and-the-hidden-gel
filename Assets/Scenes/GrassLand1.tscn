@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bla0wiy7o7g5j"]
+[gd_scene load_steps=13 format=3 uid="uid://bla0wiy7o7g5j"]
 
 [ext_resource type="Texture2D" uid="uid://beogmiq20h8bc" path="res://Assets/resources/Tiles/Platformer/Tiles/TileSet.png" id="1_ry35b"]
 [ext_resource type="Script" path="res://Source/Levels/Level.cs" id="1_sq4oo"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://crt8hklu6m07x" path="res://Assets/resources/Coin.tscn" id="4_dahj8"]
 [ext_resource type="PackedScene" uid="uid://bxq4bqokdiwhr" path="res://Assets/resources/Player/Player.tscn" id="5_05j6p"]
 [ext_resource type="Texture2D" uid="uid://bcs5idlyc2u67" path="res://Assets/resources/Tiles/Platformer/Objects/Ladders/ladders.png" id="5_lwkd6"]
+[ext_resource type="Script" path="res://Source/Common/TileCommon.cs" id="6_iy8ha"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jptng"]
 texture = ExtResource("1_ry35b")
@@ -1085,7 +1086,8 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array()
+layer_1/tile_data = PackedInt32Array(-65521, 65538, 0, -131057, 65538, 0, -196593, 65538, 0, -262129, 65538, 0, -327665, 65538, 0, -393201, 65538, 0, -458737, 65538, 0, -524273, 65538, 0, -589809, 65538, 0, -655345, 65538, 0, -720881, 65538, 0)
+script = ExtResource("6_iy8ha")
 
 [node name="0" parent="." instance=ExtResource("3_xos8u")]
 position = Vector2(-156, -4)
