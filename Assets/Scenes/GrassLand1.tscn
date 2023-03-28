@@ -1075,7 +1075,7 @@ levelName = "GrassLand1"
 metadata/_edit_vertical_guides_ = [-332.0]
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(0, 55)
+position = Vector2(1, 55)
 tile_set = SubResource("TileSet_k6xai")
 format = 2
 layer_0/name = "Grass"
