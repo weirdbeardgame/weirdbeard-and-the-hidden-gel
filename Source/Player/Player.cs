@@ -111,6 +111,7 @@ public partial class Player : Actor
 
     public void Die()
     {
+        GD.Print("U ded son");
         if (playerLives > 0)
         {
             playerLives -= 1;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bla0wiy7o7g5j"]
+[gd_scene load_steps=15 format=3 uid="uid://bla0wiy7o7g5j"]
 
 [ext_resource type="Texture2D" uid="uid://beogmiq20h8bc" path="res://Assets/resources/Tiles/Platformer/Tiles/TileSet.png" id="1_ry35b"]
 [ext_resource type="Script" path="res://Source/Levels/Level.cs" id="1_sq4oo"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bxq4bqokdiwhr" path="res://Assets/resources/Player/Player.tscn" id="5_05j6p"]
 [ext_resource type="Texture2D" uid="uid://bcs5idlyc2u67" path="res://Assets/resources/Tiles/Platformer/Objects/Ladders/ladders.png" id="5_lwkd6"]
 [ext_resource type="Script" path="res://Source/Common/TileCommon.cs" id="6_iy8ha"]
+[ext_resource type="Texture2D" uid="uid://dye5s7shdsl5y" path="res://Assets/resources/Tiles/Platformer/Objects/Spikes/SpikeAtlus.png" id="6_ngacy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jptng"]
 texture = ExtResource("1_ry35b")
@@ -1054,6 +1055,50 @@ texture_region_size = Vector2i(32, 32)
 3:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:3/0/physics_layer_1/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d6hj0"]
+texture = ExtResource("6_ngacy")
+separation = Vector2i(2, 2)
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_1/angular_velocity = 0.0
+0:0/0/custom_data_0 = 2
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_1/angular_velocity = 0.0
+1:0/0/custom_data_0 = 2
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_1/angular_velocity = 0.0
+2:0/0/custom_data_0 = 2
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_1/angular_velocity = 0.0
+0:1/0/custom_data_0 = 2
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_1/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_1/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_1/angular_velocity = 0.0
+
 [sub_resource type="TileSet" id="TileSet_k6xai"]
 physics_layer_0/collision_layer = 1
 physics_layer_1/collision_layer = 66
@@ -1067,6 +1112,7 @@ custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_jptng")
 sources/2 = SubResource("TileSetAtlasSource_2jb3f")
 sources/1 = SubResource("TileSetScenesCollectionSource_kno6v")
+sources/3 = SubResource("TileSetAtlasSource_d6hj0")
 
 [node name="GrassLand1" type="Node2D"]
 script = ExtResource("1_sq4oo")
@@ -1086,7 +1132,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(-65521, 65538, 0, -131057, 65538, 0, -196593, 65538, 0, -262129, 65538, 0, -327665, 65538, 0, -393201, 65538, 0, -458737, 65538, 0, -524273, 65538, 0, -589809, 65538, 0, -655345, 65538, 0, -720881, 65538, 0)
+layer_1/tile_data = PackedInt32Array(-65521, 65538, 0, -131057, 65538, 0, -196593, 65538, 0, -262129, 65538, 0, -327665, 65538, 0, -393201, 65538, 0, -458737, 65538, 0, -524273, 65538, 0, -589809, 65538, 0, -655345, 65538, 0, -720881, 65538, 0, -65516, 3, 0, -65499, 3, 0)
 script = ExtResource("6_iy8ha")
 
 [node name="0" parent="." instance=ExtResource("3_xos8u")]
