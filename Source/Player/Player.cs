@@ -42,8 +42,6 @@ public partial class Player : Actor
 
         stateMachine.InitState("IDLE");
 
-        body.BodyEntered += DetectObject;
-
         if (projectileMotionJump)
         {
             jumpVelocity = ((2.0f * jumpHeight) / jumpPeak) * -1.0f;
@@ -167,22 +165,32 @@ public partial class Player : Actor
         }
     }
 
-    public void DetectObject(object body)
-    {
-        if (body is TileData)
-        {
-            GD.Print("Detecting");
-            TileData d = (TileData)body;
-            if (((int)d.GetCustomData("objects")) == 1)
-            {
-                GD.Print("Ladder");
-            }
-        }
-    }
-
     public override void _Process(double delta)
     {
         base._Process(delta);
+        Objects collision = map.Collided(this);
+
+        if (collision != Objects.NOTHING)
+        {
+            switch (collision)
+            {
+                case Objects.LADDER:
+                    // Activate ladder state
+                    if (Input.IsActionJustPressed("Up"))
+                    {
+                        stateMachine.UpdateState("LADDER");
+                    }
+                    break;
+
+                case Objects.SPIKE:
+                    Die();
+                    break;
+
+                case Objects.WATER:
+                    // I think my day is going swimmingly!
+                    break;
+            }
+        }
     }
 
     public override void _PhysicsProcess(double delta)

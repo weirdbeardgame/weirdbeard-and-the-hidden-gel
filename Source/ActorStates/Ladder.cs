@@ -4,7 +4,7 @@ using System;
 public partial class Ladder : State
 {
     Vector2 inputVelocity = Vector2.Zero;
-    float currentSpeed = 0;
+    [Export] float currentSpeed = 0;
 
     public override void _Ready()
     {
@@ -16,14 +16,15 @@ public partial class Ladder : State
     }
     public override void Start()
     {
-        GD.Print("LADDER STATE STARTED");
         base.Start();
+        player.gravity = 0;
     }
 
     public override Vector2 GetInput()
     {
         if (Input.IsActionJustPressed("Up"))
         {
+            GD.Print("UP");
             inputVelocity.Y += 1 * currentSpeed;
         }
 
@@ -39,12 +40,13 @@ public partial class Ladder : State
     {
         base.FixedUpdate(delta);
         // ToDo, add detection of End of Ladder in here
-        player.Velocity = GetInput();
+        player.Velocity += GetInput();
     }
 
 
     public override void Stop()
     {
         base.Stop();
+        player.ResetState();
     }
 }

@@ -1,6 +1,7 @@
-[gd_scene load_steps=61 format=3 uid="uid://bxq4bqokdiwhr"]
+[gd_scene load_steps=62 format=3 uid="uid://bxq4bqokdiwhr"]
 
 [ext_resource type="Texture2D" uid="uid://dvumkhaud4kn4" path="res://Assets/resources/Sprites/WeirdBeard/Idle_01.png" id="1"]
+[ext_resource type="Script" path="res://Source/ActorStates/Ladder.cs" id="1_ckoub"]
 [ext_resource type="Script" path="res://Source/ActorStates/Walk.cs" id="2"]
 [ext_resource type="Script" path="res://Source/StateMachine.cs" id="3"]
 [ext_resource type="Script" path="res://Source/Weapon/WeaponSlot.cs" id="4"]
@@ -328,14 +329,6 @@ position = Vector2(17, 0)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("28")
-gravity = 3500.0
-speed = 300.0
-runSpeed = 400.0
-maxJumpImpulse = 1500.0
-minJumpImpulse = 50.0
-jumpDescent = 0.3
-jumpHeight = 200.0
-jumpPeak = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 3)
@@ -362,6 +355,10 @@ script = ExtResource("5")
 
 [node name="Idle" type="Node" parent="."]
 script = ExtResource("6")
+
+[node name="Ladder" type="Node" parent="."]
+script = ExtResource("1_ckoub")
+currentSpeed = 300.0
 
 [node name="StateSet" type="RichTextLabel" parent="."]
 offset_left = -28.0

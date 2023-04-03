@@ -22,12 +22,9 @@ public partial class TileCommon : TileMap
         if (data != null)
         {
             var num = data.GetCustomData("ObjectType");
-            GD.Print("Detecting");
-
             if (num.AsInt32() > 0)
             {
                 obj = (Objects)(num.AsInt32());
-                GD.Print("Data: ", obj);
             }
         }
         return obj;
