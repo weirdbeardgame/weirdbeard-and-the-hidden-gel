@@ -17,11 +17,12 @@ public partial class TileCommon : TileMap
     {
         obj = new Objects();
 
-        var pos = LocalToMap(player.Position);
-        var data = GetCellTileData(1, pos);
+        var pos = LocalToMap(player.GlobalPosition);
+        var data = GetCellTileData(1, pos, true);
         if (data != null)
         {
             var num = data.GetCustomData("ObjectType");
+            GD.Print("Detecting");
 
             if (num.AsInt32() > 0)
             {

@@ -31,6 +31,7 @@ public partial class Falling : State
 
     public override void Update(double delta)
     {
+        base.Update(delta);
         if (Input.IsActionJustPressed("Jump") && player.CanJump())
         {
             player.canJumpAgain = false;

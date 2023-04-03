@@ -8,7 +8,7 @@ public partial class Player : Actor
     PowerUp currentPowerup;
     Area2D body;
 
-    TileCommon map;
+    public TileCommon map;
 
     public Sprite2D weirdBeard;
     public int playerLives = 3;
@@ -183,26 +183,6 @@ public partial class Player : Actor
     public override void _Process(double delta)
     {
         base._Process(delta);
-        Objects collision = map.Collided(this);
-
-        if (collision != Objects.NOTHING)
-        {
-            switch (collision)
-            {
-                case Objects.LADDER:
-                    // Activate ladder state
-                    GD.Print("Ladder");
-                    break;
-
-                case Objects.SPIKE:
-                    Die();
-                    break;
-
-                case Objects.WATER:
-                    // I think my day is going swimmingly!
-                    break;
-            }
-        }
     }
 
     public override void _PhysicsProcess(double delta)

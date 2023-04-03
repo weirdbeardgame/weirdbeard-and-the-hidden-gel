@@ -73,6 +73,7 @@ public partial class Walk : State
 
     public override void Update(double delta)
     {
+        base.Update(delta);
         // Oops, fell off platform.
         if (player.Velocity.Y > 0)
         {

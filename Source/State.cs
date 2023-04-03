@@ -34,7 +34,29 @@ public partial class State : Node
 
     public virtual void Update(double delta)
     {
+        Objects collision = player.map.Collided(player);
 
+        if (collision != Objects.NOTHING)
+        {
+            switch (collision)
+            {
+                case Objects.LADDER:
+                    // Activate ladder state
+                    if (Input.IsActionJustPressed("Up"))
+                    {
+                        stateMachine.UpdateState("LADDER");
+                    }
+                    break;
+
+                case Objects.SPIKE:
+                    player.Die();
+                    break;
+
+                case Objects.WATER:
+                    // I think my day is going swimmingly!
+                    break;
+            }
+        }
     }
 
     public virtual void FixedUpdate(double delta)

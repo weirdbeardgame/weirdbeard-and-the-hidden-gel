@@ -16,7 +16,7 @@ public partial class Ladder : State
     }
     public override void Start()
     {
-
+        GD.Print("LADDER STATE STARTED");
         base.Start();
     }
 
