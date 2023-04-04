@@ -22,17 +22,20 @@ public partial class Ladder : State
 
     public override Vector2 GetInput()
     {
-        if (Input.IsActionJustPressed("Up"))
+        if (Input.IsActionPressed("Up"))
         {
             GD.Print("UP");
-            inputVelocity.Y += 1 * currentSpeed;
+            inputVelocity.Y = -1 * currentSpeed;
         }
 
-        if (Input.IsActionJustPressed("Down"))
+        if (Input.IsActionPressed("Down"))
         {
-            inputVelocity.Y += -1 * currentSpeed;
+            inputVelocity.Y = 1 * currentSpeed;
         }
-
+        else if (!Input.IsAnythingPressed())
+        {
+            inputVelocity = Vector2.Zero;
+        }
         return inputVelocity;
     }
 
@@ -40,7 +43,9 @@ public partial class Ladder : State
     {
         base.FixedUpdate(delta);
         // ToDo, add detection of End of Ladder in here
-        player.Velocity += GetInput();
+        GetInput();
+        player.Velocity = inputVelocity;
+        GD.Print("Velocity: ", player.Velocity);
     }
 
 
