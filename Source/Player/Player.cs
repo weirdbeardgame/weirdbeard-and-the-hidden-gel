@@ -18,7 +18,7 @@ public partial class Player : Actor
 
     Camera2D camera;
 
-    float defaultGravity;
+    [Export] float defaultGravity = 400;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -34,7 +34,6 @@ public partial class Player : Actor
 
         coyoteTimer = (Timer)GetNode("CoyoteTimer");
         SceneManager.startNewGame += NewGame;
-        defaultGravity = gravity;
 
         map = Owner.GetNode<TileCommon>("TileMap");
 
@@ -102,9 +101,11 @@ public partial class Player : Actor
         camera.Enabled = false;
     }
 
-    public void MoveCamera()
+    public void CenterCamera()
     {
-        camera.Position = Position;
+        Vector2 CameraPosition = camera.GlobalPosition;
+        CameraPosition.X = GlobalPosition.X;
+        camera.Position = CameraPosition;
     }
 
     public void Die()
@@ -200,8 +201,6 @@ public partial class Player : Actor
         {
             currentWeapon.Attack(direction.Sign());
         }
-
-        MoveCamera();
 
         wasOnFloor = IsOnFloor();
         Velocity = ApplyGravity(delta, gravity);

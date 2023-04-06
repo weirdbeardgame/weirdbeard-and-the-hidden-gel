@@ -24,8 +24,8 @@ public partial class Enemy : Actor
         player = (AnimationPlayer)GetNode("AnimationPlayer");
         Right = (RayCast2D)GetNode("Right");
         Left = (RayCast2D)GetNode("Left");
-        playerDetect = (RayCast2D)GetNode("PlayerDetect");
-        playerDetect2 = (RayCast2D)GetNode("PlayerDetect2");
+        playerDetect = (RayCast2D)GetNode("raycasts/PlayerDetect");
+        playerDetect2 = (RayCast2D)GetNode("raycasts/PlayerDetect2");
         sprite = (Sprite2D)GetNode("Enemy");
         stateMachine = (StateMachine)GetNode("StateMachine");
         player.Play("Idle");
