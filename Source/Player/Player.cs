@@ -18,8 +18,6 @@ public partial class Player : Actor
 
     Camera2D camera;
 
-    [Export] float defaultGravity = 400;
-
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -134,13 +132,6 @@ public partial class Player : Actor
         WeaponCommon weapon = w.Instantiate<WeaponCommon>();
         currentWeapon = weapon;
 
-        if (weapon.weaponType == WeaponType.SHOOT)
-        {
-            AddChild(weapon);
-
-            weapon.GlobalPosition = GlobalPosition + new Vector2(20, 0);
-            weapon.GlobalRotation = GlobalRotation;
-        }
         if (weapSprite != null)
         {
             WeaponSlot.updateWSprite.Invoke(weapSprite);

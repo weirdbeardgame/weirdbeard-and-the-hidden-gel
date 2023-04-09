@@ -58,10 +58,6 @@ public partial class Gun : WeaponCommon
             sprite.FlipH = false;
         }
 
-        oldPos = GlobalPosition;
-
-        GlobalPosition = oldPos * direction;
-
         bulletDirection = player.direction.X;
         bulletSpawner.GlobalRotation = player.Rotation;
     }

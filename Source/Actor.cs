@@ -29,7 +29,8 @@ public partial class Actor : CharacterBody2D
     }
 
     // Movement properties
-    [Export] public float gravity;
+    public float gravity;
+    [Export] protected float defaultGravity = 400;
     [Export] public float speed = 400f;
     [Export] public float runSpeed = 800f;
     public bool canMove;

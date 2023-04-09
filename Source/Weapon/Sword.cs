@@ -18,13 +18,12 @@ public partial class Sword : WeaponCommon
     {
         player = (Player)SceneManager.CurrentScene.GetNode("Player");
         spawnPoint = (Node2D)player.GetNode("WeapSpawn");
-        sprite = (Sprite2D)GetNode("sprite");
 
         toSpawn = (CharacterBody2D)shootable.Instantiate<CharacterBody2D>();
+        sprite = (Sprite2D)toSpawn.GetNode("sprite");
         toSpawn.Position = spawnPoint.GlobalPosition;
+        toSpawn.Velocity = new Vector2(speed * direction.X, 0);
         scene.AddChild(toSpawn);
-
-        velocity.X = speed * direction.X;
 
         if (direction.X < 0)
         {
@@ -38,18 +37,7 @@ public partial class Sword : WeaponCommon
 
     public override void _Process(double delta)
     {
-        KinematicCollision2D col = toSpawn.MoveAndCollide(velocity);
-        if (col != null)
-        {
-            GD.Print("Collision");
-            if (col.GetCollider() is Enemy)
-            {
-                GD.Print("Enemy Detected");
-                Enemy e = col.GetCollider() as Enemy;
-                e.QueueFree();
-                QueueFree();
-            }
-        }
+
     }
 
 }

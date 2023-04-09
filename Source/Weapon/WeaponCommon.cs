@@ -3,7 +3,7 @@ using System;
 
 public enum WeaponType { THROW, SWING, SHOOT }
 
-public partial class WeaponCommon : Node2D
+public partial class WeaponCommon : Node
 {
     [Export] public Texture2D icon;
     [Export] public int dmgAmnt;

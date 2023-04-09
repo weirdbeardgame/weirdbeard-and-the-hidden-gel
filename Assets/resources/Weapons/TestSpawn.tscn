@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2jfjr6l7gy6x"]
+[gd_scene load_steps=4 format=3 uid="uid://c2jfjr6l7gy6x"]
 
 [ext_resource type="Texture2D" uid="uid://cva11bvghkcta" path="res://Assets/resources/Sprites/WeirdBeard/Dirk_Weapon/Dirk_Weapon.png" id="1_jw3qn"]
+[ext_resource type="Script" path="res://Source/Weapon/Ammo.cs" id="1_ma6y3"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(28, 13)
@@ -8,9 +9,10 @@ size = Vector2(28, 13)
 [node name="Weapon" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 4
+script = ExtResource("1_ma6y3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("1")
 
-[node name="DirkWeapon" type="Sprite2D" parent="."]
+[node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_jw3qn")
