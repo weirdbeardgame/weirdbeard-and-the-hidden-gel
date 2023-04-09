@@ -328,7 +328,7 @@ size = Vector2(28, 42)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("28")
-defaultGravity = 1200.0
+defaultGravity = 2000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 3)
@@ -384,9 +384,6 @@ script = ExtResource("4")
 
 [node name="Purse" type="Node" parent="."]
 script = ExtResource("32")
-
-[node name="WeapSpawn" type="Node2D" parent="."]
-position = Vector2(22, 2)
 
 [node name="Air" type="Node" parent="."]
 script = ExtResource("33")

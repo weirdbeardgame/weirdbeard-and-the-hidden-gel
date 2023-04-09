@@ -7,8 +7,8 @@ public partial class WeaponSlot : Node
 
     public static Action<Texture2D> updateWSprite;
 
-    public void Attack(Vector2 dir)
+    public void Attack(Vector2 dir, Node scene)
     {
-        weapon.Attack(dir);
+        weapon.Attack(dir, scene);
     }
 }

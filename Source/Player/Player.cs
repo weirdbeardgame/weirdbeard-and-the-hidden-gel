@@ -129,7 +129,7 @@ public partial class Player : Actor
         return (playerLives <= 0);
     }
 
-    public void EquipWeapon(PackedScene w, Sprite2D weapSprite)
+    public void EquipWeapon(PackedScene w, Texture2D weapSprite)
     {
         WeaponCommon weapon = w.Instantiate<WeaponCommon>();
         currentWeapon = weapon;
@@ -143,7 +143,7 @@ public partial class Player : Actor
         }
         if (weapSprite != null)
         {
-            WeaponSlot.updateWSprite.Invoke(weapSprite.Texture);
+            WeaponSlot.updateWSprite.Invoke(weapSprite);
         }
 
         if (currentWeapon == null)
@@ -199,7 +199,7 @@ public partial class Player : Actor
         base._PhysicsProcess(delta);
         if (Input.IsActionJustPressed("Attack") && currentWeapon != null)
         {
-            currentWeapon.Attack(direction.Sign());
+            currentWeapon.Attack(direction.Sign(), GetTree().CurrentScene);
         }
 
         wasOnFloor = IsOnFloor();

@@ -28,7 +28,7 @@ public partial class Gun : WeaponCommon
         animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
     }
 
-    public override void Attack(Vector2 direction)
+    public override void Attack(Vector2 direction, Node scene)
     {
         if (firedRounds != maxRoundsInScene)
         {

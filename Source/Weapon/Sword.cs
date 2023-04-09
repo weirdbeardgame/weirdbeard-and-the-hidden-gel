@@ -14,18 +14,15 @@ public partial class Sword : WeaponCommon
         sprite = (Sprite2D)GetNode("sprite");
     }
 
-    public override void Attack(Vector2 direction)
+    public override void Attack(Vector2 direction, Node scene)
     {
         player = (Player)SceneManager.CurrentScene.GetNode("Player");
+        spawnPoint = (Node2D)player.GetNode("WeapSpawn");
         sprite = (Sprite2D)GetNode("sprite");
 
         toSpawn = (CharacterBody2D)shootable.Instantiate<CharacterBody2D>();
-
-        spawnPoint = (Node2D)player.GetNode("WeapSpawn");
         toSpawn.Position = spawnPoint.GlobalPosition;
-        toSpawn.Rotation = spawnPoint.GlobalRotation;
-
-        SceneManager.CurrentScene.AddChild(this);
+        scene.AddChild(toSpawn);
 
         velocity.X = speed * direction.X;
 

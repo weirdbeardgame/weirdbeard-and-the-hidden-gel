@@ -5,7 +5,7 @@ public enum WeaponType { THROW, SWING, SHOOT }
 
 public partial class WeaponCommon : Node2D
 {
-    [Export] public Sprite2D icon;
+    [Export] public Texture2D icon;
     [Export] public int dmgAmnt;
     [Export] public float speed;
     [Export] public float fireRate;
@@ -25,7 +25,6 @@ public partial class WeaponCommon : Node2D
     {
         player = (Player)SceneManager.CurrentScene.GetNode("Player");
         animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
-        icon = ResourceLoader.Load<Sprite2D>("icon.png");
     }
 
     public virtual void Equip()
@@ -33,7 +32,7 @@ public partial class WeaponCommon : Node2D
 
     }
 
-    public virtual void Attack(Vector2 direction)
+    public virtual void Attack(Vector2 direction, Node scene)
     {
 
     }

@@ -1,24 +1,22 @@
 [gd_scene load_steps=5 format=3 uid="uid://j416qx5kqgli"]
 
-[ext_resource type="Texture2D" uid="uid://de0u1qs1xqam3" path="res://Assets/resources/Sprites/scifi_fantasy_swords/scifi_swords0001.png" id="1"]
 [ext_resource type="Script" path="res://Source/Weapon/WeaponEquip.cs" id="2"]
-[ext_resource type="PackedScene" path="res://Assets/resources/Weapons/Sword.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://7hvkqjt4gq5q" path="res://Assets/resources/Weapons/Sword.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://cva11bvghkcta" path="res://Assets/resources/Sprites/WeirdBeard/Dirk_Weapon/Dirk_Weapon.png" id="3_voxo0"]
 
-[sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(222.222, 1050)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efgpd"]
+size = Vector2(25.9953, 12)
 
 [node name="Sword" type="Area2D"]
-rotation = -1.5708
-scale = Vector2(0.063, 0.04)
 collision_mask = 3
 script = ExtResource("2")
 w = ExtResource("3")
 
-[node name="sprite" type="Sprite2D" parent="."]
-position = Vector2(61, 211)
-texture = ExtResource("1")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(63.4915, 200)
-scale = Vector2(0.999999, 1)
-shape = SubResource("1")
+position = Vector2(1.00078, -1)
+rotation = -0.00155032
+shape = SubResource("RectangleShape2D_efgpd")
+
+[node name="DirkWeapon" type="Sprite2D" parent="."]
+position = Vector2(1, -1)
+texture = ExtResource("3_voxo0")

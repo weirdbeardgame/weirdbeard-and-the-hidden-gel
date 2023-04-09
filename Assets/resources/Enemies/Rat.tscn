@@ -18,6 +18,21 @@
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(17.5, 12.5)
 
+[sub_resource type="Animation" id="Animation_nr8vv"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("4")]
+}
+
 [sub_resource type="Animation" id="2"]
 length = 0.001
 tracks/0/type = "value"
@@ -47,21 +62,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [ExtResource("4"), ExtResource("13"), ExtResource("17"), ExtResource("14"), ExtResource("7"), ExtResource("8"), ExtResource("11"), ExtResource("5"), ExtResource("10"), ExtResource("9"), ExtResource("18"), ExtResource("16")]
-}
-
-[sub_resource type="Animation" id="Animation_nr8vv"]
-resource_name = "Idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Enemy:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [ExtResource("4")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gcm54"]
