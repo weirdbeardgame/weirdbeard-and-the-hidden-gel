@@ -16,3 +16,9 @@ shape = SubResource("1")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_jw3qn")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-4.76837e-07, 1.19209e-07)
+scale = Vector2(1.4, 0.7)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnExit"]

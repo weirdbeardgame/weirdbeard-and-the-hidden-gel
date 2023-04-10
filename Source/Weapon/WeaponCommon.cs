@@ -18,6 +18,8 @@ public partial class WeaponCommon : Node
     public bool canThrowWeapon;
     protected Vector2 velocity;
     protected Vector2 direction;
+    protected Node2D spawnPoint;
+
     protected AnimationPlayer animationPlayer;
 
     // Called when the node enters the scene tree for the first time.

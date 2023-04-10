@@ -5,9 +5,7 @@ public partial class Gun : WeaponCommon
 {
     int firedRounds;
 
-    Bullet spawnedAmmo;
-
-    Node2D bulletSpawner;
+    Ammo spawnedAmmo;
 
     Vector2 oldPos;
 
@@ -23,7 +21,7 @@ public partial class Gun : WeaponCommon
     public override void _Ready()
     {
         sprite = (Sprite2D)GetNode("Gun");
-        bulletSpawner = (Node2D)GetNode("Gun/spawner");
+        spawnPoint = (Node2D)GetNode("Gun/spawner");
         player = (Player)SceneManager.CurrentScene.GetNode("Player");
         animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
     }
@@ -32,12 +30,12 @@ public partial class Gun : WeaponCommon
     {
         if (firedRounds != maxRoundsInScene)
         {
-            spawnedAmmo = shootable.Instantiate<Bullet>();
-            spawnedAmmo.Position = bulletSpawner.GlobalPosition;
-            spawnedAmmo.Rotation = bulletSpawner.GlobalRotation;
+            spawnedAmmo = shootable.Instantiate<Ammo>();
+            spawnedAmmo.Position = spawnPoint.GlobalPosition;
+            spawnedAmmo.Rotation = spawnPoint.GlobalRotation;
 
             SceneManager.CurrentScene.AddChild(spawnedAmmo);
-            spawnedAmmo.Shoot(bulletDirection);
+            //spawnedAmmo.Shoot(bulletDirection);
             firedRounds += 1;
         }
         if (firedRounds == maxRoundsInScene)
@@ -59,6 +57,5 @@ public partial class Gun : WeaponCommon
         }
 
         bulletDirection = player.direction.X;
-        bulletSpawner.GlobalRotation = player.Rotation;
     }
 }

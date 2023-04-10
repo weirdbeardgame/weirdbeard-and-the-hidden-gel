@@ -80,7 +80,6 @@ _data = {
 
 [node name="Pirate" type="CharacterBody2D"]
 script = ExtResource("2")
-gravity = 100.0
 
 [node name="Enemy" type="Sprite2D" parent="."]
 texture = ExtResource("1")

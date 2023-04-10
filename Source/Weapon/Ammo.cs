@@ -10,10 +10,15 @@ public partial class Ammo : CharacterBody2D
     {
     }
 
+    public void OnExit()
+    {
+        GD.Print("OFF SCREEN");
+        QueueFree();
+    }
+
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        GD.Print("WEAPON PROCESS");
         KinematicCollision2D col = MoveAndCollide(Velocity * (float)delta);
         if (col != null)
         {

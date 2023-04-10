@@ -3,8 +3,6 @@ using System;
 
 public partial class Sword : WeaponCommon
 {
-    Node2D spawnPoint;
-
     CharacterBody2D toSpawn;
 
     // Called when the node enters the scene tree for the first time.

@@ -5,17 +5,15 @@ public enum Objects { NOTHING = 0, SPIKE = 2, LADDER = 1, WATER = 3 }
 
 public partial class TileCommon : TileMap
 {
-    Objects obj;
-
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
     }
 
 
-    public Objects Collided(Player player)
+    public int Collided(Player player)
     {
-        obj = new Objects();
+        int obj = 0;
 
         var pos = LocalToMap(player.GlobalPosition);
         var data = GetCellTileData(1, pos, true);
@@ -24,7 +22,7 @@ public partial class TileCommon : TileMap
             var num = data.GetCustomData("ObjectType");
             if (num.AsInt32() > 0)
             {
-                obj = (Objects)(num.AsInt32());
+                obj = num.AsInt32();
             }
         }
         return obj;

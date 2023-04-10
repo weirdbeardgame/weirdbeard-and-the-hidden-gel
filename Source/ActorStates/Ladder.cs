@@ -48,6 +48,10 @@ public partial class Ladder : State
         GD.Print("Velocity: ", player.Velocity);
     }
 
+    public void ExitLadder()
+    {
+
+    }
 
     public override void Stop()
     {

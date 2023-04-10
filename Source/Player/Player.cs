@@ -160,7 +160,7 @@ public partial class Player : Actor
     public override void _Process(double delta)
     {
         base._Process(delta);
-        Objects collision = map.Collided(this);
+        Objects collision = (Objects)map.Collided(this);
 
         if (collision != Objects.NOTHING)
         {
@@ -175,7 +175,7 @@ public partial class Player : Actor
                     break;
 
                 case Objects.SPIKE:
-                    Die();
+                    stateMachine.UpdateState("DEATH");
                     break;
 
                 case Objects.WATER:
