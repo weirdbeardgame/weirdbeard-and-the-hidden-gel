@@ -27,6 +27,8 @@ public partial class HubWorld : LevelCommon
             actor.Activate(player);
         }
 
+        // TO DO: Need to fill level spaces with levels. Since painted scene tiles aren't editable 
+
         for (int i = 0; i < containedLevels.Count; i++)
         {
 

@@ -19,3 +19,6 @@ exits = Array[Node2D]([])
 tile_set = SubResource("TileSet_fkqgf")
 format = 2
 layer_0/tile_data = PackedInt32Array(-1, 1, 65536, -65535, 1, 65536)
+
+[connection signal="body_entered" from="TileMap/Space" to="TileMap/Space" method="Enter" flags=18]
+[connection signal="body_entered" from="TileMap/@Space@25923" to="TileMap/@Space@25923" method="Enter" flags=18]

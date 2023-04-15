@@ -22,6 +22,14 @@ public partial class Ladder : State
 
     public override Vector2 GetInput()
     {
+        if (player.IsOnFloor())
+        {
+            if (Input.IsActionPressed("Down"))
+            {
+                Stop();
+            }
+        }
+
         if (Input.IsActionPressed("Up"))
         {
             GD.Print("UP");
@@ -46,11 +54,6 @@ public partial class Ladder : State
         GetInput();
         player.Velocity = inputVelocity;
         GD.Print("Velocity: ", player.Velocity);
-    }
-
-    public void ExitLadder()
-    {
-
     }
 
     public override void Stop()

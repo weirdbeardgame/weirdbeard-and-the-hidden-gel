@@ -12,7 +12,6 @@ public partial class Ammo : CharacterBody2D
 
     public void OnExit()
     {
-        GD.Print("OFF SCREEN");
         QueueFree();
     }
 
