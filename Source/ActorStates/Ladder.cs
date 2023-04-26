@@ -50,7 +50,6 @@ public partial class Ladder : State
     public override void FixedUpdate(double delta)
     {
         base.FixedUpdate(delta);
-        // ToDo, add detection of End of Ladder in here
         GetInput();
         player.Velocity = inputVelocity;
         GD.Print("Velocity: ", player.Velocity);

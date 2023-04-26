@@ -7,15 +7,17 @@ public partial class HubWorld : LevelCommon
 {
     [Export] Array<NodePath> containedLevels;
     List<Node2D> levelSpaces;
-
     PathFollow2D follow2D;
     AudioStreamPlayer backgroundPlayer;
     HubActor actor;
+
+    TileCommon map;
 
     public override void EnterLevel(Player p)
     {
         backgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
         actor = (HubActor)GetNode("Actor");
+        map = GetNode<TileCommon>("TileMap");
         if (actor == null)
         {
             actor = new HubActor();
@@ -27,11 +29,9 @@ public partial class HubWorld : LevelCommon
             actor.Activate(player);
         }
 
-        // TO DO: Need to fill level spaces with levels. Since painted scene tiles aren't editable 
-
         for (int i = 0; i < containedLevels.Count; i++)
         {
-
+            map.GetScenes()[i].Instantiate();
         }
 
         base.EnterLevel(p);

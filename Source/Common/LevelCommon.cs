@@ -3,7 +3,7 @@ using System;
 using Godot.Collections;
 
 public enum LevelTypes { LEVEL, SUB, HUB }
-
+public enum LevelElements { GRASS, ISLAND, ICE, WATER }
 
 public partial class LevelCommon : Node2D
 {

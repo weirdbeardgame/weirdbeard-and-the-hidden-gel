@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dewk1t370248r"]
+[gd_scene load_steps=6 format=3 uid="uid://dewk1t370248r"]
 
 [ext_resource type="Script" path="res://Source/Levels/HubWorld/HubWorld.cs" id="1_wsc5u"]
 [ext_resource type="PackedScene" uid="uid://y2a05tv2k14o" path="res://Assets/resources/Levels/LevelSpace.tscn" id="2_6hks5"]
+[ext_resource type="Script" path="res://Source/Common/TileCommon.cs" id="3_iqeh7"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_h1doi"]
 resource_name = "Level Select"
@@ -19,6 +20,4 @@ exits = Array[Node2D]([])
 tile_set = SubResource("TileSet_fkqgf")
 format = 2
 layer_0/tile_data = PackedInt32Array(-1, 1, 65536, -65535, 1, 65536)
-
-[connection signal="body_entered" from="TileMap/Space" to="TileMap/Space" method="Enter" flags=18]
-[connection signal="body_entered" from="TileMap/@Space@25923" to="TileMap/@Space@25923" method="Enter" flags=18]
+script = ExtResource("3_iqeh7")
