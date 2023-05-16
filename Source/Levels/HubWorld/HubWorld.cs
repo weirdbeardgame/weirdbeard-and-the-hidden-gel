@@ -18,6 +18,7 @@ public partial class HubWorld : LevelCommon
         backgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
         actor = (HubActor)GetNode("Actor");
         map = GetNode<TileCommon>("TileMap");
+        GD.Print("HubWorld");
         if (actor == null)
         {
             actor = new HubActor();

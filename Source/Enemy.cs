@@ -22,13 +22,14 @@ public partial class Enemy : Actor
     public override void _Ready()
     {
         player = (AnimationPlayer)GetNode("AnimationPlayer");
-        Right = (RayCast2D)GetNode("Right");
-        Left = (RayCast2D)GetNode("Left");
+        stateMachine = (StateMachine)GetNode("StateMachine");
         playerDetect = (RayCast2D)GetNode("raycasts/PlayerDetect");
         playerDetect2 = (RayCast2D)GetNode("raycasts/PlayerDetect2");
-        sprite = (Sprite2D)GetNode("Enemy");
-        stateMachine = (StateMachine)GetNode("StateMachine");
+
         player.Play("Idle");
+        Left = (RayCast2D)GetNode("Left");
+        sprite = (Sprite2D)GetNode("Enemy");
+        Right = (RayCast2D)GetNode("Right");
 
         dir = new Vector2();
     }

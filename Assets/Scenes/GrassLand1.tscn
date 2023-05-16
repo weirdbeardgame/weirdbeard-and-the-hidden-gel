@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bla0wiy7o7g5j"]
+[gd_scene load_steps=18 format=3 uid="uid://bla0wiy7o7g5j"]
 
 [ext_resource type="Texture2D" uid="uid://beogmiq20h8bc" path="res://Assets/resources/Tiles/Platformer/Tiles/TileSet.png" id="1_ry35b"]
 [ext_resource type="Script" path="res://Source/Levels/Level.cs" id="1_sq4oo"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dye5s7shdsl5y" path="res://Assets/resources/Tiles/Platformer/Objects/Spikes/SpikeAtlus.png" id="6_ngacy"]
 [ext_resource type="PackedScene" uid="uid://dv1th5lqosghx" path="res://Assets/resources/Enemies/Bulky.tscn" id="11_i123y"]
 [ext_resource type="PackedScene" uid="uid://j416qx5kqgli" path="res://Assets/resources/Weapons/SwordEquip.tscn" id="11_ucmdw"]
+[ext_resource type="PackedScene" uid="uid://bjjvdhhjqdyp3" path="res://Assets/resources/Player/Powerup/HelicopterEquip.tscn" id="12_h0gu1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jptng"]
 texture = ExtResource("1_ry35b")
@@ -468,6 +469,9 @@ position = Vector2(-335, -95)
 
 [node name="Player" parent="." instance=ExtResource("5_05j6p")]
 position = Vector2(19, -38)
+speed = 300.0
+maxJumpImpulse = 400.0
+minJumpImpulse = 200.0
 
 [node name="WeapSpawn" type="Node2D" parent="Player"]
 position = Vector2(23, 0)
@@ -477,3 +481,6 @@ position = Vector2(99, -21)
 
 [node name="Pirate" parent="." instance=ExtResource("11_i123y")]
 position = Vector2(449, -38)
+
+[node name="Heli" parent="." instance=ExtResource("12_h0gu1")]
+position = Vector2(196, -37)
