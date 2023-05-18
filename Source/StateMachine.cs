@@ -10,13 +10,9 @@ public partial class StateMachine : Node
     private State _oldState;
     private State _state;
 
-    public State CurrentState
-    {
-        get
-        {
-            return _state;
-        }
-    }
+    public State CurrentState => _state;
+
+    public string CurrentStateName => _state.stateName;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()

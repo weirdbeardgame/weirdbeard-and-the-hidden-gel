@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bxq4bqokdiwhr"]
+[gd_scene load_steps=61 format=3 uid="uid://bxq4bqokdiwhr"]
 
 [ext_resource type="Texture2D" uid="uid://dvumkhaud4kn4" path="res://Assets/resources/Sprites/WeirdBeard/Idle_01.png" id="1"]
 [ext_resource type="Script" path="res://Source/ActorStates/Ladder.cs" id="1_ckoub"]
@@ -32,7 +32,6 @@
 [ext_resource type="PackedScene" path="res://Assets/resources/HUD.tscn" id="29"]
 [ext_resource type="Texture2D" uid="uid://cinug0bho4ddl" path="res://Assets/resources/Sprites/WeirdBeard/Hover/Weirdbeard_Hover_98x82.png" id="31"]
 [ext_resource type="Script" path="res://Source/CoinPurse.cs" id="32"]
-[ext_resource type="Script" path="res://Source/ActorStates/Air.cs" id="33"]
 [ext_resource type="Texture2D" uid="uid://dmms46s0woccn" path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/Cpt_WeirdBeard_Helicopter.png" id="53"]
 
 [sub_resource type="CapsuleShape2D" id="7"]
@@ -384,9 +383,6 @@ script = ExtResource("4")
 
 [node name="Purse" type="Node" parent="."]
 script = ExtResource("32")
-
-[node name="Air" type="Node" parent="."]
-script = ExtResource("33")
 
 [node name="BufferedJump" type="Timer" parent="."]
 wait_time = 5.0

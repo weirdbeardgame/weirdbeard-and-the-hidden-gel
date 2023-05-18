@@ -45,9 +45,9 @@ public partial class Actor : CharacterBody2D
     [Export] public float jumpHeight;
     [Export] public float jumpPeak;
 
-    public float jumpVelocity;
-    public float jumpGravity;
-    public float fallGravity;
+    public float JumpVelocity;
+    public float JumpGravity;
+    public float FallGravity;
 
     public bool canJumpAgain;
     public bool wasOnFloor;

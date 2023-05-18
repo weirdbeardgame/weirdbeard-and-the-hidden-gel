@@ -14,6 +14,8 @@ public partial class Jump : State
         stateMachine.AddState(this, stateName);
     }
 
+    // The mistake is in the State Machine
+
     public override void Start()
     {
         player.player.Play("Jump");
@@ -23,17 +25,26 @@ public partial class Jump : State
         }
         if (player.projectileMotionJump)
         {
-            player.gravity = player.jumpGravity;
-            inputVelocity.Y = player.jumpVelocity;
-            GD.Print("Jump Gravity: ", player.jumpGravity);
+            player.gravity = player.JumpGravity;
+            inputVelocity.Y = player.JumpVelocity;
         }
 
         inputVelocity.X = player.Velocity.X;
         player.Velocity = inputVelocity;
 
         player.BufferJump();
+    }
 
-        stateMachine.UpdateState("AIR");
+    public override void Update(double delta)
+    {
+        base.Update(delta);
+        if (Input.IsActionJustPressed("Jump") && player.CanJump())
+        {
+            player.canJumpAgain = false;
+            stateMachine.ResetState();
+        }
+
+        player.GetAirState();
     }
 
     public override void Stop()

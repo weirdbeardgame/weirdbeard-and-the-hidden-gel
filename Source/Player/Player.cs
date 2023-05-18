@@ -41,9 +41,9 @@ public partial class Player : Actor
 
         if (projectileMotionJump)
         {
-            jumpVelocity = ((2.0f * jumpHeight) / jumpPeak) * -1.0f;
-            jumpGravity = ((-2.0f * jumpHeight) / (jumpPeak * jumpPeak)) * -1.0f;
-            fallGravity = ((-2.0f * jumpHeight) / (jumpDescent * jumpDescent)) * -1.0f;
+            JumpVelocity = ((2.0f * jumpHeight) / jumpPeak) * -1.0f;
+            JumpGravity = ((-2.0f * jumpHeight) / (jumpPeak * jumpPeak)) * -1.0f;
+            FallGravity = ((-2.0f * jumpHeight) / (jumpDescent * jumpDescent)) * -1.0f;
         }
     }
 
@@ -184,6 +184,18 @@ public partial class Player : Actor
             }
         }
     }
+
+    public void GetAirState()
+    {
+        if (Velocity.Y > 0.0f)
+        {
+            if (StateMachine.CurrentStateName != "FALL")
+            {
+                StateMachine.UpdateState("FALL");
+            }
+        }
+    }
+
 
     public override void _PhysicsProcess(double delta)
     {

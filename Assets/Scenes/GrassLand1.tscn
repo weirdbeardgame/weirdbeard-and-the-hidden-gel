@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bla0wiy7o7g5j"]
+[gd_scene load_steps=17 format=3 uid="uid://bla0wiy7o7g5j"]
 
 [ext_resource type="Texture2D" uid="uid://beogmiq20h8bc" path="res://Assets/resources/Tiles/Platformer/Tiles/TileSet.png" id="1_ry35b"]
 [ext_resource type="Script" path="res://Source/Levels/Level.cs" id="1_sq4oo"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bcs5idlyc2u67" path="res://Assets/resources/Tiles/Platformer/Objects/Ladders/ladders.png" id="5_lwkd6"]
 [ext_resource type="Script" path="res://Source/Common/TileCommon.cs" id="6_iy8ha"]
 [ext_resource type="Texture2D" uid="uid://dye5s7shdsl5y" path="res://Assets/resources/Tiles/Platformer/Objects/Spikes/SpikeAtlus.png" id="6_ngacy"]
-[ext_resource type="PackedScene" uid="uid://dv1th5lqosghx" path="res://Assets/resources/Enemies/Bulky.tscn" id="11_i123y"]
 [ext_resource type="PackedScene" uid="uid://j416qx5kqgli" path="res://Assets/resources/Weapons/SwordEquip.tscn" id="11_ucmdw"]
 [ext_resource type="PackedScene" uid="uid://bjjvdhhjqdyp3" path="res://Assets/resources/Player/Powerup/HelicopterEquip.tscn" id="12_h0gu1"]
 
@@ -459,7 +458,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(-131051, 3, 0, -131038, 3, 0, -131056, 65538, 0, -196592, 65538, 0, -262128, 65538, 0, -327664, 65538, 0, -393200, 65538, 0, -458736, 65538, 0, -524272, 65538, 0, -589808, 65538, 0, -655344, 65538, 0, -720880, 65538, 0, -262110, 1, 65536, -983009, 1, 65536, -983010, 1, 65536, -983008, 1, 65536, -851955, 1, 65536, -851953, 1, 65536, -851958, 1, 65536, -131085, 1, 65536, -262123, 1, 65536, -196512, 1, 65536)
+layer_1/tile_data = PackedInt32Array(-131056, 65538, 0, -196592, 65538, 0, -262128, 65538, 0, -327664, 65538, 0, -393200, 65538, 0, -458736, 65538, 0, -524272, 65538, 0, -589808, 65538, 0, -655344, 65538, 0, -720880, 65538, 0, -262110, 1, 65536, -983009, 1, 65536, -983010, 1, 65536, -983008, 1, 65536, -851955, 1, 65536, -851953, 1, 65536, -851958, 1, 65536, -131085, 1, 65536, -262123, 1, 65536, -196512, 1, 65536)
 script = ExtResource("6_iy8ha")
 
 [node name="0" parent="." instance=ExtResource("3_xos8u")]
@@ -468,19 +467,21 @@ position = Vector2(-335, -95)
 [node name="BackgroundAudio" type="AudioStreamPlayer" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("5_05j6p")]
-position = Vector2(19, -38)
-speed = 300.0
-maxJumpImpulse = 400.0
-minJumpImpulse = 200.0
+position = Vector2(20, -38)
+defaultGravity = 4000.0
+runSpeed = 550.0
+maxJumpImpulse = 1000.0
+minJumpImpulse = 500.0
+projectileMotionJump = true
+jumpDescent = 100.0
+jumpHeight = 0.5
+jumpPeak = 0.4
 
 [node name="WeapSpawn" type="Node2D" parent="Player"]
 position = Vector2(23, 0)
 
 [node name="Sword" parent="." instance=ExtResource("11_ucmdw")]
 position = Vector2(99, -21)
-
-[node name="Pirate" parent="." instance=ExtResource("11_i123y")]
-position = Vector2(449, -38)
 
 [node name="Heli" parent="." instance=ExtResource("12_h0gu1")]
 position = Vector2(196, -37)

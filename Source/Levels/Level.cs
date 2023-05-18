@@ -56,14 +56,11 @@ public partial class Level : LevelCommon
 
     public override void ResetLevel()
     {
-        foreach (var enemy in activeEnemies)
-        {
-            enemy.Destroy();
-            enemy.Free();
-        }
+        GD.Print("LevelReset");
         activeEnemies.Clear();
         player.ResetState();
-        player.Position = currentCheckpoint.GlobalPosition;
+        ExitLevel();
+        EnterLevel(player);
     }
 
     public void Checkpoint(Checkpoint newCheckpoint)

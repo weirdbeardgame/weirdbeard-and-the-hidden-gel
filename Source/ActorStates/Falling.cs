@@ -24,7 +24,7 @@ public partial class Falling : State
         }
         if (player.projectileMotionJump)
         {
-            player.gravity = player.fallGravity;
+            player.gravity = player.FallGravity;
             //GD.Print("Fall Gravity: ", player.gravity);
         }
     }
