@@ -14,7 +14,7 @@ public partial class WeaponCommon : Node
     [Export] protected PackedScene shootable;
 
     protected Sprite2D sprite;
-    protected Player player;
+    protected Player Player;
     public bool canThrowWeapon;
     protected Vector2 velocity;
     protected Vector2 direction;
@@ -25,7 +25,7 @@ public partial class WeaponCommon : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        player = (Player)SceneManager.CurrentScene.GetNode("Player");
+        Player = (Player)SceneManager.CurrentScene.GetNode("Player");
         animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
     }
 

@@ -24,10 +24,10 @@ public partial class HubWorld : LevelCommon
             actor = new HubActor();
             AddChild(actor);
         }
-        if (player != null)
+        if (Player != null)
         {
-            RemoveChild(player);
-            actor.Activate(player);
+            RemoveChild(Player);
+            actor.Activate(Player);
         }
 
         for (int i = 0; i < containedLevels.Count; i++)
@@ -52,6 +52,6 @@ public partial class HubWorld : LevelCommon
     public override void ExitLevel()
     {
         base.ExitLevel();
-        RemoveChild(player);
+        RemoveChild(Player);
     }
 }

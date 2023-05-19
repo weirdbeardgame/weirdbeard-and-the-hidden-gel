@@ -6,7 +6,7 @@ public partial class Store : State
     public override void _Ready()
     {
         stateName = "STORE";
-        player = (Player)Owner.GetParent<Player>();
+        Player = (Player)Owner.GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
         stateMachine.AddState(this, stateName);
     }

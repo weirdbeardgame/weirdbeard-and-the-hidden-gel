@@ -7,7 +7,7 @@ public partial class NPC : Node
     [Export]
     string npcName;
 
-    AnimationPlayer player;
+    AnimationPlayer Player;
 
     [Export]
     Array<PackedScene> dialogue;
@@ -19,8 +19,8 @@ public partial class NPC : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        player = (AnimationPlayer)GetNode("AnimationPlayer");
-        player.Play("IDLE");
+        Player = (AnimationPlayer)GetNode("AnimationPlayer");
+        Player.Play("IDLE");
         isPlayerCollide = false;
     }
 

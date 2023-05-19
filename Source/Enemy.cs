@@ -5,7 +5,7 @@ public enum EnemyDirection { LEFT, RIGHT };
 
 public partial class Enemy : Actor
 {
-    public AnimationPlayer player;
+    public AnimationPlayer Player;
 
     RayCast2D Left;
     RayCast2D Right;
@@ -21,12 +21,12 @@ public partial class Enemy : Actor
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        player = (AnimationPlayer)GetNode("AnimationPlayer");
+        Player = (AnimationPlayer)GetNode("AnimationPlayer");
         stateMachine = (StateMachine)GetNode("StateMachine");
         playerDetect = (RayCast2D)GetNode("raycasts/PlayerDetect");
         playerDetect2 = (RayCast2D)GetNode("raycasts/PlayerDetect2");
 
-        player.Play("Idle");
+        Player.Play("Idle");
         Left = (RayCast2D)GetNode("Left");
         sprite = (Sprite2D)GetNode("Enemy");
         Right = (RayCast2D)GetNode("Right");
@@ -80,10 +80,10 @@ public partial class Enemy : Actor
 
         if (playerDetect.IsColliding() || playerDetect2.IsColliding())
         {
-            // Play attacking Anim. Chase player ... YARRR!
+            // Play attacking Anim. Chase Player ... YARRR!
             // Yer going to be needin ya a hitbox as well laddy.
             GD.Print("Detected Player");
-            player.Play("Attack");
+            Player.Play("Attack");
             FollowPlayer((Player)playerDetect.GetCollider());
         }
     }

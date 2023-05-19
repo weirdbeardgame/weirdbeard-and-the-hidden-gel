@@ -3,7 +3,7 @@ using System;
 
 public partial class State : Node
 {
-    protected Player player;
+    protected Player Player;
 
     protected StateMachine stateMachine;
 

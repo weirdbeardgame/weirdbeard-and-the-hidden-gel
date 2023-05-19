@@ -10,7 +10,7 @@ public partial class LevelCommon : Node2D
     [Export]
     public string levelName;
 
-    protected Player player;
+    protected Player Player;
 
     protected Checkpoint currentCheckpoint;
 
@@ -54,10 +54,10 @@ public partial class LevelCommon : Node2D
     {
         if (p != null)
         {
-            player = p;
+            Player = p;
         }
 
-        else if ((player = (Player)GetNode("Player")) != null)
+        else if ((Player = (Player)GetNode("Player")) != null)
         {
             GD.Print("Player Found");
         }
@@ -66,7 +66,7 @@ public partial class LevelCommon : Node2D
     public void CompleteLevel()
     {
         complete = true;
-        player.ResetState();
+        Player.ResetState();
         ExitLevel();
     }
 
@@ -80,7 +80,7 @@ public partial class LevelCommon : Node2D
 
     }
 
-    public virtual void EnterSubLevel(Player player, Level parent)
+    public virtual void EnterSubLevel(Player Player, Level parent)
     {
 
     }

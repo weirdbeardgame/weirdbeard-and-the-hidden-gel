@@ -472,10 +472,9 @@ defaultGravity = 4000.0
 runSpeed = 550.0
 maxJumpImpulse = 1000.0
 minJumpImpulse = 500.0
-projectileMotionJump = true
-jumpDescent = 100.0
-jumpHeight = 0.5
-jumpPeak = 0.4
+jumpDescent = 500.0
+jumpHeight = 100.0
+jumpPeak = 1.0
 
 [node name="WeapSpawn" type="Node2D" parent="Player"]
 position = Vector2(23, 0)

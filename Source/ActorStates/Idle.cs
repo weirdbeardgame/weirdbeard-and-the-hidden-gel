@@ -11,15 +11,15 @@ public partial class Idle : State
     public override void _Ready()
     {
         stateName = "IDLE";
-        player = (Player)GetParent<Player>();
+        Player = (Player)GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
         stateMachine.AddState(this, stateName);
     }
 
     public override void Start()
     {
-        player.player.Play("Idle");
-        player.Velocity = Vector2.Zero;
+        Player.AnimationPlayer.Play("Idle");
+        Player.Velocity = Vector2.Zero;
     }
 
     public override Vector2 GetInput()
@@ -34,15 +34,15 @@ public partial class Idle : State
 
     public override void FixedUpdate(double delta)
     {
-        if (player.canMove)
+        if (Player.canMove)
         {
-            if (player.direction == Vector2.Left)
+            if (Player.direction == Vector2.Left)
             {
-                player.weirdBeard.FlipH = true;
+                Player.weirdBeard.FlipH = true;
             }
             else
             {
-                player.weirdBeard.FlipH = false;
+                Player.weirdBeard.FlipH = false;
             }
 
             if (Input.IsActionPressed("Right") || Input.IsActionPressed("Left"))
@@ -50,7 +50,7 @@ public partial class Idle : State
                 stateMachine.UpdateState("WALK");
             }
 
-            if (Input.IsActionJustPressed("Jump") && player.CanJump())
+            if (Input.IsActionJustPressed("Jump") && Player.CanJump())
             {
                 stateMachine.UpdateState("JUMP");
             }
@@ -59,6 +59,6 @@ public partial class Idle : State
 
     public override void Stop()
     {
-        player.player.Stop(true);
+        Player.AnimationPlayer.Stop(true);
     }
 }

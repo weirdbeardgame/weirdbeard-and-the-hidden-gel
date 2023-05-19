@@ -9,7 +9,7 @@ public partial class Jump : State
     public override void _Ready()
     {
         stateName = "JUMP";
-        player = (Player)GetParent<Player>();
+        Player = (Player)GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
         stateMachine.AddState(this, stateName);
     }
@@ -18,37 +18,46 @@ public partial class Jump : State
 
     public override void Start()
     {
-        player.player.Play("Jump");
-        if (!player.projectileMotionJump)
+        Player.AnimationPlayer.Play("Jump");
+        if (!Player.projectileMotionJump)
         {
-            inputVelocity.Y = -player.maxJumpImpulse;
+            inputVelocity.Y = -Player.maxJumpImpulse;
         }
-        if (player.projectileMotionJump)
+        if (Player.projectileMotionJump)
         {
-            player.gravity = player.JumpGravity;
-            inputVelocity.Y = player.JumpVelocity;
+            Player.gravity = Player.JumpGravity;
+            inputVelocity.Y = Player.JumpVelocity;
         }
 
-        inputVelocity.X = player.Velocity.X;
-        player.Velocity = inputVelocity;
+        GD.Print("Jump Gravity: ", Player.JumpGravity);
+        GD.Print("Jump Velocity: ", Player.JumpVelocity);
 
-        player.BufferJump();
+        inputVelocity.X = Player.Velocity.X;
+        Player.Velocity = inputVelocity;
+
+        GD.Print("Velocity: ", Player.Velocity);
+
+        Player.BufferJump();
+    }
+
+    public override void FixedUpdate(double delta)
+    {
+        base.FixedUpdate(delta);
+        Player.GetAirState();
     }
 
     public override void Update(double delta)
     {
         base.Update(delta);
-        if (Input.IsActionJustPressed("Jump") && player.CanJump())
+        if (Input.IsActionJustPressed("Jump") && Player.CanJump())
         {
-            player.canJumpAgain = false;
+            Player.canJumpAgain = false;
             stateMachine.ResetState();
         }
-
-        player.GetAirState();
     }
 
     public override void Stop()
     {
-        player.player.Stop(true);
+        Player.AnimationPlayer.Stop(true);
     }
 }

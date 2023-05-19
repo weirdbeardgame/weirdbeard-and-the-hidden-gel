@@ -10,41 +10,41 @@ public partial class Falling : State
     public override void _Ready()
     {
         stateName = "FALL";
-        player = (Player)GetParent<Player>();
+        Player = (Player)GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
         stateMachine.AddState(this, stateName);
     }
 
     public override void Start()
     {
-        player.player.Play("Fall");
-        if (player.wasOnFloor)
+        Player.AnimationPlayer.Play("Fall");
+        if (Player.wasOnFloor)
         {
-            player.StartCoyoteTimer();
+            Player.StartCoyoteTimer();
         }
-        if (player.projectileMotionJump)
+        if (Player.projectileMotionJump)
         {
-            player.gravity = player.FallGravity;
-            //GD.Print("Fall Gravity: ", player.gravity);
+            Player.gravity = Player.FallGravity;
+            GD.Print("Fall Gravity: ", Player.gravity);
         }
     }
 
     public override void Update(double delta)
     {
         base.Update(delta);
-        if (Input.IsActionJustPressed("Jump") && player.CanJump())
+        if (Input.IsActionJustPressed("Jump") && Player.CanJump())
         {
-            player.canJumpAgain = false;
+            Player.canJumpAgain = false;
             stateMachine.UpdateState("JUMP");
         }
-        if (player.IsOnFloor())
+        if (Player.IsOnFloor())
         {
-            player.ResetState();
+            Player.ResetState();
         }
     }
 
     public override void Stop()
     {
-        player.player.Stop(false);
+        Player.AnimationPlayer.Stop(false);
     }
 }

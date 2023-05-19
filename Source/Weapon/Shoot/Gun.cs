@@ -22,7 +22,7 @@ public partial class Gun : WeaponCommon
     {
         sprite = (Sprite2D)GetNode("Gun");
         spawnPoint = (Node2D)GetNode("Gun/spawner");
-        player = (Player)SceneManager.CurrentScene.GetNode("Player");
+        Player = (Player)SceneManager.CurrentScene.GetNode("Player");
         animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
     }
 
@@ -47,7 +47,7 @@ public partial class Gun : WeaponCommon
     public override void _PhysicsProcess(double delta)
     {
 
-        if (player.direction.X >= 0)
+        if (Player.direction.X >= 0)
         {
             sprite.FlipH = true;
         }
@@ -56,6 +56,6 @@ public partial class Gun : WeaponCommon
             sprite.FlipH = false;
         }
 
-        bulletDirection = player.direction.X;
+        bulletDirection = Player.direction.X;
     }
 }

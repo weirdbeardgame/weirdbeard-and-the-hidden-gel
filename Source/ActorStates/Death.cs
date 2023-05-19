@@ -10,16 +10,16 @@ public partial class Death : State
     public override void _Ready()
     {
         stateName = "DEATH";
-        player = (Player)GetParent<Player>();
+        Player = (Player)GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
         stateMachine.AddState(this, stateName);
     }
 
     public override void Start()
     {
-        if (player.playerLives > 0 && !isDead)
+        if (Player.PlayerLives > 0 && !isDead)
         {
-            player.Die();
+            Player.Die();
         }
         else
         {

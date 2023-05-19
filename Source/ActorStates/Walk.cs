@@ -10,25 +10,25 @@ public partial class Walk : State
     public override void _Ready()
     {
         stateName = "WALK";
-        player = (Player)GetParent<Player>();
+        Player = (Player)GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
         stateMachine.AddState(this, stateName);
     }
 
     public override void Start()
     {
-        player.player.Play("Walk");
+        Player.AnimationPlayer.Play("Walk");
     }
 
     public override Vector2 GetInput()
     {
         if (Input.IsActionPressed("Run"))
         {
-            currentSpeed = player.runSpeed;
+            currentSpeed = Player.runSpeed;
         }
         else
         {
-            currentSpeed = player.speed;
+            currentSpeed = Player.speed;
         }
         if (Input.IsActionPressed("Right"))
         {
@@ -47,27 +47,27 @@ public partial class Walk : State
 
     public override void FixedUpdate(double delta)
     {
-        if (player.IsOnFloor())
+        if (Player.IsOnFloor())
         {
             GetInput();
 
             if (inputVelocity.Sign().X < 0)
             {
-                player.direction = Vector2.Left;
-                player.weirdBeard.FlipH = true;
+                Player.direction = Vector2.Left;
+                Player.weirdBeard.FlipH = true;
             }
 
             else if (inputVelocity.Sign().X > 0)
             {
-                player.direction = Vector2.Right;
-                player.weirdBeard.FlipH = false;
+                Player.direction = Vector2.Right;
+                Player.weirdBeard.FlipH = false;
             }
 
             if (inputVelocity == Vector2.Zero)
             {
                 stateMachine.UpdateState("IDLE");
             }
-            player.Velocity = inputVelocity;
+            Player.Velocity = inputVelocity;
         }
     }
 
@@ -75,13 +75,13 @@ public partial class Walk : State
     {
         base.Update(delta);
         // Oops, fell off platform.
-        if (player.Velocity.Y > 0)
+        if (Player.Velocity.Y > 0)
         {
-            player.wasOnFloor = true;
+            Player.wasOnFloor = true;
             stateMachine.UpdateState("FALL");
         }
 
-        if (Input.IsActionJustPressed("Jump") && player.CanJump())
+        if (Input.IsActionJustPressed("Jump") && Player.CanJump())
         {
             stateMachine.UpdateState("JUMP");
         }
@@ -89,6 +89,6 @@ public partial class Walk : State
 
     public override void Stop()
     {
-        player.player.Stop(true);
+        Player.AnimationPlayer.Stop(true);
     }
 }

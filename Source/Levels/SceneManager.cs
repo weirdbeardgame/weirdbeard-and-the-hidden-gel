@@ -52,7 +52,7 @@ public partial class SceneManager : Node
 
     // Play level changing animation.
     // Load new scene and set it as current
-    public void SwitchLevel(string scene, Player player)
+    public void SwitchLevel(string scene, Player Player)
     {
         if (currentScene is LevelCommon)
         {
@@ -62,7 +62,7 @@ public partial class SceneManager : Node
         if (levels.ContainsKey(scene))
         {
             LevelCommon sceneToLoad = levels[scene].Instantiate<LevelCommon>();
-            CallDeferred(nameof(CallDefferedSwitch), sceneToLoad, player);
+            CallDeferred(nameof(CallDefferedSwitch), sceneToLoad, Player);
         }
     }
 
@@ -73,21 +73,21 @@ public partial class SceneManager : Node
     }
 
 
-    void BackgroundLoadScene(Level toLoad, Player player)
+    void BackgroundLoadScene(Level toLoad, Player Player)
     {
 
     }
 
-    void CallDeferredSub(SubLevel toLoad, Player player)
+    void CallDeferredSub(SubLevel toLoad, Player Player)
     {
         currentScene.ExitLevel();
         GetTree().Root.RemoveChild(currentScene);
         activeSubScene = toLoad;
         GetTree().Root.AddChild(activeSubScene);
-        activeSubScene.EnterLevel(player);
+        activeSubScene.EnterLevel(Player);
     }
 
-    void CallDefferedSwitch(Level toLoad, Player player)
+    void CallDefferedSwitch(Level toLoad, Player Player)
     {
         if (currentScene != null)
         {
@@ -102,7 +102,7 @@ public partial class SceneManager : Node
         currentScene = toLoad;
         GetTree().Root.AddChild(currentScene);
         GetTree().CurrentScene = currentScene;
-        currentScene.EnterLevel(player);
+        currentScene.EnterLevel(Player);
     }
 
     void NewGame()

@@ -9,7 +9,7 @@ public partial class Ladder : State
     public override void _Ready()
     {
         stateName = "LADDER";
-        player = (Player)GetParent<Player>();
+        Player = (Player)GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
         stateMachine.AddState(this, stateName);
         base._Ready();
@@ -17,12 +17,12 @@ public partial class Ladder : State
     public override void Start()
     {
         base.Start();
-        player.gravity = 0;
+        Player.gravity = 0;
     }
 
     public override Vector2 GetInput()
     {
-        if (player.IsOnFloor())
+        if (Player.IsOnFloor())
         {
             if (Input.IsActionPressed("Down"))
             {
@@ -51,13 +51,13 @@ public partial class Ladder : State
     {
         base.FixedUpdate(delta);
         GetInput();
-        player.Velocity = inputVelocity;
-        GD.Print("Velocity: ", player.Velocity);
+        Player.Velocity = inputVelocity;
+        GD.Print("Velocity: ", Player.Velocity);
     }
 
     public override void Stop()
     {
         base.Stop();
-        player.ResetState();
+        Player.ResetState();
     }
 }

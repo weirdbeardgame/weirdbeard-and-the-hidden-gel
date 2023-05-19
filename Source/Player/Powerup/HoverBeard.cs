@@ -22,9 +22,9 @@ public partial class HoverBeard : PowerUp
         weirdBeard.Visible = false;
         hoverBeard.Visible = true;
 
-        if (!player.IsOnFloor())
+        if (!Player.IsOnFloor())
         {
-            player.gravity = gravity;
+            Player.gravity = gravity;
             animator.Play("Hover_Start");
             timer.Start();
             animator.Play("Hover_Loop");
@@ -57,7 +57,7 @@ public partial class HoverBeard : PowerUp
     {
         if (isHover && Input.IsActionPressed("Run"))
         {
-            player.Velocity = GetInput();
+            Player.Velocity = GetInput();
         }
         if (!Input.IsActionPressed("Run") && isHover)
         {

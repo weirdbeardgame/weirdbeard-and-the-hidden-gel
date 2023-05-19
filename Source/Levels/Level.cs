@@ -27,13 +27,13 @@ public partial class Level : LevelCommon
 
         base.EnterLevel(p);
 
-        if (!HasNode(player.GetPath()))
+        if (!HasNode(Player.GetPath()))
         {
-            AddChild(player);
+            AddChild(Player);
         }
         if (currentCheckpoint != null)
         {
-            player.Position = currentCheckpoint.GlobalPosition;
+            Player.Position = currentCheckpoint.GlobalPosition;
         }
         else
         {
@@ -42,9 +42,9 @@ public partial class Level : LevelCommon
             {
                 GD.PushError("No Active Checkpoints in Scene!");
             }
-            player.Position = currentCheckpoint.GlobalPosition;
+            Player.Position = currentCheckpoint.GlobalPosition;
         }
-        player.ResetState();
+        Player.ResetState();
         CreateAudioStream();
     }
 
@@ -58,9 +58,9 @@ public partial class Level : LevelCommon
     {
         GD.Print("LevelReset");
         activeEnemies.Clear();
-        player.ResetState();
+        Player.ResetState();
         ExitLevel();
-        EnterLevel(player);
+        EnterLevel(Player);
     }
 
     public void Checkpoint(Checkpoint newCheckpoint)
@@ -77,7 +77,7 @@ public partial class Level : LevelCommon
     // Ensure the scene closes properly before changing.
     public override void ExitLevel()
     {
-        RemoveChild(player);
+        RemoveChild(Player);
         if (activeEnemies != null)
         {
             foreach (var enemy in activeEnemies)
@@ -86,6 +86,6 @@ public partial class Level : LevelCommon
             }
             activeEnemies.Clear();
         }
-        player = null;
+        Player = null;
     }
 }

@@ -21,7 +21,7 @@ public partial class HelicopterBeard : PowerUp
         helicopter.Visible = true;
 
         animator.Play("Heli_start");
-        player.gravity = (player.gravity * gravityPercent);
+        Player.gravity = (Player.gravity * gravityPercent);
         animator.Play("Heli_Loop");
     }
 
@@ -44,11 +44,11 @@ public partial class HelicopterBeard : PowerUp
 
     public override void FixedUpdate(double delta)
     {
-        player.Velocity = GetInput();
+        Player.Velocity = GetInput();
 
-        GD.Print(player.Velocity);
+        GD.Print(Player.Velocity);
 
-        if (player.IsOnFloor())
+        if (Player.IsOnFloor())
         {
             Stop();
         }

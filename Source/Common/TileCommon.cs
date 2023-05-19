@@ -14,11 +14,11 @@ public partial class TileCommon : TileMap
     }
 
 
-    public int Collided(Player player)
+    public int Collided(Player Player)
     {
         int obj = 0;
 
-        var pos = LocalToMap(player.GlobalPosition);
+        var pos = LocalToMap(Player.GlobalPosition);
         var data = GetCellTileData(1, pos, true);
         if (data != null)
         {

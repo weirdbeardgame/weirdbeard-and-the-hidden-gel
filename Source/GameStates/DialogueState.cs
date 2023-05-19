@@ -12,8 +12,8 @@ public partial class DialogueState : State
 
     public override void Start()
     {
-        player = (Player)SceneManager.CurrentScene.GetNode("Player");
-        player.canMove = false;
+        Player = (Player)SceneManager.CurrentScene.GetNode("Player");
+        Player.canMove = false;
     }
 
     public override void FixedUpdate(double delta)
@@ -23,6 +23,6 @@ public partial class DialogueState : State
 
     public override void Stop()
     {
-        player.canMove = true;
+        Player.canMove = true;
     }
 }

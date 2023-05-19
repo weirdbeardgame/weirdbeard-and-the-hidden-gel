@@ -20,13 +20,13 @@ public partial class PowerUp : State
 
     public virtual void Equip(Player p)
     {
-        player = p;
+        Player = p;
         GD.Print("Equip");
-        playerAnimator = player.player;
+        playerAnimator = Player.AnimationPlayer;
         regenTimer = (Timer)GetNode("RegenTimer");
-        animator = (AnimationPlayer)player.GetNode("AnimationPlayer");
-        weirdBeard = (Sprite2D)player.GetNode("CenterContainer/WeirdBeard");
-        stateMachine = player.StateMachine;
+        animator = (AnimationPlayer)Player.GetNode("AnimationPlayer");
+        weirdBeard = (Sprite2D)Player.GetNode("CenterContainer/WeirdBeard");
+        stateMachine = Player.StateMachine;
     }
 
     public bool CanBeActivated()
@@ -36,7 +36,7 @@ public partial class PowerUp : State
             return true;
         }
 
-        if (!player.IsOnFloor() && !wasActivated && !isActivated)
+        if (!Player.IsOnFloor() && !wasActivated && !isActivated)
         {
             return true;
         }
@@ -58,7 +58,7 @@ public partial class PowerUp : State
     {
         if (!isActivated)
         {
-            player.ResetState();
+            Player.ResetState();
             stateMachine.UpdateState(stateName);
             playerAnimator.Play(stateName);
             isActivated = true;
@@ -68,7 +68,7 @@ public partial class PowerUp : State
     public override void Stop()
     {
         isActivated = false;
-        player.ResetState();
+        Player.ResetState();
         regenTimer.Start();
     }
 }

@@ -4,34 +4,34 @@ using System;
 public partial class HubActor : Node2D
 {
 
-    // This just holds the active refrence but doesn't allow the player to act.
-    Player player;
+    // This just holds the active refrence but doesn't allow the Player to act.
+    Player _player;
 
     // Playable sprite bobs up and down.
     AnimationPlayer animation;
 
-   [Export] Sprite2D currentSprite;
+    [Export] Sprite2D currentSprite;
 
     public Player Player
     {
         get
         {
-            return player;
+            return _player;
         }
     }
 
     public void Activate(Player p)
     {
-        player = p;
-        player.DeactivateCamera();
-        player.Visible = false;
+        _player = p;
+        _player.DeactivateCamera();
+        _player.Visible = false;
     }
 
     public void Deactivate()
     {
-        player.ActivateCamera();
-        player.Visible = true;
-        RemoveChild(player);
+        _player.ActivateCamera();
+        _player.Visible = true;
+        RemoveChild(_player);
     }
 
     // Play animations to the call of the Hubworld / active path making character walk.

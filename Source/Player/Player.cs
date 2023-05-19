@@ -3,17 +3,17 @@ using System;
 
 public partial class Player : Actor
 {
-    Timer coyoteTimer;
-    Timer bufferedJumpTimer;
-    PowerUp currentPowerup;
+    Timer _coyoteTimer;
+    Timer _bufferedJumpTimer;
+    PowerUp _currentPowerup;
     Area2D body;
 
     public TileCommon map;
 
     public Sprite2D weirdBeard;
-    public int playerLives = 3;
-    public WeaponCommon currentWeapon;
-    public AnimationPlayer player;
+    public int PlayerLives = 3;
+    public WeaponCommon CurrentWeapon;
+    public AnimationPlayer AnimationPlayer;
     public Vector2 direction = Vector2.Right;
 
     Camera2D camera;
@@ -23,14 +23,14 @@ public partial class Player : Actor
     {
         weirdBeard = (Sprite2D)GetNode("CenterContainer/WeirdBeard");
         stateMachine = (StateMachine)GetNode("StateMachine");
-        player = (AnimationPlayer)GetNode("AnimationPlayer");
-        bufferedJumpTimer = (Timer)GetNode("BufferedJump");
+        AnimationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
+        _bufferedJumpTimer = (Timer)GetNode("BufferedJump");
 
         body = GetNode<Area2D>("ObjectDetect");
 
-        currentWeapon = new WeaponCommon();
+        CurrentWeapon = new WeaponCommon();
 
-        coyoteTimer = (Timer)GetNode("CoyoteTimer");
+        _coyoteTimer = (Timer)GetNode("CoyoteTimer");
         SceneManager.startNewGame += NewGame;
 
         map = Owner.GetNode<TileCommon>("TileMap");
@@ -49,7 +49,7 @@ public partial class Player : Actor
 
     public void NewGame()
     {
-        playerLives = 3;
+        PlayerLives = 3;
         ResetState();
         SceneManager.startNewGame -= NewGame;
     }
@@ -74,17 +74,17 @@ public partial class Player : Actor
 
     public void StartCoyoteTimer()
     {
-        if (coyoteTimer.IsStopped())
+        if (_coyoteTimer.IsStopped())
         {
-            coyoteTimer.Start(maxCoyoteTimer);
+            _coyoteTimer.Start(maxCoyoteTimer);
         }
     }
 
     public void BufferJump()
     {
-        if (bufferedJumpTimer.IsStopped())
+        if (_bufferedJumpTimer.IsStopped())
         {
-            bufferedJumpTimer.Start();
+            _bufferedJumpTimer.Start();
         }
     }
 
@@ -109,35 +109,35 @@ public partial class Player : Actor
     public void Die()
     {
         GD.Print("U ded son");
-        if (playerLives > 0)
+        if (PlayerLives > 0)
         {
-            playerLives -= 1;
+            PlayerLives -= 1;
             SceneManager.resetLev();
         }
     }
 
     public bool CanJump()
     {
-        return ((IsOnFloor() || !coyoteTimer.IsStopped()) || bufferedJumpTimer.IsStopped() || canJumpAgain);
+        return ((IsOnFloor() || !_coyoteTimer.IsStopped()) || _bufferedJumpTimer.IsStopped() || canJumpAgain);
     }
 
     // Game Grumps joke
     public bool GamaOvar()
     {
-        return (playerLives <= 0);
+        return (PlayerLives <= 0);
     }
 
     public void EquipWeapon(PackedScene w, Texture2D weapSprite)
     {
         WeaponCommon weapon = w.Instantiate<WeaponCommon>();
-        currentWeapon = weapon;
+        CurrentWeapon = weapon;
 
         if (weapSprite != null)
         {
             WeaponSlot.updateWSprite.Invoke(weapSprite);
         }
 
-        if (currentWeapon == null)
+        if (CurrentWeapon == null)
         {
             GD.PrintErr("Weapon NULL");
         }
@@ -145,11 +145,11 @@ public partial class Player : Actor
 
     public void EquipPowerup(PowerUp power)
     {
-        if (currentPowerup != power)
+        if (_currentPowerup != power)
         {
-            RemoveChild(currentPowerup);
+            RemoveChild(_currentPowerup);
             AddChild(power);
-            currentPowerup = power;
+            _currentPowerup = power;
         }
         else
         {
@@ -196,24 +196,23 @@ public partial class Player : Actor
         }
     }
 
-
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        if (Input.IsActionJustPressed("Attack") && currentWeapon != null)
+        if (Input.IsActionJustPressed("Attack") && CurrentWeapon != null)
         {
-            currentWeapon.Attack(direction.Sign(), GetTree().CurrentScene);
+            CurrentWeapon.Attack(direction.Sign(), GetTree().CurrentScene);
         }
 
         wasOnFloor = IsOnFloor();
         Velocity = ApplyGravity(delta, gravity);
         MoveAndSlide();
 
-        if (currentPowerup != null)
+        if (_currentPowerup != null)
         {
-            if (currentPowerup.CanBeActivated() && Input.IsActionJustPressed("Run"))
+            if (_currentPowerup.CanBeActivated() && Input.IsActionJustPressed("Run"))
             {
-                currentPowerup.Activate();
+                _currentPowerup.Activate();
             }
         }
     }
