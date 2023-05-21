@@ -3,8 +3,6 @@ using System;
 
 public partial class Falling : State
 {
-    bool doubleJump = true;
-
     Vector2 inputVelocity;
 
     public override void _Ready()
@@ -20,22 +18,22 @@ public partial class Falling : State
         Player.AnimationPlayer.Play("Fall");
         if (Player.wasOnFloor)
         {
+            GD.Print("Was On Floor");
             Player.StartCoyoteTimer();
         }
         if (Player.projectileMotionJump)
         {
             Player.gravity = Player.FallGravity;
-            GD.Print("Fall Gravity: ", Player.gravity);
+            //GD.Print("Fall Gravity: ", Player.gravity);
         }
     }
 
-    public override void Update(double delta)
+    public override void FixedUpdate(double delta)
     {
-        base.Update(delta);
-        if (Input.IsActionJustPressed("Jump") && Player.CanJump())
+        if (Input.IsActionPressed("Jump") && Player.CanJump())
         {
-            Player.canJumpAgain = false;
-            stateMachine.UpdateState("JUMP");
+            GD.Print("Jump Again");
+            stateMachine.ResetToOldState();
         }
         if (Player.IsOnFloor())
         {

@@ -49,6 +49,6 @@ public partial class Actor : CharacterBody2D
     public float JumpGravity;
     public float FallGravity;
 
-    public bool canJumpAgain;
+    public int NumJumps = 2;
     public bool wasOnFloor;
 }

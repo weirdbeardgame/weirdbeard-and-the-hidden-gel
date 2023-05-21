@@ -29,12 +29,13 @@ public partial class Jump : State
             inputVelocity.Y = Player.JumpVelocity;
         }
 
-        GD.Print("Jump Gravity: ", Player.JumpGravity);
-        GD.Print("Jump Velocity: ", Player.JumpVelocity);
+        //GD.Print("Jump Gravity: ", Player.JumpGravity);
+        //GD.Print("Jump Velocity: ", Player.JumpVelocity);
 
         inputVelocity.X = Player.Velocity.X;
         Player.Velocity = inputVelocity;
 
+        Player.NumJumps -= 1;
         GD.Print("Velocity: ", Player.Velocity);
 
         Player.BufferJump();
@@ -51,7 +52,6 @@ public partial class Jump : State
         base.Update(delta);
         if (Input.IsActionJustPressed("Jump") && Player.CanJump())
         {
-            Player.canJumpAgain = false;
             stateMachine.ResetState();
         }
     }

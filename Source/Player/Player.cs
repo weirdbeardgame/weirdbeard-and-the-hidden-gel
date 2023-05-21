@@ -56,7 +56,7 @@ public partial class Player : Actor
 
     public void ResetState()
     {
-        canJumpAgain = true;
+        NumJumps = 2;
         wasOnFloor = false;
         Velocity = Vector2.Zero;
         gravity = defaultGravity;
@@ -118,7 +118,7 @@ public partial class Player : Actor
 
     public bool CanJump()
     {
-        return ((IsOnFloor() || !_coyoteTimer.IsStopped()) || _bufferedJumpTimer.IsStopped() || canJumpAgain);
+        return ((IsOnFloor() || !_coyoteTimer.IsStopped()) || _bufferedJumpTimer.IsStopped() || NumJumps > 0);
     }
 
     // Game Grumps joke

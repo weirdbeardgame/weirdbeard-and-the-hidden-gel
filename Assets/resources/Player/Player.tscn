@@ -251,6 +251,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="4"]
 resource_name = "Walk"
 length = 0.7
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
