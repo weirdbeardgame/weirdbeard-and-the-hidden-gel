@@ -9,12 +9,16 @@ public partial class HoverBeard : PowerUp
 
     bool isHover;
 
-    public override void Equip(object body)
+    public override void _Ready()
     {
-        stateName = "HOVER";
+        StateName = "HOVER";
         timer = (Timer)GetNode("Timer");
-        //hoverBeard = (Sprite2D)p.GetNode("CenterContainer/HoverBeard");
-        base.Equip(body);
+        Player = (Player)GetParent<Player>();
+        weirdBeard = Player.GetNode<Sprite2D>("CenterContainer/WeirdBeard");
+        hoverBeard = Player.GetNode<Sprite2D>("CenterContainer/HoverBeard");
+        animator = Player.AnimationPlayer;
+        stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
+
     }
 
     public override void Start()

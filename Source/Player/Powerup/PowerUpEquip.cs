@@ -7,23 +7,26 @@ public partial class PowerUpEquip : Area2D
 
     public override void _Ready()
     {
-        base._Ready();
         BodyEntered += OnTouch;
+        base._Ready();
+    }
+
+    PowerUp Power
+    {
+        get
+        {
+            return (PowerUp)toEquip.Instantiate();
+        }
     }
 
     public void OnTouch(object body)
     {
         GD.Print("Touched");
-        if (body is Player)
+        Node2D collided = (Node2D)body;
+        GD.Print(collided.Name);
+        if (collided.Name == "Player")
         {
-            GD.Print("Equip");
-            PowerUp p = toEquip.Instantiate<PowerUp>();
-            Player play = (Player)body;
-
-            p.Equip((Player)body);
-
-            play.StateMachine.AddState(p, p.stateName);
-
+            Player.OnEquip(Power);
             QueueFree();
         }
     }

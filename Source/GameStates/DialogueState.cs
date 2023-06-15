@@ -5,9 +5,9 @@ public partial class DialogueState : State
 {
     public override void _Ready()
     {
-        stateName = "DIALOGUE";
+        StateName = "DIALOGUE";
         stateMachine = (StateMachine)GetParent<StateMachine>();
-        stateMachine.AddState(this, stateName);
+        stateMachine.AddState(this, StateName);
     }
 
     public override void Start()

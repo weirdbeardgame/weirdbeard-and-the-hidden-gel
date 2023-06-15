@@ -342,19 +342,23 @@ drag_vertical_enabled = true
 
 [node name="Walk" type="Node" parent="."]
 script = ExtResource("2")
+StateName = "WALK"
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3")
 
 [node name="Jump" type="Node" parent="."]
 script = ExtResource("5")
+StateName = "JUMP"
 
 [node name="Idle" type="Node" parent="."]
 script = ExtResource("6")
+StateName = "IDLE"
 
 [node name="Ladder" type="Node" parent="."]
 script = ExtResource("1_ckoub")
 currentSpeed = 300.0
+StateName = "LADDER"
 
 [node name="StateSet" type="RichTextLabel" parent="."]
 offset_left = -28.0
@@ -374,6 +378,7 @@ libraries = {
 
 [node name="Death" type="Node" parent="."]
 script = ExtResource("21")
+StateName = "DEATH"
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1

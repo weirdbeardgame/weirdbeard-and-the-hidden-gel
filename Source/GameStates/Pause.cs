@@ -7,9 +7,9 @@ public partial class Pause : State
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        stateName = "PAUSE";
+        StateName = "PAUSE";
         stateMachine = (StateMachine)GetParent<StateMachine>();
-        stateMachine.AddState(this, stateName);
+        stateMachine.AddState(this, StateName);
     }
 
     public override void Start()

@@ -7,9 +7,9 @@ public partial class Game : State
 
     public override void _Ready()
     {
-        stateName = "GAME";
+        StateName = "GAME";
         stateMachine = (StateMachine)GetParent<StateMachine>();
-        stateMachine.AddState(this, stateName);
+        stateMachine.AddState(this, StateName);
     }
 
     public override void Start()

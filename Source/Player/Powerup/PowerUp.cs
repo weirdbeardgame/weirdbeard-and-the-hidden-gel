@@ -18,20 +18,6 @@ public partial class PowerUp : State
 
     public AnimationPlayer playerAnimator;
 
-    public virtual void Equip(object body)
-    {
-        if (body is Player)
-        {
-            Player = (Player)body;
-            playerAnimator = Player.AnimationPlayer;
-            regenTimer = (Timer)GetNode("RegenTimer");
-            animator = (AnimationPlayer)Player.GetNode("AnimationPlayer");
-            weirdBeard = (Sprite2D)Player.GetNode("CenterContainer/WeirdBeard");
-            stateMachine = Player.StateMachine;
-            Player.EquipPowerup(this);
-        }
-    }
-
     public bool CanBeActivated()
     {
         if (!wasActivated && regenTimer.TimeLeft <= 0)
@@ -62,8 +48,8 @@ public partial class PowerUp : State
         if (!isActivated)
         {
             Player.ResetState();
-            stateMachine.UpdateState(stateName);
-            playerAnimator.Play(stateName);
+            stateMachine.UpdateState(StateName);
+            playerAnimator.Play(StateName);
             isActivated = true;
         }
     }

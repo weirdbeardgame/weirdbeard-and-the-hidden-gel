@@ -7,10 +7,10 @@ public partial class Falling : State
 
     public override void _Ready()
     {
-        stateName = "FALL";
+        StateName = "FALL";
         Player = (Player)GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, stateName);
+        stateMachine.AddState(this, StateName);
     }
 
     public override void Start()

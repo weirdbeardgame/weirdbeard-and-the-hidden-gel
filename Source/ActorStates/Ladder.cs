@@ -8,10 +8,10 @@ public partial class Ladder : State
 
     public override void _Ready()
     {
-        stateName = "LADDER";
+        StateName = "LADDER";
         Player = (Player)GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, stateName);
+        stateMachine.AddState(this, StateName);
         base._Ready();
     }
     public override void Start()

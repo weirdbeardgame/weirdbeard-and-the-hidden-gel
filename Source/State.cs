@@ -7,7 +7,7 @@ public partial class State : Node
 
     protected StateMachine stateMachine;
 
-    public string stateName;
+    [Export] public string StateName;
 
     protected Sprite2D weirdBeard;
 

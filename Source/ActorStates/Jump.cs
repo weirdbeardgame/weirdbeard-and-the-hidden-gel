@@ -8,10 +8,10 @@ public partial class Jump : State
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        stateName = "JUMP";
+        StateName = "JUMP";
         Player = (Player)GetParent<Player>();
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, stateName);
+        stateMachine.AddState(this, StateName);
     }
 
     // The mistake is in the State Machine

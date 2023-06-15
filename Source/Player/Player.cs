@@ -5,7 +5,6 @@ public partial class Player : Actor
 {
     Timer _coyoteTimer;
     Timer _bufferedJumpTimer;
-    PowerUp _currentPowerup;
     Area2D body;
 
     public TileCommon map;
@@ -16,7 +15,11 @@ public partial class Player : Actor
     public AnimationPlayer AnimationPlayer;
     public Vector2 direction = Vector2.Right;
 
+    public PowerUp CurrentPowerup;
+
     Camera2D camera;
+
+    public static Action<PowerUp> OnEquip;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -39,6 +42,8 @@ public partial class Player : Actor
 
         stateMachine.InitState("IDLE");
 
+        OnEquip += EquipPowerup;
+
         if (projectileMotionJump)
         {
             JumpVelocity = ((2.0f * jumpHeight) / jumpPeak) * -1.0f;
@@ -52,6 +57,23 @@ public partial class Player : Actor
         PlayerLives = 3;
         ResetState();
         SceneManager.startNewGame -= NewGame;
+    }
+
+    public void EquipPowerup(PowerUp power)
+    {
+        GD.Print("POWER UP");
+        if (CurrentPowerup != power)
+        {
+            if (stateMachine.Has(power.StateName))
+            {
+                GD.Print("Name: " + power.StateName);
+                stateMachine.RemoveState(CurrentPowerup);
+                RemoveChild(CurrentPowerup);
+            }
+            AddChild(power);
+            stateMachine.AddState(power, power.StateName);
+            CurrentPowerup = power;
+        }
     }
 
     public void ResetState()
@@ -144,24 +166,8 @@ public partial class Player : Actor
         }
     }
 
-    public void EquipPowerup(PowerUp power)
+    public void DetectObjects()
     {
-        if (_currentPowerup != power)
-        {
-            GD.Print("Powerup Equip");
-            RemoveChild(_currentPowerup);
-            AddChild(power);
-            _currentPowerup = power;
-        }
-        else
-        {
-            return;
-        }
-    }
-
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
         Objects collision = (Objects)map.Collided(this);
 
         if (collision != Objects.NOTHING)
@@ -183,6 +189,19 @@ public partial class Player : Actor
                 case Objects.WATER:
                     // I think my day is going swimmingly!
                     break;
+            }
+        }
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        DetectObjects();
+        if (CurrentPowerup != null)
+        {
+            if (CurrentPowerup.CanBeActivated() && Input.IsActionJustPressed("Run"))
+            {
+                CurrentPowerup.Activate();
             }
         }
     }
@@ -209,14 +228,5 @@ public partial class Player : Actor
         wasOnFloor = IsOnFloor();
         Velocity = ApplyGravity(delta, gravity);
         MoveAndSlide();
-
-        if (_currentPowerup != null)
-        {
-            GD.Print("Poowwwaaa");
-            if (_currentPowerup.CanBeActivated() && Input.IsActionJustPressed("Run"))
-            {
-                _currentPowerup.Activate();
-            }
-        }
     }
 }

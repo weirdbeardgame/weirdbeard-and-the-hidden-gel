@@ -12,7 +12,7 @@ public partial class StateMachine : Node
 
     public State CurrentState => _state;
 
-    public string CurrentStateName => _state.stateName;
+    public string CurrentStateName => _state.StateName;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -38,11 +38,13 @@ public partial class StateMachine : Node
 
     public void RemoveState(State s)
     {
-        if (Nodes.ContainsKey(s.stateName))
+        if (Nodes.ContainsKey(s.StateName))
         {
-            Nodes.Remove(s.stateName);
+            Nodes.Remove(s.StateName);
         }
     }
+
+    public bool Has(string k) => Nodes.ContainsKey(k);
 
     public void InitState(string defaultState)
     {
@@ -58,7 +60,7 @@ public partial class StateMachine : Node
     {
         if (_state != null)
         {
-            if (_state.stateName != newState)
+            if (_state.StateName != newState)
             {
                 _oldState = _state;
                 _state = GetNode<State>(Nodes[newState]);
@@ -83,11 +85,11 @@ public partial class StateMachine : Node
     // Take the current state and restart it's logic, IE. You're going to double jump!
     public void ResetState()
     {
-        var stateTemp = GetNode<State>(Nodes[CurrentState.stateName]);
+        var stateTemp = GetNode<State>(Nodes[CurrentState.StateName]);
         _state.Stop();
         _state = null;
         _state = stateTemp;
-        stateSet.Text = _state.stateName;
+        stateSet.Text = _state.StateName;
         _state.Start();
     }
 
@@ -97,7 +99,7 @@ public partial class StateMachine : Node
         _state = _oldState;
         if (stateSet != null)
         {
-            stateSet.Text = _state.stateName;
+            stateSet.Text = _state.StateName;
         }
         _state.Start();
     }

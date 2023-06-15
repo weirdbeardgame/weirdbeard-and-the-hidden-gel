@@ -8,9 +8,9 @@ public partial class GameOver : State
     PackedScene gameOverScene;
     public override void _Ready()
     {
-        stateName = "GAMEOVER";
+        StateName = "GAMEOVER";
         stateMachine = (StateMachine)GetParent<StateMachine>();
-        stateMachine.AddState(this, stateName);
+        stateMachine.AddState(this, StateName);
     }
 
     public override void Start()
