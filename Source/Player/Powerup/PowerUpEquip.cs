@@ -13,6 +13,7 @@ public partial class PowerUpEquip : Area2D
 
     public void OnTouch(object body)
     {
+        GD.Print("Touched");
         if (body is Player)
         {
             GD.Print("Equip");
@@ -20,7 +21,6 @@ public partial class PowerUpEquip : Area2D
             Player play = (Player)body;
 
             p.Equip((Player)body);
-            play.EquipPowerup(p);
 
             play.StateMachine.AddState(p, p.stateName);
 

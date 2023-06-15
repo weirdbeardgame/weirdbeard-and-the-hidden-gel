@@ -7,11 +7,11 @@ public partial class HelicopterBeard : PowerUp
 
     Sprite2D helicopter;
 
-    public override void Equip(Player p)
+    public override void Equip(object body)
     {
-        helicopter = (Sprite2D)p.GetNode("CenterContainer/HelicopterBeard");
+        //helicopter = (Sprite2D)p.GetNode("CenterContainer/HelicopterBeard");
         stateName = "HELICOPTER";
-        base.Equip(p);
+        base.Equip(body);
     }
 
     // Play animation. Set physics

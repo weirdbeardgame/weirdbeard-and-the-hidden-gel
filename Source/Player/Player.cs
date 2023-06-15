@@ -118,7 +118,8 @@ public partial class Player : Actor
 
     public bool CanJump()
     {
-        return ((IsOnFloor() || !_coyoteTimer.IsStopped()) || _bufferedJumpTimer.IsStopped() || NumJumps > 0);
+        GD.Print("Num Jumps: ", NumJumps);
+        return ((IsOnFloor() || !_coyoteTimer.IsStopped()) || _bufferedJumpTimer.IsStopped() || NumJumps != 0);
     }
 
     // Game Grumps joke
@@ -147,6 +148,7 @@ public partial class Player : Actor
     {
         if (_currentPowerup != power)
         {
+            GD.Print("Powerup Equip");
             RemoveChild(_currentPowerup);
             AddChild(power);
             _currentPowerup = power;
@@ -210,6 +212,7 @@ public partial class Player : Actor
 
         if (_currentPowerup != null)
         {
+            GD.Print("Poowwwaaa");
             if (_currentPowerup.CanBeActivated() && Input.IsActionJustPressed("Run"))
             {
                 _currentPowerup.Activate();

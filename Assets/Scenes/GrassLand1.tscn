@@ -473,9 +473,9 @@ runSpeed = 550.0
 maxJumpImpulse = 2000.0
 minJumpImpulse = 500.0
 projectileMotionJump = true
-jumpDescent = 0.2
+jumpDescent = 0.16
 jumpHeight = 200.0
-jumpPeak = 0.3
+jumpPeak = 0.25
 
 [node name="WeapSpawn" type="Node2D" parent="Player"]
 position = Vector2(23, 0)
@@ -484,4 +484,4 @@ position = Vector2(23, 0)
 position = Vector2(99, -21)
 
 [node name="Heli" parent="." instance=ExtResource("12_h0gu1")]
-position = Vector2(196, -37)
+position = Vector2(186, -36)

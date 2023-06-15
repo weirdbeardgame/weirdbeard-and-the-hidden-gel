@@ -29,8 +29,8 @@ public partial class Jump : State
             inputVelocity.Y = Player.JumpVelocity;
         }
 
-        //GD.Print("Jump Gravity: ", Player.JumpGravity);
-        //GD.Print("Jump Velocity: ", Player.JumpVelocity);
+        GD.Print("Jump Gravity: ", Player.JumpGravity);
+        GD.Print("Jump Velocity: ", Player.JumpVelocity);
 
         inputVelocity.X = Player.Velocity.X;
         Player.Velocity = inputVelocity;
