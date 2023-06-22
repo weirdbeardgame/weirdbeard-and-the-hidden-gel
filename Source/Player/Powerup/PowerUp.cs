@@ -16,8 +16,6 @@ public partial class PowerUp : State
 
     public Timer regenTimer;
 
-    public AnimationPlayer playerAnimator;
-
     public bool CanBeActivated()
     {
         if (!wasActivated && regenTimer.TimeLeft <= 0)
@@ -49,7 +47,6 @@ public partial class PowerUp : State
         {
             Player.ResetState();
             stateMachine.UpdateState(StateName);
-            playerAnimator.Play(StateName);
             isActivated = true;
         }
     }

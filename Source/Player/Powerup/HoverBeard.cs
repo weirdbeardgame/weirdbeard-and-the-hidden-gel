@@ -3,7 +3,6 @@ using System;
 
 public partial class HoverBeard : PowerUp
 {
-    Timer timer;
 
     Sprite2D hoverBeard;
 
@@ -12,12 +11,13 @@ public partial class HoverBeard : PowerUp
     public override void _Ready()
     {
         StateName = "HOVER";
-        timer = (Timer)GetNode("Timer");
+        regenTimer = (Timer)GetNode("RegenTimer");
         Player = (Player)GetParent<Player>();
         weirdBeard = Player.GetNode<Sprite2D>("CenterContainer/WeirdBeard");
         hoverBeard = Player.GetNode<Sprite2D>("CenterContainer/HoverBeard");
         animator = Player.AnimationPlayer;
         stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
+        regenTimer.Timeout += Stop;
 
     }
 
@@ -30,7 +30,7 @@ public partial class HoverBeard : PowerUp
         {
             Player.gravity = gravity;
             animator.Play("Hover_Start");
-            timer.Start();
+            regenTimer.Start();
             animator.Play("Hover_Loop");
             isHover = true;
         }
@@ -69,19 +69,13 @@ public partial class HoverBeard : PowerUp
         }
     }
 
-    public void OnTimeout()
-    {
-        Stop();
-    }
-
     public override void Stop()
     {
-        GD.Print("STOP HOVER");
         animator.Play("Hover_End");
         weirdBeard.Visible = true;
         hoverBeard.Visible = false;
         isHover = false;
-        timer.Stop();
+        regenTimer.Stop();
         base.Stop();
     }
 
