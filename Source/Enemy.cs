@@ -31,6 +31,8 @@ public partial class Enemy : Actor
         sprite = (Sprite2D)GetNode("Enemy");
         Right = (RayCast2D)GetNode("Right");
 
+        gravity = 500;
+
         dir = new Vector2();
     }
 
