@@ -92,7 +92,7 @@ public partial class Enemy : Actor
 
     public override void _PhysicsProcess(double delta)
     {
-        Attack();
+        Move(delta);
         MoveAndSlide();
     }
 
