@@ -15,6 +15,7 @@ public partial class Enemy : Actor
     Sprite2D sprite;
 
     Vector2 dir;
+    Vector2 inputVelocity;
 
     EnemyDirection dirToWalk;
 
@@ -32,6 +33,7 @@ public partial class Enemy : Actor
         Right = (RayCast2D)GetNode("Right");
 
         gravity = 500;
+        speed = 10;
 
         dir = new Vector2();
     }
@@ -55,14 +57,19 @@ public partial class Enemy : Actor
         }
     }
 
-    public void Move(double delta)
+    public Vector2 Move(double delta)
     {
         if (!Right.IsColliding() || !Left.IsColliding() || IsOnWall())
         {
             ChangeDirection();
         }
 
-        Velocity = ApplyGravity(delta, gravity);
+        inputVelocity = ApplyGravity(delta);
+        inputVelocity.X = 1.0f * dir.X * speed;
+
+        GD.Print("Velocity: ", inputVelocity);
+
+        return inputVelocity;
     }
 
     public void Destroy()
@@ -92,7 +99,7 @@ public partial class Enemy : Actor
 
     public override void _PhysicsProcess(double delta)
     {
-        Move(delta);
+        Velocity = Move(delta);
         MoveAndSlide();
     }
 

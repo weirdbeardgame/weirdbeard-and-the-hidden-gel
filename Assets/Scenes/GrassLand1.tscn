@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dye5s7shdsl5y" path="res://Assets/resources/Tiles/Platformer/Objects/Spikes/SpikeAtlus.png" id="6_ngacy"]
 [ext_resource type="PackedScene" uid="uid://bjjvdhhjqdyp3" path="res://Assets/resources/Player/Powerup/HelicopterEquip.tscn" id="11_oagch"]
 [ext_resource type="PackedScene" uid="uid://j416qx5kqgli" path="res://Assets/resources/Weapons/SwordEquip.tscn" id="11_ucmdw"]
-[ext_resource type="PackedScene" uid="uid://dy00trcqorudr" path="res://Assets/resources/Enemies/Rat.tscn" id="12_usgoo"]
+[ext_resource type="PackedScene" uid="uid://dv1th5lqosghx" path="res://Assets/resources/Enemies/Bulky.tscn" id="12_hw6fj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jptng"]
 texture = ExtResource("1_ry35b")
@@ -487,5 +487,5 @@ position = Vector2(99, -21)
 [node name="Heli" parent="." instance=ExtResource("11_oagch")]
 position = Vector2(162, -35)
 
-[node name="TestEnemy" parent="." instance=ExtResource("12_usgoo")]
-position = Vector2(430, -40)
+[node name="Pirate" parent="." instance=ExtResource("12_hw6fj")]
+position = Vector2(392, -58)
