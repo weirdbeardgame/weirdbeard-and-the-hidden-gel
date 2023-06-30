@@ -57,7 +57,6 @@ public partial class Level : LevelCommon
     public override void ResetLevel()
     {
         GD.Print("LevelReset");
-        activeEnemies.Clear();
         Player.ResetState();
         ExitLevel();
         EnterLevel(Player);
@@ -77,7 +76,7 @@ public partial class Level : LevelCommon
     // Ensure the scene closes properly before changing.
     public override void ExitLevel()
     {
-        RemoveChild(Player);
+        //RemoveChild(Player);
         if (activeEnemies != null)
         {
             foreach (var enemy in activeEnemies)

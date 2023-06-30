@@ -14,6 +14,8 @@ public partial class Enemy : Actor
 
     Sprite2D sprite;
 
+    Area2D _death;
+
     Vector2 dir;
     Vector2 inputVelocity;
 
@@ -36,6 +38,9 @@ public partial class Enemy : Actor
         speed = 10;
 
         dir = new Vector2();
+        _death = GetNode<Area2D>("Area2D");
+
+        _death.BodyEntered += KillPlayer;
     }
 
     public void ChangeDirection()
@@ -67,7 +72,7 @@ public partial class Enemy : Actor
         inputVelocity = ApplyGravity(delta);
         inputVelocity.X = 1.0f * dir.X * speed;
 
-        GD.Print("Velocity: ", inputVelocity);
+        //GD.Print("Velocity: ", inputVelocity);
 
         return inputVelocity;
     }
@@ -103,7 +108,7 @@ public partial class Enemy : Actor
         MoveAndSlide();
     }
 
-    public void OnArea2DAreaEntered(object area)
+    public void KillPlayer(object area)
     {
         if (area is Player)
         {
