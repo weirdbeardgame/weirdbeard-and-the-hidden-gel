@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public enum EnemyDirection { LEFT, RIGHT };
+public enum EnemyDirection { LEFT = 0, RIGHT = 1 };
 
 public partial class Enemy : Actor
 {
@@ -19,7 +19,6 @@ public partial class Enemy : Actor
     Vector2 dir;
     Vector2 inputVelocity;
 
-    EnemyDirection dirToWalk;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -34,45 +33,45 @@ public partial class Enemy : Actor
         sprite = (Sprite2D)GetNode("Enemy");
         Right = (RayCast2D)GetNode("Right");
 
-        gravity = 500;
-        speed = 10;
-
         dir = new Vector2();
         _death = GetNode<Area2D>("Area2D");
-
         _death.BodyEntered += KillPlayer;
+
+        gravity = defaultGravity;
     }
 
-    public void ChangeDirection()
+    public void ChangeDirection(EnemyDirection dirToWalk)
     {
         sprite = (Sprite2D)GetNode("Enemy");
         switch (dirToWalk)
         {
             case EnemyDirection.LEFT:
                 sprite.FlipH = false;
-                dir.X = speed;
-                dirToWalk = EnemyDirection.RIGHT;
+                dir.X = 1.0f;
                 break;
 
             case EnemyDirection.RIGHT:
                 sprite.FlipH = true;
-                dir.X = -speed;
-                dirToWalk = EnemyDirection.LEFT;
+                dir.X = -1.0f;
                 break;
         }
     }
 
     public Vector2 Move(double delta)
     {
-        if (!Right.IsColliding() || !Left.IsColliding() || IsOnWall())
+        if (Right.IsColliding())
         {
-            ChangeDirection();
+            ChangeDirection(EnemyDirection.LEFT);
+        }
+        if (Left.IsColliding())
+        {
+            ChangeDirection(EnemyDirection.RIGHT);
         }
 
         inputVelocity = ApplyGravity(delta);
         inputVelocity.X = 1.0f * dir.X * speed;
 
-        //GD.Print("Velocity: ", inputVelocity);
+        GD.Print("Velocity: ", inputVelocity);
 
         return inputVelocity;
     }

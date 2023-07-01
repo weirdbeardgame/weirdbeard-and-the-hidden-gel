@@ -34,8 +34,6 @@
 [ext_resource type="Script" path="res://Source/CoinPurse.cs" id="32"]
 [ext_resource type="Texture2D" uid="uid://dmms46s0woccn" path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/Cpt_WeirdBeard_Helicopter.png" id="53"]
 
-[sub_resource type="CapsuleShape2D" id="7"]
-
 [sub_resource type="Animation" id="Animation_2asmt"]
 resource_name = "Climb"
 length = 0.8
@@ -322,17 +320,17 @@ transitions = ["Idle", "Walk", SubResource("18"), "Idle", "Jump", SubResource("1
 [sub_resource type="AnimationNodeStateMachinePlayback" id="12"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8wq7"]
-size = Vector2(28, 42)
+size = Vector2(29, 46)
+
+[sub_resource type="CapsuleShape2D" id="7"]
+radius = 11.5
+height = 36.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("28")
 defaultGravity = 2000.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 3)
-shape = SubResource("7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_horizontal_enabled = true
@@ -429,5 +427,9 @@ collision_layer = 2
 collision_mask = 65
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectDetect"]
-position = Vector2(-1, 1)
+position = Vector2(-1.5, 2)
 shape = SubResource("RectangleShape2D_q8wq7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("7")
