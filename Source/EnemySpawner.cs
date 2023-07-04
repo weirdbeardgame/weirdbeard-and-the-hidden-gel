@@ -19,7 +19,7 @@ public partial class EnemySpawner : Node
 
     Timer timer;
 
-    Level activeScene;
+    LevelCommon activeScene;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -28,7 +28,7 @@ public partial class EnemySpawner : Node
         randNum = new RandomNumberGenerator();
         timer = (Timer)GetNode("Timer");
 
-        activeScene = (Level)Owner;
+        activeScene = (LevelCommon)Owner;
     }
 
     public void Randomize()

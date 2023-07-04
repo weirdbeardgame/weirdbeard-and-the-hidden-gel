@@ -10,7 +10,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${env:GODOT4}",
+            "program": "/home/musungo/Desktop/Godot4/Godot4.x86_64",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,

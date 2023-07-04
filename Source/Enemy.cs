@@ -47,29 +47,29 @@ public partial class Enemy : Actor
         {
             case EnemyDirection.LEFT:
                 sprite.FlipH = false;
-                dir.X = 1.0f;
+                dir.X = -1.0f;
                 break;
 
             case EnemyDirection.RIGHT:
                 sprite.FlipH = true;
-                dir.X = -1.0f;
+                dir.X = 1.0f;
                 break;
         }
     }
 
     public Vector2 Move(double delta)
     {
-        if (Right.IsColliding())
+        if (!Right.IsColliding())
         {
             ChangeDirection(EnemyDirection.LEFT);
         }
-        if (Left.IsColliding())
+        else if (!Left.IsColliding())
         {
             ChangeDirection(EnemyDirection.RIGHT);
         }
 
         inputVelocity = ApplyGravity(delta);
-        inputVelocity.X = 1.0f * dir.X * speed;
+        inputVelocity.X = dir.X * speed;
 
         GD.Print("Velocity: ", inputVelocity);
 

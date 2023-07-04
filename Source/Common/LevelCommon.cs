@@ -2,7 +2,6 @@ using Godot;
 using System;
 using Godot.Collections;
 
-public enum LevelTypes { LEVEL, SUB, HUB }
 public enum LevelElements { GRASS, ISLAND, ICE, WATER }
 
 public partial class LevelCommon : Node2D
@@ -23,8 +22,6 @@ public partial class LevelCommon : Node2D
     [Export]
     public Array<Exit> exits;
 
-    public LevelTypes levelType;
-
     bool unlocked;
     bool complete;
 
@@ -42,12 +39,6 @@ public partial class LevelCommon : Node2D
         {
             return unlocked;
         }
-    }
-
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-
     }
 
     public virtual void EnterLevel(Player p)

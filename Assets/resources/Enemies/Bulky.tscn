@@ -106,12 +106,12 @@ script = ExtResource("3")
 [node name="Right" type="RayCast2D" parent="."]
 position = Vector2(15, -3)
 rotation = -1.56333
-target_position = Vector2(-23.9993, 0.17919)
+target_position = Vector2(-28.9992, 0.21652)
 
 [node name="Left" type="RayCast2D" parent="."]
-position = Vector2(-43, -3)
+position = Vector2(-45, -3)
 rotation = 1.56873
-target_position = Vector2(23.9999, 0.0495911)
+target_position = Vector2(28.9999, 0.0599251)
 
 [node name="StateSet" type="RichTextLabel" parent="."]
 offset_left = -28.0
