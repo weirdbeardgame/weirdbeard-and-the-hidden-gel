@@ -47,9 +47,9 @@ public partial class Ladder : State
         return inputVelocity;
     }
 
-    public override void FixedUpdate(double delta)
+    public override void Update(double delta)
     {
-        base.FixedUpdate(delta);
+        base.Update(delta);
         GetInput();
         Player.Velocity = inputVelocity;
         GD.Print("Velocity: ", Player.Velocity);

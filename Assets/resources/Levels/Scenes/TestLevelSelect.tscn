@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://l7e26v7gqt4c"]
+[gd_scene load_steps=5 format=3 uid="uid://l7e26v7gqt4c"]
 
 [ext_resource type="Script" path="res://Source/Levels/TestLevelSelect.cs" id="1_12oao"]
 [ext_resource type="PackedScene" uid="uid://bla0wiy7o7g5j" path="res://Assets/resources/Levels/Scenes/GrassLand1.tscn" id="2_iabei"]
+[ext_resource type="PackedScene" uid="uid://cxvplaamnil8d" path="res://Assets/resources/Levels/Scenes/Tundra1.tscn" id="3_0p12a"]
 [ext_resource type="Texture2D" uid="uid://dmkgo1qvdhfqk" path="res://Assets/resources/box.png" id="3_sm74o"]
 
 [node name="TestLevelSelect" type="Node2D"]
 script = ExtResource("1_12oao")
-_levels = Array[PackedScene]([ExtResource("2_iabei")])
+_levels = Array[PackedScene]([ExtResource("2_iabei"), ExtResource("3_0p12a")])
 levelName = "TestLevelSelect"
 
 [node name="TextureRect" type="TextureRect" parent="."]
