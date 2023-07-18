@@ -191,12 +191,23 @@ public partial class Player : Actor
                     break;
             }
         }
+
+        if (collision == Objects.NOTHING)
+        {
+            if (stateMachine.CurrentStateName == "LADDER")
+            {
+                GD.Print("Nothing");
+                if (Input.IsActionPressed("Up"))
+                {
+                    ResetState();
+                }
+            }
+        }
     }
 
     public override void _Process(double delta)
     {
         base._Process(delta);
-        DetectObjects();
         if (CurrentPowerup != null)
         {
             if (CurrentPowerup.CanBeActivated() && Input.IsActionJustPressed("Run"))
@@ -224,6 +235,8 @@ public partial class Player : Actor
         {
             CurrentWeapon.Attack(direction.Sign(), GetTree().CurrentScene);
         }
+
+        DetectObjects();
 
         wasOnFloor = IsOnFloor();
         Velocity = ApplyGravity(delta, gravity);

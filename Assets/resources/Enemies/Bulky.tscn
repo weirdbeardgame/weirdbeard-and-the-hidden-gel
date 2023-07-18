@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv1th5lqosghx"]
+[gd_scene load_steps=11 format=3 uid="uid://dv1th5lqosghx"]
 
 [ext_resource type="Texture2D" uid="uid://con80dm5obyup" path="res://Assets/resources/Sprites/Enemies/Bulky_Pirate/Bulky_Idle.png" id="1"]
 [ext_resource type="Script" path="res://Source/Enemy.cs" id="2"]
 [ext_resource type="Script" path="res://Source/StateMachine.cs" id="3"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(25, 30)
+size = Vector2(42, 52)
 
 [sub_resource type="Animation" id="5"]
 resource_name = "Attack"
@@ -78,7 +78,12 @@ _data = {
 "Walk": SubResource("4")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldbuo"]
+size = Vector2(51, 53)
+
 [node name="Pirate" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 5
 script = ExtResource("2")
 
 [node name="Enemy" type="Sprite2D" parent="."]
@@ -87,7 +92,7 @@ hframes = 3
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-11, -5)
+position = Vector2(-13, 0)
 shape = SubResource("1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -99,14 +104,14 @@ libraries = {
 script = ExtResource("3")
 
 [node name="Right" type="RayCast2D" parent="."]
-position = Vector2(24, 1)
+position = Vector2(15, -3)
 rotation = -1.56333
-target_position = Vector2(-23.9993, 0.17919)
+target_position = Vector2(-28.9992, 0.21652)
 
 [node name="Left" type="RayCast2D" parent="."]
-position = Vector2(-43, 1)
+position = Vector2(-45, -3)
 rotation = 1.56873
-target_position = Vector2(23.9999, 0.0495911)
+target_position = Vector2(28.9999, 0.0599251)
 
 [node name="StateSet" type="RichTextLabel" parent="."]
 offset_left = -28.0
@@ -126,3 +131,12 @@ collision_mask = 2
 position = Vector2(-32, -4)
 target_position = Vector2(-25, 0)
 collision_mask = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1, -1)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-17, 0)
+shape = SubResource("RectangleShape2D_ldbuo")

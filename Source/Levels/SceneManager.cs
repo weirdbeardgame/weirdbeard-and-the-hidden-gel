@@ -87,7 +87,7 @@ public partial class SceneManager : Node
         activeSubScene.EnterLevel(Player);
     }
 
-    void CallDefferedSwitch(Level toLoad, Player Player)
+    void CallDefferedSwitch(LevelCommon toLoad, Player Player)
     {
         if (currentScene != null)
         {

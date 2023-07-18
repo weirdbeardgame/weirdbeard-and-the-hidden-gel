@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public enum EnemyDirection { LEFT, RIGHT };
+public enum EnemyDirection { LEFT = 0, RIGHT = 1 };
 
 public partial class Enemy : Actor
 {
@@ -14,9 +14,11 @@ public partial class Enemy : Actor
 
     Sprite2D sprite;
 
-    Vector2 dir;
+    Area2D _death;
 
-    EnemyDirection dirToWalk;
+    Vector2 dir;
+    Vector2 inputVelocity;
+
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -32,35 +34,46 @@ public partial class Enemy : Actor
         Right = (RayCast2D)GetNode("Right");
 
         dir = new Vector2();
+        _death = GetNode<Area2D>("Area2D");
+        _death.BodyEntered += KillPlayer;
+
+        gravity = defaultGravity;
     }
 
-    public void ChangeDirection()
+    public void ChangeDirection(EnemyDirection dirToWalk)
     {
         sprite = (Sprite2D)GetNode("Enemy");
         switch (dirToWalk)
         {
             case EnemyDirection.LEFT:
                 sprite.FlipH = false;
-                dir.X = speed;
-                dirToWalk = EnemyDirection.RIGHT;
+                dir.X = -1.0f;
                 break;
 
             case EnemyDirection.RIGHT:
                 sprite.FlipH = true;
-                dir.X = -speed;
-                dirToWalk = EnemyDirection.LEFT;
+                dir.X = 1.0f;
                 break;
         }
     }
 
-    public void Move(double delta)
+    public Vector2 Move(double delta)
     {
-        if (!Right.IsColliding() || !Left.IsColliding() || IsOnWall())
+        if (!Right.IsColliding())
         {
-            ChangeDirection();
+            ChangeDirection(EnemyDirection.LEFT);
+        }
+        else if (!Left.IsColliding())
+        {
+            ChangeDirection(EnemyDirection.RIGHT);
         }
 
-        Velocity = ApplyGravity(delta, gravity);
+        inputVelocity = ApplyGravity(delta);
+        inputVelocity.X = dir.X * speed;
+
+        GD.Print("Velocity: ", inputVelocity);
+
+        return inputVelocity;
     }
 
     public void Destroy()
@@ -90,11 +103,11 @@ public partial class Enemy : Actor
 
     public override void _PhysicsProcess(double delta)
     {
-        Attack();
+        Velocity = Move(delta);
         MoveAndSlide();
     }
 
-    public void OnArea2DAreaEntered(object area)
+    public void KillPlayer(object area)
     {
         if (area is Player)
         {

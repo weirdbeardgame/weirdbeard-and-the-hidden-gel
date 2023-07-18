@@ -17,8 +17,9 @@ public partial class Death : State
 
     public override void Start()
     {
-        if (Player.PlayerLives > 0 && !isDead)
+        if (!isDead)
         {
+            isDead = true;
             Player.Die();
         }
         else
@@ -29,7 +30,7 @@ public partial class Death : State
 
     public override void Stop()
     {
-        isDead = true;
+        isDead = false;
     }
 
 }

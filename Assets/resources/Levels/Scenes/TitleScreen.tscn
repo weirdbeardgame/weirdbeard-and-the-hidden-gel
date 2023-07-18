@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://bll3sbrx3fwqb"]
 
-[ext_resource type="Script" path="res://Source/TitleScreen.cs" id="1"]
-[ext_resource type="Texture2D" uid="uid://bm83nutqyl0ed" path="res://Assets/resources/Sprites/Game_Logo_Background.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://clk2thfhf7u6w" path="res://Assets/resources/Game_Logo_02.png" id="3"]
-[ext_resource type="AudioStream" uid="uid://18ylixu4rs3r" path="res://Assets/resources/Audio/Shanty.wav" id="4"]
+[ext_resource type="Script" path="res://Source/TitleScreen.cs" id="1_ppcvk"]
+[ext_resource type="Texture2D" uid="uid://bm83nutqyl0ed" path="res://Assets/resources/Sprites/Game_Logo_Background.png" id="2_8152g"]
+[ext_resource type="Texture2D" uid="uid://clk2thfhf7u6w" path="res://Assets/resources/Game_Logo_02.png" id="3_gfgim"]
+[ext_resource type="AudioStream" uid="uid://18ylixu4rs3r" path="res://Assets/resources/Audio/Shanty.wav" id="4_6o26o"]
 
 [node name="TitleScreen" type="CanvasLayer"]
-script = ExtResource("1")
+script = ExtResource("1_ppcvk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(464, 240)
@@ -37,15 +37,15 @@ icon_alignment = 1
 [node name="GameLogoBackground" type="Sprite2D" parent="Camera2D"]
 show_behind_parent = true
 position = Vector2(40, 8)
-texture = ExtResource("2")
+texture = ExtResource("2_8152g")
 
 [node name="GameLogo02" type="Sprite2D" parent="."]
 position = Vector2(455, 113)
 scale = Vector2(0.203255, 0.206944)
-texture = ExtResource("3")
+texture = ExtResource("3_gfgim")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4")
+stream = ExtResource("4_6o26o")
 volume_db = -5.0
 autoplay = true
 
