@@ -14,7 +14,7 @@ public partial class Player : Actor
     public WeaponCommon CurrentWeapon;
     public AnimationPlayer AnimationPlayer;
     public Vector2 direction = Vector2.Right;
-
+    public Objects Collision => (Objects)map.Collided(this);
     public PowerUp CurrentPowerup;
 
     Camera2D camera;
@@ -168,11 +168,9 @@ public partial class Player : Actor
 
     public void DetectObjects()
     {
-        Objects collision = (Objects)map.Collided(this);
-
-        if (collision != Objects.NOTHING)
+        if (Collision != Objects.NOTHING)
         {
-            switch (collision)
+            switch (Collision)
             {
                 case Objects.LADDER:
                     // Activate ladder state
@@ -189,18 +187,6 @@ public partial class Player : Actor
                 case Objects.WATER:
                     // I think my day is going swimmingly!
                     break;
-            }
-        }
-
-        if (collision == Objects.NOTHING)
-        {
-            if (stateMachine.CurrentStateName == "LADDER")
-            {
-                GD.Print("Nothing");
-                if (Input.IsActionPressed("Up"))
-                {
-                    ResetState();
-                }
             }
         }
     }

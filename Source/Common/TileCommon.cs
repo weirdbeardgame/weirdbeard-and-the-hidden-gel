@@ -8,6 +8,10 @@ public partial class TileCommon : TileMap
 {
 
     TileSetScenesCollectionSource scene;
+
+    int obj = 0;
+
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -16,8 +20,6 @@ public partial class TileCommon : TileMap
 
     public int Collided(Player Player)
     {
-        int obj = 0;
-
         var pos = LocalToMap(Player.GlobalPosition);
         var data = GetCellTileData(1, pos, true);
         if (data != null)

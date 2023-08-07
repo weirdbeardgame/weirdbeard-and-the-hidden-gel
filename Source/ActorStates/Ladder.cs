@@ -30,6 +30,8 @@ public partial class Ladder : State
             }
         }
 
+        GD.Print("Ladder");
+
         if (Input.IsActionPressed("Up"))
         {
             GD.Print("UP");
@@ -43,6 +45,15 @@ public partial class Ladder : State
         else if (!Input.IsAnythingPressed())
         {
             inputVelocity = Vector2.Zero;
+        }
+
+        if (Player.Collision == Objects.NOTHING)
+        {
+            GD.Print("Nothing");
+            if (Input.IsActionJustPressed("Up"))
+            {
+                Stop();
+            }
         }
         return inputVelocity;
     }
