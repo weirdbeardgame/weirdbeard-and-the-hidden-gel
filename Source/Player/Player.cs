@@ -83,6 +83,7 @@ public partial class Player : Actor
         Velocity = Vector2.Zero;
         gravity = defaultGravity;
         SetState("IDLE");
+        map.ClearCollidedObject();
         canMove = true;
     }
 

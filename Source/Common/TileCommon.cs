@@ -11,12 +11,10 @@ public partial class TileCommon : TileMap
 
     int obj = 0;
 
-
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
     }
-
 
     public int Collided(Player Player)
     {
@@ -25,13 +23,17 @@ public partial class TileCommon : TileMap
         if (data != null)
         {
             var num = data.GetCustomData("ObjectType");
-            if (num.AsInt32() > 0)
+            if (num.AsInt32() >= 0)
             {
                 obj = num.AsInt32();
             }
         }
+
+        GD.Print("Obj: ", obj);
         return obj;
     }
+
+    public void ClearCollidedObject() { obj = 0; }
 
     public List<PackedScene> GetScenes()
     {
