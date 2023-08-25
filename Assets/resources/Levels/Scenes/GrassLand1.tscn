@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bla0wiy7o7g5j"]
+[gd_scene load_steps=22 format=3 uid="uid://bla0wiy7o7g5j"]
 
 [ext_resource type="Script" path="res://Source/Levels/Level.cs" id="1_283g4"]
 [ext_resource type="AudioStream" uid="uid://bkblhq7dchuhh" path="res://Assets/resources/Audio/Island_Theme.wav" id="2_k4v6a"]
@@ -13,8 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bjjvdhhjqdyp3" path="res://Assets/resources/Player/Powerup/HelicopterEquip.tscn" id="11_o0vtx"]
 [ext_resource type="PackedScene" uid="uid://dy00trcqorudr" path="res://Assets/resources/Enemies/Rat.tscn" id="12_j4hlb"]
 [ext_resource type="PackedScene" uid="uid://dv1th5lqosghx" path="res://Assets/resources/Enemies/Bulky.tscn" id="13_i2ang"]
-[ext_resource type="PackedScene" path="res://Assets/resources/Levels/GoalPost.tscn" id="14_1uusa"]
+[ext_resource type="PackedScene" uid="uid://dop4a34vi68yo" path="res://Assets/resources/Levels/GoalPost.tscn" id="14_1uusa"]
 [ext_resource type="PackedScene" path="res://Assets/resources/Levels/DeathBarier.tscn" id="15_jw5yn"]
+[ext_resource type="PackedScene" uid="uid://ckiag382w73ot" path="res://Assets/resources/Levels/OneWayPlatform.tscn" id="16_dqll1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jptng"]
 texture = ExtResource("3_uvklt")
@@ -505,5 +506,8 @@ position = Vector2(542, 175)
 
 [node name="CollisionShape2D" parent="Death" index="0"]
 position = Vector2(238, 552)
+
+[node name="Box6" parent="." instance=ExtResource("16_dqll1")]
+position = Vector2(-572, -156)
 
 [editable path="Death"]
