@@ -498,6 +498,7 @@ position = Vector2(263, -219)
 
 [node name="Goal" parent="." instance=ExtResource("14_1uusa")]
 position = Vector2(1673, -68)
+hub = "TestLevelSelect"
 
 [node name="Death" parent="." instance=ExtResource("15_jw5yn")]
 position = Vector2(542, 175)
