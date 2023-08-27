@@ -195,6 +195,8 @@ public partial class Player : Actor
     public override void _Process(double delta)
     {
         base._Process(delta);
+
+        var c = Collision;
         if (CurrentPowerup != null)
         {
             if (CurrentPowerup.CanBeActivated() && Input.IsActionJustPressed("Run"))

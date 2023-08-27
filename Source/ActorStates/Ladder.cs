@@ -6,6 +6,8 @@ public partial class Ladder : State
     Vector2 inputVelocity = Vector2.Zero;
     [Export] float currentSpeed = 0;
 
+    Objects obj = 0;
+
     public override void _Ready()
     {
         StateName = "LADDER";
@@ -47,7 +49,7 @@ public partial class Ladder : State
             inputVelocity = Vector2.Zero;
         }
 
-        if (Player.Collision == Objects.NOTHING)
+        if (obj == Objects.NOTHING)
         {
             GD.Print("Nothing");
             if (Input.IsActionJustPressed("Up"))
@@ -62,6 +64,7 @@ public partial class Ladder : State
     {
         base.Update(delta);
         GetInput();
+        obj = Player.Collision;
         Player.Velocity = inputVelocity;
         GD.Print("Velocity: ", Player.Velocity);
     }

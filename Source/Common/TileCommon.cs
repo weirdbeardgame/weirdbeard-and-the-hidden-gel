@@ -21,11 +21,11 @@ public partial class TileCommon : TileMap
             if (num.AsInt32() >= 0)
             {
                 obj = num.AsInt32();
+                GD.Print("Obj: ", obj);
             }
+            return obj;
         }
-
-        GD.Print("Obj: ", obj);
-        return obj;
+        return 0;
     }
 
     public void ClearCollidedObject() { obj = 0; }

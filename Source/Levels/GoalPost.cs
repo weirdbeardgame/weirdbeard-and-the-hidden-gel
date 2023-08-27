@@ -1,11 +1,16 @@
 using Godot;
 using System;
 
-public partial class GoalPost : Node2D
+public partial class GoalPost : Area2D
 {
     // To Do add gui selector in here for hub to transition to from SceneManager
     [Export] string hub;
     LevelCommon current;
+
+    public override void _Ready()
+    {
+        BodyEntered += OnTouch;
+    }
 
     public void OnTouch(object body)
     {
