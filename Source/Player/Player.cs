@@ -14,7 +14,6 @@ public partial class Player : Actor
     public WeaponCommon CurrentWeapon;
     public AnimationPlayer AnimationPlayer;
     public Vector2 direction = Vector2.Right;
-
     public PowerUp CurrentPowerup;
 
     Camera2D camera;
@@ -83,6 +82,7 @@ public partial class Player : Actor
         Velocity = Vector2.Zero;
         gravity = defaultGravity;
         SetState("IDLE");
+        map.ClearCollidedObject();
         canMove = true;
     }
 
@@ -168,46 +168,31 @@ public partial class Player : Actor
 
     public void DetectObjects()
     {
-        Objects collision = (Objects)map.Collided(this);
-
-        if (collision != Objects.NOTHING)
+        switch ((Objects)map.Collided(this, "ObjectType"))
         {
-            switch (collision)
-            {
-                case Objects.LADDER:
-                    // Activate ladder state
-                    if (Input.IsActionJustPressed("Up"))
-                    {
-                        stateMachine.UpdateState("LADDER");
-                    }
-                    break;
-
-                case Objects.SPIKE:
-                    stateMachine.UpdateState("DEATH");
-                    break;
-
-                case Objects.WATER:
-                    // I think my day is going swimmingly!
-                    break;
-            }
-        }
-
-        if (collision == Objects.NOTHING)
-        {
-            if (stateMachine.CurrentStateName == "LADDER")
-            {
-                GD.Print("Nothing");
-                if (Input.IsActionPressed("Up"))
+            case Objects.LADDER:
+                if (Input.IsActionJustPressed("Up"))
                 {
-                    ResetState();
+                    stateMachine.UpdateState("LADDER");
                 }
-            }
+                break;
+
+            case Objects.SPIKE:
+                stateMachine.UpdateState("DEATH");
+                break;
+
+            case Objects.WATER:
+                // I think my day is going swimmingly!
+                break;
         }
     }
 
     public override void _Process(double delta)
     {
         base._Process(delta);
+
+        DetectObjects();
+
         if (CurrentPowerup != null)
         {
             if (CurrentPowerup.CanBeActivated() && Input.IsActionJustPressed("Run"))
@@ -235,8 +220,6 @@ public partial class Player : Actor
         {
             CurrentWeapon.Attack(direction.Sign(), GetTree().CurrentScene);
         }
-
-        DetectObjects();
 
         wasOnFloor = IsOnFloor();
         Velocity = ApplyGravity(delta, gravity);

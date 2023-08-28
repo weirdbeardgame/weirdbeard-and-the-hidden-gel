@@ -71,7 +71,7 @@ public partial class Enemy : Actor
         inputVelocity = ApplyGravity(delta);
         inputVelocity.X = dir.X * speed;
 
-        GD.Print("Velocity: ", inputVelocity);
+        //GD.Print("Velocity: ", inputVelocity);
 
         return inputVelocity;
     }

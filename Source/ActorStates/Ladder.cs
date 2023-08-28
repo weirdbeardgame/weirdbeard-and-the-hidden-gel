@@ -1,10 +1,14 @@
 using Godot;
 using System;
 
+enum LadderStates { BEGIN = 0, CLIMBING = 1, END = 2 };
+
 public partial class Ladder : State
 {
     Vector2 inputVelocity = Vector2.Zero;
     [Export] float currentSpeed = 0;
+
+    LadderStates LadderState;
 
     public override void _Ready()
     {
@@ -22,7 +26,7 @@ public partial class Ladder : State
 
     public override Vector2 GetInput()
     {
-        if (Player.IsOnFloor())
+        if (Player.IsOnFloor() || LadderState == LadderStates.BEGIN)
         {
             if (Input.IsActionPressed("Down"))
             {
@@ -32,8 +36,13 @@ public partial class Ladder : State
 
         if (Input.IsActionPressed("Up"))
         {
-            GD.Print("UP");
             inputVelocity.Y = -1 * currentSpeed;
+
+            if (LadderState == LadderStates.END)
+            {
+                GD.Print("Nothing");
+                Stop();
+            }
         }
 
         if (Input.IsActionPressed("Down"))
@@ -51,6 +60,8 @@ public partial class Ladder : State
     {
         base.Update(delta);
         GetInput();
+        LadderState = (LadderStates)Player.map.Collided(Player, "LadderEvent");
+        GD.Print("State: ", LadderState.ToString());
         Player.Velocity = inputVelocity;
         GD.Print("Velocity: ", Player.Velocity);
     }
@@ -58,6 +69,7 @@ public partial class Ladder : State
     public override void Stop()
     {
         base.Stop();
+        LadderState = LadderStates.BEGIN;
         Player.ResetState();
     }
 }

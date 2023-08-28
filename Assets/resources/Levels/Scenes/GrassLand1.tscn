@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bla0wiy7o7g5j"]
+[gd_scene load_steps=22 format=3 uid="uid://bla0wiy7o7g5j"]
 
 [ext_resource type="Script" path="res://Source/Levels/Level.cs" id="1_283g4"]
 [ext_resource type="AudioStream" uid="uid://bkblhq7dchuhh" path="res://Assets/resources/Audio/Island_Theme.wav" id="2_k4v6a"]
@@ -13,8 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bjjvdhhjqdyp3" path="res://Assets/resources/Player/Powerup/HelicopterEquip.tscn" id="11_o0vtx"]
 [ext_resource type="PackedScene" uid="uid://dy00trcqorudr" path="res://Assets/resources/Enemies/Rat.tscn" id="12_j4hlb"]
 [ext_resource type="PackedScene" uid="uid://dv1th5lqosghx" path="res://Assets/resources/Enemies/Bulky.tscn" id="13_i2ang"]
-[ext_resource type="PackedScene" path="res://Assets/resources/Levels/GoalPost.tscn" id="14_1uusa"]
 [ext_resource type="PackedScene" path="res://Assets/resources/Levels/DeathBarier.tscn" id="15_jw5yn"]
+[ext_resource type="PackedScene" uid="uid://ckiag382w73ot" path="res://Assets/resources/Levels/OneWayPlatform.tscn" id="16_dqll1"]
+[ext_resource type="PackedScene" uid="uid://dop4a34vi68yo" path="res://Assets/resources/Levels/GoalPost.tscn" id="16_nxrbk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jptng"]
 texture = ExtResource("3_uvklt")
@@ -292,6 +293,8 @@ scenes/1/scene = ExtResource("4_230mw")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2jb3f"]
 resource_name = "Ladders"
 texture = ExtResource("5_4vcwa")
+margins = Vector2i(1, 0)
+separation = Vector2i(2, 2)
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -300,25 +303,6 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_1/angular_velocity = 0.0
 0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-14, -16, 12.5, -16, 14, 16.5, -14.5, 15.5)
 0:0/0/custom_data_0 = 1
-1:0/0 = 0
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_1/angular_velocity = 0.0
-1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-14, -16, 12.5, -16, 14, 16.5, -14.5, 15.5)
-1:0/0/custom_data_0 = 1
-2:0/0 = 0
-2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_0/angular_velocity = 0.0
-2:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_1/angular_velocity = 0.0
-2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-14, -16, 12.5, -16, 14, 16.5, -14.5, 15.5)
-2:0/0/custom_data_0 = 1
-3:0/0 = 0
-3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:0/0/physics_layer_0/angular_velocity = 0.0
-3:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-3:0/0/physics_layer_1/angular_velocity = 0.0
 0:1/0 = 0
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
@@ -326,6 +310,22 @@ texture_region_size = Vector2i(32, 32)
 0:1/0/physics_layer_1/angular_velocity = 0.0
 0:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-14, -16, 16.5, -16, 16.5, 16, -14.5, 15.5)
 0:1/0/custom_data_0 = 1
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_1/angular_velocity = 0.0
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-14, -16, 12.5, -16, 14, 16.5, -14.5, 15.5)
+1:0/0/custom_data_0 = 1
+1:0/0/custom_data_1 = 1
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_1/angular_velocity = 0.0
+2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-14, -16, 12.5, -16, 14, 16.5, -14.5, 15.5)
+2:0/0/custom_data_0 = 1
+2:0/0/custom_data_1 = 2
 1:1/0 = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
@@ -340,51 +340,6 @@ texture_region_size = Vector2i(32, 32)
 2:1/0/physics_layer_1/angular_velocity = 0.0
 2:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-14, -16, 16.5, -16, 16.5, 16, -14.5, 15.5)
 2:1/0/custom_data_0 = 1
-3:1/0 = 0
-3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:1/0/physics_layer_0/angular_velocity = 0.0
-3:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-3:1/0/physics_layer_1/angular_velocity = 0.0
-0:2/0 = 0
-0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:2/0/physics_layer_0/angular_velocity = 0.0
-0:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-0:2/0/physics_layer_1/angular_velocity = 0.0
-1:2/0 = 0
-1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:2/0/physics_layer_0/angular_velocity = 0.0
-1:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-1:2/0/physics_layer_1/angular_velocity = 0.0
-2:2/0 = 0
-2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:2/0/physics_layer_0/angular_velocity = 0.0
-2:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-2:2/0/physics_layer_1/angular_velocity = 0.0
-3:2/0 = 0
-3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:2/0/physics_layer_0/angular_velocity = 0.0
-3:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-3:2/0/physics_layer_1/angular_velocity = 0.0
-0:3/0 = 0
-0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:3/0/physics_layer_0/angular_velocity = 0.0
-0:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-0:3/0/physics_layer_1/angular_velocity = 0.0
-1:3/0 = 0
-1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:3/0/physics_layer_0/angular_velocity = 0.0
-1:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-1:3/0/physics_layer_1/angular_velocity = 0.0
-2:3/0 = 0
-2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:3/0/physics_layer_0/angular_velocity = 0.0
-2:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-2:3/0/physics_layer_1/angular_velocity = 0.0
-3:3/0 = 0
-3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:3/0/physics_layer_0/angular_velocity = 0.0
-3:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-3:3/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d6hj0"]
 texture = ExtResource("6_50r5c")
@@ -440,6 +395,8 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 navigation_layer_0/layers = 1
 custom_data_layer_0/name = "ObjectType"
 custom_data_layer_0/type = 2
+custom_data_layer_1/name = "LadderEvent"
+custom_data_layer_1/type = 2
 sources/0 = SubResource("TileSetAtlasSource_jptng")
 sources/2 = SubResource("TileSetAtlasSource_2jb3f")
 sources/1 = SubResource("TileSetScenesCollectionSource_kno6v")
@@ -462,7 +419,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(-131056, 65538, 0, -196592, 65538, 0, -262128, 65538, 0, -327664, 65538, 0, -393200, 65538, 0, -458736, 65538, 0, -524272, 65538, 0, -589808, 65538, 0, -655344, 65538, 0, -720880, 65538, 0, -983009, 1, 65536, -983010, 1, 65536, -983008, 1, 65536, -851955, 1, 65536, -851953, 1, 65536, -851958, 1, 65536, -131085, 1, 65536, -196512, 1, 65536, -65544, 65538, 0, -196616, 65538, 0, -327688, 65538, 0, -458760, 65538, 0, -589832, 65538, 0, -720904, 65538, 0)
+layer_1/tile_data = PackedInt32Array(-131056, 65538, 0, -196592, 65538, 0, -262128, 65538, 0, -327664, 65538, 0, -393200, 65538, 0, -458736, 65538, 0, -524272, 65538, 0, -589808, 65538, 0, -655344, 65538, 0, -720880, 65538, 0, -983009, 1, 65536, -983010, 1, 65536, -983008, 1, 65536, -851955, 1, 65536, -851953, 1, 65536, -851958, 1, 65536, -131085, 1, 65536, -196512, 1, 65536, -65542, 2, 0, -196614, 65538, 0, -327686, 65538, 0, -458758, 65538, 0, -131078, 65538, 0, -262150, 65538, 0, -393222, 65538, 0, -524294, 65538, 0, -655366, 131074, 0)
 script = ExtResource("7_jl384")
 
 [node name="0" parent="." instance=ExtResource("8_jf5xp")]
@@ -496,13 +453,16 @@ position = Vector2(492, -243)
 [node name="Pirate" parent="." instance=ExtResource("13_i2ang")]
 position = Vector2(263, -219)
 
-[node name="Goal" parent="." instance=ExtResource("14_1uusa")]
-position = Vector2(1673, -68)
-
 [node name="Death" parent="." instance=ExtResource("15_jw5yn")]
 position = Vector2(542, 175)
 
 [node name="CollisionShape2D" parent="Death" index="0"]
 position = Vector2(238, 552)
+
+[node name="Box6" parent="." instance=ExtResource("16_dqll1")]
+position = Vector2(-572, -156)
+
+[node name="Goal" parent="." instance=ExtResource("16_nxrbk")]
+position = Vector2(1605, -61)
 
 [editable path="Death"]

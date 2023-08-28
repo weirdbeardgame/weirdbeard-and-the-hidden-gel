@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckiag382w73ot"]
+
+[ext_resource type="Texture2D" uid="uid://bvu28hj36in88" path="res://Assets/resources/Tiles/Platformer/Objects/Boxes/Box6.png" id="1_g20ju"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nhy7"]
+size = Vector2(31.7867, 23.5102)
+
+[node name="Box6" type="Sprite2D"]
+scale = Vector2(9.375, 1.53125)
+texture = ExtResource("1_g20ju")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.10667, 4.2449)
+shape = SubResource("RectangleShape2D_8nhy7")
+one_way_collision = true

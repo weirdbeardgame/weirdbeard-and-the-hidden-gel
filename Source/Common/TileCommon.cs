@@ -8,28 +8,24 @@ public partial class TileCommon : TileMap
 {
 
     TileSetScenesCollectionSource scene;
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+
+    int obj = 0;
+
+    public int Collided(Player Player, string DataLayerName)
     {
-    }
-
-
-    public int Collided(Player Player)
-    {
-        int obj = 0;
-
-        var pos = LocalToMap(Player.GlobalPosition);
+        var pos = LocalToMap(Player.Position);
         var data = GetCellTileData(1, pos, true);
         if (data != null)
         {
-            var num = data.GetCustomData("ObjectType");
-            if (num.AsInt32() > 0)
-            {
-                obj = num.AsInt32();
-            }
+            var num = data.GetCustomData(DataLayerName);
+
+            obj = num.AsInt32();
+            return obj;
         }
-        return obj;
+        return 0;
     }
+
+    public void ClearCollidedObject() { obj = 0; }
 
     public List<PackedScene> GetScenes()
     {
@@ -42,10 +38,5 @@ public partial class TileCommon : TileMap
             scenes.Add(scene.GetSceneTileScene(i));
         }
         return scenes;
-    }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
     }
 }

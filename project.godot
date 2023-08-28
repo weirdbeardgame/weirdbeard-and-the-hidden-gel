@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 GameStates="*res://Assets/resources/GameStates.tscn"
 SceneManager="*res://Assets/resources/SceneManager.tscn"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [display]
 
@@ -34,6 +35,10 @@ window/vsync/vsync_mode=2
 [dotnet]
 
 project/assembly_name="Weirdbeard Mono"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [global]
 
