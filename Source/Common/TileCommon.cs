@@ -11,18 +11,15 @@ public partial class TileCommon : TileMap
 
     int obj = 0;
 
-    public int Collided(Player Player)
+    public int Collided(Player Player, string DataLayerName)
     {
-        var pos = LocalToMap(Player.GlobalPosition);
+        var pos = LocalToMap(Player.Position);
         var data = GetCellTileData(1, pos, true);
         if (data != null)
         {
-            var num = data.GetCustomData("ObjectType");
-            if (num.AsInt32() >= 0)
-            {
-                obj = num.AsInt32();
-                GD.Print("Obj: ", obj);
-            }
+            var num = data.GetCustomData(DataLayerName);
+
+            obj = num.AsInt32();
             return obj;
         }
         return 0;

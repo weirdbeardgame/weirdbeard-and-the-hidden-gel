@@ -14,6 +14,7 @@ public partial class GoalPost : Area2D
 
     public void OnTouch(object body)
     {
+        GD.Print("GOOOAAAALLLL");
         current = (LevelCommon)Owner;
         if (body is Player)
         {

@@ -14,7 +14,6 @@ public partial class Player : Actor
     public WeaponCommon CurrentWeapon;
     public AnimationPlayer AnimationPlayer;
     public Vector2 direction = Vector2.Right;
-    public Objects Collision => (Objects)map.Collided(this);
     public PowerUp CurrentPowerup;
 
     Camera2D camera;
@@ -169,26 +168,22 @@ public partial class Player : Actor
 
     public void DetectObjects()
     {
-        if (Collision != Objects.NOTHING)
+        switch ((Objects)map.Collided(this, "ObjectType"))
         {
-            switch (Collision)
-            {
-                case Objects.LADDER:
-                    // Activate ladder state
-                    if (Input.IsActionJustPressed("Up"))
-                    {
-                        stateMachine.UpdateState("LADDER");
-                    }
-                    break;
+            case Objects.LADDER:
+                if (Input.IsActionJustPressed("Up"))
+                {
+                    stateMachine.UpdateState("LADDER");
+                }
+                break;
 
-                case Objects.SPIKE:
-                    stateMachine.UpdateState("DEATH");
-                    break;
+            case Objects.SPIKE:
+                stateMachine.UpdateState("DEATH");
+                break;
 
-                case Objects.WATER:
-                    // I think my day is going swimmingly!
-                    break;
-            }
+            case Objects.WATER:
+                // I think my day is going swimmingly!
+                break;
         }
     }
 
@@ -196,7 +191,8 @@ public partial class Player : Actor
     {
         base._Process(delta);
 
-        var c = Collision;
+        DetectObjects();
+
         if (CurrentPowerup != null)
         {
             if (CurrentPowerup.CanBeActivated() && Input.IsActionJustPressed("Run"))
@@ -224,8 +220,6 @@ public partial class Player : Actor
         {
             CurrentWeapon.Attack(direction.Sign(), GetTree().CurrentScene);
         }
-
-        DetectObjects();
 
         wasOnFloor = IsOnFloor();
         Velocity = ApplyGravity(delta, gravity);

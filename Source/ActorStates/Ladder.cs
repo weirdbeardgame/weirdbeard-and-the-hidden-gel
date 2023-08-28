@@ -1,12 +1,14 @@
 using Godot;
 using System;
 
+enum LadderStates { BEGIN = 0, CLIMBING = 1, END = 2 };
+
 public partial class Ladder : State
 {
     Vector2 inputVelocity = Vector2.Zero;
     [Export] float currentSpeed = 0;
 
-    Objects obj = 0;
+    LadderStates LadderState;
 
     public override void _Ready()
     {
@@ -24,7 +26,7 @@ public partial class Ladder : State
 
     public override Vector2 GetInput()
     {
-        if (Player.IsOnFloor())
+        if (Player.IsOnFloor() || LadderState == LadderStates.BEGIN)
         {
             if (Input.IsActionPressed("Down"))
             {
@@ -32,12 +34,15 @@ public partial class Ladder : State
             }
         }
 
-        GD.Print("Ladder");
-
         if (Input.IsActionPressed("Up"))
         {
-            GD.Print("UP");
             inputVelocity.Y = -1 * currentSpeed;
+
+            if (LadderState == LadderStates.END)
+            {
+                GD.Print("Nothing");
+                Stop();
+            }
         }
 
         if (Input.IsActionPressed("Down"))
@@ -48,15 +53,6 @@ public partial class Ladder : State
         {
             inputVelocity = Vector2.Zero;
         }
-
-        if (obj == Objects.NOTHING)
-        {
-            GD.Print("Nothing");
-            if (Input.IsActionJustPressed("Up"))
-            {
-                Stop();
-            }
-        }
         return inputVelocity;
     }
 
@@ -64,7 +60,8 @@ public partial class Ladder : State
     {
         base.Update(delta);
         GetInput();
-        obj = Player.Collision;
+        LadderState = (LadderStates)Player.map.Collided(Player, "LadderEvent");
+        GD.Print("State: ", LadderState.ToString());
         Player.Velocity = inputVelocity;
         GD.Print("Velocity: ", Player.Velocity);
     }
@@ -72,6 +69,7 @@ public partial class Ladder : State
     public override void Stop()
     {
         base.Stop();
+        LadderState = LadderStates.BEGIN;
         Player.ResetState();
     }
 }
