@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://bxq4bqokdiwhr"]
+[gd_scene load_steps=60 format=3 uid="uid://bxq4bqokdiwhr"]
 
 [ext_resource type="Texture2D" uid="uid://dvumkhaud4kn4" path="res://Assets/resources/Sprites/WeirdBeard/Idle_01.png" id="1"]
 [ext_resource type="Script" path="res://Source/ActorStates/Ladder.cs" id="1_ckoub"]
@@ -317,8 +317,6 @@ states/Walk/node = SubResource("17")
 states/Walk/position = Vector2(990, 129)
 transitions = ["Idle", "Walk", SubResource("18"), "Idle", "Jump", SubResource("19"), "Jump", "Heli_Jump", SubResource("20"), "Heli_Jump", "Heli_Fall", SubResource("21"), "Heli_Fall", "Idle", SubResource("22")]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="12"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8wq7"]
 size = Vector2(29, 46)
 
@@ -420,7 +418,6 @@ vframes = 4
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("11")
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource("12")
 
 [node name="ObjectDetect" type="Area2D" parent="."]
 collision_layer = 2

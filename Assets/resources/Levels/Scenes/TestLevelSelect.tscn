@@ -5,10 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://cxvplaamnil8d" path="res://Assets/resources/Levels/Scenes/Tundra1.tscn" id="3_0p12a"]
 [ext_resource type="Texture2D" uid="uid://dmkgo1qvdhfqk" path="res://Assets/resources/box.png" id="3_sm74o"]
 
-[node name="TestLevelSelect" type="Node2D"]
+[node name="TestLevelSelect" type="Node2D" node_paths=PackedStringArray("activeEnemies", "exits")]
 script = ExtResource("1_12oao")
 _levels = Array[PackedScene]([ExtResource("2_iabei"), ExtResource("3_0p12a")])
 levelName = "TestLevelSelect"
+activeEnemies = []
+exits = []
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -17.0

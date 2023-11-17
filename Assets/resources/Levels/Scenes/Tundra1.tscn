@@ -267,8 +267,10 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_urlg1")
 
-[node name="Tundra1" type="Node2D"]
+[node name="Tundra1" type="Node2D" node_paths=PackedStringArray("activeEnemies", "exits")]
 script = ExtResource("1_a3quk")
+activeEnemies = []
+exits = []
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_gjaq3")
