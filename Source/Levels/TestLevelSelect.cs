@@ -8,14 +8,14 @@ public partial class TestLevelSelect : LevelCommon
 
     ItemList selector;
 
-    public override void EnterLevel(Player p)
+    public override void EnterLevel(Player p, LevelType t)
     {
         _levelNames = new Array<string>();
         selector = GetNode<ItemList>("ItemList");
 
         selector.ItemSelected += SelectLevel;
 
-        base.EnterLevel(p);
+        base.EnterLevel(p, t);
 
         foreach (var level in _levels)
         {

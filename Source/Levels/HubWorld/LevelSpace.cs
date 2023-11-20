@@ -1,9 +1,8 @@
 using Godot;
 using System;
 
-public partial class LevelChanger : Area2D
+public partial class LevelSpace : Node2D
 {
-
     [Export]
     PackedScene teleportTo;
 
@@ -11,7 +10,7 @@ public partial class LevelChanger : Area2D
     {
     }
 
-    public void Teleport(object body)
+    public void ActivateLevel(object body)
     {
         LevelCommon scene = teleportTo.Instantiate<LevelCommon>();
         if (body is Player)

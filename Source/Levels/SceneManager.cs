@@ -78,16 +78,16 @@ public partial class SceneManager : Node
 
     }
 
-    void CallDeferredSub(SubLevel toLoad, Player Player)
+    void CallDeferredSub(SubLevel toLoad, Player Player, LevelType type)
     {
         currentScene.ExitLevel();
         GetTree().Root.RemoveChild(currentScene);
         activeSubScene = toLoad;
         GetTree().Root.AddChild(activeSubScene);
-        activeSubScene.EnterLevel(Player);
+        activeSubScene.EnterLevel(Player, type);
     }
 
-    void CallDefferedSwitch(LevelCommon toLoad, Player Player)
+    void CallDefferedSwitch(LevelCommon toLoad, Player Player, LevelType type)
     {
         if (currentScene != null)
         {
@@ -102,7 +102,7 @@ public partial class SceneManager : Node
         currentScene = toLoad;
         GetTree().Root.AddChild(currentScene);
         GetTree().CurrentScene = currentScene;
-        currentScene.EnterLevel(Player);
+        currentScene.EnterLevel(Player, type);
     }
 
     void NewGame()

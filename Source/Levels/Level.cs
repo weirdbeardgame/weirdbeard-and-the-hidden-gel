@@ -17,15 +17,13 @@ public partial class Level : LevelCommon
     Rect2 mapLimits;
     Vector2 mapCellsize;
 
-    AudioStreamPlayer backgroundPlayer;
+    [Export] LevelType type;
 
-    [Export] Resource audioFile;
-
-    public override void EnterLevel(Player p)
+    public override void EnterLevel(Player p, LevelType t)
     {
-        backgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
+        base.EnterLevel(p, t);
 
-        base.EnterLevel(p);
+        type = t;
 
         if (!HasNode(Player.GetPath()))
         {
@@ -48,10 +46,9 @@ public partial class Level : LevelCommon
         CreateAudioStream();
     }
 
-    void CreateAudioStream()
+    public override void Update()
     {
-        backgroundPlayer.Stream = GD.Load<AudioStream>(audioFile.ResourcePath);
-        backgroundPlayer.Play();
+        base.Update();
     }
 
     public override void ResetLevel()
@@ -59,7 +56,7 @@ public partial class Level : LevelCommon
         GD.Print("LevelReset");
         Player.ResetState();
         ExitLevel();
-        EnterLevel(Player);
+        EnterLevel(Player, type);
     }
 
     public void Checkpoint(Checkpoint newCheckpoint)
@@ -85,6 +82,7 @@ public partial class Level : LevelCommon
             }
             activeEnemies.Clear();
         }
+        type = LevelType.DEFAULT;
         Player = null;
     }
 }

@@ -5,19 +5,16 @@ using System.Collections.Generic;
 
 public partial class HubWorld : LevelCommon
 {
-    [Export] Array<NodePath> containedLevels;
-    List<Node2D> levelSpaces;
-    PathFollow2D follow2D;
+    [Export] Array<LevelSpace> levelSpaces;
     AudioStreamPlayer backgroundPlayer;
     HubActor actor;
 
-    TileCommon map;
+    int maxLevelIndexes;
+    int levelIndex;
 
-    public override void EnterLevel(Player p)
+    public override void EnterLevel(Player p, LevelType t)
     {
-        backgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
         actor = (HubActor)GetNode("Actor");
-        map = GetNode<TileCommon>("TileMap");
         GD.Print("HubWorld");
         if (actor == null)
         {
@@ -30,23 +27,49 @@ public partial class HubWorld : LevelCommon
             actor.Activate(Player);
         }
 
-        for (int i = 0; i < containedLevels.Count; i++)
-        {
-            map.GetScenes()[i].Instantiate();
-        }
+        maxLevelIndexes = levelSpaces.Count;
 
-        base.EnterLevel(p);
-
+        CreateAudioStream();
+        base.EnterLevel(p, t);
     }
 
     public override void ResetLevel()
     {
-
+        levelIndex = 0;
+        actor.GlobalPosition = levelSpaces[levelIndex].GlobalPosition;
     }
 
-    public override void _PhysicsProcess(double delta)
+    void Move()
     {
+        if (Input.IsActionJustPressed("Up"))
+        {
 
+        }
+        if (Input.IsActionJustPressed("Down"))
+        {
+
+        }
+        if (Input.IsActionJustPressed("Left"))
+        {
+            if (levelIndex > 0)
+            {
+                levelIndex -= 1;
+                actor.GlobalPosition = levelSpaces[levelIndex].GlobalPosition;
+            }
+        }
+        if (Input.IsActionJustPressed("Right"))
+        {
+            if (levelIndex < maxLevelIndexes)
+            {
+                levelIndex += 1;
+                actor.GlobalPosition = levelSpaces[levelIndex].GlobalPosition;
+            }
+        }
+
+        if (Input.IsActionJustPressed("Select"))
+        {
+            levelSpaces[levelIndex].ActivateLevel(Player);
+        }
     }
 
     public override void ExitLevel()

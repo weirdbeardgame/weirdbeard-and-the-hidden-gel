@@ -462,7 +462,7 @@ position = Vector2(542, 175)
 position = Vector2(238, 552)
 
 [node name="Box6" parent="." instance=ExtResource("16_dqll1")]
-position = Vector2(-572, -156)
+position = Vector2(-95, -175)
 
 [node name="Goal" parent="." instance=ExtResource("16_nxrbk")]
 position = Vector2(1605, -61)
