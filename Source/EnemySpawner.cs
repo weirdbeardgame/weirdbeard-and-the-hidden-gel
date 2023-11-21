@@ -59,16 +59,11 @@ public partial class EnemySpawner : Node
             ene.Position = enePos;
 
             activeScene.AddChild(ene);
-            activeScene.activeEnemies.Add(ene);
         }
     }
 
     void TimeOut()
     {
-        if (activeScene.activeEnemies.Count < activeScene.maxEnemyAmnt)
-        {
-            GD.Print("Call Spawn");
-            Spawn();
-        }
+
     }
 }

@@ -404,10 +404,10 @@ sources/3 = SubResource("TileSetAtlasSource_d6hj0")
 
 [node name="GrassLand1" type="Node2D" node_paths=PackedStringArray("activeEnemies", "exits")]
 script = ExtResource("1_283g4")
-audioFile = ExtResource("2_k4v6a")
-levelName = "GrassLand1"
 activeEnemies = []
 exits = []
+audioFile = ExtResource("2_k4v6a")
+type = 1
 metadata/_edit_vertical_guides_ = [-332.0]
 
 [node name="TileMap" type="TileMap" parent="."]

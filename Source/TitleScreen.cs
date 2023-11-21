@@ -19,7 +19,6 @@ public partial class TitleScreen : Node
     public void NewGame()
     {
         states.UpdateState("GAME");
-        var scene = GetNode("/root/SceneManager");
         SceneManager.startNewGame();
     }
 

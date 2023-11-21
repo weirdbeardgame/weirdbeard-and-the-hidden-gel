@@ -29,7 +29,7 @@ public partial class LevelEditor : EditorPlugin
     public void CreateNewLevel()
     {
         level = new Level();
-        level.levelName = "New Level";
+        level.LevelName = "New Level";
 
         levels.Add(level);
     }
@@ -37,7 +37,7 @@ public partial class LevelEditor : EditorPlugin
     public void CreateNewSubLevel()
     {
         level = new SubLevel();
-        level.levelName = "New Sub Level";
+        level.LevelName = "New Sub Level";
 
         levels.Add(level);
     }

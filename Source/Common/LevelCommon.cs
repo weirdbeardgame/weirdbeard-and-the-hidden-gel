@@ -2,30 +2,20 @@ using Godot;
 using System;
 using Godot.Collections;
 
-public enum LevelType { GRASS, ISLAND, ICE, WATER, DEFAULT }
+public enum LevelType { DEFAULT, GRASS, ISLAND, ICE, WATER }
 
 public partial class LevelCommon : Node2D
 {
     [Export]
-    public string levelName;
+    public string LevelName;
 
     protected Player Player;
-
-    protected Checkpoint currentCheckpoint;
-
-    [Export]
-    public int maxEnemyAmnt;
-
-    [Export]
-    public Array<Enemy> activeEnemies;
-
-    [Export]
-    public Array<Exit> exits;
 
     AudioStreamPlayer backgroundPlayer;
 
     [Export] Resource audioFile;
 
+    [Export] protected LevelType type;
 
     bool unlocked;
     bool complete;
@@ -46,7 +36,15 @@ public partial class LevelCommon : Node2D
         }
     }
 
-    public virtual void EnterLevel(Player p, LevelType t)
+    public LevelType LevelType
+    {
+        get
+        {
+            return type;
+        }
+    }
+
+    public virtual void EnterLevel(Player p)
     {
         backgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
         if (p != null)
@@ -65,7 +63,6 @@ public partial class LevelCommon : Node2D
         backgroundPlayer.Stream = GD.Load<AudioStream>(audioFile.ResourcePath);
         backgroundPlayer.Play();
     }
-
 
     public void CompleteLevel()
     {

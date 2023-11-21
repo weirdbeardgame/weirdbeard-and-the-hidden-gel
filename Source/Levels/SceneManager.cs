@@ -8,8 +8,6 @@ public partial class SceneManager : Node
 
     [Export] private static LevelCommon currentScene;
 
-    [Export] private LevelCommon activeSubScene;
-
     [Export] private PackedScene newGameScene;
 
     Exit activeExit;
@@ -62,8 +60,17 @@ public partial class SceneManager : Node
         if (levels.ContainsKey(scene))
         {
             LevelCommon sceneToLoad = levels[scene].Instantiate<LevelCommon>();
-            CallDeferred(nameof(CallDefferedSwitch), sceneToLoad, Player);
+            CallDeferred(nameof(CallDefferedSwitch), sceneToLoad, Player, (int)sceneToLoad.LevelType);
         }
+    }
+
+    public LevelCommon GetLevel(string LevelName)
+    {
+        if (LevelName != null)
+        {
+            return levels[LevelName].Instantiate<LevelCommon>();
+        }
+        return null;
     }
 
     public void LoadSubScene(PackedScene subscene, Player p, Exit exit)
@@ -82,9 +89,9 @@ public partial class SceneManager : Node
     {
         currentScene.ExitLevel();
         GetTree().Root.RemoveChild(currentScene);
-        activeSubScene = toLoad;
-        GetTree().Root.AddChild(activeSubScene);
-        activeSubScene.EnterLevel(Player, type);
+        //activeSubScene = toLoad;
+        //GetTree().Root.AddChild(activeSubScene);
+        //activeSubScene.EnterLevel(Player, type);
     }
 
     void CallDefferedSwitch(LevelCommon toLoad, Player Player, LevelType type)
@@ -102,13 +109,13 @@ public partial class SceneManager : Node
         currentScene = toLoad;
         GetTree().Root.AddChild(currentScene);
         GetTree().CurrentScene = currentScene;
-        currentScene.EnterLevel(Player, type);
+        currentScene.EnterLevel(Player);
     }
 
     void NewGame()
     {
         LevelCommon scene = newGameScene.Instantiate<LevelCommon>();
-        SwitchLevel(scene.levelName, null);
+        SwitchLevel(scene.LevelName, null);
         startNewGame -= NewGame;
     }
 

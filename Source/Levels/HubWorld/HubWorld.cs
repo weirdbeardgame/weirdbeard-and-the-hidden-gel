@@ -12,31 +12,43 @@ public partial class HubWorld : LevelCommon
     int maxLevelIndexes;
     int levelIndex;
 
-    public override void EnterLevel(Player p, LevelType t)
+    public override void EnterLevel(Player p)
     {
         actor = (HubActor)GetNode("Actor");
         GD.Print("HubWorld");
         if (actor == null)
         {
             actor = new HubActor();
-            AddChild(actor);
         }
         if (Player != null)
         {
             RemoveChild(Player);
             actor.Activate(Player);
+            AddChild(actor);
         }
 
-        maxLevelIndexes = levelSpaces.Count;
-
-        CreateAudioStream();
-        base.EnterLevel(p, t);
+        if (levelSpaces != null)
+        {
+            maxLevelIndexes = levelSpaces.Count;
+        }
+        else
+        {
+            GD.PrintErr("Level Spaces null");
+        }
+        //CreateAudioStream();
+        base.EnterLevel(p);
     }
 
     public override void ResetLevel()
     {
         levelIndex = 0;
         actor.GlobalPosition = levelSpaces[levelIndex].GlobalPosition;
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        Move();
     }
 
     void Move()
@@ -66,7 +78,7 @@ public partial class HubWorld : LevelCommon
             }
         }
 
-        if (Input.IsActionJustPressed("Select"))
+        if (Input.IsActionJustPressed("Submit"))
         {
             levelSpaces[levelIndex].ActivateLevel(Player);
         }

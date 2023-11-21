@@ -1,21 +1,29 @@
 using Godot;
 using System;
 
-public partial class LevelSpace : Node2D
+public partial class LevelSpace : Control
 {
     [Export]
-    PackedScene teleportTo;
+    string LevelName;
+
+    Level Scene;
+    SceneManager Scenes;
+
+    Label TextLabel;
 
     public override void _Ready()
     {
+        TextLabel = GetNode<Label>("LevelName");
+        Scenes = GetNode<SceneManager>("/root/SceneManager");
+        Scene = (Level)Scenes.GetLevel(LevelName);
+        TextLabel.Text = Scene.LevelName;
     }
 
     public void ActivateLevel(object body)
     {
-        LevelCommon scene = teleportTo.Instantiate<LevelCommon>();
         if (body is Player)
         {
-            SceneManager.changeScene(scene.levelName, (Player)body);
+            SceneManager.changeScene(Scene.LevelName, (Player)body);
         }
     }
 }

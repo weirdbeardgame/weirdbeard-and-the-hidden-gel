@@ -4,32 +4,32 @@ using System;
 public partial class TestLevelSelect : LevelCommon
 {
     [Export] Array<PackedScene> _levels;
-    Array<string> _levelNames;
+    Array<string> _LevelNames;
 
     ItemList selector;
 
-    public override void EnterLevel(Player p, LevelType t)
+    public override void EnterLevel(Player p)
     {
-        _levelNames = new Array<string>();
+        _LevelNames = new Array<string>();
         selector = GetNode<ItemList>("ItemList");
 
         selector.ItemSelected += SelectLevel;
 
-        base.EnterLevel(p, t);
+        base.EnterLevel(p);
 
         foreach (var level in _levels)
         {
             LevelCommon l = (LevelCommon)level.Instantiate();
-            _levelNames.Add(l.levelName);
-            selector.AddItem(l.levelName);
+            _LevelNames.Add(l.LevelName);
+            selector.AddItem(l.LevelName);
         }
     }
 
     public void SelectLevel(long id)
     {
-        if (id <= _levelNames.Count)
+        if (id <= _LevelNames.Count)
         {
-            SceneManager.changeScene(_levelNames[((int)id)], Player);
+            SceneManager.changeScene(_LevelNames[((int)id)], Player);
         }
         else
         {

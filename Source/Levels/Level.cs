@@ -7,7 +7,20 @@ public partial class Level : LevelCommon
     [Export]
     Dictionary<string, PackedScene> sublevels;
 
+    [Export]
+    public Array<Enemy> activeEnemies;
+
+    [Export]
+    public Array<Exit> exits;
+
+    protected Checkpoint currentCheckpoint;
+
+    [Export]
+    public int maxEnemyAmnt;
+
     SceneManager scenes;
+
+    LevelCommon ActiveSubScene;
 
     // Currently active subScene. Otherwise null
     Level subScene;
@@ -17,13 +30,9 @@ public partial class Level : LevelCommon
     Rect2 mapLimits;
     Vector2 mapCellsize;
 
-    [Export] LevelType type;
-
-    public override void EnterLevel(Player p, LevelType t)
+    public override void EnterLevel(Player p)
     {
-        base.EnterLevel(p, t);
-
-        type = t;
+        base.EnterLevel(p);
 
         if (!HasNode(Player.GetPath()))
         {
@@ -56,7 +65,7 @@ public partial class Level : LevelCommon
         GD.Print("LevelReset");
         Player.ResetState();
         ExitLevel();
-        EnterLevel(Player, type);
+        EnterLevel(Player);
     }
 
     public void Checkpoint(Checkpoint newCheckpoint)
@@ -82,7 +91,6 @@ public partial class Level : LevelCommon
             }
             activeEnemies.Clear();
         }
-        type = LevelType.DEFAULT;
         Player = null;
     }
 }

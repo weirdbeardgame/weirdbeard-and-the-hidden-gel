@@ -10,8 +10,6 @@ public partial class HubActor : Node2D
     // Playable sprite bobs up and down.
     AnimationPlayer animation;
 
-    [Export] Sprite2D currentSprite;
-
     public Player Player
     {
         get
