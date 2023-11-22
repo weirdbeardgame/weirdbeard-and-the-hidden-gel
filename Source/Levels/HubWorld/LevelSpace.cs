@@ -19,11 +19,9 @@ public partial class LevelSpace : Control
         TextLabel.Text = Scene.LevelName;
     }
 
-    public void ActivateLevel(object body)
+    public void ActivateLevel(Player p)
     {
-        if (body is Player)
-        {
-            SceneManager.changeScene(Scene.LevelName, (Player)body);
-        }
+        GD.Print("SUBMIT!");
+        SceneManager.changeScene(LevelName, p);
     }
 }

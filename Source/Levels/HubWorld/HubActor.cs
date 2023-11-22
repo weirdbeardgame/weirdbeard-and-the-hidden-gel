@@ -21,15 +21,12 @@ public partial class HubActor : Node2D
     public void Activate(Player p)
     {
         _player = p;
-        _player.DeactivateCamera();
         _player.Visible = false;
     }
 
     public void Deactivate()
     {
-        _player.ActivateCamera();
         _player.Visible = true;
-        RemoveChild(_player);
     }
 
     // Play animations to the call of the Hubworld / active path making character walk.

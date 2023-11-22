@@ -33,11 +33,6 @@ public partial class Level : LevelCommon
     public override void EnterLevel(Player p)
     {
         base.EnterLevel(p);
-
-        if (!HasNode(Player.GetPath()))
-        {
-            AddChild(Player);
-        }
         if (currentCheckpoint != null)
         {
             Player.Position = currentCheckpoint.GlobalPosition;
@@ -51,6 +46,8 @@ public partial class Level : LevelCommon
             }
             Player.Position = currentCheckpoint.GlobalPosition;
         }
+        AddChild(Player);
+        Player.ActivateCamera();
         Player.ResetState();
         CreateAudioStream();
     }

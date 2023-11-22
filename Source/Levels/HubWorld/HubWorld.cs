@@ -7,42 +7,52 @@ public partial class HubWorld : LevelCommon
 {
     [Export] Array<LevelSpace> levelSpaces;
     AudioStreamPlayer backgroundPlayer;
-    HubActor actor;
+    HubActor Actor;
 
-    int maxLevelIndexes;
-    int levelIndex;
+    int MaxLevelIndexes;
+    int CurrentLevelIndex;
+
+    int DesiredIndex;
 
     public override void EnterLevel(Player p)
     {
-        actor = (HubActor)GetNode("Actor");
+        Actor = (HubActor)GetNode("Actor");
         GD.Print("HubWorld");
-        if (actor == null)
+        Scenes = GetNode<SceneManager>("/root/SceneManager");
+
+        if (Actor == null)
         {
-            actor = new HubActor();
+            Actor = new HubActor();
         }
         if (Player != null)
         {
             RemoveChild(Player);
-            actor.Activate(Player);
-            AddChild(actor);
+            Actor.Activate(Player);
+        }
+        else
+        {
+            Player = Scenes.SpawnPlayer();
+            Actor.Activate(Player);
         }
 
         if (levelSpaces != null)
         {
-            maxLevelIndexes = levelSpaces.Count;
+            MaxLevelIndexes = levelSpaces.Count;
+            CurrentLevelIndex = 0;
+            DesiredIndex = 0;
+            Actor.GlobalPosition = levelSpaces[0].GlobalPosition;
         }
         else
         {
             GD.PrintErr("Level Spaces null");
         }
         //CreateAudioStream();
-        base.EnterLevel(p);
     }
 
     public override void ResetLevel()
     {
-        levelIndex = 0;
-        actor.GlobalPosition = levelSpaces[levelIndex].GlobalPosition;
+        CurrentLevelIndex = 0;
+        Actor.GlobalPosition = levelSpaces[CurrentLevelIndex].GlobalPosition;
     }
 
     public override void Update()
@@ -53,6 +63,7 @@ public partial class HubWorld : LevelCommon
 
     void Move()
     {
+        DesiredIndex = CurrentLevelIndex;
         if (Input.IsActionJustPressed("Up"))
         {
 
@@ -63,30 +74,36 @@ public partial class HubWorld : LevelCommon
         }
         if (Input.IsActionJustPressed("Left"))
         {
-            if (levelIndex > 0)
+            if (DesiredIndex > 0)
             {
-                levelIndex -= 1;
-                actor.GlobalPosition = levelSpaces[levelIndex].GlobalPosition;
+                DesiredIndex -= 1;
             }
         }
         if (Input.IsActionJustPressed("Right"))
         {
-            if (levelIndex < maxLevelIndexes)
+            if (DesiredIndex < MaxLevelIndexes)
             {
-                levelIndex += 1;
-                actor.GlobalPosition = levelSpaces[levelIndex].GlobalPosition;
+                DesiredIndex += 1;
             }
+        }
+
+        // ToDo, play Tween animation in here
+        if (DesiredIndex != CurrentLevelIndex)
+        {
+            CurrentLevelIndex = DesiredIndex;
+            Actor.GlobalPosition = levelSpaces[DesiredIndex].GlobalPosition;
         }
 
         if (Input.IsActionJustPressed("Submit"))
         {
-            levelSpaces[levelIndex].ActivateLevel(Player);
+            Actor.Deactivate();
+            levelSpaces[CurrentLevelIndex].ActivateLevel(Player);
         }
     }
 
     public override void ExitLevel()
     {
         base.ExitLevel();
-        RemoveChild(Player);
+        //RemoveChild(Player);
     }
 }

@@ -35,13 +35,15 @@ public partial class Player : Actor
         _coyoteTimer = (Timer)GetNode("CoyoteTimer");
         SceneManager.startNewGame += NewGame;
 
-        map = Owner.GetNode<TileCommon>("TileMap");
-
         camera = (Camera2D)GetNode("Camera2D");
 
         stateMachine.InitState("IDLE");
 
         OnEquip += EquipPowerup;
+
+        map = GetParent().GetNode<TileCommon>("TileMap");
+
+        Owner = GetParent();
 
         if (projectileMotionJump)
         {

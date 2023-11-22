@@ -271,6 +271,7 @@ sources/0 = SubResource("TileSetAtlasSource_urlg1")
 script = ExtResource("1_a3quk")
 activeEnemies = []
 exits = []
+LevelName = "Tundra1"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_gjaq3")

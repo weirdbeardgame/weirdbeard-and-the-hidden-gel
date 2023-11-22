@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bla0wiy7o7g5j"]
+[gd_scene load_steps=21 format=3 uid="uid://bla0wiy7o7g5j"]
 
 [ext_resource type="Script" path="res://Source/Levels/Level.cs" id="1_283g4"]
 [ext_resource type="AudioStream" uid="uid://bkblhq7dchuhh" path="res://Assets/resources/Audio/Island_Theme.wav" id="2_k4v6a"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://dye5s7shdsl5y" path="res://Assets/resources/Tiles/Platformer/Objects/Spikes/SpikeAtlus.png" id="6_50r5c"]
 [ext_resource type="Script" path="res://Source/Common/TileCommon.cs" id="7_jl384"]
 [ext_resource type="PackedScene" uid="uid://c26etbjjeycvy" path="res://Assets/resources/Levels/Checkpoint.tscn" id="8_jf5xp"]
-[ext_resource type="PackedScene" uid="uid://bxq4bqokdiwhr" path="res://Assets/resources/Player/Player.tscn" id="9_bnilt"]
 [ext_resource type="PackedScene" uid="uid://j416qx5kqgli" path="res://Assets/resources/Weapons/SwordEquip.tscn" id="10_8dfd0"]
 [ext_resource type="PackedScene" uid="uid://bjjvdhhjqdyp3" path="res://Assets/resources/Player/Powerup/HelicopterEquip.tscn" id="11_o0vtx"]
 [ext_resource type="PackedScene" uid="uid://dy00trcqorudr" path="res://Assets/resources/Enemies/Rat.tscn" id="12_j4hlb"]
@@ -406,6 +405,7 @@ sources/3 = SubResource("TileSetAtlasSource_d6hj0")
 script = ExtResource("1_283g4")
 activeEnemies = []
 exits = []
+LevelName = "GrassLand1"
 audioFile = ExtResource("2_k4v6a")
 type = 1
 metadata/_edit_vertical_guides_ = [-332.0]
@@ -428,20 +428,6 @@ script = ExtResource("7_jl384")
 position = Vector2(-335, -95)
 
 [node name="BackgroundAudio" type="AudioStreamPlayer" parent="."]
-
-[node name="Player" parent="." instance=ExtResource("9_bnilt")]
-position = Vector2(20, -38)
-defaultGravity = 4000.0
-runSpeed = 550.0
-maxJumpImpulse = 2000.0
-minJumpImpulse = 500.0
-projectileMotionJump = true
-jumpDescent = 0.16
-jumpHeight = 200.0
-jumpPeak = 0.25
-
-[node name="WeapSpawn" type="Node2D" parent="Player"]
-position = Vector2(23, 0)
 
 [node name="Sword" parent="." instance=ExtResource("10_8dfd0")]
 position = Vector2(99, -21)
@@ -466,5 +452,6 @@ position = Vector2(-95, -175)
 
 [node name="Goal" parent="." instance=ExtResource("16_nxrbk")]
 position = Vector2(1605, -61)
+hub = "HubWorld1"
 
 [editable path="Death"]

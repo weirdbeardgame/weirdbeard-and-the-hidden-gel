@@ -14,6 +14,8 @@ public partial class SceneManager : Node
 
     Node nodeParent;
 
+    [Export] PackedScene PlayerScene;
+
     public static LevelCommon CurrentScene
     {
         get
@@ -62,6 +64,15 @@ public partial class SceneManager : Node
             LevelCommon sceneToLoad = levels[scene].Instantiate<LevelCommon>();
             CallDeferred(nameof(CallDefferedSwitch), sceneToLoad, Player, (int)sceneToLoad.LevelType);
         }
+        else
+        {
+            GD.PrintErr("INVALID LEVEL SELECTED: " + scene);
+        }
+    }
+
+    public Player SpawnPlayer()
+    {
+        return PlayerScene.Instantiate<Player>();
     }
 
     public LevelCommon GetLevel(string LevelName)
@@ -78,7 +89,6 @@ public partial class SceneManager : Node
         activeExit = exit;
         CallDeferred(nameof(CallDeferredSub), subscene.Instantiate<LevelCommon>(), p);
     }
-
 
     void BackgroundLoadScene(Level toLoad, Player Player)
     {
