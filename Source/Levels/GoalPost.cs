@@ -9,13 +9,11 @@ public partial class GoalPost : Area2D
 
     public override void _Ready()
     {
-        BodyEntered += OnTouch;
+        current = (LevelCommon)GetParent();
     }
 
-    public void OnTouch(object body)
+    public void OnTouch(Node2D body)
     {
-        GD.Print("GOOOAAAALLLL");
-        current = (LevelCommon)Owner;
         if (body is Player)
         {
             current.CompleteLevel();

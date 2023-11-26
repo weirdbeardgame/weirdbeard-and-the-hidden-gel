@@ -3,6 +3,7 @@ using System;
 using Godot.Collections;
 using System.Collections.Generic;
 
+[Tool]
 public partial class HubWorld : LevelCommon
 {
     [Export] Array<LevelSpace> levelSpaces;
@@ -58,7 +59,7 @@ public partial class HubWorld : LevelCommon
     public override void Update()
     {
         base.Update();
-        Move();
+        //Move();
     }
 
     void Move()

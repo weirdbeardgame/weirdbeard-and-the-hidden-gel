@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://df2kqouoxpt2x"]
+
+[ext_resource type="PackedScene" uid="uid://bla0wiy7o7g5j" path="res://Assets/resources/Levels/Scenes/GrassLand1.tscn" id="1_lkqby"]
+[ext_resource type="Script" path="res://addons/SceneManager/SceneManagerData.cs" id="1_okcdv"]
+[ext_resource type="PackedScene" uid="uid://cxvplaamnil8d" path="res://Assets/resources/Levels/Scenes/Tundra1.tscn" id="2_for1t"]
+[ext_resource type="PackedScene" uid="uid://dp7lwe2kqfvoj" path="res://Assets/resources/Levels/Scenes/HubWorld1.tscn" id="3_2rt64"]
+
+[resource]
+script = ExtResource("1_okcdv")
+_Levels = {
+"GrassLand1": ExtResource("1_lkqby"),
+"HubWorld1": ExtResource("3_2rt64"),
+"Tundra1": ExtResource("2_for1t")
+}

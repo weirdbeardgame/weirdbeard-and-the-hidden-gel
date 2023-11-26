@@ -18,12 +18,14 @@ public partial class Actor : CharacterBody2D
         Vector2 Gravity = Velocity;
         if (!projectileMotionJump)
         {
-            Gravity.Y += gravity * (float)(delta);
+            Gravity.Y += gravity * (float)delta;
         }
         else
         {
-            Gravity.Y += currentGrav * (float)(delta);
+            Gravity.Y += currentGrav * (float)delta;
         }
+
+        GD.Print("Gravity: ", Gravity);
 
         return Gravity;
     }

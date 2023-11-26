@@ -7,7 +7,7 @@
 
 [node name="HubWorld1" type="Node2D" node_paths=PackedStringArray("levelSpaces")]
 script = ExtResource("1_kvx71")
-levelSpaces = [NodePath("LevelSpace"), NodePath("LevelSpace2")]
+levelSpaces = []
 LevelName = "HubWorld1"
 audioFile = ExtResource("2_k7b0b")
 

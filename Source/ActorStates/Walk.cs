@@ -24,10 +24,12 @@ public partial class Walk : State
     {
         if (Input.IsActionPressed("Run"))
         {
+            GD.Print("Run");
             currentSpeed = Player.runSpeed;
         }
         else
         {
+            GD.Print("Walk");
             currentSpeed = Player.speed;
         }
         if (Input.IsActionPressed("Right"))

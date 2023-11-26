@@ -2,6 +2,7 @@ using Godot;
 using System;
 using Godot.Collections;
 
+[Tool]
 public partial class Level : LevelCommon
 {
     [Export]
@@ -47,7 +48,6 @@ public partial class Level : LevelCommon
             Player.Position = currentCheckpoint.GlobalPosition;
         }
         AddChild(Player);
-        Player.ActivateCamera();
         Player.ResetState();
         CreateAudioStream();
     }
@@ -59,7 +59,6 @@ public partial class Level : LevelCommon
 
     public override void ResetLevel()
     {
-        GD.Print("LevelReset");
         Player.ResetState();
         ExitLevel();
         EnterLevel(Player);
@@ -79,7 +78,7 @@ public partial class Level : LevelCommon
     // Ensure the scene closes properly before changing.
     public override void ExitLevel()
     {
-        //RemoveChild(Player);
+        RemoveChild(Player);
         if (activeEnemies != null)
         {
             foreach (var enemy in activeEnemies)
@@ -88,6 +87,5 @@ public partial class Level : LevelCommon
             }
             activeEnemies.Clear();
         }
-        Player = null;
     }
 }

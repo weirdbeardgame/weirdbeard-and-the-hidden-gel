@@ -333,6 +333,10 @@ defaultGravity = 2000.0
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+drag_horizontal_offset = -0.1
+drag_right_margin = 0.1
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="HUD" parent="Camera2D" instance=ExtResource("29")]
 
@@ -367,10 +371,10 @@ text = "test"
 script = ExtResource("7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Idle"
 libraries = {
 "": SubResource("AnimationLibrary_sja6h")
 }
+autoplay = "Idle"
 
 [node name="Death" type="Node" parent="."]
 script = ExtResource("21")
@@ -416,6 +420,9 @@ hframes = 5
 vframes = 4
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sja6h")
+}
 tree_root = SubResource("11")
 anim_player = NodePath("../AnimationPlayer")
 

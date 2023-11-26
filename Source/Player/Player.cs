@@ -84,6 +84,10 @@ public partial class Player : Actor
         Velocity = Vector2.Zero;
         gravity = defaultGravity;
         SetState("IDLE");
+        if (!camera.Enabled)
+        {
+            ActivateCamera();
+        }
         map.ClearCollidedObject();
         canMove = true;
     }
@@ -132,7 +136,6 @@ public partial class Player : Actor
 
     public void Die()
     {
-        GD.Print("U ded son");
         if (PlayerLives > 0)
         {
             PlayerLives -= 1;
@@ -194,6 +197,8 @@ public partial class Player : Actor
         base._Process(delta);
 
         DetectObjects();
+
+        //GD.Print("Velocity: ", Velocity);
 
         if (CurrentPowerup != null)
         {

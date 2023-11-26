@@ -4,6 +4,7 @@ using Godot.Collections;
 
 public enum LevelType { DEFAULT, GRASS, ISLAND, ICE, WATER }
 
+[Tool]
 public partial class LevelCommon : Node2D
 {
     [Export]
