@@ -17,7 +17,7 @@ public partial class GoalPost : Area2D
         if (body is Player)
         {
             current.CompleteLevel();
-            SceneManager.changeScene(hub, (Player)body);
+            SceneManager.ChangeScene(hub, (Player)body);
         }
     }
 }

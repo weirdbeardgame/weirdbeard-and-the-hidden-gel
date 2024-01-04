@@ -29,7 +29,7 @@ public partial class TestLevelSelect : LevelCommon
     {
         if (id <= _LevelNames.Count)
         {
-            SceneManager.changeScene(_LevelNames[((int)id)], Player);
+            SceneManager.ChangeScene(_LevelNames[((int)id)], Player);
         }
         else
         {

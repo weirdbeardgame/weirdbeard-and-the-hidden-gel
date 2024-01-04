@@ -33,7 +33,7 @@ public partial class Player : Actor
         CurrentWeapon = new WeaponCommon();
 
         _coyoteTimer = (Timer)GetNode("CoyoteTimer");
-        SceneManager.startNewGame += NewGame;
+        SceneManager.StartNewGame += NewGame;
 
         camera = (Camera2D)GetNode("Camera2D");
 
@@ -57,7 +57,7 @@ public partial class Player : Actor
     {
         PlayerLives = 3;
         ResetState();
-        SceneManager.startNewGame -= NewGame;
+        SceneManager.StartNewGame -= NewGame;
     }
 
     public void EquipPowerup(PowerUp power)
@@ -139,7 +139,7 @@ public partial class Player : Actor
         if (PlayerLives > 0)
         {
             PlayerLives -= 1;
-            SceneManager.resetLev();
+            SceneManager.ResetLevel();
         }
     }
 

@@ -19,7 +19,7 @@ public partial class TitleScreen : Node
     public void NewGame()
     {
         states.UpdateState("GAME");
-        SceneManager.startNewGame();
+        SceneManager.StartNewGame();
     }
 
     public void LoadGame()

@@ -22,6 +22,6 @@ public partial class LevelSpace : Control
     public void ActivateLevel(Player p)
     {
         GD.Print("SUBMIT!");
-        SceneManager.changeScene(LevelName, p);
+        SceneManager.ChangeScene(LevelName, p);
     }
 }

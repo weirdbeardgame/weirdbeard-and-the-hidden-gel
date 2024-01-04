@@ -18,7 +18,6 @@ config/icon="res://icon.png"
 [autoload]
 
 GameStates="*res://Assets/resources/GameStates.tscn"
-SceneManager="*res://Assets/resources/SceneManager.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [display]

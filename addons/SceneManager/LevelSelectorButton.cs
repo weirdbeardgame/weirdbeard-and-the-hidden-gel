@@ -4,14 +4,14 @@ using System;
 [Tool]
 public partial class LevelSelectorButton : Button
 {
-    SceneManagerPlugin SceneManager;
+    SceneManager SceneManager;
     string SceneName;
 
     // Called when the node enters the scene tree for the first time.
     public override void _EnterTree()
     {
         base._EnterTree();
-        SceneManager = SceneManagerPlugin.SceneManager;
+        SceneManager = SceneManager.Manager;
         Pressed += ChangeScene;
     }
 

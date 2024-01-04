@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://drlxul6t6i30n"]
 
 [ext_resource type="Script" path="res://addons/SceneManager/LevelDockScript.cs" id="1_66pb0"]
-[ext_resource type="PackedScene" uid="uid://c7be2p30te46n" path="res://addons/SceneManager/LevelSelectorButton.tscn" id="2_al8ik"]
+[ext_resource type="PackedScene" uid="uid://c7be2p30te46n" path="res://addons/SceneManager/LevelSelectorButton.tscn" id="2_m1bnu"]
 
 [node name="LevelDock" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_66pb0")
-SceneButton = ExtResource("2_al8ik")
+SceneButton = ExtResource("2_m1bnu")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0

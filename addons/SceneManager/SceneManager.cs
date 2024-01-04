@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 [Tool]
-public partial class SceneManagerPlugin : EditorPlugin
+public partial class SceneManager : EditorPlugin
 {
     [Export] private static LevelCommon _CurrentScene;
 
@@ -33,15 +33,15 @@ public partial class SceneManagerPlugin : EditorPlugin
         }
     }
 
-    private static SceneManagerPlugin _SceneManager;
+    private static SceneManager _SceneManager;
 
-    public static SceneManagerPlugin SceneManager
+    public static SceneManager Manager
     {
         get
         {
             if (_SceneManager == null)
             {
-                _SceneManager = new SceneManagerPlugin();
+                _SceneManager = new SceneManager();
             }
             return _SceneManager;
         }
@@ -133,7 +133,6 @@ public partial class SceneManagerPlugin : EditorPlugin
         {
             if (ManagerData != null && ManagerData.Levels != null)
             {
-                GD.Print(ManagerData.Levels.Keys.ToList<string>());
                 return ManagerData.Levels.Keys.ToList<string>();
             }
             return null;

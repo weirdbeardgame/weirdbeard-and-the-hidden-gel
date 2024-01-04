@@ -24,7 +24,7 @@ public partial class Exit : Node2D
     {
         if (body is Player)
         {
-            SceneManager.changeSceneWithExit(toTransportTo, (Player)currentLevel.GetNode("Player"), this);
+            SceneManager.ChangeSceneWithExit(toTransportTo, (Player)currentLevel.GetNode("Player"), this);
         }
     }
 }
