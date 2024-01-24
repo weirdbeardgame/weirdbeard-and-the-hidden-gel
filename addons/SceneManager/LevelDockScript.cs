@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 [Tool]
@@ -9,13 +10,18 @@ public partial class LevelDockScript : Control
     SceneManager SceneManager;
     FileDialog Dialog;
 
+    bool AddScenes;
+    bool AddStartScene;
+
     Button AddSceneButton;
     Button NewSceneButton;
+    Button StartSceneButton;
+    Button SetPlayerButton;
 
     [Export]
     PackedScene SceneButton;
 
-    List<LevelSelectorButton> SceneChanger;
+    Dictionary<string, LevelSelectorButton> SceneChanger;
 
     string CurrentScene;
     List<string> SceneNames;
@@ -30,32 +36,39 @@ public partial class LevelDockScript : Control
 
         AddSceneButton = GetNode<Button>("Panel/AddScene");
         NewSceneButton = GetNode<Button>("Panel/NewScene");
+        StartSceneButton = GetNode<Button>("Panel/StartScene");
 
         AddSceneButton.Pressed += AddScene_Button;
         NewSceneButton.Pressed += NewScene_Button;
+        StartSceneButton.Pressed += SetStartScene_Button;
 
         Dialog.FileSelected += AddScene;
+        Dialog.FileSelected += SetStartScene;
 
         Container = GetNode<VBoxContainer>("Panel/ScrollContainer/VBoxContainer");
 
-        SceneChanger = new List<LevelSelectorButton>();
         SceneNames = new List<string>();
+        SceneChanger = new Dictionary<string, LevelSelectorButton>();
 
         UpdateList();
     }
 
     void AddScene_Button()
     {
+        AddScenes = true;
         Dialog.Popup();
     }
 
     void AddScene(string path)
     {
-        PackedScene Scene = (PackedScene)ResourceLoader.Load(path);
-        if (SceneManager.Add(Scene))
+        if (AddScenes)
         {
-            GD.Print("Scene Added");
-            UpdateList();
+            PackedScene Scene = (PackedScene)ResourceLoader.Load(path);
+            if (SceneManager.Add(Scene))
+            {
+                GD.Print("Scene Added");
+                UpdateList();
+            }
         }
     }
 
@@ -65,9 +78,20 @@ public partial class LevelDockScript : Control
         // ToDo: Level editor right after lads
     }
 
-    void ChangeScene()
+    void SetStartScene_Button()
     {
+        Dialog.Show();
+        AddStartScene = true;
+    }
 
+    void SetStartScene(string Path)
+    {
+        if (AddStartScene)
+        {
+            LevelCommon lev = ResourceLoader.Load<PackedScene>(Path).Instantiate<LevelCommon>();
+            SceneManager.SetStartScene(lev.LevelName);
+            AddStartScene = false;
+        }
     }
 
     void RemoveScene_Button()
@@ -87,9 +111,9 @@ public partial class LevelDockScript : Control
                 {
                     LevelSelectorButton SelectorButton = SceneButton.Instantiate<LevelSelectorButton>();
                     SelectorButton.CreateButton(scene);
-                    if (!SceneChanger.Contains(SelectorButton))
+                    if (!SceneChanger.ContainsKey(SelectorButton.SceneName))
                     {
-                        SceneChanger.Add(SelectorButton);
+                        SceneChanger.Add(SelectorButton.SceneName, SelectorButton);
                         Container.AddChild(SelectorButton);
                     }
                 }

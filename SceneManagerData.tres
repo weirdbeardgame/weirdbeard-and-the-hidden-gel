@@ -1,14 +1,15 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dgiqdv8w86npf"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cn7ehrgrdplnu"]
 
-[ext_resource type="PackedScene" uid="uid://bla0wiy7o7g5j" path="res://Assets/resources/Levels/Scenes/GrassLand1.tscn" id="1_lkqby"]
-[ext_resource type="Script" path="res://addons/SceneManager/SceneManagerData.cs" id="1_okcdv"]
-[ext_resource type="PackedScene" uid="uid://cxvplaamnil8d" path="res://Assets/resources/Levels/Scenes/Tundra1.tscn" id="2_for1t"]
-[ext_resource type="PackedScene" uid="uid://dp7lwe2kqfvoj" path="res://Assets/resources/Levels/Scenes/HubWorld1.tscn" id="3_2rt64"]
+[ext_resource type="PackedScene" uid="uid://bla0wiy7o7g5j" path="res://Assets/resources/Levels/Scenes/GrassLand1.tscn" id="1_s4lqw"]
+[ext_resource type="PackedScene" uid="uid://dp7lwe2kqfvoj" path="res://Assets/resources/Levels/Scenes/HubWorld1.tscn" id="2_gf2rf"]
+[ext_resource type="Script" path="res://addons/SceneManager/SceneManagerData.cs" id="2_xbgpx"]
+[ext_resource type="PackedScene" uid="uid://cxvplaamnil8d" path="res://Assets/resources/Levels/Scenes/Tundra1.tscn" id="3_07np3"]
 
 [resource]
-script = ExtResource("1_okcdv")
+script = ExtResource("2_xbgpx")
 _Levels = {
-"GrassLand1": ExtResource("1_lkqby"),
-"HubWorld1": ExtResource("3_2rt64"),
-"Tundra1": ExtResource("2_for1t")
+"GrassLand1": ExtResource("1_s4lqw"),
+"HubWorld1": ExtResource("2_gf2rf"),
+"Tundra1": ExtResource("3_07np3")
 }
+_StartScene = ExtResource("2_gf2rf")

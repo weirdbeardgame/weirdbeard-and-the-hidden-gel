@@ -14,7 +14,7 @@ public partial class LevelSpace : Control
     public override void _Ready()
     {
         TextLabel = GetNode<Label>("LevelName");
-        Scenes = GetNode<SceneManager>("/root/SceneManager");
+        Scenes = SceneManager.Manager;
         Scene = (Level)Scenes.GetLevel(LevelName);
         TextLabel.Text = Scene.LevelName;
     }

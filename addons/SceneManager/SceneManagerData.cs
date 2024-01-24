@@ -7,6 +7,17 @@ public partial class SceneManagerData : Resource
     [Export]
     Godot.Collections.Dictionary<string, PackedScene> _Levels;
 
+    [Export]
+    private PackedScene _StartScene;
+
+    public PackedScene StartScene
+    {
+        get
+        {
+            return _StartScene;
+        }
+    }
+
     public SceneManagerData() => _Levels = new Godot.Collections.Dictionary<string, PackedScene>();
     public SceneManagerData(Godot.Collections.Dictionary<string, PackedScene> lev) => _Levels = lev;
 
@@ -42,6 +53,16 @@ public partial class SceneManagerData : Resource
         GD.PrintErr("Scene does not exist in manager");
         return false;
     }
+
+    public void SetStartSecene(string SceneName)
+    {
+        if (_Levels.ContainsKey(SceneName))
+        {
+            _StartScene = _Levels[SceneName];
+        }
+    }
+
+
 #endif
 
     public Godot.Collections.Dictionary<string, PackedScene> Levels
