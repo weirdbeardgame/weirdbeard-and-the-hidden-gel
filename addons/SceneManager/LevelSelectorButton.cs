@@ -5,15 +5,7 @@ using System;
 public partial class LevelSelectorButton : Button
 {
     SceneManager SceneManager;
-    string _SceneName;
-
-    public string SceneName
-    {
-        get
-        {
-            return _SceneName;
-        }
-    }
+    string SceneName;
 
     // Called when the node enters the scene tree for the first time.
     public override void _EnterTree()
@@ -25,7 +17,7 @@ public partial class LevelSelectorButton : Button
 
     public void CreateButton(string name)
     {
-        _SceneName = name;
+        SceneName = name;
         Text = SceneName;
     }
 

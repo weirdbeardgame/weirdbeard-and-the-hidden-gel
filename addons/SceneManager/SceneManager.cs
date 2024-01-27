@@ -8,22 +8,19 @@ public partial class SceneManager : EditorPlugin
 {
     [Export] private static LevelCommon _CurrentScene;
 
-    [Export] PackedScene NewLevel;
-    [Export] PackedScene PlayerScene;
-
+    public static Action ResetLevel;
     public static Action StartNewGame;
     public static Action<string, Player> ChangeScene;
     public static Action<PackedScene, Player, Exit> ChangeSceneWithExit;
-    public static Action ResetLevel;
 
     Control EditorDock;
     static SceneManagerData ManagerData;
 
-    // Note that we're outside the Tree. This will be our makeshift Tree.
-    SceneTree Tree;
-
     [Export]
     string SceneManagerPath = "res://SceneManagerData.tres";
+
+    // Because Plugin exists outside the SceneTree, we create our own Tree or refrence to one.
+    SceneTree Tree;
 
     public static LevelCommon CurrentScene
     {
@@ -47,7 +44,31 @@ public partial class SceneManager : EditorPlugin
         }
     }
 
+    // Call this from your TitleScreen or other beginning scripts in game.
+    // Because SceneManager exists as a plugin it does not exist in SceneTree
+    // As such _Ready will not be called.
+    public void Init(SceneTree T)
+    {
+        Tree = new SceneTree();
+        StartNewGame += NewGame;
+        ChangeScene += SwitchLevel;
+        ChangeSceneWithExit += LoadSubScene;
+        ResetLevel += Reset;
+        Tree = T;
+        if (ResourceLoader.Exists(SceneManagerPath))
+        {
+            ManagerData = ResourceLoader.Load<Resource>(SceneManagerPath) as SceneManagerData;
+        }
+    }
+
     void Reset() => CurrentScene.ResetLevel();
+
+    public Player CreatePlayer() => ManagerData.CreatePlayer();
+
+    public void DestroyPlayer(Player p) => p.Dispose();
+
+    public void LoadSubScene(PackedScene subscene, Player p, Exit exit) => CallDeferred(nameof(CallDeferredSub), subscene.Instantiate<LevelCommon>(), p);
+
 
     // Play level changing animation.
     // Load new scene and set it as current
@@ -69,29 +90,6 @@ public partial class SceneManager : EditorPlugin
         }
     }
 
-    public Player CreatePlayer() => PlayerScene.Instantiate<Player>();
-
-
-    public void DestroyPlayer(Player p)
-    {
-        p.ResetState();
-        p.Dispose();
-    }
-
-    public void Init(SceneTree T)
-    {
-        Tree = new SceneTree();
-        StartNewGame += NewGame;
-        ChangeScene += SwitchLevel;
-        ChangeSceneWithExit += LoadSubScene;
-        ResetLevel += Reset;
-        Tree = T;
-        if (ResourceLoader.Exists(SceneManagerPath))
-        {
-            ManagerData = ResourceLoader.Load<Resource>(SceneManagerPath) as SceneManagerData;
-        }
-    }
-
 #if TOOLS
 
     // Initialization of the plugin goes here.
@@ -107,7 +105,9 @@ public partial class SceneManager : EditorPlugin
         }
         else
         {
-            ManagerData = ResourceLoader.Load<SceneManagerData>(SceneManagerPath);
+            var temp = ResourceLoader.Load<Resource>(SceneManagerPath);
+            GD.Print(temp.GetType());
+            ManagerData = (SceneManagerData)temp;
         }
 
         EditorDock = GD.Load<PackedScene>("res://addons/SceneManager/LevelDock.tscn").Instantiate<Control>();
@@ -118,12 +118,13 @@ public partial class SceneManager : EditorPlugin
 
     public void Remove(string SceneName) => ManagerData.Remove(SceneName);
 
-    public void SetStartScene(string SceneName) => ManagerData.SetStartSecene(SceneName);
+    public void SetPlayerRef(string path) => ManagerData.SetPlayerRef(path);
 
-    // ToDo: Add functionality, create new scene, add to SceneManagerData, open Level editor.
+    // TODO: Actually implement this. This is to generate a brand new scene and add it to the SceneManager.
+    // This needs to open the inbuilt Level Editor!
     public bool New()
     {
-        LevelCommon Level = (LevelCommon)NewLevel.Instantiate();
+
         return false;
     }
 
@@ -160,9 +161,10 @@ public partial class SceneManager : EditorPlugin
     }
 #endif
 
-    public LevelCommon GetLevel(string LevelName) => ManagerData.Level(LevelName);
-
-    public void LoadSubScene(PackedScene subscene, Player p, Exit exit) => CallDeferred(nameof(CallDeferredSub), subscene.Instantiate<LevelCommon>(), p);
+    public LevelCommon GetLevel(string LevelName)
+    {
+        return ManagerData.Level(LevelName);
+    }
 
     void CallDeferredSub(SubLevel toLoad, Player Player, LevelType type)
     {
@@ -189,18 +191,8 @@ public partial class SceneManager : EditorPlugin
 
     void NewGame()
     {
-
-        GD.Print("NEW GAME");
-        LevelCommon scene = ManagerData.StartScene.Instantiate<LevelCommon>();
+        LevelCommon scene = ManagerData.NewGameScene.Instantiate<LevelCommon>();
         SwitchLevel(scene.LevelName, null);
         StartNewGame -= NewGame;
     }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
-
-    }
-
-
 }

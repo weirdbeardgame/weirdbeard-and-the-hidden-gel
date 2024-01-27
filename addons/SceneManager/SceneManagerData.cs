@@ -4,24 +4,31 @@ using System;
 [Tool]
 public partial class SceneManagerData : Resource
 {
-    [Export]
-    Godot.Collections.Dictionary<string, PackedScene> _Levels;
+    [Export] PackedScene _NewGameScene;
 
-    [Export]
-    private PackedScene _StartScene;
+    [Export] Godot.Collections.Dictionary<string, PackedScene> _Levels;
 
-    public PackedScene StartScene
-    {
-        get
-        {
-            return _StartScene;
-        }
-    }
+    [Export] string CurrentLevel = "Test1";
+
+    // The actual Player that will be instaniated
+    [Export] PackedScene PlayerScene;
 
     public SceneManagerData() => _Levels = new Godot.Collections.Dictionary<string, PackedScene>();
     public SceneManagerData(Godot.Collections.Dictionary<string, PackedScene> lev) => _Levels = lev;
 
+    // Public Getters
+    public PackedScene NewGameScene => _NewGameScene;
+    public Godot.Collections.Dictionary<string, PackedScene> Levels => _Levels;
+
+    // Returns the instantiated packed scene as a Level.
+    public LevelCommon Level(string levelName) => _Levels[levelName].Instantiate<LevelCommon>();
+
+    // Returns the active Player refrence
+    public Player CreatePlayer() => PlayerScene.Instantiate<Player>();
+
 #if TOOLS
+    public void SetPlayerRef(string path) => PlayerScene = ResourceLoader.Load<PackedScene>(path);
+
     public bool Add(PackedScene Scene)
     {
         LevelCommon Level = Scene.Instantiate<LevelCommon>();
@@ -54,24 +61,13 @@ public partial class SceneManagerData : Resource
         return false;
     }
 
-    public void SetStartSecene(string SceneName)
+    public void SetNewGameScene(string SceneName)
     {
         if (_Levels.ContainsKey(SceneName))
         {
-            _StartScene = _Levels[SceneName];
+            _NewGameScene = _Levels[SceneName];
         }
     }
-
-
 #endif
 
-    public Godot.Collections.Dictionary<string, PackedScene> Levels
-    {
-        get
-        {
-            return _Levels;
-        }
-    }
-
-    public LevelCommon Level(string levelName) => _Levels[levelName].Instantiate<LevelCommon>();
 };
