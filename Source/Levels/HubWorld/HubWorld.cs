@@ -41,7 +41,7 @@ public partial class HubWorld : LevelCommon
             MaxLevelIndexes = levelSpaces.Count;
             CurrentLevelIndex = 0;
             DesiredIndex = 0;
-            Actor.GlobalPosition = levelSpaces[0].GlobalPosition;
+            //Actor.GlobalPosition = levelSpaces[0].GlobalPosition;
         }
         else
         {

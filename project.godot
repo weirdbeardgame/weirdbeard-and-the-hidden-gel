@@ -37,7 +37,7 @@ project/assembly_name="Weirdbeard Mono"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/SceneManager/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg")
 
 [global]
 

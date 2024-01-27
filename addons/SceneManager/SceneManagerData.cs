@@ -18,6 +18,7 @@ public partial class SceneManagerData : Resource
 
     // Public Getters
     public PackedScene NewGameScene => _NewGameScene;
+    public PackedScene PlayerRef => PlayerScene;
     public Godot.Collections.Dictionary<string, PackedScene> Levels => _Levels;
 
     // Returns the instantiated packed scene as a Level.
@@ -61,11 +62,17 @@ public partial class SceneManagerData : Resource
         return false;
     }
 
-    public void SetNewGameScene(string SceneName)
+    public void SetNewGameScene(string path)
     {
-        if (_Levels.ContainsKey(SceneName))
+        LevelCommon l = ResourceLoader.Load<PackedScene>(path).Instantiate<LevelCommon>();
+        if (_Levels.ContainsKey(l.LevelName))
         {
-            _NewGameScene = _Levels[SceneName];
+            _NewGameScene = _Levels[l.LevelName];
+        }
+        else
+        {
+            _Levels.Add(l.LevelName, ResourceLoader.Load<PackedScene>(path));
+            _NewGameScene = _Levels[l.LevelName];
         }
     }
 #endif

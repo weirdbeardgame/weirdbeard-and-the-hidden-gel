@@ -1,5 +1,6 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cn7ehrgrdplnu"]
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://4quk6t2usola"]
 
+[ext_resource type="PackedScene" uid="uid://bxq4bqokdiwhr" path="res://Assets/resources/Player/Player.tscn" id="1_cs4ab"]
 [ext_resource type="PackedScene" uid="uid://bla0wiy7o7g5j" path="res://Assets/resources/Levels/Scenes/GrassLand1.tscn" id="1_s4lqw"]
 [ext_resource type="PackedScene" uid="uid://dp7lwe2kqfvoj" path="res://Assets/resources/Levels/Scenes/HubWorld1.tscn" id="2_gf2rf"]
 [ext_resource type="Script" path="res://addons/SceneManager/SceneManagerData.cs" id="2_xbgpx"]
@@ -7,9 +8,11 @@
 
 [resource]
 script = ExtResource("2_xbgpx")
+_NewGameScene = ExtResource("2_gf2rf")
 _Levels = {
 "GrassLand1": ExtResource("1_s4lqw"),
 "HubWorld1": ExtResource("2_gf2rf"),
 "Tundra1": ExtResource("3_07np3")
 }
-_StartScene = ExtResource("2_gf2rf")
+CurrentLevel = "Test1"
+PlayerScene = ExtResource("1_cs4ab")
