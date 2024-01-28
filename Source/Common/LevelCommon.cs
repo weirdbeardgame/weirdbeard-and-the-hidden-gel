@@ -89,13 +89,19 @@ public partial class LevelCommon : Node2D
     public override void _Process(double delta)
     {
         base._Process(delta);
-        Update();
+        if (!Engine.IsEditorHint())
+        {
+            Update();
+        }
     }
 
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        FixedUpdate();
+        if (!Engine.IsEditorHint())
+        {
+            FixedUpdate();
+        }
     }
 
     public virtual void ExitLevel()

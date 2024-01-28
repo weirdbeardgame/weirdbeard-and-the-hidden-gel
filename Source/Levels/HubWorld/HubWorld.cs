@@ -59,7 +59,7 @@ public partial class HubWorld : LevelCommon
     public override void Update()
     {
         base.Update();
-        //Move();
+        Move();
     }
 
     void Move()
