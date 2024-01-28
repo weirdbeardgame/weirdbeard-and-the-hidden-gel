@@ -12,10 +12,10 @@ public partial class SubLevel : LevelCommon
 
     }
 
-    public override void EnterSubLevel(Player p, Level parent)
+    public override void EnterSubLevel(Player p, SubLevel parent)
     {
         Player = p;
-        parentLevel = parent;
+        //parentLevel = parent;
         Player.ResetState();
     }
 

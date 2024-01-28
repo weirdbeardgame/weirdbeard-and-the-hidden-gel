@@ -172,23 +172,26 @@ public partial class SceneManager : EditorPlugin
 
     void CallDeferredSub(SubLevel toLoad, Player Player, LevelType type)
     {
-        CurrentScene.ExitLevel();
-        Tree.Root.RemoveChild(CurrentScene);
-        //activeSubScene = toLoad;
-        //Tree.Root.AddChild(activeSubScene);
-        //activeSubScene.EnterLevel(Player, type);
+        _CurrentScene.ExitLevel();
+        _CurrentScene.EnterSubLevel(Player, toLoad);
     }
 
     void CallDefferedSwitch(LevelCommon toLoad, Player Player, LevelType type)
     {
-        if (CurrentScene != null)
+        TitleScreen title;
+
+        if (_CurrentScene != null)
         {
-            CurrentScene.ExitLevel();
-            Tree.Root.RemoveChild(CurrentScene);
+            _CurrentScene.ExitLevel();
+            Tree.Root.RemoveChild(_CurrentScene);
             CurrentScene.Free();
         }
+        else if ((title = Tree.Root.GetNodeOrNull<TitleScreen>("TitleScreen")) != null)
+        {
+            Tree.Root.RemoveChild(title);
+        }
         _CurrentScene = toLoad;
-        Tree.Root.AddChild(CurrentScene);
+        Tree.Root.AddChild(_CurrentScene);
         Tree.CurrentScene = _CurrentScene;
         _CurrentScene.EnterLevel(Player);
     }

@@ -108,7 +108,7 @@ public partial class LevelCommon : Node2D
 
     }
 
-    public virtual void EnterSubLevel(Player Player, Level parent)
+    public virtual void EnterSubLevel(Player Player, SubLevel parent)
     {
 
     }
