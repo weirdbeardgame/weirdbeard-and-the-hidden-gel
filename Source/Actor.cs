@@ -13,23 +13,6 @@ public partial class Actor : CharacterBody2D
         }
     }
 
-    protected Vector2 ApplyGravity(double delta, float currentGrav = 0f)
-    {
-        Vector2 Gravity = Velocity;
-        if (!projectileMotionJump)
-        {
-            Gravity.Y += gravity * (float)delta;
-        }
-        else
-        {
-            Gravity.Y += currentGrav * (float)delta;
-        }
-
-        GD.Print("Gravity: ", Gravity);
-
-        return Gravity;
-    }
-
     // Movement properties
     public float gravity;
     [Export] protected float defaultGravity = 400;

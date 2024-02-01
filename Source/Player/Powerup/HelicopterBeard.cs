@@ -21,6 +21,7 @@ public partial class HelicopterBeard : PowerUp
     // Play animation. Set physics
     public override void Start()
     {
+        GD.Print("Helicopter");
         weirdBeard.Visible = false;
         helicopter.Visible = true;
 

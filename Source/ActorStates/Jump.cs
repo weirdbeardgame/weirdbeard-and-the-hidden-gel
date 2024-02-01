@@ -18,6 +18,7 @@ public partial class Jump : State
 
     public override void Start()
     {
+        GD.Print("Jump");
         Player.AnimationPlayer.Play("Jump");
         if (!Player.projectileMotionJump)
         {

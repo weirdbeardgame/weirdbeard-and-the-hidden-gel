@@ -34,16 +34,21 @@ public partial class Walk : State
         }
         if (Input.IsActionPressed("Right"))
         {
-            inputVelocity.X = 1.0f * currentSpeed;
+            inputVelocity = Vector2.Right * currentSpeed;
         }
         else if (Input.IsActionPressed("Left"))
         {
-            inputVelocity.X = -1.0f * currentSpeed;
+            inputVelocity = Vector2.Left * currentSpeed;
         }
         if (!Input.IsActionPressed("Left") && !Input.IsActionPressed("Right"))
         {
             inputVelocity.X = 0;
         }
+
+        GD.Print("InputVelocity: " + inputVelocity);
+
+        inputVelocity.Y = 0;
+
         return inputVelocity;
     }
 
@@ -51,7 +56,7 @@ public partial class Walk : State
     {
         if (Player.IsOnFloor())
         {
-            GetInput();
+            Player.Velocity = GetInput();
 
             if (inputVelocity.Sign().X < 0)
             {
@@ -69,7 +74,6 @@ public partial class Walk : State
             {
                 stateMachine.UpdateState("IDLE");
             }
-            Player.Velocity = inputVelocity;
         }
     }
 

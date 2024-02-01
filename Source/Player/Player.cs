@@ -146,7 +146,7 @@ public partial class Player : Actor
     public bool CanJump()
     {
         GD.Print("Num Jumps: ", NumJumps);
-        return ((IsOnFloor() || !_coyoteTimer.IsStopped()) || _bufferedJumpTimer.IsStopped() || NumJumps != 0);
+        return (IsOnFloor() || !_coyoteTimer.IsStopped() || _bufferedJumpTimer.IsStopped() || NumJumps != 0);
     }
 
     // Game Grumps joke
@@ -198,8 +198,6 @@ public partial class Player : Actor
 
         DetectObjects();
 
-        //GD.Print("Velocity: ", Velocity);
-
         if (CurrentPowerup != null)
         {
             if (CurrentPowerup.CanBeActivated() && Input.IsActionJustPressed("Run"))
@@ -228,8 +226,13 @@ public partial class Player : Actor
             CurrentWeapon.Attack(direction.Sign(), GetTree().CurrentScene);
         }
 
-        wasOnFloor = IsOnFloor();
-        Velocity = ApplyGravity(delta, gravity);
+        if (!IsOnFloor())
+        {
+            var velocity = Velocity;
+            velocity.Y += (float)delta * gravity;
+            Velocity = velocity;
+            GD.Print("Velocity: " + Velocity);
+        }
         MoveAndSlide();
     }
 }

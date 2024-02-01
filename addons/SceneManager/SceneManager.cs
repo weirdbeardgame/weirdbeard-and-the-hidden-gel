@@ -24,13 +24,7 @@ public partial class SceneManager : EditorPlugin
     // Because Plugin exists outside the SceneTree, we create our own Tree or refrence to one.
     SceneTree Tree;
 
-    public static LevelCommon CurrentScene
-    {
-        get
-        {
-            return _CurrentScene;
-        }
-    }
+    public static LevelCommon CurrentScene => _CurrentScene;
 
     private static SceneManager _SceneManager;
 

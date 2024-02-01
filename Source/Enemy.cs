@@ -68,7 +68,7 @@ public partial class Enemy : Actor
             ChangeDirection(EnemyDirection.RIGHT);
         }
 
-        inputVelocity = ApplyGravity(delta);
+        inputVelocity.Y += (float)delta * gravity;
         inputVelocity.X = dir.X * speed;
 
         //GD.Print("Velocity: ", inputVelocity);
