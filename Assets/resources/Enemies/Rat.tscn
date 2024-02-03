@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dee15uufror7k" path="res://Assets/resources/Sprites/Rat/Run_10.png" id="18"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(17.5, 12.5)
+size = Vector2(56, 51)
 
 [sub_resource type="Animation" id="Animation_nr8vv"]
 resource_name = "Idle"
@@ -81,7 +81,7 @@ script = ExtResource("15")
 speed = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(5.5, 7.5)
+position = Vector2(0, -10.5)
 shape = SubResource("1")
 
 [node name="Enemy" type="Sprite2D" parent="."]

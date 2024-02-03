@@ -47,9 +47,24 @@ public partial class Level : LevelCommon
             }
             Player.Position = currentCheckpoint.GlobalPosition;
         }
-        AddChild(Player);
-        Player.ResetState();
-        CreateAudioStream();
+
+        if (activeEnemies != null)
+        {
+            foreach (var Enemy in activeEnemies)
+            {
+                if (!HasNode(Enemy.GetPath()))
+                {
+                    AddChild(Enemy);
+                }
+            }
+
+            if (!HasNode(Player.GetPath()))
+            {
+                AddChild(Player);
+            }
+            Player.ResetState();
+            CreateAudioStream();
+        }
     }
 
     public override void Update()
@@ -59,7 +74,6 @@ public partial class Level : LevelCommon
 
     public override void ResetLevel()
     {
-        Player.ResetState();
         ExitLevel();
         EnterLevel(Player);
     }
@@ -83,9 +97,8 @@ public partial class Level : LevelCommon
         {
             foreach (var enemy in activeEnemies)
             {
-                enemy.Destroy();
+                RemoveChild(enemy);
             }
-            activeEnemies.Clear();
         }
     }
 }

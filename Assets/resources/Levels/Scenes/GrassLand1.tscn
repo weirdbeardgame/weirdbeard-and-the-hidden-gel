@@ -404,7 +404,7 @@ sources/3 = SubResource("TileSetAtlasSource_d6hj0")
 [node name="GrassLand1" type="Node2D" node_paths=PackedStringArray("activeEnemies", "exits")]
 script = ExtResource("1_283g4")
 sublevels = {}
-activeEnemies = []
+activeEnemies = [NodePath("Pirate"), NodePath("TestEnemy")]
 exits = []
 LevelName = "GrassLand1"
 audioFile = ExtResource("2_k4v6a")
@@ -437,6 +437,7 @@ position = Vector2(492, -243)
 
 [node name="Pirate" parent="." instance=ExtResource("13_i2ang")]
 position = Vector2(263, -219)
+slide_on_ceiling = false
 
 [node name="Death" parent="." instance=ExtResource("15_jw5yn")]
 position = Vector2(542, 175)

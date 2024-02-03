@@ -5,16 +5,16 @@ public partial class Player : Actor
 {
     Timer _coyoteTimer;
     Timer _bufferedJumpTimer;
+
     Area2D body;
+    public int PlayerLives = 3;
 
     public TileCommon map;
-
     public Sprite2D weirdBeard;
-    public int PlayerLives = 3;
+    public PowerUp CurrentPowerup;
     public WeaponCommon CurrentWeapon;
     public AnimationPlayer AnimationPlayer;
     public Vector2 direction = Vector2.Right;
-    public PowerUp CurrentPowerup;
 
     Camera2D camera;
 
@@ -231,7 +231,6 @@ public partial class Player : Actor
             var velocity = Velocity;
             velocity.Y += (float)delta * gravity;
             Velocity = velocity;
-            GD.Print("Velocity: " + Velocity);
         }
         MoveAndSlide();
     }

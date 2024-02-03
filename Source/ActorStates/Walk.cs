@@ -45,8 +45,6 @@ public partial class Walk : State
             inputVelocity.X = 0;
         }
 
-        GD.Print("InputVelocity: " + inputVelocity);
-
         inputVelocity.Y = 0;
 
         return inputVelocity;

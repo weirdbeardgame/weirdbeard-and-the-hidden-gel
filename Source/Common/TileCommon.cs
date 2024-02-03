@@ -6,14 +6,14 @@ public enum Objects { NOTHING = 0, SPIKE = 2, LADDER = 1, WATER = 3 }
 
 public partial class TileCommon : TileMap
 {
-
+    int obj = 0;
     TileSetScenesCollectionSource scene;
 
-    int obj = 0;
+    public void ClearCollidedObject() => obj = 0;
 
     public int Collided(Player Player, string DataLayerName)
     {
-        var pos = LocalToMap(Player.Position);
+        var pos = LocalToMap(Player.GlobalPosition);
         var data = GetCellTileData(1, pos, true);
         if (data != null)
         {
@@ -24,8 +24,6 @@ public partial class TileCommon : TileMap
         }
         return 0;
     }
-
-    public void ClearCollidedObject() { obj = 0; }
 
     public List<PackedScene> GetScenes()
     {
