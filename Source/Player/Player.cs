@@ -3,45 +3,43 @@ using System;
 
 public partial class Player : Actor
 {
-    Timer _coyoteTimer;
-    Timer _bufferedJumpTimer;
+    private Area2D _Body;
+    private Camera2D _Camera;
+    private Timer _CoyoteTimer;
+    private Timer _BufferedJumpTimer;
 
-    Area2D body;
+    public TileCommon Map;
     public int PlayerLives = 3;
-
-    public TileCommon map;
-    public Sprite2D weirdBeard;
+    public Sprite2D WeirdBeard;
     public PowerUp CurrentPowerup;
     public WeaponCommon CurrentWeapon;
     public AnimationPlayer AnimationPlayer;
-    public Vector2 direction = Vector2.Right;
-
-    Camera2D camera;
+    public Vector2 Direction = Vector2.Right;
 
     public static Action<PowerUp> OnEquip;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        weirdBeard = (Sprite2D)GetNode("CenterContainer/WeirdBeard");
-        stateMachine = (StateMachine)GetNode("StateMachine");
+        WeirdBeard = (Sprite2D)GetNode("CenterContainer/WeirdBeard");
+        _StateMachine = (StateMachine)GetNode("StateMachine");
         AnimationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
-        _bufferedJumpTimer = (Timer)GetNode("BufferedJump");
+        _BufferedJumpTimer = (Timer)GetNode("BufferedJump");
 
-        body = GetNode<Area2D>("ObjectDetect");
+        _Body = GetNode<Area2D>("ObjectDetect");
 
         CurrentWeapon = new WeaponCommon();
 
-        _coyoteTimer = (Timer)GetNode("CoyoteTimer");
+        _CoyoteTimer = (Timer)GetNode("CoyoteTimer");
         SceneManager.StartNewGame += NewGame;
 
-        camera = (Camera2D)GetNode("Camera2D");
+        _Camera = (Camera2D)GetNode("Camera2D");
 
-        stateMachine.InitState("IDLE");
+        _StateMachine.InitState("IDLE");
 
         OnEquip += EquipPowerup;
 
-        map = GetParent().GetNode<TileCommon>("TileMap");
+        Map = GetParent().GetNode<TileCommon>("TileMap");
 
         Owner = GetParent();
 
@@ -65,14 +63,14 @@ public partial class Player : Actor
         GD.Print("POWER UP");
         if (CurrentPowerup != power)
         {
-            if (stateMachine.Has(power.StateName))
+            if (_StateMachine.Has(power.StateName))
             {
                 GD.Print("Name: " + power.StateName);
-                stateMachine.RemoveState(CurrentPowerup);
+                _StateMachine.RemoveState(CurrentPowerup);
                 RemoveChild(CurrentPowerup);
             }
             AddChild(power);
-            stateMachine.AddState(power, power.StateName);
+            _StateMachine.AddState(power, power.StateName);
             CurrentPowerup = power;
         }
     }
@@ -82,56 +80,56 @@ public partial class Player : Actor
         NumJumps = 2;
         wasOnFloor = false;
         Velocity = Vector2.Zero;
-        gravity = defaultGravity;
+        Gravity = DefaultGravity;
         SetState("IDLE");
-        if (!camera.Enabled)
+        if (!_Camera.Enabled)
         {
             ActivateCamera();
         }
-        map.ClearCollidedObject();
-        canMove = true;
+        Map.ClearCollidedObject();
+        CanMove = true;
     }
 
     public void SetState(string state)
     {
-        if (stateMachine != null)
+        if (_StateMachine != null)
         {
-            stateMachine.UpdateState(state);
+            _StateMachine.UpdateState(state);
         }
     }
 
     public void StartCoyoteTimer()
     {
-        if (_coyoteTimer.IsStopped())
+        if (_CoyoteTimer.IsStopped())
         {
-            _coyoteTimer.Start(maxCoyoteTimer);
+            _CoyoteTimer.Start(maxCoyoteTimer);
         }
     }
 
     public void BufferJump()
     {
-        if (_bufferedJumpTimer.IsStopped())
+        if (_BufferedJumpTimer.IsStopped())
         {
-            _bufferedJumpTimer.Start();
+            _BufferedJumpTimer.Start();
         }
     }
 
     public void ActivateCamera()
     {
-        camera.Enabled = true;
-        camera.MakeCurrent();
+        _Camera.Enabled = true;
+        _Camera.MakeCurrent();
     }
 
     public void DeactivateCamera()
     {
-        camera.Enabled = false;
+        _Camera.Enabled = false;
     }
 
     public void CenterCamera()
     {
-        Vector2 CameraPosition = camera.GlobalPosition;
+        Vector2 CameraPosition = _Camera.GlobalPosition;
         CameraPosition.X = GlobalPosition.X;
-        camera.Position = CameraPosition;
+        _Camera.Position = CameraPosition;
     }
 
     public void Die()
@@ -146,7 +144,7 @@ public partial class Player : Actor
     public bool CanJump()
     {
         GD.Print("Num Jumps: ", NumJumps);
-        return (IsOnFloor() || !_coyoteTimer.IsStopped() || _bufferedJumpTimer.IsStopped() || NumJumps != 0);
+        return IsOnFloor() || !_CoyoteTimer.IsStopped() || _BufferedJumpTimer.IsStopped() || NumJumps != 0;
     }
 
     // Game Grumps joke
@@ -173,17 +171,17 @@ public partial class Player : Actor
 
     public void DetectObjects()
     {
-        switch ((Objects)map.Collided(this, "ObjectType"))
+        switch ((Objects)Map.Collided(this, "ObjectType"))
         {
             case Objects.LADDER:
                 if (Input.IsActionJustPressed("Up"))
                 {
-                    stateMachine.UpdateState("LADDER");
+                    _StateMachine.UpdateState("LADDER");
                 }
                 break;
 
             case Objects.SPIKE:
-                stateMachine.UpdateState("DEATH");
+                _StateMachine.UpdateState("DEATH");
                 break;
 
             case Objects.WATER:
@@ -211,9 +209,9 @@ public partial class Player : Actor
     {
         if (Velocity.Y > 0.0f)
         {
-            if (StateMachine.CurrentStateName != "FALL")
+            if (_StateMachine.CurrentStateName != "FALL")
             {
-                StateMachine.UpdateState("FALL");
+                _StateMachine.UpdateState("FALL");
             }
         }
     }
@@ -223,13 +221,13 @@ public partial class Player : Actor
         base._PhysicsProcess(delta);
         if (Input.IsActionJustPressed("Attack") && CurrentWeapon != null)
         {
-            CurrentWeapon.Attack(direction.Sign(), GetTree().CurrentScene);
+            CurrentWeapon.Attack(Direction.Sign(), GetTree().CurrentScene);
         }
 
         if (!IsOnFloor())
         {
             var velocity = Velocity;
-            velocity.Y += (float)delta * gravity;
+            velocity.Y += (float)delta * Gravity;
             Velocity = velocity;
         }
         MoveAndSlide();

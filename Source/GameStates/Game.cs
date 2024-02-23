@@ -8,8 +8,8 @@ public partial class Game : State
     public override void _Ready()
     {
         StateName = "GAME";
-        stateMachine = (StateMachine)GetParent<StateMachine>();
-        stateMachine.AddState(this, StateName);
+        StateMachine = (StateMachine)GetParent<StateMachine>();
+        StateMachine.AddState(this, StateName);
     }
 
     public override void Start()
@@ -25,7 +25,7 @@ public partial class Game : State
     {
         if (Input.IsActionJustPressed("Pause"))
         {
-            stateMachine.UpdateState("PAUSE");
+            StateMachine.UpdateState("PAUSE");
         }
     }
 

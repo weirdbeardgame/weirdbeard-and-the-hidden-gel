@@ -17,7 +17,7 @@ public partial class HubWorld : LevelCommon
 
     public override void EnterLevel(Player p)
     {
-        Actor = (HubActor)GetNode("Actor");
+        Actor = (HubActor)GetNode("HubWorldActor");
         GD.Print("HubWorld");
         Scenes = SceneManager.Manager;
 

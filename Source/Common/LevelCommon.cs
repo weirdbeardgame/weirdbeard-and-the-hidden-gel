@@ -12,7 +12,7 @@ public partial class LevelCommon : Node2D
 
     protected Player Player;
 
-    AudioStreamPlayer backgroundPlayer;
+    AudioStreamPlayer BackgroundPlayer;
 
     [Export] Resource audioFile;
 
@@ -51,7 +51,7 @@ public partial class LevelCommon : Node2D
 
     public virtual void EnterLevel(Player p)
     {
-        backgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
+        BackgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
         if (p != null)
         {
             Player = p;
@@ -65,8 +65,8 @@ public partial class LevelCommon : Node2D
 
     public void CreateAudioStream()
     {
-        backgroundPlayer.Stream = GD.Load<AudioStream>(audioFile.ResourcePath);
-        backgroundPlayer.Play();
+        BackgroundPlayer.Stream = GD.Load<AudioStream>(audioFile.ResourcePath);
+        BackgroundPlayer.Play();
     }
 
     public void CompleteLevel()

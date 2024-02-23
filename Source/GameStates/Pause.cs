@@ -8,8 +8,8 @@ public partial class Pause : State
     public override void _Ready()
     {
         StateName = "PAUSE";
-        stateMachine = (StateMachine)GetParent<StateMachine>();
-        stateMachine.AddState(this, StateName);
+        StateMachine = (StateMachine)GetParent<StateMachine>();
+        StateMachine.AddState(this, StateName);
     }
 
     public override void Start()
@@ -29,6 +29,6 @@ public partial class Pause : State
     {
         // Close UI and play animation
         GetTree().Paused = false;
-        stateMachine.ResetToOldState();
+        StateMachine.ResetToOldState();
     }
 }

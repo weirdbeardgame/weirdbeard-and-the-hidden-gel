@@ -26,7 +26,7 @@ public partial class Gun : WeaponCommon
         animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
     }
 
-    public override void Attack(Vector2 direction, Node scene)
+    public override void Attack(Vector2 Direction, Node scene)
     {
         if (firedRounds != maxRoundsInScene)
         {
@@ -47,7 +47,7 @@ public partial class Gun : WeaponCommon
     public override void _PhysicsProcess(double delta)
     {
 
-        if (Player.direction.X >= 0)
+        if (Player.Direction.X >= 0)
         {
             sprite.FlipH = true;
         }
@@ -56,6 +56,6 @@ public partial class Gun : WeaponCommon
             sprite.FlipH = false;
         }
 
-        bulletDirection = Player.direction.X;
+        bulletDirection = Player.Direction.X;
     }
 }

@@ -5,7 +5,7 @@ public partial class State : Node
 {
     protected Player Player;
 
-    protected StateMachine stateMachine;
+    protected StateMachine StateMachine;
 
     [Export] public string StateName;
 

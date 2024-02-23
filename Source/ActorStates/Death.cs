@@ -11,8 +11,8 @@ public partial class Death : State
     {
         StateName = "DEATH";
         Player = (Player)GetParent<Player>();
-        stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, StateName);
+        StateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
+        StateMachine.AddState(this, StateName);
     }
 
     public override void Start()

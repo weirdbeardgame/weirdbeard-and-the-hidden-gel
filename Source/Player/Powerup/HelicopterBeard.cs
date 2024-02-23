@@ -15,7 +15,7 @@ public partial class HelicopterBeard : PowerUp
         weirdBeard = Player.GetNode<Sprite2D>("CenterContainer/WeirdBeard");
         helicopter = Player.GetNode<Sprite2D>("CenterContainer/HelicopterBeard");
         animator = Player.AnimationPlayer;
-        stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
+        StateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
     }
 
     // Play animation. Set physics
@@ -26,7 +26,7 @@ public partial class HelicopterBeard : PowerUp
         helicopter.Visible = true;
 
         animator.Play("Heli_start");
-        Player.gravity = (Player.gravity * gravityPercent);
+        Player.Gravity = (Player.Gravity * gravityPercent);
         animator.Play("Heli_Loop");
     }
 
@@ -34,11 +34,11 @@ public partial class HelicopterBeard : PowerUp
     {
         if (Input.IsActionPressed("Right"))
         {
-            inputVelocity.X = 1.0f * speed;
+            inputVelocity.X = 1.0f * Speed;
         }
         else if (Input.IsActionPressed("Left"))
         {
-            inputVelocity.X = -1.0f * speed;
+            inputVelocity.X = -1.0f * Speed;
         }
         if (!Input.IsActionPressed("Left") && !Input.IsActionPressed("Right"))
         {

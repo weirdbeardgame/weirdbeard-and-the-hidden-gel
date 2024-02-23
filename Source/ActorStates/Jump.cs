@@ -10,8 +10,8 @@ public partial class Jump : State
     {
         StateName = "JUMP";
         Player = (Player)GetParent<Player>();
-        stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, StateName);
+        StateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
+        StateMachine.AddState(this, StateName);
     }
 
     // The mistake is in the State Machine
@@ -26,7 +26,7 @@ public partial class Jump : State
         }
         if (Player.projectileMotionJump)
         {
-            Player.gravity = Player.JumpGravity;
+            Player.Gravity = Player.JumpGravity;
             inputVelocity.Y = Player.JumpVelocity;
         }
 
@@ -53,7 +53,7 @@ public partial class Jump : State
         base.Update(delta);
         if (Input.IsActionJustPressed("Jump") && Player.CanJump())
         {
-            stateMachine.ResetState();
+            StateMachine.ResetState();
         }
     }
 

@@ -9,48 +9,44 @@ public partial class Level : LevelCommon
     Dictionary<string, PackedScene> sublevels;
 
     [Export]
-    public Array<Enemy> activeEnemies;
+    public Array<Enemy> ActiveEnemies;
 
     [Export]
     public Array<Exit> exits;
 
-    protected Checkpoint currentCheckpoint;
+    protected Checkpoint CurrentCheckpoint;
 
     [Export]
     public int maxEnemyAmnt;
-
-    SceneManager scenes;
-
     LevelCommon ActiveSubScene;
 
     // Currently active subScene. Otherwise null
-    Level subScene;
-
+    Level SubScene;
     Camera2D camera;
 
     Rect2 mapLimits;
     Vector2 mapCellsize;
+    Node2D PlayerStartPoint;
 
     public override void EnterLevel(Player p)
     {
         base.EnterLevel(p);
-        if (currentCheckpoint != null)
+
+        PlayerStartPoint = GetNode<Node2D>("PlayerStartPoint");
+
+        if (CurrentCheckpoint != null)
         {
-            Player.Position = currentCheckpoint.GlobalPosition;
+            Player.Position = CurrentCheckpoint.GlobalPosition;
         }
         else
         {
-            currentCheckpoint = (Checkpoint)GetNode("0");
-            if (currentCheckpoint == null)
-            {
-                GD.PushError("No Active Checkpoints in Scene!");
-            }
-            Player.Position = currentCheckpoint.GlobalPosition;
+            // Need to grab a "Player Starting place"
+            Player.Position = PlayerStartPoint.GlobalPosition;
         }
 
-        if (activeEnemies != null)
+        if (ActiveEnemies != null)
         {
-            foreach (var Enemy in activeEnemies)
+            foreach (var Enemy in ActiveEnemies)
             {
                 if (!HasNode(Enemy.GetPath()))
                 {
@@ -78,14 +74,14 @@ public partial class Level : LevelCommon
         EnterLevel(Player);
     }
 
-    public void Checkpoint(Checkpoint newCheckpoint)
+    public void Checkpoint(Checkpoint NewCheckpoint)
     {
-        if (currentCheckpoint != null)
+        if (CurrentCheckpoint != null)
         {
-            currentCheckpoint.Deactivate();
+            CurrentCheckpoint.Deactivate();
         }
-        newCheckpoint.isActive = true;
-        currentCheckpoint = newCheckpoint;
+        NewCheckpoint.isActive = true;
+        CurrentCheckpoint = NewCheckpoint;
     }
 
     // Clear the enemies and other data from the scene.
@@ -93,9 +89,9 @@ public partial class Level : LevelCommon
     public override void ExitLevel()
     {
         RemoveChild(Player);
-        if (activeEnemies != null)
+        if (ActiveEnemies != null)
         {
-            foreach (var enemy in activeEnemies)
+            foreach (var enemy in ActiveEnemies)
             {
                 RemoveChild(enemy);
             }

@@ -11,8 +11,8 @@ public partial class Walk : State
     {
         StateName = "WALK";
         Player = (Player)GetParent<Player>();
-        stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, StateName);
+        StateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
+        StateMachine.AddState(this, StateName);
     }
 
     public override void Start()
@@ -25,12 +25,12 @@ public partial class Walk : State
         if (Input.IsActionPressed("Run"))
         {
             GD.Print("Run");
-            currentSpeed = Player.runSpeed;
+            currentSpeed = Player.RunSpeed;
         }
         else
         {
             GD.Print("Walk");
-            currentSpeed = Player.speed;
+            currentSpeed = Player.Speed;
         }
         if (Input.IsActionPressed("Right"))
         {
@@ -58,19 +58,19 @@ public partial class Walk : State
 
             if (inputVelocity.Sign().X < 0)
             {
-                Player.direction = Vector2.Left;
-                Player.weirdBeard.FlipH = true;
+                Player.Direction = Vector2.Left;
+                Player.WeirdBeard.FlipH = true;
             }
 
             else if (inputVelocity.Sign().X > 0)
             {
-                Player.direction = Vector2.Right;
-                Player.weirdBeard.FlipH = false;
+                Player.Direction = Vector2.Right;
+                Player.WeirdBeard.FlipH = false;
             }
 
             if (inputVelocity == Vector2.Zero)
             {
-                stateMachine.UpdateState("IDLE");
+                StateMachine.UpdateState("IDLE");
             }
         }
     }
@@ -82,12 +82,12 @@ public partial class Walk : State
         if (Player.Velocity.Y > 0)
         {
             Player.wasOnFloor = true;
-            stateMachine.UpdateState("FALL");
+            StateMachine.UpdateState("FALL");
         }
 
         if (Input.IsActionJustPressed("Jump") && Player.CanJump())
         {
-            stateMachine.UpdateState("JUMP");
+            StateMachine.UpdateState("JUMP");
         }
     }
 

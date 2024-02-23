@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dbpl0o8dv4kce"]
+
+[node name="PlayerStartPoint" type="Node2D"]

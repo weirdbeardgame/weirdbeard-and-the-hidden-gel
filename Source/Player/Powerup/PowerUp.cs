@@ -5,9 +5,9 @@ public partial class PowerUp : State
 {
     Sprite2D powerupSprite;
 
-    [Export] protected float gravity;
+    [Export] protected float Gravity;
 
-    [Export] protected float speed;
+    [Export] protected float Speed;
 
     protected Vector2 inputVelocity;
 
@@ -46,7 +46,7 @@ public partial class PowerUp : State
         if (!isActivated)
         {
             Player.ResetState();
-            stateMachine.UpdateState(StateName);
+            StateMachine.UpdateState(StateName);
             isActivated = true;
         }
     }

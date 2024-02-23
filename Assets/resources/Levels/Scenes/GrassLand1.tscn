@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bla0wiy7o7g5j"]
+[gd_scene load_steps=22 format=3 uid="uid://bla0wiy7o7g5j"]
 
 [ext_resource type="Script" path="res://Source/Levels/Level.cs" id="1_283g4"]
 [ext_resource type="AudioStream" uid="uid://bkblhq7dchuhh" path="res://Assets/resources/Audio/Island_Theme.wav" id="2_k4v6a"]
@@ -7,14 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://bcs5idlyc2u67" path="res://Assets/resources/Tiles/Platformer/Objects/Ladders/ladders.png" id="5_4vcwa"]
 [ext_resource type="Texture2D" uid="uid://dye5s7shdsl5y" path="res://Assets/resources/Tiles/Platformer/Objects/Spikes/SpikeAtlus.png" id="6_50r5c"]
 [ext_resource type="Script" path="res://Source/Common/TileCommon.cs" id="7_jl384"]
-[ext_resource type="PackedScene" uid="uid://c26etbjjeycvy" path="res://Assets/resources/Levels/Checkpoint.tscn" id="8_jf5xp"]
+[ext_resource type="PackedScene" uid="uid://c26etbjjeycvy" path="res://Assets/resources/Levels/Components/Checkpoint.tscn" id="8_jf5xp"]
 [ext_resource type="PackedScene" uid="uid://j416qx5kqgli" path="res://Assets/resources/Weapons/SwordEquip.tscn" id="10_8dfd0"]
 [ext_resource type="PackedScene" uid="uid://bjjvdhhjqdyp3" path="res://Assets/resources/Player/Powerup/HelicopterEquip.tscn" id="11_o0vtx"]
 [ext_resource type="PackedScene" uid="uid://dy00trcqorudr" path="res://Assets/resources/Enemies/Rat.tscn" id="12_j4hlb"]
 [ext_resource type="PackedScene" uid="uid://dv1th5lqosghx" path="res://Assets/resources/Enemies/Bulky.tscn" id="13_i2ang"]
-[ext_resource type="PackedScene" uid="uid://qm4kkn3nihh4" path="res://Assets/resources/Levels/DeathBarier.tscn" id="15_jw5yn"]
-[ext_resource type="PackedScene" uid="uid://ckiag382w73ot" path="res://Assets/resources/Levels/OneWayPlatform.tscn" id="16_dqll1"]
-[ext_resource type="PackedScene" uid="uid://dop4a34vi68yo" path="res://Assets/resources/Levels/GoalPost.tscn" id="16_nxrbk"]
+[ext_resource type="PackedScene" uid="uid://qm4kkn3nihh4" path="res://Assets/resources/Levels/Components/DeathBarier.tscn" id="15_jw5yn"]
+[ext_resource type="PackedScene" uid="uid://ckiag382w73ot" path="res://Assets/resources/Levels/Components/OneWayPlatform.tscn" id="16_dqll1"]
+[ext_resource type="PackedScene" uid="uid://dop4a34vi68yo" path="res://Assets/resources/Levels/Components/GoalPost.tscn" id="16_nxrbk"]
+[ext_resource type="PackedScene" uid="uid://dbpl0o8dv4kce" path="res://Assets/resources/Levels/Components/PlayerStartPoint.tscn" id="16_yc7ih"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jptng"]
 texture = ExtResource("3_uvklt")
@@ -401,10 +402,10 @@ sources/2 = SubResource("TileSetAtlasSource_2jb3f")
 sources/1 = SubResource("TileSetScenesCollectionSource_kno6v")
 sources/3 = SubResource("TileSetAtlasSource_d6hj0")
 
-[node name="GrassLand1" type="Node2D" node_paths=PackedStringArray("activeEnemies", "exits")]
+[node name="GrassLand1" type="Node2D" node_paths=PackedStringArray("ActiveEnemies", "exits")]
 script = ExtResource("1_283g4")
 sublevels = {}
-activeEnemies = [NodePath("Pirate"), NodePath("TestEnemy")]
+ActiveEnemies = []
 exits = []
 LevelName = "GrassLand1"
 audioFile = ExtResource("2_k4v6a")
@@ -451,5 +452,8 @@ position = Vector2(-95, -175)
 [node name="Goal" parent="." instance=ExtResource("16_nxrbk")]
 position = Vector2(1604, -39)
 hub = "HubWorld1"
+
+[node name="PlayerStartPoint" parent="." instance=ExtResource("16_yc7ih")]
+position = Vector2(-1054, -61)
 
 [editable path="Death"]

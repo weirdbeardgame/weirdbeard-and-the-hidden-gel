@@ -9,8 +9,8 @@ public partial class GameOver : State
     public override void _Ready()
     {
         StateName = "GAMEOVER";
-        stateMachine = (StateMachine)GetParent<StateMachine>();
-        stateMachine.AddState(this, StateName);
+        StateMachine = (StateMachine)GetParent<StateMachine>();
+        StateMachine.AddState(this, StateName);
     }
 
     public override void Start()

@@ -10,10 +10,7 @@ public partial class Checkpoint : Area2D
     public bool wasActive;
 
     Level level;
-    public override void _Ready()
-    {
-        level = (Level)Owner;
-    }
+    public override void _Ready() => level = (Level)Owner;
 
     public void Activate(object body)
     {

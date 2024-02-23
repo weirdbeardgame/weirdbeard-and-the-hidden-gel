@@ -6,14 +6,14 @@ public partial class DialogueState : State
     public override void _Ready()
     {
         StateName = "DIALOGUE";
-        stateMachine = (StateMachine)GetParent<StateMachine>();
-        stateMachine.AddState(this, StateName);
+        StateMachine = (StateMachine)GetParent<StateMachine>();
+        StateMachine.AddState(this, StateName);
     }
 
     public override void Start()
     {
         Player = (Player)SceneManager.CurrentScene.GetNode("Player");
-        Player.canMove = false;
+        Player.CanMove = false;
     }
 
     public override void FixedUpdate(double delta)
@@ -23,6 +23,6 @@ public partial class DialogueState : State
 
     public override void Stop()
     {
-        Player.canMove = true;
+        Player.CanMove = true;
     }
 }

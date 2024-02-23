@@ -12,8 +12,8 @@ public partial class Idle : State
     {
         StateName = "IDLE";
         Player = (Player)GetParent<Player>();
-        stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, StateName);
+        StateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
+        StateMachine.AddState(this, StateName);
     }
 
     public override void Start()
@@ -34,25 +34,25 @@ public partial class Idle : State
 
     public override void FixedUpdate(double delta)
     {
-        if (Player.canMove)
+        if (Player.CanMove)
         {
-            if (Player.direction == Vector2.Left)
+            if (Player.Direction == Vector2.Left)
             {
-                Player.weirdBeard.FlipH = true;
+                Player.WeirdBeard.FlipH = true;
             }
             else
             {
-                Player.weirdBeard.FlipH = false;
+                Player.WeirdBeard.FlipH = false;
             }
 
             if (Input.IsActionPressed("Right") || Input.IsActionPressed("Left"))
             {
-                stateMachine.UpdateState("WALK");
+                StateMachine.UpdateState("WALK");
             }
 
             if (Input.IsActionJustPressed("Jump") && Player.CanJump())
             {
-                stateMachine.UpdateState("JUMP");
+                StateMachine.UpdateState("JUMP");
             }
         }
     }

@@ -3,22 +3,22 @@ using System;
 
 public partial class Actor : CharacterBody2D
 {
-    protected StateMachine stateMachine;
+    protected StateMachine _StateMachine;
 
     public StateMachine StateMachine
     {
         get
         {
-            return stateMachine;
+            return _StateMachine;
         }
     }
 
     // Movement properties
-    public float gravity;
-    [Export] protected float defaultGravity = 400;
-    [Export] public float speed = 400f;
-    [Export] public float runSpeed = 800f;
-    public bool canMove;
+    public float Gravity;
+    [Export] protected float DefaultGravity = 400;
+    [Export] public float Speed = 400f;
+    [Export] public float RunSpeed = 800f;
+    public bool CanMove;
 
     //Jump properties
 

@@ -9,8 +9,8 @@ public partial class Falling : State
     {
         StateName = "FALL";
         Player = (Player)GetParent<Player>();
-        stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, StateName);
+        StateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
+        StateMachine.AddState(this, StateName);
     }
 
     public override void Start()
@@ -23,8 +23,8 @@ public partial class Falling : State
         }
         if (Player.projectileMotionJump)
         {
-            Player.gravity = Player.FallGravity;
-            GD.Print("Fall Gravity: ", Player.gravity);
+            Player.Gravity = Player.FallGravity;
+            GD.Print("Fall Gravity: ", Player.Gravity);
         }
     }
 
@@ -33,7 +33,7 @@ public partial class Falling : State
         if (Input.IsActionPressed("Jump") && Player.CanJump())
         {
             GD.Print("Jump Again");
-            stateMachine.ResetToOldState();
+            StateMachine.ResetToOldState();
         }
         if (Player.IsOnFloor())
         {

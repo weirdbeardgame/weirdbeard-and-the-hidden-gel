@@ -24,7 +24,7 @@ public partial class Enemy : Actor
     public override void _Ready()
     {
         Player = (AnimationPlayer)GetNode("AnimationPlayer");
-        stateMachine = (StateMachine)GetNode("StateMachine");
+        _StateMachine = (StateMachine)GetNode("StateMachine");
         playerDetect = (RayCast2D)GetNode("raycasts/PlayerDetect");
         playerDetect2 = (RayCast2D)GetNode("raycasts/PlayerDetect2");
 
@@ -37,7 +37,7 @@ public partial class Enemy : Actor
         _death = GetNode<Area2D>("Area2D");
         _death.BodyEntered += KillPlayer;
 
-        gravity = defaultGravity;
+        Gravity = DefaultGravity;
     }
 
     public void ChangeDirection(EnemyDirection dirToWalk)
@@ -68,8 +68,8 @@ public partial class Enemy : Actor
             ChangeDirection(EnemyDirection.RIGHT);
         }
 
-        inputVelocity.Y += (float)delta * gravity;
-        inputVelocity.X = dir.X * speed;
+        inputVelocity.Y += (float)delta * Gravity;
+        inputVelocity.X = dir.X * Speed;
 
         //GD.Print("Velocity: ", inputVelocity);
 

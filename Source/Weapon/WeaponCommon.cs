@@ -7,7 +7,7 @@ public partial class WeaponCommon : Node
 {
     [Export] public Texture2D icon;
     [Export] public int dmgAmnt;
-    [Export] public float speed;
+    [Export] public float Speed;
     [Export] public float fireRate;
     [Export] public string weaponName;
     [Export] public WeaponType weaponType;
@@ -17,7 +17,7 @@ public partial class WeaponCommon : Node
     protected Player Player;
     public bool canThrowWeapon;
     protected Vector2 velocity;
-    protected Vector2 direction;
+    protected Vector2 Direction;
     protected Node2D spawnPoint;
 
     protected AnimationPlayer animationPlayer;
@@ -34,7 +34,7 @@ public partial class WeaponCommon : Node
 
     }
 
-    public virtual void Attack(Vector2 direction, Node scene)
+    public virtual void Attack(Vector2 Direction, Node scene)
     {
 
     }

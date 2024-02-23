@@ -14,14 +14,14 @@ public partial class Ladder : State
     {
         StateName = "LADDER";
         Player = (Player)GetParent<Player>();
-        stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
-        stateMachine.AddState(this, StateName);
+        StateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
+        StateMachine.AddState(this, StateName);
         base._Ready();
     }
     public override void Start()
     {
         base.Start();
-        Player.gravity = 0;
+        Player.Gravity = 0;
     }
 
     public override Vector2 GetInput()
@@ -60,7 +60,7 @@ public partial class Ladder : State
     {
         base.Update(delta);
         GetInput();
-        LadderState = (LadderStates)Player.map.Collided(Player, "LadderEvent");
+        LadderState = (LadderStates)Player.Map.Collided(Player, "LadderEvent");
         GD.Print("State: ", LadderState.ToString());
         Player.Velocity = inputVelocity;
         GD.Print("Velocity: ", Player.Velocity);

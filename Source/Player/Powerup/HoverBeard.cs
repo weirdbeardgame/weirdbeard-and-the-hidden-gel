@@ -16,7 +16,7 @@ public partial class HoverBeard : PowerUp
         weirdBeard = Player.GetNode<Sprite2D>("CenterContainer/WeirdBeard");
         hoverBeard = Player.GetNode<Sprite2D>("CenterContainer/HoverBeard");
         animator = Player.AnimationPlayer;
-        stateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
+        StateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
         regenTimer.Timeout += Stop;
 
     }
@@ -28,7 +28,7 @@ public partial class HoverBeard : PowerUp
 
         if (!Player.IsOnFloor())
         {
-            Player.gravity = gravity;
+            Player.Gravity = Gravity;
             animator.Play("Hover_Start");
             regenTimer.Start();
             animator.Play("Hover_Loop");
@@ -44,11 +44,11 @@ public partial class HoverBeard : PowerUp
     {
         if (Input.IsActionPressed("Right"))
         {
-            inputVelocity.X = 1.0f * speed;
+            inputVelocity.X = 1.0f * Speed;
         }
         else if (Input.IsActionPressed("Left"))
         {
-            inputVelocity.X = -1.0f * speed;
+            inputVelocity.X = -1.0f * Speed;
         }
         if (!Input.IsActionPressed("Left") && !Input.IsActionPressed("Right"))
         {

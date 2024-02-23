@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dp7lwe2kqfvoj"]
 
-[ext_resource type="PackedScene" uid="uid://bhw6crxsxyo5v" path="res://Assets/resources/Levels/LevelSpace.tscn" id="1_gq8pt"]
 [ext_resource type="Script" path="res://Source/Levels/HubWorld/HubWorld.cs" id="1_kvx71"]
-[ext_resource type="PackedScene" uid="uid://b6d6j6xab8jj" path="res://Assets/resources/Levels/Actor.tscn" id="2_hadyr"]
 [ext_resource type="AudioStream" uid="uid://b076heh4elhr1" path="res://Assets/resources/Audio/Underwater_Theme.wav" id="2_k7b0b"]
+[ext_resource type="PackedScene" uid="uid://bhw6crxsxyo5v" path="res://Assets/resources/Levels/Components/LevelSpace.tscn" id="3_3darn"]
+[ext_resource type="PackedScene" uid="uid://b6d6j6xab8jj" path="res://Assets/resources/Levels/Components/HubWorldActor.tscn" id="4_pny50"]
 
 [node name="HubWorld1" type="Node2D" node_paths=PackedStringArray("levelSpaces")]
 script = ExtResource("1_kvx71")
@@ -11,21 +11,21 @@ levelSpaces = [NodePath("LevelSpace"), NodePath("LevelSpace2")]
 LevelName = "HubWorld1"
 audioFile = ExtResource("2_k7b0b")
 
-[node name="LevelSpace" parent="." instance=ExtResource("1_gq8pt")]
+[node name="LevelSpace" parent="." instance=ExtResource("3_3darn")]
 offset_left = 11.0
 offset_top = 19.0
 offset_right = 75.0
 offset_bottom = 83.0
 LevelName = "GrassLand1"
 
-[node name="LevelSpace2" parent="." instance=ExtResource("1_gq8pt")]
+[node name="LevelSpace2" parent="." instance=ExtResource("3_3darn")]
 offset_left = 139.0
 offset_top = 20.0
 offset_right = 203.0
 offset_bottom = 84.0
 LevelName = "Tundra1"
 
-[node name="Actor" parent="." instance=ExtResource("2_hadyr")]
+[node name="HubWorldActor" parent="." instance=ExtResource("4_pny50")]
 position = Vector2(42, 53)
 
 [node name="BackgroundAudio" type="AudioStreamPlayer" parent="."]
