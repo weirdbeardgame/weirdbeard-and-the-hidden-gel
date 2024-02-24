@@ -4,31 +4,43 @@ using System;
 [Tool]
 public partial class SceneManagerData : Resource
 {
-    [Export] PackedScene _NewGameScene;
+    [Export] private PackedScene _NewGameScene;
 
-    [Export] Godot.Collections.Dictionary<string, PackedScene> _Levels;
+    [Export] private Godot.Collections.Dictionary<string, PackedScene> _Levels;
 
-    [Export] string CurrentLevel = "Test1";
+    [Export] private string _CurrentLevel = "Test1";
+
+    [Export] private string _PlayerPath;
 
     // The actual Player that will be instaniated
-    [Export] PackedScene PlayerScene;
+    [Export] private PackedScene _PlayerScene;
 
     public SceneManagerData() => _Levels = new Godot.Collections.Dictionary<string, PackedScene>();
     public SceneManagerData(Godot.Collections.Dictionary<string, PackedScene> lev) => _Levels = lev;
 
     // Public Getters
     public PackedScene NewGameScene => _NewGameScene;
-    public PackedScene PlayerRef => PlayerScene;
+    public PackedScene PlayerRef => _PlayerScene;
     public Godot.Collections.Dictionary<string, PackedScene> Levels => _Levels;
 
     // Returns the instantiated packed scene as a Level.
     public LevelCommon Level(string levelName) => _Levels[levelName].Instantiate<LevelCommon>();
 
     // Returns the active Player refrence
-    public Player CreatePlayer() => PlayerScene.Instantiate<Player>();
-
+    public Player CreatePlayer()
+    {
+        if (_PlayerScene == null)
+        {
+            _PlayerScene = ResourceLoader.Load<PackedScene>(_PlayerPath);
+        }
+        return _PlayerScene.Instantiate<Player>();
+    }
 #if TOOLS
-    public void SetPlayerRef(string path) => PlayerScene = ResourceLoader.Load<PackedScene>(path);
+    public void SetPlayerRef(string path)
+    {
+        _PlayerPath = path;
+        _PlayerScene = ResourceLoader.Load<PackedScene>(path);
+    }
 
     public bool Add(PackedScene Scene)
     {

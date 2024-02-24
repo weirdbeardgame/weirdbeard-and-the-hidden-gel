@@ -14,5 +14,6 @@ _Levels = {
 "HubWorld1": ExtResource("2_gf2rf"),
 "Tundra1": ExtResource("3_07np3")
 }
-CurrentLevel = "Test1"
-PlayerScene = ExtResource("1_cs4ab")
+_CurrentLevel = "Test1"
+_PlayerPath = "res://Assets/resources/Player/Player.tscn"
+_PlayerScene = ExtResource("1_cs4ab")
