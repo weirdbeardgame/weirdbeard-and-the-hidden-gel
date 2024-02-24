@@ -1,5 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://dy00trcqorudr"]
+[gd_scene load_steps=22 format=3 uid="uid://dy00trcqorudr"]
 
+[ext_resource type="Script" path="res://Source/Enemy/Enemy.cs" id="1_rupad"]
 [ext_resource type="Texture2D" uid="uid://olrho45b17kq" path="res://Assets/resources/Sprites/Rat/Run_00.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://cj1p7p126y55s" path="res://Assets/resources/Sprites/Rat/Run_07.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://d1jrus2pudykt" path="res://Assets/resources/Sprites/Rat/Run_04.png" id="7"]
@@ -10,7 +11,7 @@
 [ext_resource type="Script" path="res://Source/StateMachine.cs" id="12"]
 [ext_resource type="Texture2D" uid="uid://chxpgmd8oyr25" path="res://Assets/resources/Sprites/Rat/Run_01.png" id="13"]
 [ext_resource type="Texture2D" uid="uid://st3p2jardlsy" path="res://Assets/resources/Sprites/Rat/Run_03.png" id="14"]
-[ext_resource type="Script" path="res://Source/Enemy.cs" id="15"]
+[ext_resource type="Script" path="res://Source/Enemy/EnemyStates/Patrol.cs" id="15_w2h3v"]
 [ext_resource type="Texture2D" uid="uid://b4jg3mn634c23" path="res://Assets/resources/Sprites/Rat/Run_11.png" id="16"]
 [ext_resource type="Texture2D" uid="uid://da1mcis1gamcr" path="res://Assets/resources/Sprites/Rat/Run_02.png" id="17"]
 [ext_resource type="Texture2D" uid="uid://dee15uufror7k" path="res://Assets/resources/Sprites/Rat/Run_10.png" id="18"]
@@ -77,7 +78,7 @@ size = Vector2(57, 23)
 [node name="TestEnemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 5
-script = ExtResource("15")
+script = ExtResource("1_rupad")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.5)
@@ -87,9 +88,6 @@ shape = SubResource("1")
 position = Vector2(-0.5, 0)
 scale = Vector2(1.01563, 1)
 texture = ExtResource("4")
-
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("12")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -133,3 +131,10 @@ collision_mask = 2
 position = Vector2(-7, 7)
 target_position = Vector2(-32, 0)
 collision_mask = 2
+
+[node name="Patrol" type="Node" parent="."]
+script = ExtResource("15_w2h3v")
+StateName = "PATROL"
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("12")

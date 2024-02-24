@@ -21,7 +21,6 @@ public partial class Actor : CharacterBody2D
     public bool CanMove;
 
     //Jump properties
-
     [Export] public float maxJumpImpulse = 600f;
     [Export] public float minJumpImpulse = 300f;
     [Export] public bool projectileMotionJump;
@@ -36,4 +35,6 @@ public partial class Actor : CharacterBody2D
 
     public int NumJumps = 2;
     public bool wasOnFloor;
+
+    public Sprite2D Sprite;
 }

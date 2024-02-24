@@ -48,6 +48,7 @@ public partial class StateMachine : Node
 
     public void InitState(string defaultState)
     {
+        GD.Print("States: " + Nodes.Keys);
         _state = (State)GetNode(Nodes[defaultState]);
         if (stateSet != null)
         {

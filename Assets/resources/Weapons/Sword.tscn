@@ -8,7 +8,7 @@
 script = ExtResource("1")
 icon = ExtResource("3_hdnr1")
 dmgAmnt = 1
-speed = 200.0
+Speed = 200.0
 fireRate = 2.0
 weaponName = "Dagger"
 shootable = ExtResource("3")
