@@ -6,39 +6,36 @@ public partial class Patrol : State
     RayCast2D Left;
     RayCast2D Right;
     Vector2 _Dir;
-    Vector2 _InputVelocity;
-
-    Enemy _Parent;
 
     public override void _Ready()
     {
         StateName = "PATROL";
-        _Parent = GetParent<Enemy>();
-        StateMachine = _Parent.GetNode<StateMachine>("StateMachine");
+        Enemy = GetParent<Enemy>();
+        StateMachine = Enemy.GetNode<StateMachine>("StateMachine");
         StateMachine.AddState(this, StateName);
         base._Ready();
     }
 
     public override void Start()
     {
-        Left = (RayCast2D)_Parent.GetNode("Left");
-        Right = (RayCast2D)_Parent.GetNode("Right");
+        Left = (RayCast2D)Enemy.GetNode("Left");
+        Right = (RayCast2D)Enemy.GetNode("Right");
         _Dir = new Vector2();
         base.Start();
     }
 
     public void ChangeDirection(EnemyDirection dirToWalk)
     {
-        _Parent.Sprite = (Sprite2D)GetNode("Enemy");
+        Enemy.Sprite = (Sprite2D)Enemy.GetNode("Enemy");
         switch (dirToWalk)
         {
             case EnemyDirection.LEFT:
-                _Parent.Sprite.FlipH = false;
+                Enemy.Sprite.FlipH = false;
                 _Dir.X = -1.0f;
                 break;
 
             case EnemyDirection.RIGHT:
-                _Parent.Sprite.FlipH = true;
+                Enemy.Sprite.FlipH = true;
                 _Dir.X = 1.0f;
                 break;
         }
@@ -46,6 +43,8 @@ public partial class Patrol : State
 
     public override Vector2 GetInput()
     {
+        Vector2 _InputVelocity = new Vector2();
+
         if (!Right.IsColliding())
         {
             ChangeDirection(EnemyDirection.LEFT);
@@ -55,17 +54,33 @@ public partial class Patrol : State
             ChangeDirection(EnemyDirection.RIGHT);
         }
 
-        _InputVelocity.X = _Dir.X * _Parent.Speed;
+        _InputVelocity.X = _Dir.X * Enemy.Speed;
 
         //GD.Print("Velocity: ", inputVelocity);
-
         return _InputVelocity;
     }
 
+    bool DetectPlayer()
+    {
+        if (Player != null)
+        {
+            var Offset = Player.Position - Enemy.Position;
 
+            if (Offset.X < Enemy.MaxDetectDistance)
+            {
+                return true;
+            }
+        }
+        else
+        {
+            Player = Enemy.GetParent<LevelCommon>().GetNode<Player>("Player");
+        }
+
+        return false;
+    }
 
     public override void FixedUpdate(double delta)
     {
-
+        Enemy.Velocity = GetInput();
     }
 }

@@ -5,6 +5,8 @@ public partial class State : Node
 {
     protected Player Player;
 
+    protected Enemy Enemy;
+
     protected StateMachine StateMachine;
 
     [Export] public string StateName;

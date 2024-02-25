@@ -226,9 +226,9 @@ public partial class Player : Actor
 
         if (!IsOnFloor())
         {
-            var velocity = Velocity;
-            velocity.Y += (float)delta * Gravity;
-            Velocity = velocity;
+            var _Velocity = Velocity;
+            _Velocity.Y += (float)delta * Gravity;
+            Velocity = _Velocity;
         }
         MoveAndSlide();
     }

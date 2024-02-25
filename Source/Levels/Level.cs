@@ -48,13 +48,13 @@ public partial class Level : LevelCommon
         {
             foreach (var Enemy in ActiveEnemies)
             {
-                if (!HasNode(Enemy.GetPath()))
+                if (!Enemy.IsInsideTree())
                 {
                     AddChild(Enemy);
                 }
             }
 
-            if (!HasNode(Player.GetPath()))
+            if (!Player.IsInsideTree())
             {
                 AddChild(Player);
             }
