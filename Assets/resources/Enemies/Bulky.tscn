@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dv1th5lqosghx"]
+[gd_scene load_steps=14 format=3 uid="uid://dv1th5lqosghx"]
 
 [ext_resource type="Texture2D" uid="uid://con80dm5obyup" path="res://Assets/resources/Sprites/Enemies/Bulky_Pirate/Bulky_Idle.png" id="1"]
 [ext_resource type="Script" path="res://Source/Enemy/Enemy.cs" id="1_lxymt"]
 [ext_resource type="Script" path="res://Source/StateMachine.cs" id="3"]
 [ext_resource type="Script" path="res://Source/Enemy/EnemyStates/Patrol.cs" id="4_m2txd"]
+[ext_resource type="Script" path="res://Source/Enemy/EnemyStates/Attack.cs" id="5_1gtvf"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(42, 48)
@@ -82,10 +83,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldbuo"]
 size = Vector2(45.5, 53)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5jtax"]
+radius = 79.6492
+
 [node name="Pirate" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_lxymt")
+MaxDetectDistance = 0.5
 DefaultGravity = 1000.0
 
 [node name="Enemy" type="Sprite2D" parent="."]
@@ -102,16 +107,13 @@ libraries = {
 "": SubResource("AnimationLibrary_bdn4h")
 }
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("3")
-
 [node name="Right" type="RayCast2D" parent="."]
 position = Vector2(15, -3)
 rotation = -1.56333
 target_position = Vector2(-28.9992, 0.21652)
 
 [node name="Left" type="RayCast2D" parent="."]
-position = Vector2(-45, -3)
+position = Vector2(-40, -2)
 rotation = 1.56873
 target_position = Vector2(28.9999, 0.0599251)
 
@@ -121,18 +123,6 @@ offset_top = -41.0
 offset_right = 25.0
 offset_bottom = -24.0
 text = "test"
-
-[node name="raycasts" type="Node2D" parent="."]
-
-[node name="PlayerDetect" type="RayCast2D" parent="raycasts"]
-position = Vector2(-5, -4)
-target_position = Vector2(33, 0)
-collision_mask = 2
-
-[node name="PlayerDetect2" type="RayCast2D" parent="raycasts"]
-position = Vector2(-32, -4)
-target_position = Vector2(-25, 0)
-collision_mask = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(1, -1)
@@ -146,3 +136,20 @@ shape = SubResource("RectangleShape2D_ldbuo")
 [node name="Patrol" type="Node" parent="."]
 script = ExtResource("4_m2txd")
 StateName = "PATROL"
+
+[node name="Attack" type="Node" parent="."]
+script = ExtResource("5_1gtvf")
+
+[node name="DetectPlayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPlayer"]
+position = Vector2(-13, -5)
+shape = SubResource("CircleShape2D_5jtax")
+
+[node name="LineOfSight" type="RayCast2D" parent="."]
+position = Vector2(-5, -4)
+target_position = Vector2(33, 0)
+collision_mask = 2
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3")

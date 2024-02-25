@@ -12,7 +12,7 @@ public partial class DialogueState : State
 
     public override void Start()
     {
-        Player = (Player)SceneManager.CurrentScene.GetNode("Player");
+        Player = (Player)SceneManager.s_CurrentScene.GetNode("Player");
         Player.CanMove = false;
     }
 

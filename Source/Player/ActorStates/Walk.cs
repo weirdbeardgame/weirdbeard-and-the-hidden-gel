@@ -3,7 +3,7 @@ using System;
 
 public partial class Walk : State
 {
-    Vector2 inputVelocity = Vector2.Zero;
+    Vector2 _InputVelocity = Vector2.Zero;
     float currentSpeed = 0;
 
     // Called when the node enters the scene tree for the first time.
@@ -34,20 +34,20 @@ public partial class Walk : State
         }
         if (Input.IsActionPressed("Right"))
         {
-            inputVelocity = Vector2.Right * currentSpeed;
+            _InputVelocity = Vector2.Right * currentSpeed;
         }
         else if (Input.IsActionPressed("Left"))
         {
-            inputVelocity = Vector2.Left * currentSpeed;
+            _InputVelocity = Vector2.Left * currentSpeed;
         }
         if (!Input.IsActionPressed("Left") && !Input.IsActionPressed("Right"))
         {
-            inputVelocity.X = 0;
+            _InputVelocity.X = 0;
         }
 
-        inputVelocity.Y = 0;
+        _InputVelocity.Y = 0;
 
-        return inputVelocity;
+        return _InputVelocity;
     }
 
     public override void FixedUpdate(double delta)
@@ -56,19 +56,19 @@ public partial class Walk : State
         {
             Player.Velocity = GetInput();
 
-            if (inputVelocity.Sign().X < 0)
+            if (_InputVelocity.Sign().X < 0)
             {
                 Player.Direction = Vector2.Left;
                 Player.WeirdBeard.FlipH = true;
             }
 
-            else if (inputVelocity.Sign().X > 0)
+            else if (_InputVelocity.Sign().X > 0)
             {
                 Player.Direction = Vector2.Right;
                 Player.WeirdBeard.FlipH = false;
             }
 
-            if (inputVelocity == Vector2.Zero)
+            if (_InputVelocity == Vector2.Zero)
             {
                 StateMachine.UpdateState("IDLE");
             }

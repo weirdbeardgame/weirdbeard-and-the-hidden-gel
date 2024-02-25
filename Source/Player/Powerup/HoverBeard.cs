@@ -44,17 +44,17 @@ public partial class HoverBeard : PowerUp
     {
         if (Input.IsActionPressed("Right"))
         {
-            inputVelocity.X = 1.0f * Speed;
+            _InputVelocity.X = 1.0f * Speed;
         }
         else if (Input.IsActionPressed("Left"))
         {
-            inputVelocity.X = -1.0f * Speed;
+            _InputVelocity.X = -1.0f * Speed;
         }
         if (!Input.IsActionPressed("Left") && !Input.IsActionPressed("Right"))
         {
-            inputVelocity.X = 0;
+            _InputVelocity.X = 0;
         }
-        return inputVelocity;
+        return _InputVelocity;
     }
 
     public override void _PhysicsProcess(double delta)

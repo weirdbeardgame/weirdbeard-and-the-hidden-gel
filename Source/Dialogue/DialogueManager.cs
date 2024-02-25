@@ -27,7 +27,7 @@ public partial class DialogueManager : Control
     public void Open(Array<PackedScene> toSpeak)
     {
         states.UpdateState("DIALOGUE");
-        SceneManager.CurrentScene.AddChild(box);
+        SceneManager.s_CurrentScene.AddChild(box);
         box = GetNode<Popup>("DialogueBox");
         text = box.GetNode<RichTextLabel>("RichTextLabel");
         box.Visible = true;

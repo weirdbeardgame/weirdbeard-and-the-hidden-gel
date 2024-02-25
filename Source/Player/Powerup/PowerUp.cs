@@ -9,7 +9,7 @@ public partial class PowerUp : State
 
     [Export] protected float Speed;
 
-    protected Vector2 inputVelocity;
+    protected Vector2 _InputVelocity;
 
     bool isActivated;
     bool wasActivated;

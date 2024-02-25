@@ -4,8 +4,6 @@ using System;
 public partial class Death : State
 {
 
-    bool isDead = false;
-
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -17,20 +15,11 @@ public partial class Death : State
 
     public override void Start()
     {
-        if (!isDead)
-        {
-            isDead = true;
-            Player.Die();
-        }
-        else
-        {
-            // GAME OVER
-        }
+        SceneManager.ResetLevel();
     }
 
     public override void Stop()
     {
-        isDead = false;
     }
 
 }

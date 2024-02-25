@@ -3,7 +3,7 @@ using System;
 
 public partial class Jump : State
 {
-    Vector2 inputVelocity = Vector2.Zero;
+    Vector2 _InputVelocity = Vector2.Zero;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -22,19 +22,18 @@ public partial class Jump : State
         Player.AnimationPlayer.Play("Jump");
         if (!Player.projectileMotionJump)
         {
-            inputVelocity.Y = -Player.maxJumpImpulse;
+            _InputVelocity.Y = -Player.maxJumpImpulse;
         }
         if (Player.projectileMotionJump)
         {
-            Player.Gravity = Player.JumpGravity;
-            inputVelocity.Y = Player.JumpVelocity;
+            _InputVelocity.Y = Player.JumpVelocity;
         }
 
         GD.Print("Jump Gravity: ", Player.JumpGravity);
         GD.Print("Jump Velocity: ", Player.JumpVelocity);
 
-        inputVelocity.X = Player.Velocity.X;
-        Player.Velocity = inputVelocity;
+        _InputVelocity.X = Player.Velocity.X;
+        Player.Velocity = _InputVelocity;
 
         Player.NumJumps -= 1;
         GD.Print("Velocity: ", Player.Velocity);

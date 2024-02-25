@@ -25,7 +25,7 @@ public partial class WeaponCommon : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        Player = (Player)SceneManager.CurrentScene.GetNode("Player");
+        Player = (Player)SceneManager.s_CurrentScene.GetNode("Player");
         animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
     }
 

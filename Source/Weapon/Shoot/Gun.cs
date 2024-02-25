@@ -22,7 +22,7 @@ public partial class Gun : WeaponCommon
     {
         sprite = (Sprite2D)GetNode("Gun");
         spawnPoint = (Node2D)GetNode("Gun/spawner");
-        Player = (Player)SceneManager.CurrentScene.GetNode("Player");
+        Player = (Player)SceneManager.s_CurrentScene.GetNode("Player");
         animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
     }
 
@@ -34,7 +34,7 @@ public partial class Gun : WeaponCommon
             spawnedAmmo.Position = spawnPoint.GlobalPosition;
             spawnedAmmo.Rotation = spawnPoint.GlobalRotation;
 
-            SceneManager.CurrentScene.AddChild(spawnedAmmo);
+            SceneManager.s_CurrentScene.AddChild(spawnedAmmo);
             //spawnedAmmo.Shoot(bulletDirection);
             firedRounds += 1;
         }

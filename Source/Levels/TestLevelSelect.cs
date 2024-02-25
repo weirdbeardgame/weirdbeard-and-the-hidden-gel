@@ -3,14 +3,14 @@ using Godot.Collections;
 using System;
 public partial class TestLevelSelect : LevelCommon
 {
-    [Export] Array<PackedScene> _levels;
-    Array<string> _LevelNames;
+    [Export] private Array<PackedScene> _levels;
+    private Array<string> _levelNames;
 
     ItemList selector;
 
     public override void EnterLevel(Player p)
     {
-        _LevelNames = new Array<string>();
+        _levelNames = new Array<string>();
         selector = GetNode<ItemList>("ItemList");
 
         selector.ItemSelected += SelectLevel;
@@ -20,16 +20,16 @@ public partial class TestLevelSelect : LevelCommon
         foreach (var level in _levels)
         {
             LevelCommon l = (LevelCommon)level.Instantiate();
-            _LevelNames.Add(l.LevelName);
+            _levelNames.Add(l.LevelName);
             selector.AddItem(l.LevelName);
         }
     }
 
     public void SelectLevel(long id)
     {
-        if (id <= _LevelNames.Count)
+        if (id <= _levelNames.Count)
         {
-            SceneManager.ChangeScene(_LevelNames[((int)id)], Player);
+            SceneManager.ChangeScene(_levelNames[((int)id)], Player);
         }
         else
         {

@@ -5,7 +5,7 @@ enum LadderStates { BEGIN = 0, CLIMBING = 1, END = 2 };
 
 public partial class Ladder : State
 {
-    Vector2 inputVelocity = Vector2.Zero;
+    Vector2 _InputVelocity = Vector2.Zero;
     [Export] float currentSpeed = 0;
 
     LadderStates LadderState;
@@ -36,7 +36,7 @@ public partial class Ladder : State
 
         if (Input.IsActionPressed("Up"))
         {
-            inputVelocity.Y = -1 * currentSpeed;
+            _InputVelocity.Y = -1 * currentSpeed;
 
             if (LadderState == LadderStates.END)
             {
@@ -47,13 +47,13 @@ public partial class Ladder : State
 
         if (Input.IsActionPressed("Down"))
         {
-            inputVelocity.Y = 1 * currentSpeed;
+            _InputVelocity.Y = 1 * currentSpeed;
         }
         else if (!Input.IsAnythingPressed())
         {
-            inputVelocity = Vector2.Zero;
+            _InputVelocity = Vector2.Zero;
         }
-        return inputVelocity;
+        return _InputVelocity;
     }
 
     public override void Update(double delta)
@@ -62,7 +62,7 @@ public partial class Ladder : State
         GetInput();
         LadderState = (LadderStates)Player.Map.Collided(Player, "LadderEvent");
         GD.Print("State: ", LadderState.ToString());
-        Player.Velocity = inputVelocity;
+        Player.Velocity = _InputVelocity;
         GD.Print("Velocity: ", Player.Velocity);
     }
 

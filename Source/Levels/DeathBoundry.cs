@@ -14,8 +14,7 @@ public partial class DeathBoundry : Area2D
         {
             GD.Print("Death to the player!!!");
             Player p = (Player)body;
-            p.Die();
+            p.SetState("DEATH");
         }
     }
-
 }

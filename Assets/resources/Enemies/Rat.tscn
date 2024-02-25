@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dy00trcqorudr"]
+[gd_scene load_steps=24 format=3 uid="uid://dy00trcqorudr"]
 
 [ext_resource type="Script" path="res://Source/Enemy/Enemy.cs" id="1_rupad"]
 [ext_resource type="Texture2D" uid="uid://olrho45b17kq" path="res://Assets/resources/Sprites/Rat/Run_00.png" id="4"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://st3p2jardlsy" path="res://Assets/resources/Sprites/Rat/Run_03.png" id="14"]
 [ext_resource type="Script" path="res://Source/Enemy/EnemyStates/Patrol.cs" id="15_w2h3v"]
 [ext_resource type="Texture2D" uid="uid://b4jg3mn634c23" path="res://Assets/resources/Sprites/Rat/Run_11.png" id="16"]
+[ext_resource type="Script" path="res://Source/Enemy/EnemyStates/Attack.cs" id="16_n18co"]
 [ext_resource type="Texture2D" uid="uid://da1mcis1gamcr" path="res://Assets/resources/Sprites/Rat/Run_02.png" id="17"]
 [ext_resource type="Texture2D" uid="uid://dee15uufror7k" path="res://Assets/resources/Sprites/Rat/Run_10.png" id="18"]
 
@@ -75,11 +76,20 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ukw7t"]
 size = Vector2(57, 23)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ac3dd"]
+radius = 64.8845
+
 [node name="TestEnemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_rupad")
+MaxDetectDistance = 0.5
 DefaultGravity = 1000.0
+
+[node name="LineOfSight" type="RayCast2D" parent="."]
+position = Vector2(13, 5)
+target_position = Vector2(33, 0)
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.5)
@@ -105,7 +115,7 @@ position = Vector2(-1, 8)
 shape = SubResource("RectangleShape2D_ukw7t")
 
 [node name="Right" type="RayCast2D" parent="."]
-position = Vector2(31, 0)
+position = Vector2(31, -7.15256e-07)
 rotation = -1.56333
 target_position = Vector2(-21.9994, 0.164257)
 
@@ -121,21 +131,17 @@ offset_right = 25.0
 offset_bottom = -24.0
 text = "test"
 
-[node name="raycasts" type="Node2D" parent="."]
-
-[node name="PlayerDetect" type="RayCast2D" parent="raycasts"]
-position = Vector2(13, 5)
-target_position = Vector2(33, 0)
-collision_mask = 2
-
-[node name="PlayerDetect2" type="RayCast2D" parent="raycasts"]
-position = Vector2(-7, 7)
-target_position = Vector2(-32, 0)
-collision_mask = 2
-
 [node name="Patrol" type="Node" parent="."]
 script = ExtResource("15_w2h3v")
 StateName = "PATROL"
+
+[node name="Attack" type="Node" parent="."]
+script = ExtResource("16_n18co")
+
+[node name="DetectPlayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPlayer"]
+shape = SubResource("CircleShape2D_ac3dd")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("12")

@@ -93,7 +93,10 @@ public partial class Level : LevelCommon
         {
             foreach (var enemy in ActiveEnemies)
             {
-                RemoveChild(enemy);
+                if (enemy.IsInsideTree())
+                {
+                    RemoveChild(enemy);
+                }
             }
         }
     }

@@ -3,7 +3,7 @@ using System;
 
 public partial class Falling : State
 {
-    Vector2 inputVelocity;
+    Vector2 _InputVelocity;
 
     public override void _Ready()
     {
@@ -23,8 +23,7 @@ public partial class Falling : State
         }
         if (Player.projectileMotionJump)
         {
-            Player.Gravity = Player.FallGravity;
-            GD.Print("Fall Gravity: ", Player.Gravity);
+            GD.Print("Fall Gravity: ", Player.FallGravity);
         }
     }
 

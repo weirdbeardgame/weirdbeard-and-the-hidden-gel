@@ -3,10 +3,10 @@ using System;
 
 public partial class Player : Actor
 {
-    private Area2D _Body;
-    private Camera2D _Camera;
-    private Timer _CoyoteTimer;
-    private Timer _BufferedJumpTimer;
+    private Area2D _body;
+    private Camera2D _camera;
+    private Timer _coyoteTimer;
+    private Timer _bufferedJumpTimer;
 
     public TileCommon Map;
     public int PlayerLives = 3;
@@ -14,41 +14,35 @@ public partial class Player : Actor
     public PowerUp CurrentPowerup;
     public WeaponCommon CurrentWeapon;
     public AnimationPlayer AnimationPlayer;
-    public Vector2 Direction = Vector2.Right;
 
     public static Action<PowerUp> OnEquip;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        base._Ready();
         WeirdBeard = (Sprite2D)GetNode("CenterContainer/WeirdBeard");
-        _StateMachine = (StateMachine)GetNode("StateMachine");
         AnimationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
-        _BufferedJumpTimer = (Timer)GetNode("BufferedJump");
+        _bufferedJumpTimer = (Timer)GetNode("BufferedJump");
 
-        _Body = GetNode<Area2D>("ObjectDetect");
-
+        _body = GetNode<Area2D>("ObjectDetect");
         CurrentWeapon = new WeaponCommon();
-
-        _CoyoteTimer = (Timer)GetNode("CoyoteTimer");
+        _coyoteTimer = (Timer)GetNode("CoyoteTimer");
         SceneManager.StartNewGame += NewGame;
-
-        _Camera = (Camera2D)GetNode("Camera2D");
-
-        _StateMachine.InitState("IDLE");
-
+        _camera = (Camera2D)GetNode("Camera2D");
+        StateMachine.InitState("IDLE");
         OnEquip += EquipPowerup;
-
         Map = GetParent().GetNode<TileCommon>("TileMap");
-
         Owner = GetParent();
 
         if (projectileMotionJump)
         {
-            JumpVelocity = ((2.0f * jumpHeight) / jumpPeak) * -1.0f;
-            JumpGravity = ((-2.0f * jumpHeight) / (jumpPeak * jumpPeak)) * -1.0f;
-            FallGravity = ((-2.0f * jumpHeight) / (jumpDescent * jumpDescent)) * -1.0f;
+            JumpVelocity = ((2.0f * jumpHeight) / JumpTimeToPeak) * -1.0f;
+            JumpGravity = ((-2.0f * jumpHeight) / (JumpTimeToPeak * JumpTimeToPeak)) * -1.0f;
+            FallGravity = ((-2.0f * jumpHeight) / (JumpTimeToDescent * JumpTimeToDescent)) * -1.0f;
         }
+
+        ResetState();
     }
 
     public void NewGame()
@@ -63,14 +57,14 @@ public partial class Player : Actor
         GD.Print("POWER UP");
         if (CurrentPowerup != power)
         {
-            if (_StateMachine.Has(power.StateName))
+            if (StateMachine.Has(power.StateName))
             {
                 GD.Print("Name: " + power.StateName);
-                _StateMachine.RemoveState(CurrentPowerup);
+                StateMachine.RemoveState(CurrentPowerup);
                 RemoveChild(CurrentPowerup);
             }
             AddChild(power);
-            _StateMachine.AddState(power, power.StateName);
+            StateMachine.AddState(power, power.StateName);
             CurrentPowerup = power;
         }
     }
@@ -80,9 +74,9 @@ public partial class Player : Actor
         NumJumps = 2;
         wasOnFloor = false;
         Velocity = Vector2.Zero;
-        Gravity = DefaultGravity;
+        Gravity = GetGravity();
         SetState("IDLE");
-        if (!_Camera.Enabled)
+        if (!_camera.Enabled)
         {
             ActivateCamera();
         }
@@ -92,59 +86,50 @@ public partial class Player : Actor
 
     public void SetState(string state)
     {
-        if (_StateMachine != null)
+        if (StateMachine != null)
         {
-            _StateMachine.UpdateState(state);
+            StateMachine.UpdateState(state);
         }
     }
 
     public void StartCoyoteTimer()
     {
-        if (_CoyoteTimer.IsStopped())
+        if (_coyoteTimer.IsStopped())
         {
-            _CoyoteTimer.Start(maxCoyoteTimer);
+            _coyoteTimer.Start(maxCoyoteTimer);
         }
     }
 
     public void BufferJump()
     {
-        if (_BufferedJumpTimer.IsStopped())
+        if (_bufferedJumpTimer.IsStopped())
         {
-            _BufferedJumpTimer.Start();
+            _bufferedJumpTimer.Start();
         }
     }
 
     public void ActivateCamera()
     {
-        _Camera.Enabled = true;
-        _Camera.MakeCurrent();
+        _camera.Enabled = true;
+        _camera.MakeCurrent();
     }
 
     public void DeactivateCamera()
     {
-        _Camera.Enabled = false;
+        _camera.Enabled = false;
     }
 
     public void CenterCamera()
     {
-        Vector2 CameraPosition = _Camera.GlobalPosition;
+        Vector2 CameraPosition = _camera.GlobalPosition;
         CameraPosition.X = GlobalPosition.X;
-        _Camera.Position = CameraPosition;
-    }
-
-    public void Die()
-    {
-        if (PlayerLives > 0)
-        {
-            PlayerLives -= 1;
-            SceneManager.ResetLevel();
-        }
+        _camera.Position = CameraPosition;
     }
 
     public bool CanJump()
     {
         GD.Print("Num Jumps: ", NumJumps);
-        return IsOnFloor() || !_CoyoteTimer.IsStopped() || _BufferedJumpTimer.IsStopped() || NumJumps != 0;
+        return IsOnFloor() || !_coyoteTimer.IsStopped() || _bufferedJumpTimer.IsStopped() || NumJumps != 0;
     }
 
     // Game Grumps joke
@@ -176,12 +161,12 @@ public partial class Player : Actor
             case Objects.LADDER:
                 if (Input.IsActionJustPressed("Up"))
                 {
-                    _StateMachine.UpdateState("LADDER");
+                    StateMachine.UpdateState("LADDER");
                 }
                 break;
 
             case Objects.SPIKE:
-                _StateMachine.UpdateState("DEATH");
+                StateMachine.UpdateState("DEATH");
                 break;
 
             case Objects.WATER:
@@ -209,9 +194,9 @@ public partial class Player : Actor
     {
         if (Velocity.Y > 0.0f)
         {
-            if (_StateMachine.CurrentStateName != "FALL")
+            if (StateMachine.CurrentStateName != "FALL")
             {
-                _StateMachine.UpdateState("FALL");
+                StateMachine.UpdateState("FALL");
             }
         }
     }
@@ -219,6 +204,8 @@ public partial class Player : Actor
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
+
+        Gravity = GetGravity();
         if (Input.IsActionJustPressed("Attack") && CurrentWeapon != null)
         {
             CurrentWeapon.Attack(Direction.Sign(), GetTree().CurrentScene);

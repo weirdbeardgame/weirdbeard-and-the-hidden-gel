@@ -3,9 +3,8 @@ using System;
 
 public partial class Patrol : State
 {
-    RayCast2D Left;
-    RayCast2D Right;
-    Vector2 _Dir;
+    RayCast2D _left;
+    RayCast2D _right;
 
     public override void _Ready()
     {
@@ -18,9 +17,9 @@ public partial class Patrol : State
 
     public override void Start()
     {
-        Left = (RayCast2D)Enemy.GetNode("Left");
-        Right = (RayCast2D)Enemy.GetNode("Right");
-        _Dir = new Vector2();
+        _left = (RayCast2D)Enemy.GetNode("Left");
+        _right = (RayCast2D)Enemy.GetNode("Right");
+        Enemy.Direction = new Vector2();
         base.Start();
     }
 
@@ -31,56 +30,42 @@ public partial class Patrol : State
         {
             case EnemyDirection.LEFT:
                 Enemy.Sprite.FlipH = false;
-                _Dir.X = -1.0f;
+                Enemy.Direction.X = -1.0f;
                 break;
 
             case EnemyDirection.RIGHT:
                 Enemy.Sprite.FlipH = true;
-                _Dir.X = 1.0f;
+                Enemy.Direction.X = 1.0f;
                 break;
         }
     }
 
     public override Vector2 GetInput()
     {
-        Vector2 _InputVelocity = new Vector2();
+        Vector2 _inputVelocity = new Vector2();
 
-        if (!Right.IsColliding())
+        if (!_right.IsColliding())
         {
             ChangeDirection(EnemyDirection.LEFT);
         }
-        else if (!Left.IsColliding())
+        else if (!_left.IsColliding())
         {
             ChangeDirection(EnemyDirection.RIGHT);
         }
 
-        _InputVelocity.X = _Dir.X * Enemy.Speed;
+        _inputVelocity.X = Enemy.Direction.X * Enemy.Speed;
 
-        //GD.Print("Velocity: ", inputVelocity);
-        return _InputVelocity;
-    }
-
-    bool DetectPlayer()
-    {
-        if (Player != null)
-        {
-            var Offset = Player.Position - Enemy.Position;
-
-            if (Offset.X < Enemy.MaxDetectDistance)
-            {
-                return true;
-            }
-        }
-        else
-        {
-            Player = Enemy.GetParent<LevelCommon>().GetNode<Player>("Player");
-        }
-
-        return false;
+        //GD.Print("Velocity: ", _inputVelocity);
+        return _inputVelocity;
     }
 
     public override void FixedUpdate(double delta)
     {
         Enemy.Velocity = GetInput();
+
+        if (Enemy.PlayerDetected)
+        {
+            StateMachine.UpdateState("ATTACK");
+        }
     }
 }
