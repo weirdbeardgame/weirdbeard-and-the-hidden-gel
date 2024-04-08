@@ -52,7 +52,7 @@ public partial class Jump : State
         base.Update(delta);
         if (Input.IsActionJustPressed("Jump") && Player.CanJump())
         {
-            StateMachine.ResetState();
+            StateMachine.ResetActor();
         }
     }
 

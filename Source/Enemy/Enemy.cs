@@ -24,6 +24,8 @@ public partial class Enemy : Actor
     {
         AnimPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
 
+        GetStateMachine();
+
         AnimPlayer.Play("Idle");
         Sprite = (Sprite2D)GetNode("Enemy");
 
@@ -31,12 +33,12 @@ public partial class Enemy : Actor
 
         _detectPlayer.BodyEntered += DetectPlayer;
 
-        StateMachine.InitState("PATROL");
-
         _death = GetNode<Area2D>("Area2D");
         _death.BodyEntered += KillPlayer;
 
         Gravity = DefaultGravity;
+
+        ResetEnemy();
     }
 
     public void Destroy()
@@ -54,6 +56,14 @@ public partial class Enemy : Actor
             var result = spaceState.IntersectRay(query);
             PlayerDetected = result["collider"] is Player;
         }
+    }
+
+    public void ResetEnemy()
+    {
+        ResetActor();
+        // Reset their position, and state
+        StateMachine.PrintStates();
+        StateMachine.InitState("PATROL");
     }
 
     public override void _PhysicsProcess(double delta)

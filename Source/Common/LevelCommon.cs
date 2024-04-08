@@ -72,7 +72,7 @@ public partial class LevelCommon : Node2D
     public void CompleteLevel()
     {
         complete = true;
-        Player.ResetState();
+        Player.ResetPlayer();
         ExitLevel();
     }
 
@@ -105,6 +105,11 @@ public partial class LevelCommon : Node2D
     }
 
     public virtual void ExitLevel()
+    {
+
+    }
+
+    public virtual void CalledDefferedExitLevel()
     {
 
     }

@@ -45,7 +45,7 @@ public partial class PowerUp : State
     {
         if (!isActivated)
         {
-            Player.ResetState();
+            Player.ResetPlayer();
             StateMachine.UpdateState(StateName);
             isActivated = true;
         }
@@ -54,7 +54,7 @@ public partial class PowerUp : State
     public override void Stop()
     {
         isActivated = false;
-        Player.ResetState();
+        Player.ResetPlayer();
         regenTimer.Start();
     }
 }

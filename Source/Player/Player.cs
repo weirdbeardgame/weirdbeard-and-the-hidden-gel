@@ -30,6 +30,9 @@ public partial class Player : Actor
         _coyoteTimer = (Timer)GetNode("CoyoteTimer");
         SceneManager.StartNewGame += NewGame;
         _camera = (Camera2D)GetNode("Camera2D");
+
+        GetStateMachine();
+
         StateMachine.InitState("IDLE");
         OnEquip += EquipPowerup;
         Map = GetParent().GetNode<TileCommon>("TileMap");
@@ -42,13 +45,13 @@ public partial class Player : Actor
             FallGravity = ((-2.0f * jumpHeight) / (JumpTimeToDescent * JumpTimeToDescent)) * -1.0f;
         }
 
-        ResetState();
+        ResetPlayer();
     }
 
     public void NewGame()
     {
         PlayerLives = 3;
-        ResetState();
+        ResetPlayer();
         SceneManager.StartNewGame -= NewGame;
     }
 
@@ -69,27 +72,15 @@ public partial class Player : Actor
         }
     }
 
-    public void ResetState()
+    public void ResetPlayer()
     {
-        NumJumps = 2;
-        wasOnFloor = false;
-        Velocity = Vector2.Zero;
-        Gravity = GetGravity();
+        ResetActor();
         SetState("IDLE");
         if (!_camera.Enabled)
         {
             ActivateCamera();
         }
         Map.ClearCollidedObject();
-        CanMove = true;
-    }
-
-    public void SetState(string state)
-    {
-        if (StateMachine != null)
-        {
-            StateMachine.UpdateState(state);
-        }
     }
 
     public void StartCoyoteTimer()

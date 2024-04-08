@@ -48,7 +48,6 @@ public partial class StateMachine : Node
 
     public void InitState(string defaultState)
     {
-        GD.Print("States: " + Nodes.Keys);
         _state = (State)GetNode(Nodes[defaultState]);
         if (stateSet != null)
         {
@@ -84,7 +83,7 @@ public partial class StateMachine : Node
     }
 
     // Take the current state and restart it's logic, IE. You're going to double jump!
-    public void ResetState()
+    public void ResetActor()
     {
         var stateTemp = GetNode<State>(Nodes[CurrentState.StateName]);
         _state.Stop();
@@ -103,6 +102,15 @@ public partial class StateMachine : Node
             stateSet.Text = _state.StateName;
         }
         _state.Start();
+    }
+
+    public void PrintStates()
+    {
+        if (Nodes != null)
+        {
+            GD.Print("COUNT: " + Nodes.Count.ToString());
+            GD.Print("States: " + Nodes.Keys);
+        }
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

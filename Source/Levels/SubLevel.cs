@@ -16,7 +16,7 @@ public partial class SubLevel : LevelCommon
     {
         Player = p;
         //parentLevel = parent;
-        Player.ResetState();
+        Player.ResetPlayer();
     }
 
 

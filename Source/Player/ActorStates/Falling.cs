@@ -36,7 +36,7 @@ public partial class Falling : State
         }
         if (Player.IsOnFloor())
         {
-            Player.ResetState();
+            Player.ResetPlayer();
         }
     }
 

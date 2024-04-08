@@ -9,7 +9,7 @@ public partial class Level : LevelCommon
     Dictionary<string, PackedScene> sublevels;
 
     [Export]
-    public Array<Enemy> ActiveEnemies;
+    public Array<EnemySpawner> ActiveEnemySpanwers;
 
     [Export]
     public Array<Exit> exits;
@@ -44,7 +44,15 @@ public partial class Level : LevelCommon
             Player.Position = PlayerStartPoint.GlobalPosition;
         }
 
-        if (ActiveEnemies != null)
+        if (ActiveEnemySpanwers != null)
+        {
+            foreach (var spawner in ActiveEnemySpanwers)
+            {
+                spawner.Spawn();
+            }
+        }
+
+        /*if (ActiveEnemies != null)
         {
             foreach (var Enemy in ActiveEnemies)
             {
@@ -53,14 +61,14 @@ public partial class Level : LevelCommon
                     AddChild(Enemy);
                 }
             }
+        }*/
 
-            if (!Player.IsInsideTree())
-            {
-                AddChild(Player);
-            }
-            Player.ResetState();
-            CreateAudioStream();
+        if (!Player.IsInsideTree())
+        {
+            AddChild(Player);
         }
+        Player.ResetPlayer();
+        CreateAudioStream();
     }
 
     public override void Update()
@@ -88,8 +96,16 @@ public partial class Level : LevelCommon
     // Ensure the scene closes properly before changing.
     public override void ExitLevel()
     {
-        RemoveChild(Player);
-        if (ActiveEnemies != null)
+        CallDeferred(nameof(CalledDefferedExitLevel));
+    }
+
+    public override void CalledDefferedExitLevel()
+    {
+        if (Player.IsInsideTree())
+        {
+            RemoveChild(Player);
+        }
+        /*if (ActiveEnemies != null)
         {
             foreach (var enemy in ActiveEnemies)
             {
@@ -98,6 +114,7 @@ public partial class Level : LevelCommon
                     RemoveChild(enemy);
                 }
             }
-        }
+        }*/
     }
 }
+

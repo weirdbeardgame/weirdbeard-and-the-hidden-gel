@@ -84,7 +84,7 @@ collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_rupad")
 MaxDetectDistance = 0.5
-DefaultGravity = 1000.0
+DefaultGravity = 2000.0
 
 [node name="LineOfSight" type="RayCast2D" parent="."]
 position = Vector2(13, 5)

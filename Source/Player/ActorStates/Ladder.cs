@@ -70,6 +70,6 @@ public partial class Ladder : State
     {
         base.Stop();
         LadderState = LadderStates.BEGIN;
-        Player.ResetState();
+        Player.ResetPlayer();
     }
 }

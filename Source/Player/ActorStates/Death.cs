@@ -15,6 +15,7 @@ public partial class Death : State
 
     public override void Start()
     {
+        Player.Die();
         SceneManager.ResetLevel();
     }
 

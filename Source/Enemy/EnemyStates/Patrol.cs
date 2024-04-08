@@ -11,6 +11,10 @@ public partial class Patrol : State
         StateName = "PATROL";
         Enemy = GetParent<Enemy>();
         StateMachine = Enemy.GetNode<StateMachine>("StateMachine");
+        if (StateMachine != null)
+        {
+            GD.Print("ENE StateMachine");
+        }
         StateMachine.AddState(this, StateName);
         base._Ready();
     }
@@ -55,7 +59,7 @@ public partial class Patrol : State
 
         _inputVelocity.X = Enemy.Direction.X * Enemy.Speed;
 
-        //GD.Print("Velocity: ", _inputVelocity);
+        GD.Print("Velocity: ", _inputVelocity);
         return _inputVelocity;
     }
 

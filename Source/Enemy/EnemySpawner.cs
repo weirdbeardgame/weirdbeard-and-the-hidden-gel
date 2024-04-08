@@ -2,68 +2,41 @@ using Godot;
 using System;
 
 // Basically the Abstract Factory Pattern
-public partial class EnemySpawner : Node
+public partial class EnemySpawner : Node2D
 {
     [Export]
-    PackedScene spawn;
+    PackedScene _Spawn;
 
     [Export]
-    float maxAmnt, amt, spawnRate;
+    EnemyDirection _EnemyDirection = EnemyDirection.LEFT;
 
-    [Export]
-    EnemyDirection enemyDirection = EnemyDirection.LEFT;
+    Vector2 _EnePos, _ScreenSize;
 
-    RandomNumberGenerator randNum;
+    LevelCommon _ActiveScene;
 
-    Vector2 enePos, screenSize;
-
-    Timer timer;
-
-    LevelCommon activeScene;
+    bool _IsDestroyed = true;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        enePos = new Vector2();
-        randNum = new RandomNumberGenerator();
-        timer = (Timer)GetNode("Timer");
-
-        activeScene = (LevelCommon)Owner;
+        _EnePos = new Vector2();
+        _ActiveScene = (LevelCommon)Owner;
     }
 
-    public void Randomize()
-    {
-        screenSize = GetViewport().GetVisibleRect().Size;
-        enePos.X = randNum.RandfRange(0, screenSize.X);
-
-        randNum.Randomize();
-
-        enePos.Y = randNum.RandfRange(0, screenSize.Y);
-        randNum.Randomize();
-    }
+    public void Destroyed() => _IsDestroyed = true;
 
     public void Spawn()
     {
-        for (int i = 0; i <= spawnRate; i++)
+        if (_IsDestroyed)
         {
-            amt = randNum.RandfRange(0, maxAmnt);
-            randNum.Randomize();
+            var act = _Spawn.Instantiate<Actor>();
 
-            GD.Print("Spawn");
+            act.GlobalPosition = GlobalPosition;
+            CallDeferred("add_child", act);
+            act.Destroyed += Destroyed;
 
-            Randomize();
-            Enemy ene = spawn.Instantiate<Enemy>();
-
-            ene.TopLevel = true;
-
-            ene.Position = enePos;
-
-            activeScene.AddChild(ene);
+            _IsDestroyed = false; // Enemy is active :D
         }
-    }
-
-    void TimeOut()
-    {
 
     }
 }

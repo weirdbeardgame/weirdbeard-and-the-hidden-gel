@@ -39,10 +39,38 @@ public partial class Actor : CharacterBody2D
     public bool wasOnFloor;
     public Sprite2D Sprite;
 
+    public Action Destroyed;
+
     public override void _Ready()
     {
         base._Ready();
-        _stateMachine = (StateMachine)GetNode("StateMachine");
+    }
+
+    public StateMachine GetStateMachine()
+    {
+        if (_stateMachine == null)
+        {
+            _stateMachine = (StateMachine)GetNode("StateMachine");
+        }
+
+        return _stateMachine;
+    }
+
+    public void SetState(string state)
+    {
+        if (StateMachine != null)
+        {
+            StateMachine.UpdateState(state);
+        }
+    }
+
+    public void ResetActor()
+    {
+        NumJumps = 2;
+        wasOnFloor = false;
+        Velocity = Vector2.Zero;
+        Gravity = GetGravity();
+        CanMove = true;
     }
 
     protected float GetGravity()
@@ -72,5 +100,14 @@ public partial class Actor : CharacterBody2D
             }
         }
     }
+
+    // An admiral feat for a lowlife such as yourself. I have a question for you though.
+    // What's that?
+    public void Die()
+    {
+        Destroyed.Invoke();
+        GetParent().RemoveChild(this);
+    }
+
 
 }
