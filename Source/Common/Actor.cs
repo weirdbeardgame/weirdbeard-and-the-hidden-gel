@@ -101,6 +101,16 @@ public partial class Actor : CharacterBody2D
         }
     }
 
+    public void ApplyGravity(float delta)
+    {
+        if (!IsOnFloor())
+        {
+            var _Velocity = Velocity;
+            _Velocity.Y += delta * Gravity;
+            Velocity = _Velocity;
+        }
+    }
+
     // An admiral feat for a lowlife such as yourself. I have a question for you though.
     // What's that?
     public void Die()

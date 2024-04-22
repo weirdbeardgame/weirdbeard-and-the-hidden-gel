@@ -68,12 +68,8 @@ public partial class Enemy : Actor
 
     public override void _PhysicsProcess(double delta)
     {
-        if (!IsOnFloor())
-        {
-            var _Velocity = Velocity;
-            _Velocity.Y += (float)delta * Gravity;
-            Velocity = _Velocity;
-        }
+        GD.Print("Gravity: " + Gravity);
+        ApplyGravity((float)delta);
         MoveAndSlide();
     }
 

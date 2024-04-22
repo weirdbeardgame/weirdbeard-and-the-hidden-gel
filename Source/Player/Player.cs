@@ -33,6 +33,8 @@ public partial class Player : Actor
 
         GetStateMachine();
 
+        Destroyed += GamaOvar;
+
         StateMachine.InitState("IDLE");
         OnEquip += EquipPowerup;
         Map = GetParent().GetNode<TileCommon>("TileMap");
@@ -124,9 +126,9 @@ public partial class Player : Actor
     }
 
     // Game Grumps joke
-    public bool GamaOvar()
+    public void GamaOvar()
     {
-        return (PlayerLives <= 0);
+        // Davy Jones stuff in here?
     }
 
     public void EquipWeapon(PackedScene w, Texture2D weapSprite)
@@ -202,12 +204,7 @@ public partial class Player : Actor
             CurrentWeapon.Attack(Direction.Sign(), GetTree().CurrentScene);
         }
 
-        if (!IsOnFloor())
-        {
-            var _Velocity = Velocity;
-            _Velocity.Y += (float)delta * Gravity;
-            Velocity = _Velocity;
-        }
+        ApplyGravity((float)delta);
         MoveAndSlide();
     }
 }

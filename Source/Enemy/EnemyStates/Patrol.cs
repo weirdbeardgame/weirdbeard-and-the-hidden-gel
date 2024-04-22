@@ -65,11 +65,14 @@ public partial class Patrol : State
 
     public override void FixedUpdate(double delta)
     {
-        Enemy.Velocity = GetInput();
-
-        if (Enemy.PlayerDetected)
+        if (Enemy.IsOnFloor())
         {
-            StateMachine.UpdateState("ATTACK");
+            Enemy.Velocity = GetInput();
+
+            if (Enemy.PlayerDetected)
+            {
+                StateMachine.UpdateState("ATTACK");
+            }
         }
     }
 }

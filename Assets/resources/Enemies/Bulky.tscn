@@ -92,6 +92,8 @@ collision_mask = 5
 script = ExtResource("1_lxymt")
 MaxDetectDistance = 0.5
 DefaultGravity = 1000.0
+Speed = 150.0
+RunSpeed = 400.0
 
 [node name="Enemy" type="Sprite2D" parent="."]
 texture = ExtResource("1")
