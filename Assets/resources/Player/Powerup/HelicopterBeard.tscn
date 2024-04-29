@@ -5,7 +5,7 @@
 [node name="Helicopter" type="Node"]
 script = ExtResource("1")
 gravityPercent = 0.5
-speed = 250.0
+Speed = 3.0
 StateName = "HELICOPTER"
 
 [node name="RegenTimer" type="Timer" parent="."]

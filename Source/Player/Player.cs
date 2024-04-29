@@ -1,14 +1,17 @@
 using Godot;
 using System;
 
+public enum Objects { NOTHING = 0, SPIKE = 2, LADDER = 1, WATER = 3 }
+
 public partial class Player : Actor
 {
+    private int _Obj;
     private Area2D _body;
     private Camera2D _camera;
     private Timer _coyoteTimer;
+    private TileMap _CurrentMap;
     private Timer _bufferedJumpTimer;
 
-    public TileCommon Map;
     public int PlayerLives = 3;
     public Sprite2D WeirdBeard;
     public PowerUp CurrentPowerup;
@@ -35,9 +38,10 @@ public partial class Player : Actor
 
         Destroyed += GamaOvar;
 
+        _CurrentMap = GetParent().GetNode<TileMap>("TileMap");
+
         StateMachine.InitState("IDLE");
         OnEquip += EquipPowerup;
-        Map = GetParent().GetNode<TileCommon>("TileMap");
         Owner = GetParent();
 
         if (projectileMotionJump)
@@ -74,6 +78,23 @@ public partial class Player : Actor
         }
     }
 
+    public void ClearCollidedObject() => _Obj = 0;
+
+    public int Collided(Player Player, string DataLayerName)
+    {
+        var pos = _CurrentMap.LocalToMap(Player.GlobalPosition);
+        var data = _CurrentMap.GetCellTileData(1, pos, true);
+        if (data != null)
+        {
+            var num = data.GetCustomData(DataLayerName);
+
+            _Obj = num.AsInt32();
+            return _Obj;
+        }
+        return 0;
+    }
+
+
     public void ResetPlayer()
     {
         ResetActor();
@@ -82,7 +103,7 @@ public partial class Player : Actor
         {
             ActivateCamera();
         }
-        Map.ClearCollidedObject();
+        ClearCollidedObject();
     }
 
     public void StartCoyoteTimer()
@@ -149,7 +170,7 @@ public partial class Player : Actor
 
     public void DetectObjects()
     {
-        switch ((Objects)Map.Collided(this, "ObjectType"))
+        switch ((Objects)Collided(this, "ObjectType"))
         {
             case Objects.LADDER:
                 if (Input.IsActionJustPressed("Up"))

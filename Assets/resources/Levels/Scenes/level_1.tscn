@@ -907,6 +907,7 @@ sources/0 = SubResource("TileSetAtlasSource_kyceg")
 
 [node name="Level1" type="Node2D" node_paths=PackedStringArray("ActiveEnemySpanwers", "exits")]
 script = ExtResource("1_x5yil")
+sublevels = {}
 ActiveEnemySpanwers = []
 exits = []
 LevelName = "Level 1"
