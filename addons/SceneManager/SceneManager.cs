@@ -152,9 +152,11 @@ public partial class SceneManager : EditorPlugin
         ChangeScene -= SwitchLevel;
         ChangeSceneWithExit -= LoadSubScene;
         ResetLevel -= Reset;
-
-        RemoveControlFromDocks(EditorDock);
-        EditorDock.Free();
+        if (EditorDock != null)
+        {
+            RemoveControlFromDocks(EditorDock);
+            EditorDock.Free();
+        }
         GD.Print(ResourceSaver.Save(s_ManagerData, SceneManagerPath));
     }
 #endif
