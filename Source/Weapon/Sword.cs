@@ -8,11 +8,9 @@ public partial class Sword : WeaponCommon
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        Player = (Player)SceneManager.s_CurrentScene.GetNode("Player");
-        sprite = (Sprite2D)GetNode("sprite");
     }
 
-    public override void Attack(Vector2 Direction, Node scene)
+    /*public override void Attack(Vector2 Direction, Node scene)
     {
         Player = (Player)SceneManager.s_CurrentScene.GetNode("Player");
         spawnPoint = (Node2D)Player.GetNode("WeapSpawn");
@@ -31,7 +29,7 @@ public partial class Sword : WeaponCommon
         {
             sprite.FlipH = false;
         }
-    }
+    }*/
 
     public override void _Process(double delta)
     {

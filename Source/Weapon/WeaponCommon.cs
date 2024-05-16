@@ -1,31 +1,29 @@
 using Godot;
 using System;
 
-public enum WeaponType { THROW, SWING, SHOOT }
+public enum WeaponType { THROW, SWING }
 
 public partial class WeaponCommon : Node
 {
-    [Export] public Texture2D icon;
-    [Export] public int dmgAmnt;
-    [Export] public float Speed;
-    [Export] public float fireRate;
-    [Export] public string weaponName;
-    [Export] public WeaponType weaponType;
-    [Export] protected PackedScene shootable;
+    protected string _Name;
+    protected int _AmmoAmnt;
+    protected int _MaxAmmoAmnt;
 
-    protected Sprite2D sprite;
-    protected Player Player;
-    public bool canThrowWeapon;
-    protected Vector2 velocity;
-    protected Vector2 Direction;
-    protected Node2D spawnPoint;
+    protected float _Speed;
 
+    // For BlunderBuss or, weapons with weight.
+    protected Vector2 _PushbackForce;
+
+    protected WeaponType _WeaponType;
     protected AnimationPlayer animationPlayer;
+
+    [Export]
+    public Texture2D Icon;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        Player = (Player)SceneManager.s_CurrentScene.GetNode("Player");
+        //Player = (Player)SceneManager.s_CurrentScene.GetNode("Player");
         animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
     }
 
@@ -34,7 +32,18 @@ public partial class WeaponCommon : Node
 
     }
 
-    public virtual void Attack(Vector2 Direction, Node scene)
+    public virtual Vector2 Shoot()
+    {
+
+    }
+
+    public virtual void Swing()
+    {
+
+    }
+
+
+    public void Attack(Vector2 Direction, Node scene)
     {
 
     }

@@ -21,7 +21,7 @@ public partial class WeaponEquip : Area2D
         if (body is Player)
         {
             Player = (Player)body;
-            Player.EquipWeapon(w, weap.icon);
+            //Player.EquipWeapon(w, weap.icon);
             QueueFree();
         }
     }
