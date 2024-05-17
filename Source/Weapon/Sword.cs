@@ -10,26 +10,10 @@ public partial class Sword : WeaponCommon
     {
     }
 
-    /*public override void Attack(Vector2 Direction, Node scene)
+    public override void Swing()
     {
-        Player = (Player)SceneManager.s_CurrentScene.GetNode("Player");
-        spawnPoint = (Node2D)Player.GetNode("WeapSpawn");
-
-        toSpawn = (CharacterBody2D)shootable.Instantiate<CharacterBody2D>();
-        sprite = (Sprite2D)toSpawn.GetNode("sprite");
-        toSpawn.Position = spawnPoint.GlobalPosition;
-        toSpawn.Velocity = new Vector2(Speed * Direction.X, 0);
-        scene.AddChild(toSpawn);
-
-        if (Direction.X < 0)
-        {
-            sprite.FlipH = true;
-        }
-        else if (Direction.X > 0)
-        {
-            sprite.FlipH = false;
-        }
-    }*/
+        _AnimationPlayer.Play("Swing");
+    }
 
     public override void _Process(double delta)
     {

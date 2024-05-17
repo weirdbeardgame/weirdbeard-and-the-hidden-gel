@@ -35,11 +35,6 @@ window/vsync/vsync_mode=2
 
 project/assembly_name="Weirdbeard Mono"
 
-[editor]
-
-version_control/plugin_name="GitPlugin"
-version_control/autoload_on_startup=true
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/SceneManager/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg")

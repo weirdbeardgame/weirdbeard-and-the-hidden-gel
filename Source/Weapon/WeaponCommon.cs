@@ -15,7 +15,7 @@ public partial class WeaponCommon : Node
     protected Vector2 _PushbackForce;
 
     protected WeaponType _WeaponType;
-    protected AnimationPlayer animationPlayer;
+    protected AnimationPlayer _AnimationPlayer;
 
     [Export]
     public Texture2D Icon;
@@ -24,7 +24,7 @@ public partial class WeaponCommon : Node
     public override void _Ready()
     {
         //Player = (Player)SceneManager.s_CurrentScene.GetNode("Player");
-        animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
+        _AnimationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
     }
 
     public virtual void Equip()
@@ -42,10 +42,18 @@ public partial class WeaponCommon : Node
 
     }
 
-
     public void Attack(Vector2 Direction, Node scene)
     {
+        switch (_WeaponType)
+        {
+            case WeaponType.SWING:
+                Velocity += Shoot();
+                break;
 
+            case WeaponType.THROW:
+                Swing();
+                break;
+        }
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
