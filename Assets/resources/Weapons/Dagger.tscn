@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2jfjr6l7gy6x"]
 
 [ext_resource type="Texture2D" uid="uid://cva11bvghkcta" path="res://Assets/resources/Sprites/WeirdBeard/Dirk_Weapon/Dirk_Weapon.png" id="1_jw3qn"]
-[ext_resource type="Script" path="res://Source/Weapon/Ammo.cs" id="1_ma6y3"]
+[ext_resource type="Script" path="res://Source/Weapon/Thrown.cs" id="1_ma6y3"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(28, 13)
@@ -10,6 +10,9 @@ size = Vector2(28, 13)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_ma6y3")
+_Name = "Dagger"
+_Speed = 5.0
+_MaxAmmoAmnt = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("1")

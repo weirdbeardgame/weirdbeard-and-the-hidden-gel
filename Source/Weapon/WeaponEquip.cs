@@ -4,7 +4,7 @@ using System;
 public partial class WeaponEquip : Area2D
 {
     [Export]
-    PackedScene w;
+    private PackedScene _Weapon;
 
     Player Player;
 
@@ -17,11 +17,11 @@ public partial class WeaponEquip : Area2D
     public void Equip(object body)
     {
         GD.Print("Weapon Equip");
-        WeaponCommon weap = w.Instantiate<WeaponCommon>();
+        WeaponCommon weap = _Weapon.Instantiate<WeaponCommon>();
         if (body is Player)
         {
             Player = (Player)body;
-            //Player.EquipWeapon(w, weap.icon);
+            Player.EquipWeapon(_Weapon, weap.Icon);
             QueueFree();
         }
     }

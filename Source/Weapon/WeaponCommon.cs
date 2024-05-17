@@ -3,22 +3,31 @@ using System;
 
 public enum WeaponType { THROW, SWING }
 
-public partial class WeaponCommon : Node
+public partial class WeaponCommon : CharacterBody2D
 {
+    [Export]
     protected string _Name;
-    protected int _AmmoAmnt;
-    protected int _MaxAmmoAmnt;
 
+    [Export]
     protected float _Speed;
 
+    [Export]
+    protected int _MaxAmmoAmnt;
+
+    [Export]
+    protected WeaponType _WeaponType;
+
     // For BlunderBuss or, weapons with weight.
+    [Export]
     protected Vector2 _PushbackForce;
 
-    protected WeaponType _WeaponType;
     protected AnimationPlayer _AnimationPlayer;
 
     [Export]
-    public Texture2D Icon;
+    public Sprite2D Icon;
+
+    private Node2D _SpawnPoint;
+    private int _CurrentAmmoAmnt;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -32,9 +41,9 @@ public partial class WeaponCommon : Node
 
     }
 
-    public virtual Vector2 Shoot()
+    public virtual Vector2 Shoot(Vector2 Dir)
     {
-
+        return Vector2.Zero;
     }
 
     public virtual void Swing()
@@ -47,11 +56,15 @@ public partial class WeaponCommon : Node
         switch (_WeaponType)
         {
             case WeaponType.SWING:
-                Velocity += Shoot();
+                Swing();
                 break;
 
             case WeaponType.THROW:
-                Swing();
+                if (_CurrentAmmoAmnt > 0)
+                {
+                    Velocity += Shoot(Direction);
+                    _CurrentAmmoAmnt -= 1;
+                }
                 break;
         }
     }

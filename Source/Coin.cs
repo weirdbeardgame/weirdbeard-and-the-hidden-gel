@@ -23,7 +23,7 @@ public partial class Coin : Area2D
     {
         if (body is Player)
         {
-            anim.Play("Collect");
+            //anim.Play("Collect");
             getCoin.Invoke();
             QueueFree();
         }

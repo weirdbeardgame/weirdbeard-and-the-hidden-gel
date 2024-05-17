@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dvumkhaud4kn4" path="res://Assets/resources/Sprites/WeirdBeard/Idle_01.png" id="1"]
 [ext_resource type="Script" path="res://Source/StateMachine.cs" id="3"]
 [ext_resource type="Script" path="res://Source/Player/ActorStates/Walk.cs" id="3_65agm"]
-[ext_resource type="Script" path="res://Source/Weapon/WeaponSlot.cs" id="4"]
 [ext_resource type="Script" path="res://Source/Player/ActorStates/Jump.cs" id="5_knd21"]
 [ext_resource type="Script" path="res://Source/Player/ActorStates/Idle.cs" id="6_b65dp"]
 [ext_resource type="Script" path="res://Source/Player/ActorStates/Ladder.cs" id="7_6fprh"]
@@ -28,8 +27,9 @@
 [ext_resource type="Texture2D" uid="uid://c8cidwcp6ccp7" path="res://Assets/resources/Sprites/WeirdBeard/Idle/x_00.png" id="26"]
 [ext_resource type="Texture2D" uid="uid://dcltwa1e73mma" path="res://Assets/resources/Sprites/WeirdBeard/Idle/x_01.png" id="27"]
 [ext_resource type="Script" path="res://Source/Player/Player.cs" id="28"]
-[ext_resource type="PackedScene" path="res://Assets/resources/HUD.tscn" id="29"]
+[ext_resource type="PackedScene" uid="uid://cqp6r4neev4tn" path="res://Assets/resources/HUD.tscn" id="29"]
 [ext_resource type="Script" path="res://Source/Player/ActorStates/Death.cs" id="29_f3e2n"]
+[ext_resource type="PackedScene" uid="uid://b7vwaxgwwbh5j" path="res://Assets/resources/Player/Components/weapon_slot.tscn" id="30_45k03"]
 [ext_resource type="Texture2D" uid="uid://cinug0bho4ddl" path="res://Assets/resources/Sprites/WeirdBeard/Hover/Weirdbeard_Hover_98x82.png" id="31"]
 [ext_resource type="Script" path="res://Source/CoinPurse.cs" id="32"]
 [ext_resource type="Texture2D" uid="uid://dmms46s0woccn" path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/Cpt_WeirdBeard_Helicopter.png" id="53"]
@@ -344,6 +344,8 @@ editor_draw_drag_margin = true
 
 [node name="HUD" parent="Camera2D" instance=ExtResource("29")]
 
+[node name="WeaponSlot" parent="Camera2D/HUD" instance=ExtResource("30_45k03")]
+
 [node name="Walk" type="Node" parent="."]
 script = ExtResource("3_65agm")
 StateName = "WALK"
@@ -387,9 +389,6 @@ StateName = "DEATH"
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
-
-[node name="WeaponSlot" type="Node" parent="."]
-script = ExtResource("4")
 
 [node name="Purse" type="Node" parent="."]
 script = ExtResource("32")

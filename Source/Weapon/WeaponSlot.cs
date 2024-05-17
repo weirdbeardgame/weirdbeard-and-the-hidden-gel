@@ -3,12 +3,25 @@ using System;
 
 public partial class WeaponSlot : Node
 {
-    public WeaponCommon weapon;
+    Sprite2D _Icon;
+    PackedScene _Weapon;
 
-    public static Action<Texture2D> updateWSprite;
+    public PackedScene Weapon => _Weapon;
 
-    public void Attack(Vector2 dir, Node scene)
+    public override void _Ready()
     {
-        weapon.Attack(dir, scene);
+        _Icon = GetNode<Sprite2D>("WeaponBox/WeaponIcon");
     }
+
+    public void SlotWeapon(PackedScene W, Sprite2D I)
+    {
+        if (W != _Weapon)
+        {
+            _Weapon = W;
+            _Icon = I;
+        }
+    }
+
+
+
 }

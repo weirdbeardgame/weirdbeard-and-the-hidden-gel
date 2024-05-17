@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://j416qx5kqgli"]
 
 [ext_resource type="Script" path="res://Source/Weapon/WeaponEquip.cs" id="2"]
-[ext_resource type="PackedScene" uid="uid://7hvkqjt4gq5q" path="res://Assets/resources/Weapons/Sword.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://c2jfjr6l7gy6x" path="res://Assets/resources/Weapons/Dagger.tscn" id="2_mx1j0"]
 [ext_resource type="Texture2D" uid="uid://cva11bvghkcta" path="res://Assets/resources/Sprites/WeirdBeard/Dirk_Weapon/Dirk_Weapon.png" id="3_voxo0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efgpd"]
@@ -10,7 +10,7 @@ size = Vector2(25.9953, 12)
 [node name="Sword" type="Area2D"]
 collision_mask = 3
 script = ExtResource("2")
-w = ExtResource("3")
+_Weapon = ExtResource("2_mx1j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.00078, -1)

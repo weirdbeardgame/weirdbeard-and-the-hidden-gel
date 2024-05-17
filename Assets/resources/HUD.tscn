@@ -1,10 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cqp6r4neev4tn"]
 
-[ext_resource path="res://Source/HUD.cs" type="Script" id=1]
-[ext_resource path="res://Assets/resources/WeaponIconBox.png" type="Texture2D" id=2]
+[ext_resource type="Script" path="res://Source/HUD.cs" id="1"]
 
 [node name="HUD" type="CanvasLayer"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="Lives" type="Label" parent="."]
 offset_left = 567.0
@@ -12,19 +11,9 @@ offset_top = 1.0
 offset_right = 639.0
 offset_bottom = 22.0
 text = "Lives:00"
-align = 1
-autowrap = true
 
 [node name="Coins" type="Label" parent="."]
 offset_left = 429.0
 offset_right = 501.0
 offset_bottom = 21.0
 text = "Coins: 00"
-align = 1
-autowrap = true
-
-[node name="WeaponBox" type="Sprite2D" parent="."]
-position = Vector2( 279, 29 )
-texture = ExtResource( 2 )
-
-[node name="WeaponIcon" type="Sprite2D" parent="WeaponBox"]

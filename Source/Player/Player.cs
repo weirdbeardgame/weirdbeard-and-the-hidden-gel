@@ -14,9 +14,10 @@ public partial class Player : Actor
 
     public int PlayerLives = 3;
     public Sprite2D WeirdBeard;
+    public WeaponSlot WeaponSlot;
     public PowerUp CurrentPowerup;
-    public WeaponCommon CurrentWeapon;
     public AnimationPlayer AnimationPlayer;
+
 
     public static Action<PowerUp> OnEquip;
 
@@ -28,11 +29,13 @@ public partial class Player : Actor
         AnimationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
         _bufferedJumpTimer = (Timer)GetNode("BufferedJump");
 
-        _body = GetNode<Area2D>("ObjectDetect");
-        CurrentWeapon = new WeaponCommon();
-        _coyoteTimer = (Timer)GetNode("CoyoteTimer");
-        SceneManager.StartNewGame += NewGame;
         _camera = (Camera2D)GetNode("Camera2D");
+        _body = GetNode<Area2D>("ObjectDetect");
+        _coyoteTimer = (Timer)GetNode("CoyoteTimer");
+
+        WeaponSlot = _camera.GetNode<WeaponSlot>("HUD/WeaponSlot");
+
+        SceneManager.StartNewGame += NewGame;
 
         GetStateMachine();
 
@@ -146,26 +149,23 @@ public partial class Player : Actor
         return IsOnFloor() || !_coyoteTimer.IsStopped() || _bufferedJumpTimer.IsStopped() || NumJumps != 0;
     }
 
+    public void Attack()
+    {
+        WeaponCommon ToUse = WeaponSlot.Weapon.Instantiate<WeaponCommon>();
+        ToUse.GlobalPosition = GlobalPosition;
+        SceneManager.s_CurrentScene.AddChild(ToUse);
+        ToUse.Attack(Direction.Sign(), GetTree().CurrentScene);
+    }
+
     // Game Grumps joke
     public void GamaOvar()
     {
         // Davy Jones stuff in here?
     }
 
-    public void EquipWeapon(PackedScene w, Texture2D weapSprite)
+    public void EquipWeapon(PackedScene W, Sprite2D WeaponSprite)
     {
-        WeaponCommon weapon = w.Instantiate<WeaponCommon>();
-        CurrentWeapon = weapon;
-
-        if (weapSprite != null)
-        {
-            WeaponSlot.updateWSprite.Invoke(weapSprite);
-        }
-
-        if (CurrentWeapon == null)
-        {
-            GD.PrintErr("Weapon NULL");
-        }
+        WeaponSlot.SlotWeapon(W, WeaponSprite);
     }
 
     public void DetectObjects()
@@ -220,9 +220,9 @@ public partial class Player : Actor
         base._PhysicsProcess(delta);
 
         Gravity = GetGravity();
-        if (Input.IsActionJustPressed("Attack") && CurrentWeapon != null)
+        if (Input.IsActionJustPressed("Attack") && WeaponSlot.Weapon != null)
         {
-            CurrentWeapon.Attack(Direction.Sign(), GetTree().CurrentScene);
+            Attack();
         }
 
         ApplyGravity((float)delta);

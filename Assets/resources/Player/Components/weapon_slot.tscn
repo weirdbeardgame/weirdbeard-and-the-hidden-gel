@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7vwaxgwwbh5j"]
+
+[ext_resource type="Script" path="res://Source/Weapon/WeaponSlot.cs" id="1_em4ix"]
+[ext_resource type="Texture2D" uid="uid://f5hfdtwtghkn" path="res://Assets/resources/WeaponIconBox.png" id="2_ybdmy"]
+
+[node name="WeaponSlot" type="Node"]
+script = ExtResource("1_em4ix")
+
+[node name="WeaponBox" type="Sprite2D" parent="."]
+position = Vector2(279, 29)
+texture = ExtResource("2_ybdmy")
+
+[node name="WeaponIcon" type="Sprite2D" parent="WeaponBox"]

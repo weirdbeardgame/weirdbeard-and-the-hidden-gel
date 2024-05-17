@@ -9,7 +9,7 @@ public partial class Thrown : WeaponCommon
     {
     }
 
-    public override Vector2 Shoot() => new Vector2(Speed * Direction.X, 0);
+    public override Vector2 Shoot(Vector2 Dir) => new Vector2(_Speed * Dir.X, 0);
 
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
