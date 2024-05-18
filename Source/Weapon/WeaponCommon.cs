@@ -51,7 +51,10 @@ public partial class WeaponCommon : CharacterBody2D
 
     }
 
-    public void Attack(Vector2 Direction, Node scene)
+    public void ApplyPushBack(Player P) => P.Velocity += _PushbackForce;
+
+
+    public void Attack(Vector2 Direction, Node scene, Player P = null)
     {
         switch (_WeaponType)
         {
@@ -64,6 +67,7 @@ public partial class WeaponCommon : CharacterBody2D
                 {
                     Velocity += Shoot(Direction);
                     _CurrentAmmoAmnt -= 1;
+                    ApplyPushBack(P);
                 }
                 break;
         }

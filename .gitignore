@@ -13,3 +13,9 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Visual Studio specifc ignores
+# Note we don't ignore .vscode. I want launch.json and vscode settings to be common
+.vs
+*.csproj
+*.csproj.*

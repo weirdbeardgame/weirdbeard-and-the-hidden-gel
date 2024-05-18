@@ -21,7 +21,4 @@ public partial class WeaponSlot : Node
             _Icon = I;
         }
     }
-
-
-
 }
