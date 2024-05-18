@@ -6,7 +6,7 @@
             "command": "dotnet",
             "type": "process",
             "args": [
-                "build"
+                "build",
             ],
             "problemMatcher": "$msCompile",
             "presentation": {
@@ -14,9 +14,43 @@
                 "reveal": "silent",
                 "focus": false,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false
             }
-        }
+        },
+        {
+            "label": "coverage",
+            "group": "test",
+            "command": "${workspaceFolder}/coverage.sh",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+        },
+        {
+            "label": "build-solutions",
+            "group": "test",
+            "command": "dotnet restore; ${env:GODOT} --headless --build-solutions --quit || exit 0",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            }
+        },
     ]
 }
