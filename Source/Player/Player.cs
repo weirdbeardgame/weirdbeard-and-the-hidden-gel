@@ -154,7 +154,7 @@ public partial class Player : Actor
         WeaponCommon ToUse = WeaponSlot.Weapon.Instantiate<WeaponCommon>();
         ToUse.GlobalPosition = GlobalPosition;
         SceneManager.s_CurrentScene.AddChild(ToUse);
-        ToUse.Attack(Direction.Sign(), GetTree().CurrentScene, this);
+        ToUse.Attack(Direction, GetTree().CurrentScene, this);
     }
 
     // Game Grumps joke
@@ -192,6 +192,8 @@ public partial class Player : Actor
     public override void _Process(double delta)
     {
         base._Process(delta);
+
+        GD.Print("Direction Plyr: ", Direction);
 
         DetectObjects();
 

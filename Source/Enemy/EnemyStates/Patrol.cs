@@ -59,7 +59,6 @@ public partial class Patrol : State
 
         _inputVelocity.X = Enemy.Direction.X * Enemy.Speed;
 
-        GD.Print("Velocity: ", _inputVelocity);
         return _inputVelocity;
     }
 

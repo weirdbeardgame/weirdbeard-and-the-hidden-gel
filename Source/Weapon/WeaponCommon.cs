@@ -21,6 +21,8 @@ public partial class WeaponCommon : CharacterBody2D
     [Export]
     protected Vector2 _PushbackForce;
 
+    protected Vector2 _Direction;
+
     protected AnimationPlayer _AnimationPlayer;
 
     [Export]
@@ -56,6 +58,8 @@ public partial class WeaponCommon : CharacterBody2D
 
     public void Attack(Vector2 Direction, Node scene, Player P = null)
     {
+        GD.Print("Direction: ", Direction);
+        _Direction = Direction;
         switch (_WeaponType)
         {
             case WeaponType.SWING:
@@ -65,7 +69,7 @@ public partial class WeaponCommon : CharacterBody2D
             case WeaponType.THROW:
                 if (_CurrentAmmoAmnt > 0)
                 {
-                    Velocity += Shoot(Direction);
+                    Velocity += Shoot(_Direction);
                     _CurrentAmmoAmnt -= 1;
                     ApplyPushBack(P);
                 }
