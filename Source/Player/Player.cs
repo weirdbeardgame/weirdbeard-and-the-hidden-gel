@@ -154,7 +154,7 @@ public partial class Player : Actor
         WeaponCommon ToUse = WeaponSlot.Weapon.Instantiate<WeaponCommon>();
         ToUse.GlobalPosition = GlobalPosition;
         SceneManager.s_CurrentScene.AddChild(ToUse);
-        ToUse.Attack(Direction, GetTree().CurrentScene, this);
+        ToUse.Attack(Direction, GetTree().CurrentScene, WeaponUser.PLAYER, this);
     }
 
     // Game Grumps joke
