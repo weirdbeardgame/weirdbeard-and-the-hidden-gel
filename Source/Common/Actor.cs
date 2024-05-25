@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+public enum Direction { LEFT = 0, RIGHT = 1 };
+
 public partial class Actor : CharacterBody2D
 {
     private StateMachine _stateMachine;

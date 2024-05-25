@@ -152,8 +152,8 @@ public partial class Player : Actor
     public void Attack()
     {
         WeaponCommon ToUse = WeaponSlot.Weapon.Instantiate<WeaponCommon>();
-        ToUse.GlobalPosition = GlobalPosition;
-        SceneManager.s_CurrentScene.AddChild(ToUse);
+        //ToUse.GlobalPosition = GlobalPosition;
+        //SceneManager.s_CurrentScene.AddChild(ToUse);
         ToUse.Attack(Direction, GetTree().CurrentScene, WeaponUser.PLAYER, this);
     }
 

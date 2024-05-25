@@ -1,7 +1,6 @@
 using Godot;
 using System;
 
-public enum EnemyDirection { LEFT = 0, RIGHT = 1 };
 
 public partial class Enemy : Actor
 {

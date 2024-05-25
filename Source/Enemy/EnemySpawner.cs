@@ -8,7 +8,7 @@ public partial class EnemySpawner : Node2D
     PackedScene _Spawn;
 
     [Export]
-    EnemyDirection _EnemyDirection = EnemyDirection.LEFT;
+    Direction _EnemyDirection = Direction.LEFT;
 
     Vector2 _EnePos, _ScreenSize;
 

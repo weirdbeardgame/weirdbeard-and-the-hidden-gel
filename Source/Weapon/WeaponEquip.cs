@@ -22,6 +22,17 @@ public partial class WeaponEquip : Area2D
         {
             Player = (Player)body;
             Player.EquipWeapon(_Weapon, weap.Icon);
+            if (weap is Thrown)
+            {
+                var Shootable = (Thrown)weap;
+                // Issa gunn!!
+                if (Shootable.HasAmmo)
+                {
+                    Shootable.GlobalPosition = Player.GlobalPosition + new Vector2(5, -30);
+                    Player.AddChild(Shootable);
+                }
+
+            }
             QueueFree();
         }
     }

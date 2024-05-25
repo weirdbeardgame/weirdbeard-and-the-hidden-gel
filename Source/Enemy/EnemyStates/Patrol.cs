@@ -27,17 +27,17 @@ public partial class Patrol : State
         base.Start();
     }
 
-    public void ChangeDirection(EnemyDirection dirToWalk)
+    public void ChangeDirection(Direction dirToWalk)
     {
         Enemy.Sprite = (Sprite2D)Enemy.GetNode("Enemy");
         switch (dirToWalk)
         {
-            case EnemyDirection.LEFT:
+            case Direction.LEFT:
                 Enemy.Sprite.FlipH = false;
                 Enemy.Direction.X = -1.0f;
                 break;
 
-            case EnemyDirection.RIGHT:
+            case Direction.RIGHT:
                 Enemy.Sprite.FlipH = true;
                 Enemy.Direction.X = 1.0f;
                 break;
@@ -50,11 +50,11 @@ public partial class Patrol : State
 
         if (!_right.IsColliding())
         {
-            ChangeDirection(EnemyDirection.LEFT);
+            ChangeDirection(Direction.LEFT);
         }
         else if (!_left.IsColliding())
         {
-            ChangeDirection(EnemyDirection.RIGHT);
+            ChangeDirection(Direction.RIGHT);
         }
 
         _inputVelocity.X = Enemy.Direction.X * Enemy.Speed;
