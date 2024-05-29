@@ -423,9 +423,6 @@ hframes = 5
 vframes = 4
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_sja6h")
-}
 tree_root = SubResource("11")
 anim_player = NodePath("../AnimationPlayer")
 

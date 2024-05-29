@@ -6,13 +6,13 @@
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(28, 13)
 
-[node name="Weapon" type="CharacterBody2D" node_paths=PackedStringArray("Icon")]
+[node name="Weapon" type="Area2D" node_paths=PackedStringArray("Icon")]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_ma6y3")
 _MaxAmmoAmnt = 10
 _Name = "Dagger"
-_Speed = 2.0
+_Speed = 350.0
 Icon = NodePath("sprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -24,5 +24,3 @@ texture = ExtResource("1_jw3qn")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-4.76837e-07, 1.19209e-07)
 scale = Vector2(1.4, 0.7)
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnExit"]

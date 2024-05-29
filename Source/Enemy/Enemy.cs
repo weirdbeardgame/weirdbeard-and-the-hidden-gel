@@ -40,11 +40,6 @@ public partial class Enemy : Actor
         ResetEnemy();
     }
 
-    public void Destroy()
-    {
-        Sprite = null;
-    }
-
     public void DetectPlayer(Node2D body)
     {
         if (body is Player)
@@ -67,7 +62,7 @@ public partial class Enemy : Actor
 
     public override void _PhysicsProcess(double delta)
     {
-        GD.Print("Gravity: " + Gravity);
+        //GD.Print("Gravity: " + Gravity);
         ApplyGravity((float)delta);
         MoveAndSlide();
     }

@@ -152,9 +152,7 @@ public partial class Player : Actor
     public void Attack()
     {
         WeaponCommon ToUse = WeaponSlot.Weapon.Instantiate<WeaponCommon>();
-        //ToUse.GlobalPosition = GlobalPosition;
-        //SceneManager.s_CurrentScene.AddChild(ToUse);
-        ToUse.Attack(Direction, GetTree().CurrentScene, WeaponUser.PLAYER, this);
+        ToUse.Attack(Direction, SceneManager.s_CurrentScene, WeaponUser.PLAYER, this);
     }
 
     // Game Grumps joke
@@ -193,7 +191,7 @@ public partial class Player : Actor
     {
         base._Process(delta);
 
-        GD.Print("Direction Plyr: ", Direction);
+        //GD.Print("Direction Plyr: ", Direction);
 
         DetectObjects();
 

@@ -1,18 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b50riefpw6ukw"]
+[gd_scene load_steps=3 format=3 uid="uid://b50riefpw6ukw"]
 
-[ext_resource type="Script" path="res://Source/Weapon/Thrown.cs" id="1_6ca6a"]
 [ext_resource type="Texture2D" uid="uid://dxwt8qk2kq5nv" path="res://Assets/resources/Sprites/Flintlock Pistol.png" id="1_co20i"]
-[ext_resource type="PackedScene" uid="uid://7np6sangvdmb" path="res://Assets/resources/Weapons/WeaponComponents/Bullet.tscn" id="2_gdvso"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvwd8"]
 size = Vector2(28, 13)
 
-[node name="Weapon" type="CharacterBody2D" node_paths=PackedStringArray("Icon")]
-script = ExtResource("1_6ca6a")
-_Ammo = ExtResource("2_gdvso")
-_MaxAmmoAmnt = 100
-_Speed = 10.0
-Icon = NodePath("sprite")
+[node name="Gun" type="Area2D"]
 
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(-1.5, -1)
@@ -20,6 +13,7 @@ scale = Vector2(0.755102, 0.782609)
 texture = ExtResource("1_co20i")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(-15, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cvwd8")

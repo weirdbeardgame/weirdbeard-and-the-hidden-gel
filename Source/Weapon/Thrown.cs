@@ -5,7 +5,7 @@ public partial class Thrown : WeaponCommon
 {
 
     [Export]
-    PackedScene _Ammo;
+    PackedScene _Equippable;
 
     [Export]
     protected int _MaxAmmoAmnt;
@@ -13,7 +13,7 @@ public partial class Thrown : WeaponCommon
     // Yes Captian!
     private VisibleOnScreenNotifier2D _OnScreen;
 
-    private CharacterBody2D _SpawnedAmmo;
+    private Area2D _SpawnedAmmo;
 
     private KinematicCollision2D _Col;
 
@@ -21,37 +21,34 @@ public partial class Thrown : WeaponCommon
     public override void _Ready()
     {
         _OnScreen = GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D");
+        BodyEntered += DetectHit;
     }
 
-    public bool HasAmmo => _Ammo != null;
+    public bool HasAnEquip => _Equippable != null;
 
+    public Area2D EquipObj => _Equippable.Instantiate<Area2D>();
+
+    public override Vector2 Move() => _Speed * _Direction;
 
     public override void Shoot(Vector2 Dir, Vector2 Pos)
     {
         _Direction = Dir;
-        if (_Ammo != null)
-        {
-            GD.Print("Guuunnnn");
-            _SpawnedAmmo = _Ammo.Instantiate<CharacterBody2D>();
-            _SpawnedAmmo.GlobalPosition = Pos;
-            SceneManager.s_CurrentScene.AddChild(_SpawnedAmmo);
-        }
-
-        else
-        {
-            GlobalPosition = Pos;
-            GetNode<Sprite2D>("sprite").FlipH = (bool)(_Direction.X > 0);
-            AddChild(this);
-        }
+        GlobalPosition = Pos;
+        GetNode<Sprite2D>("sprite").FlipH = (bool)(_Direction.X < 0);
+        SceneManager.s_CurrentScene.AddChild(this);
     }
-
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+        _Velocity = Move();
+
+        Position += _Velocity * (float)delta;
+
         if (!_OnScreen.IsOnScreen())
         {
-            QueueFree();
+            //GD.Print("Off Screen");
+            //QueueFree();
         }
     }
 }

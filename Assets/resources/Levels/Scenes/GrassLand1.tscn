@@ -466,5 +466,5 @@ _Spawn = ExtResource("12_j4hlb")
 position = Vector2(238, -225)
 _Spawn = ExtResource("13_i2ang")
 
-[node name="Sword" parent="." instance=ExtResource("19_la6x4")]
-position = Vector2(39, -26)
+[node name="Flintlock" parent="." instance=ExtResource("19_la6x4")]
+position = Vector2(37, -32)

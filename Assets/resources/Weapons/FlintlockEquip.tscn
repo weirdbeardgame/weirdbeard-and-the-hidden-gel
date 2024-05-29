@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1pqbs5eqvhn0"]
 
 [ext_resource type="Script" path="res://Source/Weapon/WeaponEquip.cs" id="1_v7cvn"]
-[ext_resource type="PackedScene" uid="uid://b50riefpw6ukw" path="res://Assets/resources/Weapons/Flintlock.tscn" id="2_xubbs"]
+[ext_resource type="PackedScene" uid="uid://7np6sangvdmb" path="res://Assets/resources/Weapons/WeaponComponents/Bullet.tscn" id="2_ni008"]
 [ext_resource type="Texture2D" uid="uid://dxwt8qk2kq5nv" path="res://Assets/resources/Sprites/Flintlock Pistol.png" id="3_ut4mw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efgpd"]
@@ -10,13 +10,13 @@ size = Vector2(39.9969, 16.9984)
 [node name="Flintlock" type="Area2D"]
 collision_mask = 3
 script = ExtResource("1_v7cvn")
-_Weapon = ExtResource("2_xubbs")
+_Weapon = ExtResource("2_ni008")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.99768, -0.497671)
 rotation = -0.00155032
 shape = SubResource("RectangleShape2D_efgpd")
 
-[node name="DirkWeapon" type="Sprite2D" parent="."]
+[node name="Flintlock" type="Sprite2D" parent="."]
 position = Vector2(1, -1)
 texture = ExtResource("3_ut4mw")
