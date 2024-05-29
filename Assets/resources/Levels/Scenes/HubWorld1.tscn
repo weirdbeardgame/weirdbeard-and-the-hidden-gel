@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp7lwe2kqfvoj"]
+[gd_scene load_steps=4 format=3 uid="uid://dp7lwe2kqfvoj"]
 
 [ext_resource type="Script" path="res://Source/Levels/HubWorld/HubWorld.cs" id="1_kvx71"]
-[ext_resource type="AudioStream" uid="uid://b076heh4elhr1" path="res://Assets/resources/Audio/Underwater_Theme.wav" id="2_k7b0b"]
 [ext_resource type="PackedScene" uid="uid://bhw6crxsxyo5v" path="res://Assets/resources/Levels/Components/LevelSpace.tscn" id="3_3darn"]
 [ext_resource type="PackedScene" uid="uid://b6d6j6xab8jj" path="res://Assets/resources/Levels/Components/HubWorldActor.tscn" id="4_pny50"]
 
@@ -9,7 +8,6 @@
 script = ExtResource("1_kvx71")
 levelSpaces = [NodePath("LevelSpace"), NodePath("LevelSpace2"), NodePath("LevelSpace3")]
 LevelName = "HubWorld1"
-audioFile = ExtResource("2_k7b0b")
 
 [node name="LevelSpace" parent="." instance=ExtResource("3_3darn")]
 offset_left = 11.0

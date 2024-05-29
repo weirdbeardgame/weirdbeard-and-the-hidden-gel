@@ -14,40 +14,23 @@ public partial class LevelCommon : Node2D
 
     AudioStreamPlayer BackgroundPlayer;
 
-    [Export] Resource audioFile;
+    [Export] Resource _AudioFile;
 
-    [Export] protected LevelType type;
+    [Export] protected LevelType _Type;
 
-    bool unlocked;
-    bool complete;
+    private bool _Unlocked;
+    private bool _Completed;
 
     // Use this for non static refs or event calls. IE. Needs to spawn player.
     // Scenes = GetNode<SceneManager>("/root/SceneManager");
     protected SceneManager Scenes;
 
-    public bool isComplete
-    {
-        get
-        {
-            return complete;
-        }
-    }
+    public bool Completed => _Completed;
 
-    public bool isUnlocked
-    {
-        get
-        {
-            return unlocked;
-        }
-    }
+    public bool Unlocked => _Unlocked;
 
-    public LevelType LevelType
-    {
-        get
-        {
-            return type;
-        }
-    }
+
+    public LevelType LevelType => _Type;
 
     public virtual void EnterLevel(Player p)
     {
@@ -56,22 +39,21 @@ public partial class LevelCommon : Node2D
         {
             Player = p;
         }
-
-        else if ((Player = (Player)GetNode("Player")) != null)
+        else
         {
-            GD.Print("Player Found");
+            Player = SceneManager._ActivePlayerRef;
         }
     }
 
     public void CreateAudioStream()
     {
-        BackgroundPlayer.Stream = GD.Load<AudioStream>(audioFile.ResourcePath);
+        BackgroundPlayer.Stream = GD.Load<AudioStream>(_AudioFile.ResourcePath);
         BackgroundPlayer.Play();
     }
 
     public void CompleteLevel()
     {
-        complete = true;
+        _Completed = true;
         Player.ResetPlayer();
         ExitLevel();
     }

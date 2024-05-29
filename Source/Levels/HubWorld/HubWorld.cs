@@ -32,7 +32,7 @@ public partial class HubWorld : LevelCommon
         }
         else
         {
-            Player = Scenes.CreatePlayer();
+            Player = SceneManager._ActivePlayerRef;
             Actor.Activate(Player);
         }
 

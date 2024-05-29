@@ -21,22 +21,25 @@ public partial class SceneManager : EditorPlugin
     [Export]
     string SceneManagerPath = "res://SceneManagerData.tres";
 
+    public static Player _ActivePlayerRef;
+
+
     // Because Plugin exists outside the SceneTree, we create our own Tree or refrence to one.
     SceneTree Tree;
 
     public static LevelCommon s_CurrentScene => s_currentScene;
 
-    private static SceneManager _sceneManager;
+    private static SceneManager _SceneManager;
 
     public static SceneManager Manager
     {
         get
         {
-            if (_sceneManager == null)
+            if (_SceneManager == null)
             {
-                _sceneManager = new SceneManager();
+                _SceneManager = new SceneManager();
             }
-            return _sceneManager;
+            return _SceneManager;
         }
     }
 
@@ -51,9 +54,13 @@ public partial class SceneManager : EditorPlugin
         ChangeSceneWithExit += LoadSubScene;
         ResetLevel += Reset;
         Tree = T;
+
         if (ResourceLoader.Exists(SceneManagerPath))
         {
             s_ManagerData = ResourceLoader.Load<Resource>(SceneManagerPath) as SceneManagerData;
+
+            _ActivePlayerRef = CreatePlayer();
+
         }
     }
 
