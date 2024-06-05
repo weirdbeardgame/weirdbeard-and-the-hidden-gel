@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c55tw5781ifk5"
-path="res://.godot/imported/layer-4_ship_vB.png-0f23c14b13e813105d131f4484efb3df.ctex"
+uid="uid://2lsvjc04wfs1"
+path="res://.godot/imported/background.png-e00e40607e8fc4650b6305e32d1d133d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer4Ship/layer-4_ship_vB.png"
-dest_files=["res://.godot/imported/layer-4_ship_vB.png-0f23c14b13e813105d131f4484efb3df.ctex"]
+source_file="res://Assets/resources/Tiles/BeachPirate WorldMap/background.png"
+dest_files=["res://.godot/imported/background.png-e00e40607e8fc4650b6305e32d1d133d.ctex"]
 
 [params]
 

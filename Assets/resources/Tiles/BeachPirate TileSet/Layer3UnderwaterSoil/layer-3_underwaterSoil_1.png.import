@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6l2wp06nd6q1"
-path="res://.godot/imported/layer-4_distantMountains.png-d47835e7164795cab081b5b5dc9553ec.ctex"
+uid="uid://cvlf6bnovb7s1"
+path="res://.godot/imported/layer-3_underwaterSoil_1.png-a1f5271a1b95586d489dbccd595f2f41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer4DistantMountain/layer-4_distantMountains.png"
-dest_files=["res://.godot/imported/layer-4_distantMountains.png-d47835e7164795cab081b5b5dc9553ec.ctex"]
+source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer3UnderwaterSoil/layer-3_underwaterSoil_1.png"
+dest_files=["res://.godot/imported/layer-3_underwaterSoil_1.png-a1f5271a1b95586d489dbccd595f2f41.ctex"]
 
 [params]
 
