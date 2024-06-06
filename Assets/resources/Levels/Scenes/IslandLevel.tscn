@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://c5xamvlnabd86"]
+[gd_scene load_steps=52 format=3 uid="uid://cmeqprhy6ib77"]
 
 [ext_resource type="Script" path="res://Source/Levels/Level.cs" id="1_16fg3"]
 [ext_resource type="PackedScene" uid="uid://dbpl0o8dv4kce" path="res://Assets/resources/Levels/Components/PlayerStartPoint.tscn" id="2_t00cc"]
@@ -50375,12 +50375,12 @@ sources/22 = SubResource("TileSetAtlasSource_8sdgj")
 sources/23 = SubResource("TileSetAtlasSource_ihifv")
 sources/24 = SubResource("TileSetAtlasSource_11vuw")
 
-[node name="Island Level" type="Node2D" node_paths=PackedStringArray("ActiveEnemySpanwers", "exits")]
+[node name="IslandLevel" type="Node2D" node_paths=PackedStringArray("ActiveEnemySpanwers", "exits")]
 script = ExtResource("1_16fg3")
 sublevels = {}
 ActiveEnemySpanwers = []
 exits = []
-LevelName = "Level 1"
+LevelName = "IslandLevel"
 
 [node name="Label" type="Label" parent="."]
 offset_left = 527.0

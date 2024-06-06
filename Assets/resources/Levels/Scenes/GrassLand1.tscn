@@ -453,7 +453,7 @@ position = Vector2(1604, -39)
 hub = "HubWorld1"
 
 [node name="PlayerStartPoint" parent="." instance=ExtResource("16_yc7ih")]
-position = Vector2(-1054, -61)
+position = Vector2(-1021, -51)
 
 [node name="RatSpawner" parent="." instance=ExtResource("19_kcaqp")]
 position = Vector2(502, -254)
