@@ -85,14 +85,17 @@ public partial class Player : Actor
 
     public int Collided(Player Player, string DataLayerName)
     {
-        var pos = _CurrentMap.LocalToMap(Player.GlobalPosition);
-        var data = _CurrentMap.GetCellTileData(1, pos, true);
-        if (data != null)
+        if (_CurrentMap != null)
         {
-            var num = data.GetCustomData(DataLayerName);
+            var pos = _CurrentMap.LocalToMap(Player.GlobalPosition);
+            var data = _CurrentMap.GetCellTileData(1, pos, true);
+            if (data != null)
+            {
+                var num = data.GetCustomData(DataLayerName);
 
-            _Obj = num.AsInt32();
-            return _Obj;
+                _Obj = num.AsInt32();
+                return _Obj;
+            }
         }
         return 0;
     }
@@ -159,6 +162,8 @@ public partial class Player : Actor
     public void GamaOvar()
     {
         // Davy Jones stuff in here?
+        // Play Animation
+        ResetPlayer();
     }
 
     public void EquipWeapon(PackedScene W, Sprite2D WeaponSprite)

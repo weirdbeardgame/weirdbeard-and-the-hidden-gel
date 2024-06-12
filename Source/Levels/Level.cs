@@ -68,7 +68,7 @@ public partial class Level : LevelCommon
             AddChild(Player);
         }
         Player.ResetPlayer();
-        CreateAudioStream();
+        //CreateAudioStream();
     }
 
     public override void Update()
@@ -96,25 +96,7 @@ public partial class Level : LevelCommon
     // Ensure the scene closes properly before changing.
     public override void ExitLevel()
     {
-        CallDeferred(nameof(CalledDefferedExitLevel));
-    }
-
-    public override void CalledDefferedExitLevel()
-    {
-        if (Player.IsInsideTree())
-        {
-            RemoveChild(Player);
-        }
-        /*if (ActiveEnemies != null)
-        {
-            foreach (var enemy in ActiveEnemies)
-            {
-                if (enemy.IsInsideTree())
-                {
-                    RemoveChild(enemy);
-                }
-            }
-        }*/
+        RemoveChild(Player);
     }
 }
 

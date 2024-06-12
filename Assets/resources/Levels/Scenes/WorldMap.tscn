@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://7niun4urxrjk"]
+[gd_scene load_steps=10 format=3 uid="uid://bmqgpd32823l"]
 
-[ext_resource type="Script" path="res://Source/Levels/Level.cs" id="1_awkyt"]
+[ext_resource type="Script" path="res://Source/Levels/HubWorld/HubWorld.cs" id="1_obje5"]
 [ext_resource type="PackedScene" uid="uid://dbpl0o8dv4kce" path="res://Assets/resources/Levels/Components/PlayerStartPoint.tscn" id="2_rsfsu"]
 [ext_resource type="Texture2D" uid="uid://brgnv8gfpww4g" path="res://Assets/resources/Tiles/BeachPirate WorldMap/tileset_worldmap_beachpirate_32x.png" id="3_3aqlw"]
 [ext_resource type="Texture2D" uid="uid://ct1ahumcrkkjx" path="res://Assets/resources/Tiles/BeachPirate WorldMap/tile_shipwreck.png" id="4_r20af"]
@@ -26403,11 +26403,9 @@ sources/9 = SubResource("TileSetAtlasSource_ps3jm")
 sources/10 = SubResource("TileSetAtlasSource_6ouwt")
 sources/11 = SubResource("TileSetAtlasSource_h44m8")
 
-[node name="WorldMap" type="Node2D" node_paths=PackedStringArray("ActiveEnemySpanwers", "exits")]
-script = ExtResource("1_awkyt")
-sublevels = {}
-ActiveEnemySpanwers = []
-exits = []
+[node name="WorldMap" type="Node2D" node_paths=PackedStringArray("levelSpaces")]
+script = ExtResource("1_obje5")
+levelSpaces = []
 LevelName = "Level 1"
 
 [node name="Label" type="Label" parent="."]

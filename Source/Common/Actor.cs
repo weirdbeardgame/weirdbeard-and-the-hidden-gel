@@ -115,11 +115,5 @@ public partial class Actor : CharacterBody2D
 
     // An admiral feat for a lowlife such as yourself. I have a question for you though.
     // What's that?
-    public void Die()
-    {
-        Destroyed.Invoke();
-        GetParent().RemoveChild(this);
-    }
-
-
+    public void Die() => Destroyed.Invoke();
 }
