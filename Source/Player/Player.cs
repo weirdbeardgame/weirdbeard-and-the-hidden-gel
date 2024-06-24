@@ -176,6 +176,7 @@ public partial class Player : Actor
         switch ((Objects)Collided(this, "ObjectType"))
         {
             case Objects.LADDER:
+                // Note to self. Detect top of latdder and end if at top.
                 if (Input.IsActionJustPressed("Up"))
                 {
                     StateMachine.UpdateState("LADDER");

@@ -75,6 +75,10 @@ public partial class StateMachine : Node
                 _state.Start();
             }
         }
+        if (_state == null)
+        {
+            InitState(newState);
+        }
     }
 
     public override void _PhysicsProcess(double delta)

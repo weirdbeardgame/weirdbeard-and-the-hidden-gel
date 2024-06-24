@@ -62,7 +62,7 @@ public partial class Actor : CharacterBody2D
     {
         if (StateMachine != null)
         {
-            StateMachine.UpdateState(state);
+            GetStateMachine().UpdateState(state);
         }
     }
 

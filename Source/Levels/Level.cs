@@ -32,18 +32,6 @@ public partial class Level : LevelCommon
     {
         base.EnterLevel(p);
 
-        PlayerStartPoint = GetNode<Node2D>("PlayerStartPoint");
-
-        if (CurrentCheckpoint != null)
-        {
-            Player.Position = CurrentCheckpoint.GlobalPosition;
-        }
-        else
-        {
-            // Need to grab a "Player Starting place"
-            Player.Position = PlayerStartPoint.GlobalPosition;
-        }
-
         if (ActiveEnemySpanwers != null)
         {
             foreach (var spawner in ActiveEnemySpanwers)
@@ -68,6 +56,7 @@ public partial class Level : LevelCommon
             AddChild(Player);
         }
         Player.ResetPlayer();
+        ResetPlayerPosition();
         //CreateAudioStream();
     }
 
@@ -75,6 +64,22 @@ public partial class Level : LevelCommon
     {
         base.Update();
     }
+
+    public void ResetPlayerPosition()
+    {
+        PlayerStartPoint = GetNode<Node2D>("PlayerStartPoint");
+
+        if (CurrentCheckpoint != null)
+        {
+            Player.Position = CurrentCheckpoint.GlobalPosition;
+        }
+        else
+        {
+            // Need to grab a "Player Starting place"
+            Player.Position = PlayerStartPoint.GlobalPosition;
+        }
+    }
+
 
     public override void ResetLevel()
     {
@@ -96,6 +101,7 @@ public partial class Level : LevelCommon
     // Ensure the scene closes properly before changing.
     public override void ExitLevel()
     {
+        ResetPlayerPosition();
         RemoveChild(Player);
     }
 }

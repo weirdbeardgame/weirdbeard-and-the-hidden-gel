@@ -8,7 +8,10 @@ public partial class Death : State
     public override void _Ready()
     {
         StateName = "DEATH";
-        Player = (Player)GetParent<Player>();
+        if (Player == null)
+        {
+            Player = (Player)GetParent<Player>();
+        }
         StateMachine = (StateMachine)GetParent<Player>().GetNode<StateMachine>("StateMachine");
         StateMachine.AddState(this, StateName);
     }
