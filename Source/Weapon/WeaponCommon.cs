@@ -31,7 +31,7 @@ public partial class WeaponCommon : Area2D
 
     [Export]
     public Sprite2D Icon;
-    private Node2D _SpawnPoint;
+    private Vector2 _SpawnPoint;
     private int _CurrentAmmoAmnt;
 
     // Called when the node enters the scene tree for the first time.
@@ -39,6 +39,8 @@ public partial class WeaponCommon : Area2D
     {
         //Player = (Player)SceneManager.s_CurrentScene.GetNode("Player");
         _AnimationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
+        BodyEntered += DetectHit;
+
     }
 
     public virtual void Shoot(Vector2 Dir, Vector2 Pos)
@@ -66,14 +68,15 @@ public partial class WeaponCommon : Area2D
 
     public void DetectHit(Node2D body)
     {
-        GD.Print("Its a HIT!");
         switch (_User)
         {
             case WeaponUser.PLAYER:
                 if (body is not Player && body is Enemy)
                 {
                     Enemy ene = (Enemy)body;
+                    GD.Print("Detected Enemy");
                     ene.Die();
+                    QueueFree();
                 }
                 break;
 
@@ -81,31 +84,20 @@ public partial class WeaponCommon : Area2D
                 if (body is Player && body is not Enemy)
                 {
                     Player plyr = (Player)body;
+                    GD.Print("Detected Player");
                     plyr.Die();
+                    QueueFree();
                 }
                 break;
         }
-
-        QueueFree();
     }
 
 
     public void Attack(Vector2 Direction, Node scene, WeaponUser U, Actor P)
     {
-        _Direction = Direction;
         _User = U;
-
-
-        Vector2 Pos;
-        var SpawnPoint = P.GetNode<Node2D>("Gun/SpawnPoint");
-        if (SpawnPoint != null)
-        {
-            Pos = SpawnPoint.GlobalPosition;
-        }
-        else
-        {
-            Pos = P.GlobalPosition;
-        }
+        _Direction = Direction;
+        _SpawnPoint = GetNodeOrNull<Node2D>("Gun/SpawnPoint")?.GlobalPosition ?? P.GlobalPosition;
 
         switch (_WeaponType)
         {
@@ -117,7 +109,7 @@ public partial class WeaponCommon : Area2D
                 //_AnimationPlayer.Play("Shoot");
                 //if (_CurrentAmmoAmnt > 0)
                 //{
-                Shoot(_Direction, P.GlobalPosition);
+                Shoot(_Direction, _SpawnPoint);
                 _CurrentAmmoAmnt -= 1;
                 ApplyPushBack(P);
                 //}

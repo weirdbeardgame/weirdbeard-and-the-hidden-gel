@@ -8,7 +8,7 @@ size = Vector2(28, 13)
 
 [node name="Weapon" type="Area2D" node_paths=PackedStringArray("Icon")]
 collision_layer = 8
-collision_mask = 4
+collision_mask = 6
 script = ExtResource("1_ma6y3")
 _MaxAmmoAmnt = 10
 _Name = "Dagger"
@@ -24,3 +24,5 @@ texture = ExtResource("1_jw3qn")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-4.76837e-07, 1.19209e-07)
 scale = Vector2(1.4, 0.7)
+
+[connection signal="body_entered" from="." to="." method="DetectHit"]

@@ -21,7 +21,6 @@ public partial class Thrown : WeaponCommon
     public override void _Ready()
     {
         _OnScreen = GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D");
-        BodyEntered += DetectHit;
     }
 
     public bool HasAnEquip => _Equippable != null;

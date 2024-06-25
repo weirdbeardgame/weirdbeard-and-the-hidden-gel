@@ -14,7 +14,10 @@ public partial class EnemySpawner : Node2D
 
     LevelCommon _ActiveScene;
 
+    // Default to true because we want Spawner to run at start.
     bool _IsDestroyed = true;
+
+    Enemy _Enemy;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -23,19 +26,31 @@ public partial class EnemySpawner : Node2D
         _ActiveScene = (LevelCommon)Owner;
     }
 
-    public void Destroyed() => _IsDestroyed = true;
+    // We'll just respawn it anyway, might as well eradicate active instance entirely from memory and reallocate.
+    public void Destroyed()
+    {
+        _IsDestroyed = true;
+        RemoveChild(_Enemy);
+        _Enemy.QueueFree();
+    }
 
     public void Spawn()
     {
-        if (_IsDestroyed)
+        // Check if Enemy is Destroyed, extra check incase _IsDestroyed accidentially set to true but Enemy actually exists
+        if (_IsDestroyed && !HasNode("Enemy"))
         {
-            var act = _Spawn.Instantiate<Actor>();
+            _Enemy = (Enemy)_Spawn.Instantiate<Actor>();
 
-            act.GlobalPosition = GlobalPosition;
-            CallDeferred("add_child", act);
-            act.Destroyed += Destroyed;
+            _Enemy.GlobalPosition = GlobalPosition;
+            CallDeferred("add_child", _Enemy);
+            _Enemy.Destroyed += Destroyed;
 
             _IsDestroyed = false; // Enemy is active :D
+        }
+        // Fix the oopises just incase
+        if (_IsDestroyed && HasNode("Enemy"))
+        {
+            _IsDestroyed = false;
         }
 
     }

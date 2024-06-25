@@ -10,7 +10,7 @@ radius = 22.5866
 [node name="Bullet" type="Area2D"]
 scale = Vector2(-0.168386, -0.165539)
 collision_layer = 8
-collision_mask = 5
+collision_mask = 6
 script = ExtResource("1_4os4u")
 _Equippable = ExtResource("2_yaxre")
 _Speed = 500.0
@@ -27,3 +27,5 @@ shape = SubResource("CircleShape2D_vtyq3")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(2.38419e-07, -1.62068)
 scale = Vector2(2.25608, 2.32297)
+
+[connection signal="body_entered" from="." to="." method="DetectHit"]

@@ -18,6 +18,9 @@ public partial class Enemy : Actor
 
     public bool PlayerDetected;
 
+    public Action EnemyDied;
+
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -38,6 +41,8 @@ public partial class Enemy : Actor
         Gravity = DefaultGravity;
 
         ResetEnemy();
+
+        Destroyed += EnemyDie;
     }
 
     public void DetectPlayer(Node2D body)
@@ -48,9 +53,12 @@ public partial class Enemy : Actor
             var spaceState = GetWorld2D().DirectSpaceState;
             var query = PhysicsRayQueryParameters2D.Create(Vector2.Zero, new Vector2(50, 100));
             var result = spaceState.IntersectRay(query);
-            PlayerDetected = result["collider"] is Player;
+            //PlayerDetected = result["collider"] is Player;
         }
     }
+
+    public void EnemyDie() => EnemyDied.Invoke();
+
 
     public void ResetEnemy()
     {
