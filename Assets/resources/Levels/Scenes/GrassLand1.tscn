@@ -427,6 +427,7 @@ ActiveEnemySpanwers = [NodePath("PirateSpawner"), NodePath("RatSpawner")]
 exits = []
 LevelName = "GrassLand1"
 metadata/_edit_vertical_guides_ = [-332.0]
+metadata/_edit_horizontal_guides_ = [-615.0]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_k6xai")
@@ -456,11 +457,11 @@ hub = "HubWorld1"
 position = Vector2(-1021, -51)
 
 [node name="RatSpawner" parent="." instance=ExtResource("19_kcaqp")]
-position = Vector2(502, -254)
+position = Vector2(498, -250)
 _Spawn = ExtResource("12_j4hlb")
 
 [node name="PirateSpawner" parent="." instance=ExtResource("19_kcaqp")]
-position = Vector2(238, -225)
+position = Vector2(207, -242)
 _Spawn = ExtResource("13_i2ang")
 
 [node name="Flintlock" parent="." instance=ExtResource("19_la6x4")]

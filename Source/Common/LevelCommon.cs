@@ -4,6 +4,8 @@ using Godot.Collections;
 
 public enum LevelType { DEFAULT, GRASS, ISLAND, ICE, WATER }
 
+public enum LevelCompleteState { COMPLETE, NON_COMPLETE }
+
 [Tool]
 public partial class LevelCommon : Node2D
 {
@@ -19,29 +21,33 @@ public partial class LevelCommon : Node2D
     [Export] protected LevelType _Type;
 
     private bool _Unlocked;
-    private bool _Completed;
+    private LevelCompleteState _Completed;
 
     // Use this for non static refs or event calls. IE. Needs to spawn player.
     // Scenes = GetNode<SceneManager>("/root/SceneManager");
     protected SceneManager Scenes;
 
-    public bool Completed => _Completed;
+    public LevelCompleteState Completed => _Completed;
+
+    public bool IsLevelComplete => _Completed == LevelCompleteState.COMPLETE;
 
     public bool Unlocked => _Unlocked;
-
 
     public LevelType LevelType => _Type;
 
     public virtual void EnterLevel(Player p)
     {
         BackgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
-        if (p != null)
+        if (Player == null)
         {
-            Player = p;
-        }
-        else
-        {
-            Player = SceneManager._ActivePlayerRef;
+            if (p != null)
+            {
+                Player = p;
+            }
+            else
+            {
+                Player = SceneManager._ActivePlayerRef;
+            }
         }
     }
 
@@ -53,8 +59,7 @@ public partial class LevelCommon : Node2D
 
     public void CompleteLevel()
     {
-        _Completed = true;
-        Player.ResetPlayer();
+        _Completed = LevelCompleteState.COMPLETE;
         ExitLevel();
     }
 

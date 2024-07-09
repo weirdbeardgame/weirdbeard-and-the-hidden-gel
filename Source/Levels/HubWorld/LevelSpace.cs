@@ -15,8 +15,10 @@ public partial class LevelSpace : Control
     {
         TextLabel = GetNode<Label>("LevelName");
         Scenes = SceneManager.Manager;
-        Scene = (Level)Scenes.GetLevel(LevelName);
-        TextLabel.Text = Scene.LevelName;
+        if ((Scene = (Level)Scenes.GetLevel(LevelName)) != null)
+        {
+            TextLabel.Text = Scene.LevelName;
+        }
     }
 
     public void ActivateLevel(Player p)

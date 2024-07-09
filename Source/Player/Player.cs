@@ -21,6 +21,11 @@ public partial class Player : Actor
 
     public static Action<PowerUp> OnEquip;
 
+    public void ClearCollidedObject() => _Obj = 0;
+
+    public void EquipWeapon(PackedScene W, Sprite2D WeaponSprite) => WeaponSlot.SlotWeapon(W, WeaponSprite);
+
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -40,8 +45,6 @@ public partial class Player : Actor
         GetStateMachine();
 
         Destroyed += GamaOvar;
-
-        _CurrentMap = GetParent().GetNode<TileMap>("TileMap");
 
         StateMachine.InitState("IDLE");
         OnEquip += EquipPowerup;
@@ -81,8 +84,6 @@ public partial class Player : Actor
         }
     }
 
-    public void ClearCollidedObject() => _Obj = 0;
-
     public int Collided(Player Player, string DataLayerName)
     {
         if (_CurrentMap != null)
@@ -100,11 +101,27 @@ public partial class Player : Actor
         return 0;
     }
 
+    public void ResetPlayerPosition(Checkpoint CurrentCheckpoint)
+    {
+        Node2D PlayerStartPoint = SceneManager.s_CurrentScene.GetNode<Node2D>("PlayerStartPoint");
+
+        if (CurrentCheckpoint != null)
+        {
+            Position = CurrentCheckpoint.GlobalPosition;
+        }
+        else
+        {
+            // Need to grab a "Player Starting place"
+            Position = PlayerStartPoint.GlobalPosition;
+        }
+    }
 
     public void ResetPlayer()
     {
         ResetActor();
         SetState("IDLE");
+        _CurrentMap = GetParent().GetNode<TileMap>("TileMap");
+
         if (!_camera.Enabled)
         {
             ActivateCamera();
@@ -164,11 +181,6 @@ public partial class Player : Actor
         // Davy Jones stuff in here?
         // Play Animation
         ResetPlayer();
-    }
-
-    public void EquipWeapon(PackedScene W, Sprite2D WeaponSprite)
-    {
-        WeaponSlot.SlotWeapon(W, WeaponSprite);
     }
 
     public void DetectObjects()

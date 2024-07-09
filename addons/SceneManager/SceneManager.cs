@@ -60,16 +60,14 @@ public partial class SceneManager : EditorPlugin
             s_ManagerData = ResourceLoader.Load<Resource>(SceneManagerPath) as SceneManagerData;
 
             _ActivePlayerRef = CreatePlayer();
-
         }
     }
 
     void Reset() => s_currentScene.ResetLevel();
 
-    public Player CreatePlayer() => s_ManagerData.CreatePlayer();
-
     public void DestroyPlayer(Player p) => p.Dispose();
 
+    public Player CreatePlayer() => s_ManagerData.CreatePlayer();
     public void LoadSubScene(PackedScene subscene, Player p, Exit exit) => CallDeferred(nameof(CallDeferredSub), subscene.Instantiate<LevelCommon>(), p);
 
 
@@ -170,7 +168,11 @@ public partial class SceneManager : EditorPlugin
 
     public LevelCommon GetLevel(string LevelName)
     {
-        return s_ManagerData.Level(LevelName);
+        if (s_ManagerData.Levels.ContainsKey(LevelName))
+        {
+            return s_ManagerData.Level(LevelName);
+        }
+        return null;
     }
 
     void CallDeferredSub(SubLevel toLoad, Player Player, LevelType type)

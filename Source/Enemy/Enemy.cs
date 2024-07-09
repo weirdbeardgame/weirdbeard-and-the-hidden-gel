@@ -9,16 +9,12 @@ public partial class Enemy : Actor
     [Export]
     public float MaxDetectDistance;
 
-    private RayCast2D _lineOfSight;
+    private RayCast2D _LineOfSight;
 
     private Player _player;
 
     private Area2D _death;
-    private Area2D _detectPlayer;
-
     public bool PlayerDetected;
-
-    public Action EnemyDied;
 
 
     // Called when the node enters the scene tree for the first time.
@@ -31,33 +27,30 @@ public partial class Enemy : Actor
         AnimPlayer.Play("Idle");
         Sprite = (Sprite2D)GetNode("Enemy");
 
-        _detectPlayer = GetNode<Area2D>("DetectPlayer");
-
-        _detectPlayer.BodyEntered += DetectPlayer;
-
-        _death = GetNode<Area2D>("Area2D");
-        _death.BodyEntered += KillPlayer;
-
         Gravity = DefaultGravity;
+
+        _LineOfSight = GetNode<RayCast2D>("LineOfSight");
 
         ResetEnemy();
 
-        Destroyed += EnemyDie;
     }
 
-    public void DetectPlayer(Node2D body)
+    public bool DetectPlayer()
     {
-        if (body is Player)
+        if (_LineOfSight.IsColliding())
         {
-            GD.Print("RAY");
-            var spaceState = GetWorld2D().DirectSpaceState;
-            var query = PhysicsRayQueryParameters2D.Create(Vector2.Zero, new Vector2(50, 100));
-            var result = spaceState.IntersectRay(query);
-            //PlayerDetected = result["collider"] is Player;
+            return _LineOfSight.GetCollider() is Player;
         }
+        return false;
     }
 
-    public void EnemyDie() => EnemyDied.Invoke();
+
+    public void DrawDebug()
+    {
+        DrawLine(_LineOfSight.Position, ToLocal(_LineOfSight.GetCollisionPoint()), new Color(1, 0, 0));
+    }
+
+    public void EnemyDie() => Destroyed.Invoke();
 
 
     public void ResetEnemy()
@@ -70,6 +63,7 @@ public partial class Enemy : Actor
 
     public override void _PhysicsProcess(double delta)
     {
+        GD.Print(DetectPlayer());
         //GD.Print("Gravity: " + Gravity);
         ApplyGravity((float)delta);
         MoveAndSlide();

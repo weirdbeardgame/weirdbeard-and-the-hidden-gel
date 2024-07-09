@@ -29,9 +29,12 @@ public partial class EnemySpawner : Node2D
 	// We'll just respawn it anyway, might as well eradicate active instance entirely from memory and reallocate.
 	public void Destroyed()
 	{
-		_IsDestroyed = true;
-		RemoveChild(_Enemy);
-		_Enemy.QueueFree();
+		if (_Enemy != null && !_IsDestroyed)
+		{
+			_IsDestroyed = true;
+			RemoveChild(_Enemy);
+			_Enemy.QueueFree();
+		}
 	}
 
 	public void Spawn()
@@ -41,10 +44,9 @@ public partial class EnemySpawner : Node2D
 		{
 			_Enemy = (Enemy)_Spawn.Instantiate<Actor>();
 
-			_Enemy.GlobalPosition = GlobalPosition;
 			CallDeferred("add_child", _Enemy);
+			_Enemy.Position = new Vector2(0, -5);
 			_Enemy.Destroyed += Destroyed;
-
 			_IsDestroyed = false; // Enemy is active :D
 		}
 		// Fix the oopises just incase

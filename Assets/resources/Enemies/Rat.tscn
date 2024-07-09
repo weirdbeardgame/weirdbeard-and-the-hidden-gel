@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dy00trcqorudr"]
+[gd_scene load_steps=22 format=3 uid="uid://dy00trcqorudr"]
 
 [ext_resource type="Script" path="res://Source/Enemy/Enemy.cs" id="1_rupad"]
 [ext_resource type="Texture2D" uid="uid://olrho45b17kq" path="res://Assets/resources/Sprites/Rat/Run_00.png" id="4"]
@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dee15uufror7k" path="res://Assets/resources/Sprites/Rat/Run_10.png" id="18"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(56, 51)
+size = Vector2(56, 63)
 
 [sub_resource type="Animation" id="Animation_nr8vv"]
 resource_name = "Idle"
@@ -73,12 +73,6 @@ _data = {
 "Walk": SubResource("3")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukw7t"]
-size = Vector2(57, 23)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ac3dd"]
-radius = 64.8845
-
 [node name="TestEnemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 5
@@ -88,11 +82,11 @@ DefaultGravity = 2000.0
 
 [node name="LineOfSight" type="RayCast2D" parent="."]
 position = Vector2(13, 5)
-target_position = Vector2(33, 0)
+target_position = Vector2(128, -1)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -10.5)
+position = Vector2(0, -16.5)
 shape = SubResource("1")
 
 [node name="Enemy" type="Sprite2D" parent="."]
@@ -104,15 +98,6 @@ texture = ExtResource("4")
 libraries = {
 "": SubResource("AnimationLibrary_gcm54")
 }
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(1, -1)
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1, 8)
-shape = SubResource("RectangleShape2D_ukw7t")
 
 [node name="Right" type="RayCast2D" parent="."]
 position = Vector2(31, -7.15256e-07)
@@ -137,11 +122,6 @@ StateName = "PATROL"
 
 [node name="Attack" type="Node" parent="."]
 script = ExtResource("16_n18co")
-
-[node name="DetectPlayer" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPlayer"]
-shape = SubResource("CircleShape2D_ac3dd")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("12")
