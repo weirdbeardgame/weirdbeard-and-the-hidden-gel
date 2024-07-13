@@ -5,104 +5,104 @@ using Godot.Collections;
 [Tool]
 public partial class Level : LevelCommon
 {
-    [Export]
-    Dictionary<string, PackedScene> sublevels;
+	[Export]
+	Dictionary<string, PackedScene> sublevels;
 
-    [Export]
-    public Array<EnemySpawner> ActiveEnemySpanwers;
+	[Export]
+	public Array<EnemySpawner> ActiveEnemySpanwers;
 
-    [Export]
-    public Array<Exit> exits;
+	[Export]
+	public Array<Exit> exits;
 
-    protected Checkpoint CurrentCheckpoint;
+	protected Checkpoint CurrentCheckpoint;
 
-    [Export]
-    public int maxEnemyAmnt;
-    LevelCommon ActiveSubScene;
+	[Export]
+	public int maxEnemyAmnt;
+	LevelCommon ActiveSubScene;
 
-    // Currently active subScene. Otherwise null
-    Level SubScene;
-    Camera2D camera;
+	// Currently active subScene. Otherwise null
+	Level SubScene;
+	Camera2D camera;
 
-    Rect2 mapLimits;
-    Vector2 mapCellsize;
-    Node2D PlayerStartPoint;
+	Rect2 mapLimits;
+	Vector2 mapCellsize;
+	Node2D PlayerStartPoint;
 
-    public override void EnterLevel(Player p)
-    {
-        base.EnterLevel(p);
+	public override void EnterLevel(Player p)
+	{
+		base.EnterLevel(p);
 
-        if (ActiveEnemySpanwers != null)
-        {
-            foreach (var spawner in ActiveEnemySpanwers)
-            {
-                spawner.Spawn();
-            }
-        }
+		if (ActiveEnemySpanwers != null)
+		{
+			foreach (var spawner in ActiveEnemySpanwers)
+			{
+				spawner.Spawn();
+			}
+		}
 
-        /*if (ActiveEnemies != null)
-        {
-            foreach (var Enemy in ActiveEnemies)
-            {
-                if (!Enemy.IsInsideTree())
-                {
-                    AddChild(Enemy);
-                }
-            }
-        }*/
+		/*if (ActiveEnemies != null)
+		{
+			foreach (var Enemy in ActiveEnemies)
+			{
+				if (!Enemy.IsInsideTree())
+				{
+					AddChild(Enemy);
+				}
+			}
+		}*/
 
-        if (!Player.IsInsideTree())
-        {
-            AddChild(Player);
-        }
-        Player.ResetPlayer();
-        ResetPlayerPosition();
-        //CreateAudioStream();
-    }
+		if (!Player.IsInsideTree())
+		{
+			AddChild(Player);
+		}
+		Player.ResetPlayer();
+		ResetPlayerPosition();
+		//CreateAudioStream();
+	}
 
-    public override void Update()
-    {
-        base.Update();
-    }
+	public override void Update()
+	{
+		base.Update();
+	}
 
-    public void ResetPlayerPosition()
-    {
-        PlayerStartPoint = GetNode<Node2D>("PlayerStartPoint");
+	public void ResetPlayerPosition()
+	{
+		PlayerStartPoint = GetNode<Node2D>("PlayerStartPoint");
 
-        if (CurrentCheckpoint != null)
-        {
-            Player.Position = CurrentCheckpoint.GlobalPosition;
-        }
-        else
-        {
-            // Need to grab a "Player Starting place"
-            Player.Position = PlayerStartPoint.GlobalPosition;
-        }
-    }
+		if (CurrentCheckpoint != null)
+		{
+			Player.Position = CurrentCheckpoint.GlobalPosition;
+		}
+		else
+		{
+			// Need to grab a "Player Starting place"
+			Player.Position = PlayerStartPoint.GlobalPosition;
+		}
+	}
 
 
-    public override void ResetLevel()
-    {
-        ExitLevel();
-        EnterLevel(Player);
-    }
+	public override void ResetLevel()
+	{
+		ExitLevel();
+		EnterLevel(Player);
+	}
 
-    public void Checkpoint(Checkpoint NewCheckpoint)
-    {
-        if (CurrentCheckpoint != null)
-        {
-            CurrentCheckpoint.Deactivate();
-        }
-        NewCheckpoint.isActive = true;
-        CurrentCheckpoint = NewCheckpoint;
-    }
+	public void Checkpoint(Checkpoint NewCheckpoint)
+	{
+		if (CurrentCheckpoint != null)
+		{
+			CurrentCheckpoint.Deactivate();
+		}
+		NewCheckpoint.isActive = true;
+		CurrentCheckpoint = NewCheckpoint;
+	}
 
-    // Clear the enemies and other data from the scene.
-    // Ensure the scene closes properly before changing.
-    public override void ExitLevel()
-    {
-        ResetPlayerPosition();
-        RemoveChild(Player);
-    }
+	// Clear the enemies and other data from the scene.
+	// Ensure the scene closes properly before changing.
+	public override void ExitLevel()
+	{
+		ResetPlayerPosition();
+		RemoveChild(Player);
+	}
 }
 
