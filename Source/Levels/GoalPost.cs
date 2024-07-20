@@ -15,12 +15,17 @@ public partial class GoalPost : Area2D
 
     public void OnTouch(Node2D body)
     {
+        CallDeferred(nameof(DeferredLevelComplete), body);
+    }
+
+    public void DeferredLevelComplete(Node2D body)
+    {
         if (_Current.IsLevelComplete)
         {
             return;
         }
 
-        if (_Current.LevelState == LevelCompleteState.ACTIVE)
+        if (_Current.LevelState == LevelState.ACTIVE)
         {
             if (body is Player)
             {

@@ -14,7 +14,12 @@ public partial class WeaponEquip : Area2D
         BodyEntered += Equip;
     }
 
-    public void Equip(object body)
+    public void Equip(Node2D body)
+    {
+        CallDeferred(nameof(DeferredEquip), body);
+    }
+
+    public void DeferredEquip(Node2D body)
     {
         GD.Print("Weapon Equip");
         WeaponCommon weap = _Weapon.Instantiate<WeaponCommon>();
