@@ -32,6 +32,20 @@ public partial class Level : LevelCommon
     {
         base.EnterLevel(p);
 
+        switch (_LevelState)
+        {
+            case LevelState.COMPLETE:
+                // Some objectives were completed, powerups that may be perma in the scene may be collected etc.
+                // Can also use this in games where there could be optional timed modes.
+                break;
+
+            case LevelState.NON_COMPLETE:
+
+                break;
+        }
+
+        _LevelState = LevelState.ACTIVE;
+
         if (ActiveEnemySpanwers != null)
         {
             foreach (var spawner in ActiveEnemySpanwers)
@@ -40,13 +54,13 @@ public partial class Level : LevelCommon
             }
         }
 
-        if (!Player.IsInsideTree())
+        if (!_Player.IsInsideTree())
         {
-            AddChild(Player);
+            AddChild(_Player);
         }
 
-        Player.ResetPlayer();
-        Player.ResetPlayerPosition(CurrentCheckpoint);
+        _Player.ResetPlayer();
+        _Player.ResetPlayerPosition(CurrentCheckpoint);
 
         //CreateAudioStream();
     }
@@ -54,10 +68,7 @@ public partial class Level : LevelCommon
     public override void Update()
     {
         base.Update();
-        if (IsLevelComplete)
-        {
 
-        }
     }
 
     public void ResetPlayerPosition()
@@ -66,20 +77,20 @@ public partial class Level : LevelCommon
 
         if (CurrentCheckpoint != null)
         {
-            Player.Position = CurrentCheckpoint.GlobalPosition;
+            _Player.Position = CurrentCheckpoint.GlobalPosition;
         }
         else
         {
             // Need to grab a "Player Starting place"
-            Player.Position = PlayerStartPoint.GlobalPosition;
+            _Player.Position = PlayerStartPoint.GlobalPosition;
         }
     }
 
     public override void ResetLevel()
     {
-        Player.ResetPlayerPosition(CurrentCheckpoint);
-        RemoveChild(Player);
-        EnterLevel(Player);
+        _Player.ResetPlayerPosition(CurrentCheckpoint);
+        RemoveChild(_Player);
+        EnterLevel(_Player);
     }
     public void Checkpoint(Checkpoint NewCheckpoint)
     {
@@ -95,13 +106,15 @@ public partial class Level : LevelCommon
     // Ensure the scene closes properly before changing.
     public override void ExitLevel()
     {
-        RemoveChild(Player);
+        RemoveChild(_Player);
         foreach (var spawner in ActiveEnemySpanwers)
         {
             spawner.Destroyed();
         }
 
-        CallDeferred("free");
+
+
+        QueueFree();
     }
 }
 

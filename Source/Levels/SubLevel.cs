@@ -14,15 +14,15 @@ public partial class SubLevel : LevelCommon
 
     public override void EnterSubLevel(Player p, SubLevel parent)
     {
-        Player = p;
+        _Player = p;
         //parentLevel = parent;
-        Player.ResetPlayer();
+        _Player.ResetPlayer();
     }
 
 
     public override void ExitSubLevel()
     {
-        Player = null;
+        _Player = null;
         GetTree().Root.RemoveChild(this);
         GetTree().Root.AddChild(parentLevel);
     }

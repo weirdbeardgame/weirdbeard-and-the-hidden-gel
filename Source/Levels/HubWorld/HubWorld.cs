@@ -25,15 +25,15 @@ public partial class HubWorld : LevelCommon
 		{
 			Actor = new HubActor();
 		}
-		if (Player != null)
+		if (_Player != null)
 		{
-			RemoveChild(Player);
-			Actor.Activate(Player);
+			RemoveChild(_Player);
+			Actor.Activate(_Player);
 		}
 		else
 		{
-			Player = SceneManager._ActivePlayerRef;
-			Actor.Activate(Player);
+			_Player = SceneManager._ActivePlayerRef;
+			Actor.Activate(_Player);
 		}
 
 		if (levelSpaces != null)
@@ -98,13 +98,13 @@ public partial class HubWorld : LevelCommon
 		if (Input.IsActionJustPressed("Submit"))
 		{
 			Actor.Deactivate();
-			levelSpaces[CurrentLevelIndex].ActivateLevel(Player);
+			levelSpaces[CurrentLevelIndex].ActivateLevel(_Player);
 		}
 	}
 
 	public override void ExitLevel()
 	{
 		base.ExitLevel();
-		//RemoveChild(Player);
+		//RemoveChild(_Player);
 	}
 }

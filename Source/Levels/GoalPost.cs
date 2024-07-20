@@ -5,19 +5,28 @@ public partial class GoalPost : Area2D
 {
     // To Do add gui selector in here for hub to transition to from SceneManager
     [Export] string hub;
-    LevelCommon current;
+
+    private LevelCommon _Current;
 
     public override void _Ready()
     {
-        current = (LevelCommon)GetParent();
+        _Current = (LevelCommon)GetParent();
     }
 
     public void OnTouch(Node2D body)
     {
-        if (body is Player)
+        if (_Current.IsLevelComplete)
         {
-            current.CompleteLevel();
-            SceneManager.ChangeScene(hub, (Player)body);
+            return;
+        }
+
+        if (_Current.LevelState == LevelCompleteState.ACTIVE)
+        {
+            if (body is Player)
+            {
+                _Current.CompleteLevel();
+                SceneManager.ChangeScene(hub, (Player)body);
+            }
         }
     }
 }

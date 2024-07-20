@@ -4,62 +4,72 @@ using Godot.Collections;
 
 public enum LevelType { DEFAULT, GRASS, ISLAND, ICE, WATER }
 
-public enum LevelCompleteState { COMPLETE, NON_COMPLETE }
+public enum LevelState { COMPLETE, ACTIVE, NON_COMPLETE }
 
 [Tool]
 public partial class LevelCommon : Node2D
 {
-    [Export]
-    public string LevelName;
-
-    protected Player Player;
-
-    AudioStreamPlayer BackgroundPlayer;
-
-    [Export] Resource _AudioFile;
-
-    [Export] protected LevelType _Type;
 
     private bool _Unlocked;
-    private LevelCompleteState _Completed;
+
+    protected Player _Player;
+
+    [Export]
+    private Resource _AudioFile;
+
+    [Export] protected LevelType _Type;
 
     // Use this for non static refs or event calls. IE. Needs to spawn player.
     // Scenes = GetNode<SceneManager>("/root/SceneManager");
     protected SceneManager Scenes;
 
-    public LevelCompleteState Completed => _Completed;
+    protected LevelState _LevelState;
 
-    public bool IsLevelComplete => _Completed == LevelCompleteState.COMPLETE;
+    private AudioStreamPlayer _BackgroundPlayer;
+
+    [Export]
+    public string LevelName;
+
+    public LevelState LevelState => _LevelState;
+
+    public bool IsLevelComplete => _LevelState == LevelState.COMPLETE;
 
     public bool Unlocked => _Unlocked;
 
     public LevelType LevelType => _Type;
 
+    // Potentially add Unlock conditions? For now we won't implement Level Unlocking just yet
+
+    public void Unlock() => _Unlocked = true;
+
+    public Action UnlockEvent;
+
+
     public virtual void EnterLevel(Player p)
     {
-        BackgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
-        if (Player == null)
+        _BackgroundPlayer = (AudioStreamPlayer)GetNode("BackgroundAudio");
+        if (_Player == null)
         {
             if (p != null)
             {
-                Player = p;
+                _Player = p;
             }
             else
             {
-                Player = SceneManager._ActivePlayerRef;
+                _Player = SceneManager._ActivePlayerRef;
             }
         }
     }
 
     public void CreateAudioStream()
     {
-        BackgroundPlayer.Stream = GD.Load<AudioStream>(_AudioFile.ResourcePath);
-        BackgroundPlayer.Play();
+        _BackgroundPlayer.Stream = GD.Load<AudioStream>(_AudioFile.ResourcePath);
+        _BackgroundPlayer.Play();
     }
 
     public void CompleteLevel()
     {
-        _Completed = LevelCompleteState.COMPLETE;
+        _LevelState = LevelState.COMPLETE;
         ExitLevel();
     }
 
