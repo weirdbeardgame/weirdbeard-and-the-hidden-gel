@@ -69,7 +69,6 @@ public partial class Player : Actor
 
     public void EquipPowerup(PowerUp power)
     {
-        GD.Print("POWER UP");
         if (CurrentPowerup != power)
         {
             if (StateMachine.Has(power.StateName))
@@ -208,8 +207,6 @@ public partial class Player : Actor
     public override void _Process(double delta)
     {
         base._Process(delta);
-
-        //GD.Print("Direction Plyr: ", Direction);
 
         DetectObjects();
 

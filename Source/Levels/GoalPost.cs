@@ -1,37 +1,19 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 
 public partial class GoalPost : Area2D
 {
+
+    public Action LevelComplete;
+
     // To Do add gui selector in here for hub to transition to from SceneManager
     [Export] string hub;
 
-    private LevelCommon _Current;
+    private LevelCommon _current;
 
-    public override void _Ready()
-    {
-        _Current = (LevelCommon)GetParent();
-    }
+    bool _isTouched;
 
-    public void OnTouch(Node2D body)
-    {
-        CallDeferred(nameof(DeferredLevelComplete), body);
-    }
+    public void OnTouch(Node2D body) => LevelComplete.Invoke();
 
-    public void DeferredLevelComplete(Node2D body)
-    {
-        if (_Current.IsLevelComplete)
-        {
-            return;
-        }
-
-        if (_Current.LevelState == LevelState.ACTIVE)
-        {
-            if (body is Player)
-            {
-                _Current.CompleteLevel();
-                SceneManager.ChangeScene(hub, (Player)body);
-            }
-        }
-    }
 }

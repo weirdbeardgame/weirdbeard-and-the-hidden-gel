@@ -9,10 +9,14 @@ public partial class Exit : Node2D
     [Export]
     PackedScene toTransportTo;
 
-    [Export]
-    Exit connectedExit;
+    // For transportation acroosed Sublevel to main level.
+    // Something tells me the level itself should keep track, not the exit
+    [Export] Exit connectedExit;
 
     LevelCommon currentLevel;
+
+    public static Action ExitLevel;
+
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()

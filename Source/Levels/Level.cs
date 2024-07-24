@@ -5,19 +5,20 @@ using Godot.Collections;
 [Tool]
 public partial class Level : LevelCommon
 {
-    [Export]
-    Dictionary<string, PackedScene> sublevels;
+    [Export] Dictionary<string, PackedScene> _Sublevels;
 
-    [Export]
-    public Array<EnemySpawner> ActiveEnemySpanwers;
+    [Export] private string _hub;
+    // If there are sub scenes / levels
+    [Export] private Array<Exit> _Exits;
 
-    [Export]
-    public Array<Exit> exits;
+    // Could also contain items like piece of map
+    [Export] private GoalPost _levelGoal;
+
+    [Export] private Array<EnemySpawner> _ActiveEnemySpanwers;
 
     protected Checkpoint CurrentCheckpoint;
 
-    [Export]
-    public int maxEnemyAmnt;
+    [Export] public int _MaxEnemyAmnt;
     LevelCommon ActiveSubScene;
 
     // Currently active subScene. Otherwise null
@@ -44,23 +45,25 @@ public partial class Level : LevelCommon
                 break;
         }
 
+        _levelGoal.LevelComplete += ExitLevel;
+
         _LevelState = LevelState.ACTIVE;
 
-        if (ActiveEnemySpanwers != null)
+        if (_ActiveEnemySpanwers != null)
         {
-            foreach (var spawner in ActiveEnemySpanwers)
+            foreach (var spawner in _ActiveEnemySpanwers)
             {
                 spawner.Spawn();
             }
         }
 
+        _Player.ResetPlayerPosition(CurrentCheckpoint);
         if (!_Player.IsInsideTree())
         {
             AddChild(_Player);
         }
 
         _Player.ResetPlayer();
-        _Player.ResetPlayerPosition(CurrentCheckpoint);
 
         //CreateAudioStream();
     }
@@ -107,12 +110,12 @@ public partial class Level : LevelCommon
     public override void ExitLevel()
     {
         RemoveChild(_Player);
-        foreach (var spawner in ActiveEnemySpanwers)
+        foreach (var spawner in _ActiveEnemySpanwers)
         {
             spawner.Destroyed();
         }
 
-
+        SceneManager.ChangeScene(_hub, _Player);
 
         QueueFree();
     }
