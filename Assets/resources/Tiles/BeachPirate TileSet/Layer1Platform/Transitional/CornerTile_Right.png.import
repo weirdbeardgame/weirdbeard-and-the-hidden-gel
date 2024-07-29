@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pe744avs4a0h"
-path="res://.godot/imported/TransitionTile_L.png-c3d19d278c22984f8ca7bf12cb8c921a.ctex"
+uid="uid://cv2oh5a2tejhg"
+path="res://.godot/imported/CornerTile_Right.png-9d1f94698f176c7bf5e796a6ef002068.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer4Ship/TransitionTile_L.png"
-dest_files=["res://.godot/imported/TransitionTile_L.png-c3d19d278c22984f8ca7bf12cb8c921a.ctex"]
+source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer1Platform/Transitional/CornerTile_Right.png"
+dest_files=["res://.godot/imported/CornerTile_Right.png-9d1f94698f176c7bf5e796a6ef002068.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6j8jgdxh0e8h"
-path="res://.godot/imported/layer-3_water_5.png-9c512cd06c547ed42880bb8381c11513.ctex"
+uid="uid://pe744avs4a0h"
+path="res://.godot/imported/TransitionTile_L.png-4b3022f959337b2e77ce1440c796f946.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer3Water/layer-3_water_5.png"
-dest_files=["res://.godot/imported/layer-3_water_5.png-9c512cd06c547ed42880bb8381c11513.ctex"]
+source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer1Platform/Transitional/TransitionTile_L.png"
+dest_files=["res://.godot/imported/TransitionTile_L.png-4b3022f959337b2e77ce1440c796f946.ctex"]
 
 [params]
 

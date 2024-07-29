@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brhr15uq23hlo"
-path="res://.godot/imported/tileset_sidescroll_beachpirate_Layer1_32x.png-f785f3cd2cdc28deb909e51f2122e81d.ctex"
+uid="uid://d1w1mo71qtkub"
+path="res://.godot/imported/TransitionTile_R.png-5b7926152560ad8ed192dfcb51880d54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/resources/Tiles/BeachPirate TileSet/LayerPlatform/tileset_sidescroll_beachpirate_Layer1_32x.png"
-dest_files=["res://.godot/imported/tileset_sidescroll_beachpirate_Layer1_32x.png-f785f3cd2cdc28deb909e51f2122e81d.ctex"]
+source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer1Platform/Transitional/TransitionTile_R.png"
+dest_files=["res://.godot/imported/TransitionTile_R.png-5b7926152560ad8ed192dfcb51880d54.ctex"]
 
 [params]
 

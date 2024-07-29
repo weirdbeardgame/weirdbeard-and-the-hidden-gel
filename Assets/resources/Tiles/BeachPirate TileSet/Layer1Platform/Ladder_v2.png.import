@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7v560mbae2oy"
-path="res://.godot/imported/layer-3_water_1-horizon.png-b8859b2544419ed6a042fef4b1cbfd41.ctex"
+uid="uid://bn22hex12ac4h"
+path="res://.godot/imported/Ladder_v2.png-027ca7130674376e7be79f398a778d7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer3Water/layer-3_water_1-horizon.png"
-dest_files=["res://.godot/imported/layer-3_water_1-horizon.png-b8859b2544419ed6a042fef4b1cbfd41.ctex"]
+source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer1Platform/Ladder_v2.png"
+dest_files=["res://.godot/imported/Ladder_v2.png-027ca7130674376e7be79f398a778d7c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6htufq1inirw"
-path="res://.godot/imported/layer-3_water_3.png-2d2d8461a268540738662f6f03711ebc.ctex"
+uid="uid://712c530jmagb"
+path="res://.godot/imported/CornerTile_Left.png-78619a06f7685a0f27526934207aab23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer3Water/layer-3_water_3.png"
-dest_files=["res://.godot/imported/layer-3_water_3.png-2d2d8461a268540738662f6f03711ebc.ctex"]
+source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer1Platform/Transitional/CornerTile_Left.png"
+dest_files=["res://.godot/imported/CornerTile_Left.png-78619a06f7685a0f27526934207aab23.ctex"]
 
 [params]
 

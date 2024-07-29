@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvlf6bnovb7s1"
-path="res://.godot/imported/layer-3_underwaterSoil_1.png-a1f5271a1b95586d489dbccd595f2f41.ctex"
+uid="uid://8367g2nm5gbr"
+path="res://.godot/imported/TransitionTile_Mid.png-a5c43cb2d35283cdd92027d5ee467670.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer3UnderwaterSoil/layer-3_underwaterSoil_1.png"
-dest_files=["res://.godot/imported/layer-3_underwaterSoil_1.png-a1f5271a1b95586d489dbccd595f2f41.ctex"]
+source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer1Platform/Transitional/TransitionTile_Mid.png"
+dest_files=["res://.godot/imported/TransitionTile_Mid.png-a5c43cb2d35283cdd92027d5ee467670.ctex"]
 
 [params]
 

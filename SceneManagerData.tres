@@ -1,19 +1,11 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://cyiyvxjb3276x"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cyiyvxjb3276x"]
 
-[ext_resource type="PackedScene" uid="uid://dp7lwe2kqfvoj" path="res://Assets/resources/Levels/Scenes/HubWorld1.tscn" id="1_5lkir"]
-[ext_resource type="PackedScene" uid="uid://bla0wiy7o7g5j" path="res://Assets/resources/Levels/Scenes/GrassLand1.tscn" id="2_83p7o"]
-[ext_resource type="PackedScene" uid="uid://cmeqprhy6ib77" path="res://Assets/resources/Levels/Scenes/IslandLevel.tscn" id="3_yu2oq"]
 [ext_resource type="PackedScene" uid="uid://bxq4bqokdiwhr" path="res://Assets/resources/Player/Player.tscn" id="4_cq1p3"]
 [ext_resource type="Script" path="res://addons/SceneManager/SceneManagerData.cs" id="5_xiy7w"]
 
 [resource]
 script = ExtResource("5_xiy7w")
-_newGameScene = ExtResource("1_5lkir")
-_levels = {
-"GrassLand1": ExtResource("2_83p7o"),
-"HubWorld1": ExtResource("1_5lkir"),
-"IslandLevel": ExtResource("3_yu2oq")
-}
+_Levels = {}
 _CurrentLevel = "Test1"
 _PlayerPath = "res://Assets/resources/Player/Player.tscn"
 _PlayerScene = ExtResource("4_cq1p3")
