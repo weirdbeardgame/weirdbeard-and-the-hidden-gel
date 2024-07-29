@@ -7933,9 +7933,11 @@ sources/15 = SubResource("TileSetAtlasSource_2syjq")
 sources/16 = SubResource("TileSetAtlasSource_012fn")
 sources/17 = SubResource("TileSetAtlasSource_vxku2")
 
-[node name="IslandLevel" type="Node2D" node_paths=PackedStringArray("_exits", "_activeEnemySpanwers")]
+[node name="IslandLevel" type="Node2D" node_paths=PackedStringArray("_exits", "_levelGoal", "_activeEnemySpanwers")]
 script = ExtResource("1_16fg3")
+_Sublevels = {}
 _exits = []
+_levelGoal = NodePath("Goal")
 _activeEnemySpanwers = []
 LevelName = "IslandLevel"
 

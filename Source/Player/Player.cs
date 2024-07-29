@@ -208,7 +208,7 @@ public partial class Player : Actor
     {
         base._Process(delta);
 
-        DetectObjects();
+        //DetectObjects();
 
         if (CurrentPowerup != null)
         {

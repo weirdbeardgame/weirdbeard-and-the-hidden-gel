@@ -6,31 +6,17 @@
 
 [node name="HubWorld1" type="Node2D" node_paths=PackedStringArray("levelSpaces")]
 script = ExtResource("1_kvx71")
-levelSpaces = [NodePath("LevelSpace"), NodePath("LevelSpace2"), NodePath("LevelSpace3")]
+levelSpaces = [NodePath("LevelSpace3")]
 LevelName = "HubWorld1"
-
-[node name="LevelSpace" parent="." instance=ExtResource("3_3darn")]
-offset_left = 11.0
-offset_top = 19.0
-offset_right = 75.0
-offset_bottom = 83.0
-LevelName = "GrassLand1"
-
-[node name="LevelSpace2" parent="." instance=ExtResource("3_3darn")]
-offset_left = 139.0
-offset_top = 20.0
-offset_right = 203.0
-offset_bottom = 84.0
-LevelName = "Tundra1"
-
-[node name="HubWorldActor" parent="." instance=ExtResource("4_pny50")]
-position = Vector2(42, 53)
 
 [node name="BackgroundAudio" type="AudioStreamPlayer" parent="."]
 
 [node name="LevelSpace3" parent="." instance=ExtResource("3_3darn")]
-offset_left = 271.0
-offset_top = 20.0
-offset_right = 335.0
-offset_bottom = 84.0
+offset_left = 7.0
+offset_top = 19.0
+offset_right = 71.0
+offset_bottom = 83.0
 LevelName = "IslandLevel"
+
+[node name="HubWorldActor" parent="LevelSpace3" instance=ExtResource("4_pny50")]
+position = Vector2(35, 34)
