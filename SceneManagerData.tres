@@ -8,8 +8,8 @@
 
 [resource]
 script = ExtResource("5_xiy7w")
-_NewGameScene = ExtResource("1_5lkir")
-_Levels = {
+_newGameScene = ExtResource("1_5lkir")
+_levels = {
 "GrassLand1": ExtResource("2_83p7o"),
 "HubWorld1": ExtResource("1_5lkir"),
 "IslandLevel": ExtResource("3_yu2oq")

@@ -15,33 +15,33 @@ public partial class SceneManager : EditorPlugin
     public PackedScene NewGameScene => s_ManagerData.NewGameScene;
     public PackedScene PlayerRef => s_ManagerData.PlayerRef;
 
-    private Control _EditorDock;
+    private Control _editorDock;
     private static SceneManagerData s_ManagerData;
 
     [Export] private static LevelCommon s_currentScene;
 
-    [Export] private string _SceneManagerPath = "res://SceneManagerData.tres";
+    [Export] private string _sceneManagerPath = "res://SceneManagerData.tres";
 
 
     // Because Plugin exists outside the SceneTree, we create our own _Tree or refrence to one.
-    private static SceneTree s_Tree;
+    private static SceneTree s_tree;
 
     public static LevelCommon s_CurrentScene => s_currentScene;
 
-    private static SceneManager s_SceneManager;
+    private static SceneManager s_sceneManager;
 
     public static Player s_ActivePlayerRef;
-    public static new SceneTree GetTree() => s_Tree;
+    public static new SceneTree GetTree() => s_tree;
 
     public static SceneManager Manager
     {
         get
         {
-            if (s_SceneManager == null)
+            if (s_sceneManager == null)
             {
-                s_SceneManager = new SceneManager();
+                s_sceneManager = new SceneManager();
             }
-            return s_SceneManager;
+            return s_sceneManager;
         }
     }
 
@@ -50,16 +50,16 @@ public partial class SceneManager : EditorPlugin
     // As such _Ready will not be called.
     public void Init(SceneTree T)
     {
-        s_Tree = new SceneTree();
+        s_tree = new SceneTree();
         StartNewGame += NewGame;
         ChangeScene += SwitchLevel;
         ChangeSceneWithExit += LoadSubScene;
         ResetLevel += Reset;
-        s_Tree = T;
+        s_tree = T;
 
-        if (ResourceLoader.Exists(_SceneManagerPath))
+        if (ResourceLoader.Exists(_sceneManagerPath))
         {
-            s_ManagerData = ResourceLoader.Load<Resource>(_SceneManagerPath) as SceneManagerData;
+            s_ManagerData = ResourceLoader.Load<Resource>(_sceneManagerPath) as SceneManagerData;
 
             s_ActivePlayerRef = CreatePlayer();
         }
@@ -80,7 +80,7 @@ public partial class SceneManager : EditorPlugin
     {
         if (s_currentScene is LevelCommon)
         {
-            s_currentScene = (LevelCommon)s_Tree.CurrentScene;
+            s_currentScene = (LevelCommon)s_tree.CurrentScene;
         }
 
         if (s_ManagerData.Levels.ContainsKey(scene))
@@ -116,16 +116,16 @@ public partial class SceneManager : EditorPlugin
         if (s_CurrentScene != null)
         {
             s_CurrentScene.ExitLevel();
-            s_Tree.Root.RemoveChild(s_CurrentScene);
+            s_tree.Root.RemoveChild(s_CurrentScene);
             s_currentScene.Free();
         }
-        else if ((title = s_Tree.Root.GetNodeOrNull<TitleScreen>("TitleScreen")) != null)
+        else if ((title = s_tree.Root.GetNodeOrNull<TitleScreen>("TitleScreen")) != null)
         {
-            s_Tree.Root.RemoveChild(title);
+            s_tree.Root.RemoveChild(title);
         }
         s_currentScene = toLoad;
-        s_Tree.Root.AddChild(s_CurrentScene);
-        s_Tree.CurrentScene = s_CurrentScene;
+        s_tree.Root.AddChild(s_CurrentScene);
+        s_tree.CurrentScene = s_CurrentScene;
         s_CurrentScene.EnterLevel(Player);
     }
 
@@ -144,20 +144,20 @@ public partial class SceneManager : EditorPlugin
         base._EnterTree();
         GD.Print("EnterTree");
 
-        if (!ResourceLoader.Exists(_SceneManagerPath))
+        if (!ResourceLoader.Exists(_sceneManagerPath))
         {
             GD.Print("No SceneManager Data!");
             s_ManagerData = new SceneManagerData();
         }
         else
         {
-            var temp = ResourceLoader.Load<Resource>(_SceneManagerPath);
+            var temp = ResourceLoader.Load<Resource>(_sceneManagerPath);
             GD.Print(temp.GetType());
             s_ManagerData = (SceneManagerData)temp;
         }
 
-        _EditorDock = GD.Load<PackedScene>("res://addons/SceneManager/LevelDock.tscn").Instantiate<Control>();
-        AddControlToDock(DockSlot.LeftUl, _EditorDock);
+        _editorDock = GD.Load<PackedScene>("res://addons/SceneManager/LevelDock.tscn").Instantiate<Control>();
+        AddControlToDock(DockSlot.LeftUl, _editorDock);
     }
 
     public bool Add(PackedScene Scene) => s_ManagerData.Add(Scene);
@@ -202,12 +202,12 @@ public partial class SceneManager : EditorPlugin
         ChangeScene -= SwitchLevel;
         ChangeSceneWithExit -= LoadSubScene;
         ResetLevel -= Reset;
-        if (_EditorDock != null)
+        if (_editorDock != null)
         {
-            RemoveControlFromDocks(_EditorDock);
-            _EditorDock.Free();
+            RemoveControlFromDocks(_editorDock);
+            _editorDock.Free();
         }
-        GD.Print(ResourceSaver.Save(s_ManagerData, _SceneManagerPath));
+        GD.Print(ResourceSaver.Save(s_ManagerData, _sceneManagerPath));
     }
 #endif
 }

@@ -9,16 +9,16 @@ public partial class Level : LevelCommon
 
     [Export] private string _hub;
     // If there are sub scenes / levels
-    [Export] private Array<Exit> _Exits;
+    [Export] private Array<Exit> _exits;
 
     // Could also contain items like piece of map
-    [Export] private GoalPost _levelGoal;
+    [Export] private Node2D _levelGoal;
 
-    [Export] private Array<EnemySpawner> _ActiveEnemySpanwers;
+    [Export] private Array<EnemySpawner> _activeEnemySpanwers;
 
     protected Checkpoint CurrentCheckpoint;
 
-    [Export] public int _MaxEnemyAmnt;
+    [Export] private int _maxEnemyAmnt;
     LevelCommon ActiveSubScene;
 
     // Currently active subScene. Otherwise null
@@ -33,7 +33,7 @@ public partial class Level : LevelCommon
     {
         base.EnterLevel(p);
 
-        switch (_LevelState)
+        switch (_levelState)
         {
             case LevelState.COMPLETE:
                 // Some objectives were completed, powerups that may be perma in the scene may be collected etc.
@@ -45,13 +45,14 @@ public partial class Level : LevelCommon
                 break;
         }
 
-        _levelGoal.LevelComplete += ExitLevel;
+        GoalPost g = (GoalPost)_levelGoal;
+        g.LevelComplete += ExitLevel;
 
-        _LevelState = LevelState.ACTIVE;
+        _levelState = LevelState.ACTIVE;
 
-        if (_ActiveEnemySpanwers != null)
+        if (_activeEnemySpanwers != null)
         {
-            foreach (var spawner in _ActiveEnemySpanwers)
+            foreach (var spawner in _activeEnemySpanwers)
             {
                 spawner.Spawn();
             }
@@ -109,8 +110,9 @@ public partial class Level : LevelCommon
     // Ensure the scene closes properly before changing.
     public override void ExitLevel()
     {
+
         RemoveChild(_Player);
-        foreach (var spawner in _ActiveEnemySpanwers)
+        foreach (var spawner in _activeEnemySpanwers)
         {
             spawner.Destroyed();
         }

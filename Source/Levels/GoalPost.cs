@@ -14,6 +14,8 @@ public partial class GoalPost : Area2D
 
     bool _isTouched;
 
-    public void OnTouch(Node2D body) => LevelComplete.Invoke();
-
+    public void OnTouch(Node2D body)
+    {
+        LevelComplete.Invoke();
+    }
 }

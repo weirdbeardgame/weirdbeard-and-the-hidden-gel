@@ -4,9 +4,9 @@ using System;
 [Tool]
 public partial class SceneManagerData : Resource
 {
-    [Export] private PackedScene _NewGameScene;
+    [Export] private PackedScene _newGameScene;
 
-    [Export] private Godot.Collections.Dictionary<string, PackedScene> _Levels;
+    [Export] private Godot.Collections.Dictionary<string, PackedScene> _levels;
 
     [Export] private string _CurrentLevel = "Test1";
 
@@ -15,16 +15,16 @@ public partial class SceneManagerData : Resource
     // The actual Player that will be instaniated
     [Export] private PackedScene _PlayerScene;
 
-    public SceneManagerData() => _Levels = new Godot.Collections.Dictionary<string, PackedScene>();
-    public SceneManagerData(Godot.Collections.Dictionary<string, PackedScene> lev) => _Levels = lev;
+    public SceneManagerData() => _levels = new Godot.Collections.Dictionary<string, PackedScene>();
+    public SceneManagerData(Godot.Collections.Dictionary<string, PackedScene> lev) => _levels = lev;
 
     // Public Getters
-    public PackedScene NewGameScene => _NewGameScene;
+    public PackedScene NewGameScene => _newGameScene;
     public PackedScene PlayerRef => _PlayerScene;
-    public Godot.Collections.Dictionary<string, PackedScene> Levels => _Levels;
+    public Godot.Collections.Dictionary<string, PackedScene> Levels => _levels;
 
     // Returns the instantiated packed scene as a Level.
-    public LevelCommon Level(string levelName) => _Levels[levelName].Instantiate<LevelCommon>();
+    public LevelCommon Level(string levelName) => _levels[levelName].Instantiate<LevelCommon>();
 
     // Returns the active Player refrence
     public Player CreatePlayer()
@@ -51,9 +51,9 @@ public partial class SceneManagerData : Resource
             GD.PrintErr("Level has no name!");
         }
 
-        if (!_Levels.ContainsKey(Level.LevelName))
+        if (!_levels.ContainsKey(Level.LevelName))
         {
-            _Levels.Add(Level.LevelName, Scene);
+            _levels.Add(Level.LevelName, Scene);
             return true;
         }
         else
@@ -65,9 +65,9 @@ public partial class SceneManagerData : Resource
 
     public bool Remove(string SceneName)
     {
-        if (_Levels.ContainsKey(SceneName))
+        if (_levels.ContainsKey(SceneName))
         {
-            _Levels.Remove(SceneName);
+            _levels.Remove(SceneName);
             return true;
         }
         GD.PrintErr("Scene does not exist in manager");
@@ -77,14 +77,14 @@ public partial class SceneManagerData : Resource
     public void SetNewGameScene(string path)
     {
         LevelCommon l = ResourceLoader.Load<PackedScene>(path).Instantiate<LevelCommon>();
-        if (_Levels.ContainsKey(l.LevelName))
+        if (_levels.ContainsKey(l.LevelName))
         {
-            _NewGameScene = _Levels[l.LevelName];
+            _newGameScene = _levels[l.LevelName];
         }
         else
         {
-            _Levels.Add(l.LevelName, ResourceLoader.Load<PackedScene>(path));
-            _NewGameScene = _Levels[l.LevelName];
+            _levels.Add(l.LevelName, ResourceLoader.Load<PackedScene>(path));
+            _newGameScene = _levels[l.LevelName];
         }
     }
 #endif

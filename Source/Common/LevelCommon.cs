@@ -23,16 +23,16 @@ public partial class LevelCommon : Node2D
     // Scenes = GetNode<SceneManager>("/root/SceneManager");
     protected SceneManager Scenes;
 
-    protected LevelState _LevelState;
+    protected LevelState _levelState;
 
     private AudioStreamPlayer _BackgroundPlayer;
 
     [Export]
     public string LevelName;
 
-    public LevelState LevelState => _LevelState;
+    public LevelState LevelState => _levelState;
 
-    public bool IsLevelComplete => _LevelState == LevelState.COMPLETE;
+    public bool IsLevelComplete => _levelState == LevelState.COMPLETE;
 
     public bool Unlocked => _Unlocked;
 
@@ -56,7 +56,7 @@ public partial class LevelCommon : Node2D
             }
             else
             {
-                _Player = SceneManager._ActivePlayerRef;
+                _Player = SceneManager.s_ActivePlayerRef;
             }
         }
     }
@@ -69,7 +69,7 @@ public partial class LevelCommon : Node2D
 
     public void CompleteLevel()
     {
-        _LevelState = LevelState.COMPLETE;
+        _levelState = LevelState.COMPLETE;
         ExitLevel();
     }
 
