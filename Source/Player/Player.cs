@@ -119,7 +119,6 @@ public partial class Player : Actor
 
     public void ResetPlayer()
     {
-        SetPhysicsProcess(false);
         ResetActor();
         SetState("IDLE");
         _CurrentMap = GetParent().GetNode<TileMap>("TileMap");
@@ -128,6 +127,7 @@ public partial class Player : Actor
         {
             ActivateCamera();
         }
+        SetPhysicsProcess(true);
         ClearCollidedObject();
     }
 
