@@ -9,14 +9,14 @@ script = ExtResource("1_kvx71")
 levelSpaces = [NodePath("LevelSpace3")]
 LevelName = "HubWorld1"
 
+[node name="HubWorldActor" parent="." instance=ExtResource("4_pny50")]
+position = Vector2(0, 51)
+
 [node name="BackgroundAudio" type="AudioStreamPlayer" parent="."]
 
 [node name="LevelSpace3" parent="." instance=ExtResource("3_3darn")]
-offset_left = 7.0
-offset_top = 19.0
-offset_right = 71.0
-offset_bottom = 83.0
+offset_left = 64.0
+offset_top = 17.0
+offset_right = 128.0
+offset_bottom = 81.0
 LevelName = "IslandLevel"
-
-[node name="HubWorldActor" parent="LevelSpace3" instance=ExtResource("4_pny50")]
-position = Vector2(35, 34)

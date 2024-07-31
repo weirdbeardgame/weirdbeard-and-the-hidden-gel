@@ -420,12 +420,11 @@ sources/1 = SubResource("TileSetScenesCollectionSource_kno6v")
 sources/3 = SubResource("TileSetAtlasSource_d6hj0")
 sources/5 = SubResource("TileSetScenesCollectionSource_8ah6n")
 
-[node name="GrassLand1" type="Node2D" node_paths=PackedStringArray("_exits", "_levelGoal", "_activeEnemySpanwers")]
+[node name="GrassLand1" type="Node2D" node_paths=PackedStringArray("_exits", "_activeEnemySpanwers")]
 script = ExtResource("1_283g4")
 _Sublevels = {}
 _hub = "HubWorld1"
 _exits = []
-_levelGoal = NodePath("Goal")
 _activeEnemySpanwers = [NodePath("RatSpawner"), NodePath("PirateSpawner")]
 LevelName = "GrassLand1"
 metadata/_edit_vertical_guides_ = [-332.0]

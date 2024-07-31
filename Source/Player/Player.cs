@@ -104,6 +104,8 @@ public partial class Player : Actor
     {
         Node2D PlayerStartPoint = SceneManager.s_CurrentScene.GetNode<Node2D>("PlayerStartPoint");
 
+        SetPhysicsProcess(false);
+
         if (CurrentCheckpoint != null)
         {
             Position = CurrentCheckpoint.GlobalPosition;
@@ -117,6 +119,7 @@ public partial class Player : Actor
 
     public void ResetPlayer()
     {
+        SetPhysicsProcess(false);
         ResetActor();
         SetState("IDLE");
         _CurrentMap = GetParent().GetNode<TileMap>("TileMap");
