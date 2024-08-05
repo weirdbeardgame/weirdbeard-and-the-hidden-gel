@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uifdg08iwbe8"
-path="res://.godot/imported/layer-4_ship_vD.png-eadd5b1f3232c578c833668ce0a726a2.ctex"
+uid="uid://bnmdosyi0flh0"
+path="res://.godot/imported/T_Cloud_1.png-c377ac5068c7d6762b8e5201c941c316.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer4Distant/Layer4Ships/layer-4_ship_vD.png"
-dest_files=["res://.godot/imported/layer-4_ship_vD.png-eadd5b1f3232c578c833668ce0a726a2.ctex"]
+source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer3TopClouds/T_Cloud_1.png"
+dest_files=["res://.godot/imported/T_Cloud_1.png-c377ac5068c7d6762b8e5201c941c316.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clreubl0r07bq"
-path="res://.godot/imported/layer-4_distantClouds.png-70775669c04d09bfc6667118c55b5092.ctex"
+uid="uid://vf7gchutghju"
+path="res://.godot/imported/T_Water_5.png-98f379466f2426798ec24706e81c1b78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer4Distant/layer-4_distantClouds.png"
-dest_files=["res://.godot/imported/layer-4_distantClouds.png-70775669c04d09bfc6667118c55b5092.ctex"]
+source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Background/Water/T_Water_5.png"
+dest_files=["res://.godot/imported/T_Water_5.png-98f379466f2426798ec24706e81c1b78.ctex"]
 
 [params]
 

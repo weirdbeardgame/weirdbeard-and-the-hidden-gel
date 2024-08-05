@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c55tw5781ifk5"
-path="res://.godot/imported/layer-4_ship_vB.png-bcf7f2eaec4b48633dad6c6857ee9054.ctex"
+uid="uid://f4swp1r8u4qf"
+path="res://.godot/imported/background_sky.png-b98e9b8c0d9d58ba5b22819797e2bb0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer4Distant/Layer4Ships/layer-4_ship_vB.png"
-dest_files=["res://.godot/imported/layer-4_ship_vB.png-bcf7f2eaec4b48633dad6c6857ee9054.ctex"]
+source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Background/Sky/background_sky.png"
+dest_files=["res://.godot/imported/background_sky.png-b98e9b8c0d9d58ba5b22819797e2bb0e.ctex"]
 
 [params]
 

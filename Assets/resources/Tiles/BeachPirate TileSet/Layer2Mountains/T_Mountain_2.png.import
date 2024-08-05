@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f4swp1r8u4qf"
-path="res://.godot/imported/background_sky.png-3d3e5150c3bbe9fc98d05388553f39cc.ctex"
+uid="uid://m8lry8ld652e"
+path="res://.godot/imported/T_Mountain_2.png-97a3a1d3721f00b6806cd8135744b418.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Background/background_sky.png"
-dest_files=["res://.godot/imported/background_sky.png-3d3e5150c3bbe9fc98d05388553f39cc.ctex"]
+source_file="res://Assets/resources/Tiles/BeachPirate TileSet/Layer2Mountains/T_Mountain_2.png"
+dest_files=["res://.godot/imported/T_Mountain_2.png-97a3a1d3721f00b6806cd8135744b418.ctex"]
 
 [params]
 
