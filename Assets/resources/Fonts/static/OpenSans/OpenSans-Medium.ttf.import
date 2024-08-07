@@ -14,8 +14,8 @@ dest_files=["res://.godot/imported/OpenSans-Medium.ttf-e686da9004b136b096ebe8b15
 
 Rendering=null
 antialiasing=1
-generate_mipmaps=false
-multichannel_signed_distance_field=false
+generate_mipmaps=true
+multichannel_signed_distance_field=true
 msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
