@@ -12063,6 +12063,7 @@ layer_18/tile_data = PackedInt32Array(720808, 19, 0, 720809, 65555, 0, 720810, 1
 
 [node name="Goal" parent="." instance=ExtResource("19_tdh10")]
 position = Vector2(2000, -283)
+hub = "HubWorld1"
 
 [node name="Spawner" parent="." instance=ExtResource("27_7185k")]
 position = Vector2(-246, -7)

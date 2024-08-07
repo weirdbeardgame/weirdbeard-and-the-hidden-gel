@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://blq01i74hqy70"]
+[gd_scene load_steps=8 format=3 uid="uid://yr1lodeckbip"]
 
 [ext_resource type="Texture2D" uid="uid://8spv0pxl14dn" path="res://Assets/resources/Tiles/backgrounds.png" id="1_mcdxh"]
 [ext_resource type="Texture2D" uid="uid://brhr15uq23hlo" path="res://Assets/resources/Tiles/BeachPirate TileSet/Layer1Platform/tileset_sidescroll_beachpirate_Layer1_32x.png" id="2_fmdal"]

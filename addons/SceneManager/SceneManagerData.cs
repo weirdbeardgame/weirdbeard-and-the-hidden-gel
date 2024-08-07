@@ -74,6 +74,17 @@ public partial class SceneManagerData : Resource
         return false;
     }
 
+    public void Refresh()
+    {
+        foreach (var scene in _levels)
+        {
+            if (!FileAccess.FileExists(scene.Value.ResourcePath))
+            {
+                Remove(scene.Key);
+            }
+        }
+    }
+
     public void SetNewGameScene(string path)
     {
         LevelCommon l = ResourceLoader.Load<PackedScene>(path).Instantiate<LevelCommon>();

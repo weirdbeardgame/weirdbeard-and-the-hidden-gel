@@ -156,6 +156,8 @@ public partial class SceneManager : EditorPlugin
             s_ManagerData = (SceneManagerData)temp;
         }
 
+        EditorInterface.Singleton.GetResourceFilesystem().FilesystemChanged += s_ManagerData.Refresh;
+
         _editorDock = GD.Load<PackedScene>("res://addons/SceneManager/LevelDock.tscn").Instantiate<Control>();
         AddControlToDock(DockSlot.LeftUl, _editorDock);
     }
@@ -163,6 +165,10 @@ public partial class SceneManager : EditorPlugin
     public bool Add(PackedScene Scene) => s_ManagerData.Add(Scene);
 
     public void Remove(string SceneName) => s_ManagerData.Remove(SceneName);
+
+    public void Save() => ResourceSaver.Save(s_ManagerData, _sceneManagerPath);
+
+    public void Refresh() => s_ManagerData.Refresh();
 
     public void SetPlayerRef(string path) => s_ManagerData.SetPlayerRef(path);
 
@@ -207,7 +213,6 @@ public partial class SceneManager : EditorPlugin
             RemoveControlFromDocks(_editorDock);
             _editorDock.Free();
         }
-        GD.Print(ResourceSaver.Save(s_ManagerData, _sceneManagerPath));
     }
 #endif
 }
