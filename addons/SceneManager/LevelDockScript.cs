@@ -17,9 +17,6 @@ public partial class LevelDockScript : Control
     private FileSelector _newGameScene;
     private SceneManager _sceneManager;
 
-
-    public static Action<int> s_IndexUpdate;
-
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -57,8 +54,8 @@ public partial class LevelDockScript : Control
         _levelSelector.Add.Pressed += AddScene_Button;
         _levelSelector.Remove.Pressed += RemoveScene_Button;
 
-        s_IndexUpdate += UpdateIndex;
         _dialog.FileSelected += AddScene;
+        ItemList.s_IndexUpdate += UpdateIndex;
         _sceneManager.ManagerRefresh += UpdateList;
 
         UpdateList();

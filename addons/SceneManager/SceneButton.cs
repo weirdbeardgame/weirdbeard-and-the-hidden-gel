@@ -15,7 +15,7 @@ public partial class SceneButton : Button
 
     void OnClick()
     {
-        LevelDockScript.s_IndexUpdate.Invoke(Index);
+        ItemList.s_IndexUpdate.Invoke(Index);
     }
 
 }

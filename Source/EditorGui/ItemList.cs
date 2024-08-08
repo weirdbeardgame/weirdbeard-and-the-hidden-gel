@@ -6,7 +6,6 @@ using System.Linq;
 [Tool]
 public partial class ItemList : Control
 {
-
     private int _itemCount;
     private int _currentIndex;
     private List<Button> _items;
@@ -16,11 +15,12 @@ public partial class ItemList : Control
     public Button Add;
     public Button Remove;
     public int ItemCount => _itemCount;
-
     public List<Button> Items => _items;
 
     public int CurrentIndex => _currentIndex;
     public Button GetItem(int index) => _items[index];
+
+    public static Action<int> s_IndexUpdate;
 
 
     // Called when the node enters the scene tree for the first time.
@@ -32,7 +32,7 @@ public partial class ItemList : Control
         Remove = GetNode<Button>("Remove");
         _itemContainer = GetNode<VBoxContainer>("ItemBox/ScrollContainer/ItemContainer");
 
-        GD.Print("EnterTree");
+        s_IndexUpdate += LevelSelected;
     }
 
     public void AddItem(Button item)
@@ -48,9 +48,10 @@ public partial class ItemList : Control
         }
     }
 
-    void LevelSelected(string name)
+    void LevelSelected(int index)
     {
-        //_currentIndex = _items.FindIndex(0, _items.Count, new Predicate<Button>(Contains(name)));
+        GD.Print(index);
+        _currentIndex = index;
     }
 
 
