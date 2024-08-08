@@ -6,24 +6,19 @@ using System.Linq;
 [Tool]
 public partial class LevelDockScript : Control
 {
-    private SceneManager _sceneManager;
+
+    private Button _save;
+    private Button _refresh;
+    private int _currentIndex;
     private FileDialog _dialog;
-
-    private Button _addSceneButton;
-    private Button _newSceneButton;
-
     private FileSelector _playerRef;
-    private FileSelector _newGameScene;
-
-    [Export]
+    private ItemList _levelSelector;
     private PackedScene _sceneButton;
+    private FileSelector _newGameScene;
+    private SceneManager _sceneManager;
 
-    private List<LevelSelectorButton> _sceneChanger;
 
-    private string _currentScene;
-    private List<string> _sceneNames;
-
-    private VBoxContainer _container;
+    public static Action<int> s_IndexUpdate;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -31,7 +26,13 @@ public partial class LevelDockScript : Control
         _dialog = GetNode<FileDialog>("Panel/FileDialog");
         _sceneManager = SceneManager.Manager;
 
-        _playerRef = GetNode<FileSelector>("_playerRef");
+        _save = GetNode<Button>("Panel/Save");
+        _refresh = GetNode<Button>("Panel/Refresh");
+
+        _save.Pressed += Save_Button;
+        _refresh.Pressed += Refresh_Button;
+
+        _playerRef = GetNode<FileSelector>("Panel/PlayerRef");
         _playerRef.BrowseButton.Pressed += SelectPlayerRefrence_Button;
         _playerRef.FileSelected += SetPlayerRefrence;
         if (_sceneManager.PlayerRef != null)
@@ -39,7 +40,9 @@ public partial class LevelDockScript : Control
             _playerRef.SetPathField(_sceneManager.PlayerRef.ResourcePath);
         }
 
-        _newGameScene = GetNode<FileSelector>("_newGameScene");
+        _sceneButton = ResourceLoader.Load<PackedScene>("addons/SceneManager/LevelSelectorButton.tscn");
+
+        _newGameScene = GetNode<FileSelector>("Panel/NewGameScene");
         _newGameScene.BrowseButton.Pressed += SetNewGameScene_Button;
         _newGameScene.FileSelected += SetNewGameScene;
         if (_sceneManager.NewGameScene != null)
@@ -47,18 +50,16 @@ public partial class LevelDockScript : Control
             _newGameScene.SetPathField(_sceneManager.NewGameScene.ResourcePath);
         }
 
-        _addSceneButton = GetNode<Button>("Panel/AddScene");
-        _newSceneButton = GetNode<Button>("Panel/NewScene");
+        //_newSceneButton = GetNode<Button>("Panel/NewScene");
+        // _newSceneButton.Pressed += NewScene_Button;
 
-        _addSceneButton.Pressed += AddScene_Button;
-        _newSceneButton.Pressed += NewScene_Button;
+        _levelSelector = GetNode<ItemList>("Panel/ItemList");
+        _levelSelector.Add.Pressed += AddScene_Button;
+        _levelSelector.Remove.Pressed += RemoveScene_Button;
 
+        s_IndexUpdate += UpdateIndex;
         _dialog.FileSelected += AddScene;
-
-        _container = GetNode<VBoxContainer>("Panel/ScrollContainer/VBoxContainer");
-
-        _sceneChanger = new List<LevelSelectorButton>();
-        _sceneNames = new List<string>();
+        _sceneManager.ManagerRefresh += UpdateList;
 
         UpdateList();
     }
@@ -66,6 +67,12 @@ public partial class LevelDockScript : Control
     void AddScene_Button()
     {
         _dialog.Popup();
+    }
+
+    void RemoveScene_Button()
+    {
+        _sceneManager.Remove(_levelSelector.Items[_currentIndex].Text);
+        _levelSelector.RemoveItem(_levelSelector.Items[_currentIndex]);
     }
 
     void AddScene(string path)
@@ -79,41 +86,41 @@ public partial class LevelDockScript : Control
         }
     }
 
-    void SetNewGameScene_Button() => _newGameScene.Open("Assets/resources/Levels/Scenes", new string[] { "*.tscn" });
-    void SetNewGameScene() => _sceneManager.SetNewGameScene(_newGameScene.Path);
-
+    void UpdateIndex(int i) => _currentIndex = i;
+    void Save_Button() => _sceneManager.Save();
+    void Refresh_Button() => _sceneManager.Refresh();
     void SelectPlayerRefrence_Button() => _playerRef.Open();
     void SetPlayerRefrence() => _sceneManager.SetPlayerRef(_playerRef.Path);
-
-    void NewScene_Button()
-    {
-        _sceneManager.New();
-        // ToDo: Level editor right after lads
-    }
-
-    void ChangeScene()
-    {
-
-    }
-
-    void RemoveScene_Button()
-    {
-        _sceneManager.Remove(_currentScene);
-    }
+    void SetNewGameScene() => _sceneManager.SetNewGameScene(_newGameScene.Path);
+    void SetNewGameScene_Button() => _newGameScene.Open("Assets/resources/Levels/Scenes", new string[] { "*.tscn" });
 
     void UpdateList()
     {
         if (_sceneManager.SceneNames != null)
         {
-            if (_sceneNames != _sceneManager.SceneNames && _sceneManager.SceneNames.Count > 0)
+            if (_sceneManager.SceneNames.Count > 0)
             {
-                _sceneNames = _sceneManager.SceneNames;
-                foreach (var scene in _sceneNames)
+                foreach (var scene in _sceneManager.SceneNames)
                 {
-                    LevelSelectorButton SelectorButton = _sceneButton.Instantiate<LevelSelectorButton>();
-                    SelectorButton.CreateButton(scene);
-                    _sceneChanger.Add(SelectorButton);
-                    _container.AddChild(SelectorButton);
+                    Button testBtn = _levelSelector.Contains(scene);
+                    if (testBtn == null)
+                    {
+                        SceneButton selectorButton = _sceneButton.Instantiate<SceneButton>();
+                        selectorButton.Text = scene;
+                        selectorButton.Index = _levelSelector.ItemCount;
+                        _levelSelector.AddItem(selectorButton);
+                    }
+                }
+            }
+
+            if (_levelSelector.ItemCount > _sceneManager.SceneNames.Count)
+            {
+                // Need to remove da buttn
+                var removeList = _levelSelector.Items.Where(item => !_sceneManager.SceneNames.Any(item2 => item2 == item.Text));
+
+                foreach (var item in removeList)
+                {
+                    _levelSelector.RemoveItem(item);
                 }
             }
         }

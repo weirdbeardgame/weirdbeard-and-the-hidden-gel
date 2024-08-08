@@ -138,6 +138,8 @@ public partial class SceneManager : EditorPlugin
 
 
 #if TOOLS
+    public Action ManagerRefresh;
+
     // Initialization of the plugin goes here.
     public override void _EnterTree()
     {
@@ -158,6 +160,8 @@ public partial class SceneManager : EditorPlugin
 
         EditorInterface.Singleton.GetResourceFilesystem().FilesystemChanged += s_ManagerData.Refresh;
 
+        ManagerRefresh += s_ManagerData.Refresh;
+
         _editorDock = GD.Load<PackedScene>("res://addons/SceneManager/LevelDock.tscn").Instantiate<Control>();
         AddControlToDock(DockSlot.LeftUl, _editorDock);
     }
@@ -168,7 +172,7 @@ public partial class SceneManager : EditorPlugin
 
     public void Save() => ResourceSaver.Save(s_ManagerData, _sceneManagerPath);
 
-    public void Refresh() => s_ManagerData.Refresh();
+    public void Refresh() => ManagerRefresh.Invoke();
 
     public void SetPlayerRef(string path) => s_ManagerData.SetPlayerRef(path);
 

@@ -1,20 +1,89 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
+[Tool]
 public partial class ItemList : Control
 {
 
-    private VBoxContainer _buttonContainer;
+    private int _itemCount;
+    private int _currentIndex;
+    private List<Button> _items;
+    private VBoxContainer _itemContainer;
 
-    [Export] private PackedScene _toAdd;
+    // Control Buttons
+    public Button Add;
+    public Button Remove;
+    public int ItemCount => _itemCount;
+
+    public List<Button> Items => _items;
+
+    public int CurrentIndex => _currentIndex;
+    public Button GetItem(int index) => _items[index];
+
 
     // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+    public override void _EnterTree()
     {
+        _itemCount = 0;
+        _items = new List<Button>();
+        Add = GetNode<Button>("Add");
+        Remove = GetNode<Button>("Remove");
+        _itemContainer = GetNode<VBoxContainer>("ItemBox/ScrollContainer/ItemContainer");
+
+        GD.Print("EnterTree");
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
+    public void AddItem(Button item)
     {
+        if (!_items.Contains(item))
+        {
+            _items.Add(item);
+            GD.Print(_items);
+            _itemContainer.AddChild(_items.Last());
+            _itemCount = _items.Count;
+
+            //item.Connect("Pressed", new Callable(this, nameof(LevelSelected)).Bind(item.Text));
+        }
     }
+
+    void LevelSelected(string name)
+    {
+        //_currentIndex = _items.FindIndex(0, _items.Count, new Predicate<Button>(Contains(name)));
+    }
+
+
+    public Button Contains(string name)
+    {
+        foreach (var btn in _items)
+        {
+            if (btn.Text.Contains(name))
+            {
+                return btn;
+            }
+        }
+        return null;
+    }
+
+    public void RemoveItem(Button btn)
+    {
+        if (btn != null)
+        {
+            _itemContainer.RemoveChild(btn);
+            _items.Remove(btn);
+            _itemCount = _items.Count;
+        }
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        if (_items != null)
+        {
+            _items.Clear();
+        }
+        _itemCount = 0;
+    }
+
 }

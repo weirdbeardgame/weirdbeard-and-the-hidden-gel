@@ -76,9 +76,10 @@ public partial class SceneManagerData : Resource
 
     public void Refresh()
     {
+        GD.Print(_levels);
         foreach (var scene in _levels)
         {
-            if (!FileAccess.FileExists(scene.Value.ResourcePath))
+            if (!ResourceLoader.Exists(scene.Value.ResourcePath))
             {
                 Remove(scene.Key);
             }

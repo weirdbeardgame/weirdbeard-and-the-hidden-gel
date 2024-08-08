@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvyf8he1onh3m"]
+[gd_scene load_steps=5 format=3 uid="uid://dvyf8he1onh3m"]
 
 [ext_resource type="Theme" uid="uid://dt868a8b5nouj" path="res://addons/SceneSelectTheme.tres" id="1_wii2a"]
 [ext_resource type="Script" path="res://addons/SceneManager/GuiElements/FileSelector.cs" id="1_x4plw"]
+[ext_resource type="Theme" uid="uid://dltcx5jine88c" path="res://Assets/Editor_GUI/Themes/Button_Theme.tres" id="3_6j0yk"]
+[ext_resource type="Theme" uid="uid://bxkyrw078lnht" path="res://Assets/Editor_GUI/Themes/Label.tres" id="4_jlb8a"]
 
 [node name="FileSelector" type="Node2D"]
 script = ExtResource("1_x4plw")
@@ -18,7 +20,7 @@ offset_left = 2.0
 offset_top = 2.0
 offset_right = 101.0
 offset_bottom = 33.0
-theme = ExtResource("1_wii2a")
+theme = ExtResource("3_6j0yk")
 text = "Browse
 "
 
@@ -36,3 +38,4 @@ offset_left = 3.0
 offset_top = -27.0
 offset_right = 354.0
 offset_bottom = -4.0
+theme = ExtResource("4_jlb8a")

@@ -1,43 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://drlxul6t6i30n"]
+[gd_scene load_steps=6 format=3 uid="uid://drlxul6t6i30n"]
 
 [ext_resource type="Script" path="res://addons/SceneManager/LevelDockScript.cs" id="1_66pb0"]
-[ext_resource type="PackedScene" uid="uid://c7be2p30te46n" path="res://addons/SceneManager/LevelSelectorButton.tscn" id="2_al8ik"]
+[ext_resource type="PackedScene" uid="uid://smgp544673md" path="res://Assets/Editor_GUI/ItemList.tscn" id="2_simiy"]
 [ext_resource type="PackedScene" uid="uid://dvyf8he1onh3m" path="res://addons/SceneManager/GuiElements/FileSelector.tscn" id="3_5e68y"]
+[ext_resource type="Theme" uid="uid://bxkyrw078lnht" path="res://Assets/Editor_GUI/Themes/Label.tres" id="4_sbmhp"]
+[ext_resource type="Theme" uid="uid://dltcx5jine88c" path="res://Assets/Editor_GUI/Themes/Button_Theme.tres" id="5_l86uh"]
 
 [node name="LevelDock" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+size_flags_horizontal = 6
+size_flags_vertical = 6
 script = ExtResource("1_66pb0")
-SceneButton = ExtResource("2_al8ik")
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 0
+layout_mode = 1
 offset_left = -6.0
 offset_top = 1.0
 offset_right = 642.0
-offset_bottom = 1161.0
-
-[node name="NewScene" type="Button" parent="Panel"]
-layout_mode = 1
-offset_right = 88.0
-offset_bottom = 31.0
-text = "New Scene
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="AddScene" type="Button" parent="Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.0262346
-offset_left = 95.0
-offset_top = 1.0
-offset_right = 178.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Add Scene
-"
-metadata/_edit_use_anchors_ = true
+offset_bottom = 1400.0
 
 [node name="FileDialog" type="FileDialog" parent="Panel"]
 title = "Open a File"
@@ -47,10 +28,44 @@ file_mode = 0
 root_subfolder = "Assets/resources/Levels/Scenes"
 filters = PackedStringArray("*.tscn")
 
-[node name="PlayerRef" parent="." instance=ExtResource("3_5e68y")]
-position = Vector2(-2, 135)
+[node name="ItemList" parent="Panel" instance=ExtResource("2_simiy")]
+offset_left = 77.0
+offset_top = 375.0
+offset_right = 77.0
+offset_bottom = 375.0
+scale = Vector2(1.54248, 1.33443)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/ItemList"]
+layout_mode = 0
+offset_top = -30.7247
+offset_right = 73.0
+offset_bottom = -6.72474
+theme = ExtResource("4_sbmhp")
+text = "Levels: "
+
+[node name="PlayerRef" parent="Panel" instance=ExtResource("3_5e68y")]
+position = Vector2(19, 208)
 BrowseForLabel = "Player Refrence"
 
-[node name="NewGameScene" parent="." instance=ExtResource("3_5e68y")]
-position = Vector2(-2, 60)
-BrowseForLabel = "NewGameScene"
+[node name="NewGameScene" parent="Panel" instance=ExtResource("3_5e68y")]
+position = Vector2(21, 117)
+BrowseForLabel = "Starting Scene"
+
+[node name="Save" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 1.0
+offset_right = 114.0
+offset_bottom = 36.0
+theme = ExtResource("5_l86uh")
+text = "Save"
+
+[node name="Refresh" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 1.0
+offset_right = 232.0
+offset_bottom = 36.0
+theme = ExtResource("5_l86uh")
+text = "Refresh
+"

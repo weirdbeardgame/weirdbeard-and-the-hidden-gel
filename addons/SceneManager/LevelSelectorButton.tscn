@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7be2p30te46n"]
+[gd_scene load_steps=3 format=3 uid="uid://c7be2p30te46n"]
 
-[ext_resource type="Script" path="res://addons/SceneManager/LevelSelectorButton.cs" id="1_074dl"]
+[ext_resource type="Theme" uid="uid://dltcx5jine88c" path="res://Assets/Editor_GUI/Themes/Button_Theme.tres" id="1_78xrb"]
+[ext_resource type="Script" path="res://addons/SceneManager/SceneButton.cs" id="2_14wrr"]
 
 [node name="LevelSelectorButton" type="Button"]
-offset_right = 176.0
-offset_bottom = 65.0
-script = ExtResource("1_074dl")
+layout_direction = 2
+offset_right = 640.0
+offset_bottom = 69.0
+theme = ExtResource("1_78xrb")
+script = ExtResource("2_14wrr")
