@@ -102,9 +102,8 @@ public partial class LevelDockScript : Control
                     Button testBtn = _levelSelector.Contains(scene);
                     if (testBtn == null)
                     {
-                        SceneButton selectorButton = _sceneButton.Instantiate<SceneButton>();
+                        Button selectorButton = _sceneButton.Instantiate<Button>();
                         selectorButton.Text = scene;
-                        selectorButton.Index = _levelSelector.ItemCount;
                         _levelSelector.AddItem(selectorButton);
                     }
                 }

@@ -32,7 +32,7 @@ public partial class ItemList : Control
         Remove = GetNode<Button>("Remove");
         _itemContainer = GetNode<VBoxContainer>("ItemBox/ScrollContainer/ItemContainer");
 
-        s_IndexUpdate += LevelSelected;
+        //s_IndexUpdate += LevelSelected;
     }
 
     public void AddItem(Button item)
@@ -44,14 +44,17 @@ public partial class ItemList : Control
             _itemContainer.AddChild(_items.Last());
             _itemCount = _items.Count;
 
-            //item.Connect("Pressed", new Callable(this, nameof(LevelSelected)).Bind(item.Text));
+            item.Pressed += () => LevelSelected(item.Text);
         }
     }
 
-    void LevelSelected(int index)
+    void LevelSelected(string name)
     {
-        GD.Print(index);
-        _currentIndex = index;
+        GD.Print(name);
+        Button b = Contains(name);
+        _currentIndex = _items.FindIndex(b => b.Text == name);
+
+        s_IndexUpdate(_currentIndex);
     }
 
 
