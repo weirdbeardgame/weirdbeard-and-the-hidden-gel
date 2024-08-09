@@ -28,6 +28,9 @@ offset_bottom = 478.0
 
 [node name="ItemContainer" type="VBoxContainer" parent="ItemBox/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+alignment = 1
 
 [node name="Add" type="Button" parent="."]
 layout_mode = 0

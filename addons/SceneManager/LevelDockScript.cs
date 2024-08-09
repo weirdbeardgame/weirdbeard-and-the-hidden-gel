@@ -6,7 +6,6 @@ using System.Linq;
 [Tool]
 public partial class LevelDockScript : Control
 {
-
     private Button _save;
     private Button _refresh;
     private int _currentIndex;
@@ -83,13 +82,18 @@ public partial class LevelDockScript : Control
         }
     }
 
-    void UpdateIndex(int i) => _currentIndex = i;
     void Save_Button() => _sceneManager.Save();
     void Refresh_Button() => _sceneManager.Refresh();
     void SelectPlayerRefrence_Button() => _playerRef.Open();
     void SetPlayerRefrence() => _sceneManager.SetPlayerRef(_playerRef.Path);
     void SetNewGameScene() => _sceneManager.SetNewGameScene(_newGameScene.Path);
     void SetNewGameScene_Button() => _newGameScene.Open("Assets/resources/Levels/Scenes", new string[] { "*.tscn" });
+
+    void UpdateIndex(int i)
+    {
+        _currentIndex = i;
+        _sceneManager.ChangeSceneInEditor(_sceneManager.SceneNames[_currentIndex]);
+    }
 
     void UpdateList()
     {

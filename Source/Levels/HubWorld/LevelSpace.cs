@@ -11,9 +11,12 @@ public partial class LevelSpace : Control
 
     Label TextLabel;
 
+    private OptionButton _optionButton;
+
     public override void _Ready()
     {
         TextLabel = GetNode<Label>("LevelName");
+        //_optionButton = GetNode<OptionButton>("OptionButton");
         Scenes = SceneManager.Manager;
         if ((Scene = (Level)Scenes.GetLevel(LevelName)) != null)
         {

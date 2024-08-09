@@ -43,7 +43,6 @@ public partial class ItemList : Control
             GD.Print(_items);
             _itemContainer.AddChild(_items.Last());
             _itemCount = _items.Count;
-
             item.Pressed += () => LevelSelected(item.Text);
         }
     }
