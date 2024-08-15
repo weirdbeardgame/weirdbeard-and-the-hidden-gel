@@ -121,7 +121,6 @@ public partial class Player : Actor
     {
         ResetActor();
         SetState("IDLE");
-        _CurrentMap = GetParent().GetNode<TileMap>("TileMap");
 
         if (!_camera.Enabled)
         {
