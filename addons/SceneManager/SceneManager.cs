@@ -18,7 +18,7 @@ public partial class SceneManager : EditorPlugin
     private Control _editorDock;
     private static SceneManagerData s_ManagerData;
 
-    [Export] private static LevelCommon s_currentScene;
+    private static LevelCommon s_currentScene;
 
     [Export] private string _sceneManagerPath = "res://SceneManagerData.tres";
 

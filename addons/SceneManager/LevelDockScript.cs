@@ -115,16 +115,22 @@ public partial class LevelDockScript : Control
 
             if (_levelSelector.ItemCount > _sceneManager.SceneNames.Count)
             {
-                // Need to remove da buttn
-                var removeList = _levelSelector.Items.Where(item => !_sceneManager.SceneNames.Any(item2 => item2 == item.Text));
-
-                foreach (var item in removeList)
-                {
-                    _levelSelector.RemoveItem(item);
-                }
+                CallDeferred(nameof(RemoveDeferred));
             }
         }
     }
+
+    void RemoveDeferred()
+    {
+        // Need to remove da buttn
+        var removeList = _levelSelector.Items.Where(item => !_sceneManager.SceneNames.Any(item2 => item2 == item.Text));
+
+        foreach (var item in removeList)
+        {
+            _levelSelector.RemoveItem(item);
+        }
+    }
+
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)

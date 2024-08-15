@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bda5quek4im23"]
+
+[ext_resource type="Script" path="res://Source/Levels/Level.cs" id="1_5lorm"]
+
+[node name="TestLev" type="Node2D" node_paths=PackedStringArray("_exits", "_activeEnemySpanwers")]
+script = ExtResource("1_5lorm")
+_exits = []
+_activeEnemySpanwers = []
+LevelName = "TEarsasfdsafdsa"
