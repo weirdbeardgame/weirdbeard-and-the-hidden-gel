@@ -4373,7 +4373,7 @@ tile_map_data = PackedByteArray("AACo/woAEwAAAAAAAACp/woAEwABAAAAAACq/woAEwACAAA
 tile_set = SubResource("TileSet_sjuqh")
 
 [node name="Spawner" parent="." instance=ExtResource("27_7185k")]
-position = Vector2(351, -306)
+position = Vector2(463, -64)
 _Spawn = ExtResource("5_f2heu")
 
 [node name="PlayerStartPoint" parent="." instance=ExtResource("2_t00cc")]
