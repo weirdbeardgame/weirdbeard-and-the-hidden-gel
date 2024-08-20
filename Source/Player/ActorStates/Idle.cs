@@ -46,7 +46,7 @@ public partial class Idle : State
                 StateMachine.UpdateState("WALK");
             }
 
-            if (Input.IsActionJustPressed("Jump") && Player.CanJump())
+            if (Input.IsActionJustPressed("Jump") && Player.CanJump)
             {
                 StateMachine.UpdateState("JUMP");
             }

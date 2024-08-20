@@ -21,8 +21,6 @@ public partial class Player : Actor
 
     public static Action<PowerUp> OnEquip;
 
-    public void ClearCollidedObject() => _Obj = 0;
-
     public void EquipWeapon(PackedScene W, Sprite2D WeaponSprite) => WeaponSlot.SlotWeapon(W, WeaponSprite);
 
 
@@ -83,23 +81,6 @@ public partial class Player : Actor
         }
     }
 
-    public int Collided(Player Player, string DataLayerName)
-    {
-        if (_CurrentMap != null)
-        {
-            var pos = _CurrentMap.LocalToMap(Player.GlobalPosition);
-            var data = _CurrentMap.GetCellTileData(1, pos, true);
-            if (data != null)
-            {
-                var num = data.GetCustomData(DataLayerName);
-
-                _Obj = num.AsInt32();
-                return _Obj;
-            }
-        }
-        return 0;
-    }
-
     public void ResetPlayerPosition(Checkpoint CurrentCheckpoint)
     {
         Node2D PlayerStartPoint = SceneManager.s_CurrentScene.GetNode<Node2D>("PlayerStartPoint");
@@ -127,7 +108,6 @@ public partial class Player : Actor
             ActivateCamera();
         }
         SetPhysicsProcess(true);
-        ClearCollidedObject();
     }
 
     public void StartCoyoteTimer()
@@ -164,12 +144,9 @@ public partial class Player : Actor
         _camera.Position = CameraPosition;
     }
 
-    public bool CanJump()
-    {
-        GD.Print("Num Jumps: ", NumJumps);
+    public bool CanJump => IsOnFloor() || _coyoteTimer.GetTimeLeft() > 0;
 
-        return IsOnFloor() || NumJumps > 0;
-    }
+    public bool CanJumpAgain => IsOnFloor() || NumJumps > 0;
 
     public void Attack()
     {
@@ -183,28 +160,6 @@ public partial class Player : Actor
         // Davy Jones stuff in here?
         // Play Animation
         ResetPlayer();
-    }
-
-    public void DetectObjects()
-    {
-        switch ((Objects)Collided(this, "ObjectType"))
-        {
-            case Objects.LADDER:
-                // Note to self. Detect top of latdder and end if at top.
-                if (Input.IsActionJustPressed("Up"))
-                {
-                    StateMachine.UpdateState("LADDER");
-                }
-                break;
-
-            case Objects.SPIKE:
-                StateMachine.UpdateState("DEATH");
-                break;
-
-            case Objects.WATER:
-                // I think my day is going swimmingly!
-                break;
-        }
     }
 
     public override void _Process(double delta)

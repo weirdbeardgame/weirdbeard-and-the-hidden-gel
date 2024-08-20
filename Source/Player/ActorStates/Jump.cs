@@ -38,10 +38,16 @@ public partial class Jump : State
         GD.Print("Jump Gravity: ", Player.JumpGravity);
         GD.Print("Jump Velocity: ", Player.JumpVelocity);
 
+        if (Player.Velocity.X == 0)
+        {
+            Player.Velocity = Vector2.Right * (Player.Speed / 2);
+        }
+
         _InputVelocity.X = Player.Velocity.X;
         Player.Velocity = _InputVelocity;
 
         Player.NumJumps -= 1;
+        Player.wasOnFloor = true;
         GD.Print("Velocity: ", Player.Velocity);
     }
 
@@ -58,7 +64,7 @@ public partial class Jump : State
 
         Player.GetAirState();
 
-        if (Input.IsActionJustPressed("Jump") && Player.CanJump())
+        if (Input.IsActionJustPressed("Jump") && Player.CanJumpAgain)
         {
             StateMachine.ResetActor();
         }

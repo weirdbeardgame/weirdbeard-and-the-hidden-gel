@@ -29,7 +29,7 @@ public partial class Falling : State
 
     public override void FixedUpdate(double delta)
     {
-        if (Input.IsActionPressed("Jump") && Player.CanJump())
+        if (Input.IsActionPressed("Jump") && Player.CanJumpAgain)
         {
             GD.Print("Jump Again");
             StateMachine.ResetToOldState();

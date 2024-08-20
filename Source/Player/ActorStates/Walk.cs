@@ -85,7 +85,7 @@ public partial class Walk : State
             StateMachine.UpdateState("FALL");
         }
 
-        if (Input.IsActionJustPressed("Jump") && Player.CanJump())
+        if (Input.IsActionJustPressed("Jump") && Player.CanJump)
         {
             StateMachine.UpdateState("JUMP");
         }

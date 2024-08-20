@@ -60,7 +60,7 @@ public partial class Ladder : State
     {
         base.Update(delta);
         GetInput();
-        LadderState = (LadderStates)Player.Collided(Player, "LadderEvent");
+        //LadderState = (LadderStates)Player.Collided(Player, "LadderEvent");
         GD.Print("State: ", LadderState.ToString());
         Player.Velocity = _InputVelocity;
         GD.Print("Velocity: ", Player.Velocity);

@@ -332,7 +332,7 @@ DefaultGravity = 1500.0
 projectileMotionJump = true
 JumpTimeToDescent = 0.3
 JumpTimeToPeak = 0.6
-jumpHeight = 150.0
+jumpHeight = 300.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_horizontal_enabled = true
