@@ -167,7 +167,8 @@ public partial class Player : Actor
     public bool CanJump()
     {
         GD.Print("Num Jumps: ", NumJumps);
-        return IsOnFloor() || !_coyoteTimer.IsStopped() || _bufferedJumpTimer.IsStopped() || NumJumps != 0;
+
+        return IsOnFloor() || NumJumps > 0;
     }
 
     public void Attack()

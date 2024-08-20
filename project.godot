@@ -34,6 +34,10 @@ window/vsync/vsync_mode=2
 
 project/assembly_name="Weirdbeard Mono"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SceneManager/plugin.cfg")
+
 [global]
 
 editor=false

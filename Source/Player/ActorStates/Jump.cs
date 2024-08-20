@@ -14,12 +14,14 @@ public partial class Jump : State
         StateMachine.AddState(this, StateName);
     }
 
-    // The mistake is in the State Machine
+    // ~~The mistake is in the State Machine~~ No!
+    // The mistake is in the physics. (Future Timotheus)
 
     public override void Start()
     {
         GD.Print("Jump");
         Player.AnimationPlayer.Play("Jump");
+
         if (!Player.projectileMotionJump)
         {
             _InputVelocity.Y = -Player.maxJumpImpulse;
@@ -27,6 +29,10 @@ public partial class Jump : State
         if (Player.projectileMotionJump)
         {
             _InputVelocity.Y = Player.JumpVelocity;
+        }
+        if (Input.IsActionJustReleased("Jump"))
+        {
+            _InputVelocity.Y /= 4;
         }
 
         GD.Print("Jump Gravity: ", Player.JumpGravity);
@@ -37,19 +43,21 @@ public partial class Jump : State
 
         Player.NumJumps -= 1;
         GD.Print("Velocity: ", Player.Velocity);
-
-        Player.BufferJump();
     }
 
     public override void FixedUpdate(double delta)
     {
         base.FixedUpdate(delta);
-        Player.GetAirState();
+
+        Player.BufferJump();
     }
 
     public override void Update(double delta)
     {
         base.Update(delta);
+
+        Player.GetAirState();
+
         if (Input.IsActionJustPressed("Jump") && Player.CanJump())
         {
             StateMachine.ResetActor();

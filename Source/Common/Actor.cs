@@ -27,6 +27,8 @@ public partial class Actor : CharacterBody2D
     [Export] public float minJumpImpulse = 300f;
     [Export] public bool projectileMotionJump;
     [Export] public float maxCoyoteTimer = 2f;
+
+
     [Export] public float JumpTimeToDescent;
     [Export] public float JumpTimeToPeak;
     [Export] public float jumpHeight;
@@ -75,11 +77,11 @@ public partial class Actor : CharacterBody2D
         CanMove = true;
     }
 
-    protected float GetGravity()
+    new protected float GetGravity()
     {
         if (projectileMotionJump)
         {
-            if (Velocity.Y > 0.0)
+            if (Velocity.Y < 0.0)
             {
                 return FallGravity;
             }
@@ -105,12 +107,9 @@ public partial class Actor : CharacterBody2D
 
     public void ApplyGravity(float delta)
     {
-        if (!IsOnFloor())
-        {
-            var _Velocity = Velocity;
-            _Velocity.Y += delta * Gravity;
-            Velocity = _Velocity;
-        }
+        var _Velocity = Velocity;
+        _Velocity.Y += delta * Gravity;
+        Velocity = _Velocity;
     }
 
     // An admiral feat for a lowlife such as yourself. I have a question for you though.

@@ -63,7 +63,7 @@ public partial class Enemy : Actor
 
     public override void _PhysicsProcess(double delta)
     {
-        GD.Print(DetectPlayer());
+        //GD.Print(DetectPlayer());
         //GD.Print("Gravity: " + Gravity);
         ApplyGravity((float)delta);
         MoveAndSlide();
