@@ -6,10 +6,9 @@ public enum Objects { NOTHING = 0, SPIKE = 2, LADDER = 1, WATER = 3 }
 public partial class Player : Actor
 {
     private int _Obj;
-    private Area2D _body;
     private Camera2D _camera;
     private Timer _coyoteTimer;
-    private TileMap _CurrentMap;
+    //private TileMapLayer _CurrentMap;
     private Timer _bufferedJumpTimer;
 
     public int PlayerLives = 3;
@@ -33,7 +32,6 @@ public partial class Player : Actor
         _bufferedJumpTimer = (Timer)GetNode("BufferedJump");
 
         _camera = (Camera2D)GetNode("Camera2D");
-        _body = GetNode<Area2D>("ObjectDetect");
         _coyoteTimer = (Timer)GetNode("CoyoteTimer");
 
         WeaponSlot = _camera.GetNode<WeaponSlot>("HUD/WeaponSlot");
