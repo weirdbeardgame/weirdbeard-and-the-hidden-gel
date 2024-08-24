@@ -329,7 +329,7 @@ floor_snap_length = 9.0
 script = ExtResource("28")
 DefaultGravity = 1500.0
 projectileMotionJump = true
-JumpTimeToDescent = 0.3
+JumpTimeToDescent = 0.4
 JumpTimeToPeak = 0.6
 jumpHeight = 450.0
 
