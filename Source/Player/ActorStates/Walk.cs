@@ -29,7 +29,6 @@ public partial class Walk : State
         }
         else
         {
-            GD.Print("Walk");
             currentSpeed = Player.Speed;
         }
         if (Input.IsActionPressed("Right"))

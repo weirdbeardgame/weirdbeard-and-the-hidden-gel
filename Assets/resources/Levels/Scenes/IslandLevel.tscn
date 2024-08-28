@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=4 uid="uid://cmeqprhy6ib77"]
+[gd_scene load_steps=92 format=4 uid="uid://cmeqprhy6ib77"]
 
 [ext_resource type="Script" path="res://Source/Levels/Level.cs" id="1_16fg3"]
 [ext_resource type="PackedScene" uid="uid://dbpl0o8dv4kce" path="res://Assets/resources/Levels/Components/PlayerStartPoint.tscn" id="2_t00cc"]
@@ -46,6 +46,9 @@
 [ext_resource type="Texture2D" uid="uid://caimqtvhcxq8w" path="res://Assets/resources/Tiles/BeachPirate TileSet/Background/Water/T_Water_7.png" id="34_3dsn1"]
 [ext_resource type="Texture2D" uid="uid://cjjx37mx50ibi" path="res://Assets/resources/Tiles/BeachPirate TileSet/Background/Water/T_Water_8.png" id="35_f25pp"]
 [ext_resource type="Texture2D" uid="uid://buwqhgpxb6gp7" path="res://Assets/resources/Tiles/BeachPirate TileSet/Background/Water/T_Water_9.png" id="37_f63nw"]
+[ext_resource type="PackedScene" uid="uid://dwlvxfbgfp8mh" path="res://Assets/resources/Levels/Components/Ladder_Begin.tscn" id="47_8mf3s"]
+[ext_resource type="PackedScene" uid="uid://dop4a34vi68yo" path="res://Assets/resources/Levels/Components/GoalPost.tscn" id="48_x03ke"]
+[ext_resource type="PackedScene" uid="uid://jjcpamh275yi" path="res://Assets/resources/Levels/Components/Ladder_End.tscn" id="49_xgxc4"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ip6ye"]
 resource_name = "Coin"
@@ -133,10 +136,8 @@ texture_region_size = Vector2i(32, 32)
 texture = ExtResource("11_0iglj")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 4.5, 16, 4.75, 16, 16, -16, 16)
 0:1/0 = 0
 0:2/0 = 0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 4.5, 16, 4.75, 16, 16, -16, 16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vxku2"]
 texture = ExtResource("12_mvb5e")
@@ -4373,3 +4374,12 @@ _Spawn = ExtResource("5_f2heu")
 
 [node name="PlayerStartPoint" parent="." instance=ExtResource("2_t00cc")]
 position = Vector2(2366, -192)
+
+[node name="Goal" parent="." instance=ExtResource("48_x03ke")]
+position = Vector2(3895, 665)
+
+[node name="Ladder_Begin_node" parent="." instance=ExtResource("47_8mf3s")]
+position = Vector2(2959, 46)
+
+[node name="Ladder" parent="." instance=ExtResource("49_xgxc4")]
+position = Vector2(2959, -367)

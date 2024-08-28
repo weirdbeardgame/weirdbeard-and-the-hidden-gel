@@ -1,14 +1,12 @@
 using Godot;
 using System;
 
-enum LadderStates { BEGIN = 0, CLIMBING = 1, END = 2 };
+public enum LadderStates { NONE = 0, BEGIN = 1, CLIMBING = 2, END = 3 };
 
 public partial class Ladder : State
 {
     Vector2 _InputVelocity = Vector2.Zero;
     [Export] float currentSpeed = 0;
-
-    LadderStates LadderState;
 
     public override void _Ready()
     {
@@ -18,6 +16,7 @@ public partial class Ladder : State
         StateMachine.AddState(this, StateName);
         base._Ready();
     }
+
     public override void Start()
     {
         base.Start();
@@ -26,7 +25,7 @@ public partial class Ladder : State
 
     public override Vector2 GetInput()
     {
-        if (Player.IsOnFloor() || LadderState == LadderStates.BEGIN)
+        if (Player.IsOnFloor() || Player.LadderState == LadderStates.BEGIN)
         {
             if (Input.IsActionPressed("Down"))
             {
@@ -38,7 +37,7 @@ public partial class Ladder : State
         {
             _InputVelocity.Y = -1 * currentSpeed;
 
-            if (LadderState == LadderStates.END)
+            if (Player.LadderState == LadderStates.END)
             {
                 GD.Print("Nothing");
                 Stop();
@@ -60,8 +59,7 @@ public partial class Ladder : State
     {
         base.Update(delta);
         GetInput();
-        //LadderState = (LadderStates)Player.Collided(Player, "LadderEvent");
-        GD.Print("State: ", LadderState.ToString());
+        GD.Print("State: ", Player.LadderState.ToString());
         Player.Velocity = _InputVelocity;
         GD.Print("Velocity: ", Player.Velocity);
     }
@@ -69,7 +67,16 @@ public partial class Ladder : State
     public override void Stop()
     {
         base.Stop();
-        LadderState = LadderStates.BEGIN;
-        Player.ResetPlayer();
+        // TO DO: get off ladder correctly.
+
+        switch (Player.LadderState)
+        {
+            case LadderStates.BEGIN:
+                break;
+            case LadderStates.END:
+                // Potentially add to Y and X to get off correctly?
+                break;
+        }
+
     }
 }

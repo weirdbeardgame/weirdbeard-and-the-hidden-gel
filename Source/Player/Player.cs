@@ -1,8 +1,6 @@
 using Godot;
 using System;
 
-public enum Objects { NOTHING = 0, SPIKE = 2, LADDER = 1, WATER = 3 }
-
 public partial class Player : Actor
 {
     private int _Obj;
@@ -10,15 +8,16 @@ public partial class Player : Actor
     private Timer _coyoteTimer;
     //private TileMapLayer _CurrentMap;
     private Timer _bufferedJumpTimer;
-
     public int PlayerLives = 3;
     public Sprite2D WeirdBeard;
     public WeaponSlot WeaponSlot;
     public PowerUp CurrentPowerup;
     public AnimationPlayer AnimationPlayer;
 
+    public LadderStates LadderState;
 
     public static Action<PowerUp> OnEquip;
+    public static Action<LadderStates> s_UpdateLadderState;
 
     public void EquipWeapon(PackedScene W, Sprite2D WeaponSprite) => WeaponSlot.SlotWeapon(W, WeaponSprite);
 
@@ -41,6 +40,8 @@ public partial class Player : Actor
         GetStateMachine();
 
         Destroyed += GamaOvar;
+
+        s_UpdateLadderState += UpdateLadderState;
 
         StateMachine.InitState("IDLE");
         OnEquip += EquipPowerup;
@@ -101,6 +102,8 @@ public partial class Player : Actor
         ResetActor();
         SetState("IDLE");
 
+        LadderState = LadderStates.NONE;
+
         if (!_camera.Enabled)
         {
             ActivateCamera();
@@ -139,6 +142,15 @@ public partial class Player : Actor
 
     public bool CanJumpAgain => IsOnFloor() || NumJumps > 0;
 
+    public void UpdateLadderState(LadderStates s)
+    {
+        if (LadderState != s)
+        {
+            GD.Print("Ladder State Update");
+            LadderState = s;
+        }
+    }
+
     public void Attack()
     {
         WeaponCommon ToUse = WeaponSlot.Weapon.Instantiate<WeaponCommon>();
@@ -157,7 +169,7 @@ public partial class Player : Actor
     {
         base._Process(delta);
 
-        //DetectObjects();
+        LadderDetector();
 
         if (CurrentPowerup != null)
         {
@@ -178,6 +190,22 @@ public partial class Player : Actor
             }
         }
     }
+
+    public void LadderDetector()
+    {
+        if (LadderState == LadderStates.BEGIN)
+        {
+            if (Input.IsActionJustPressed("Up"))
+            {
+                StateMachine.UpdateState("LADDER");
+            }
+            else if (StateMachine.CurrentStateName == "LADDER" && Input.IsActionJustPressed("Down"))
+            {
+                ResetPlayer();
+            }
+        }
+    }
+
 
     public override void _PhysicsProcess(double delta)
     {
