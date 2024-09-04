@@ -16,8 +16,11 @@ public partial class Actor : CharacterBody2D
     }
 
     // Movement properties
+
+    private bool _gravityEnabled;
     private float _gravity;
     [Export] protected float DefaultGravity = 400;
+
     [Export] public float Speed = 400f;
     [Export] public float RunSpeed = 800f;
     public bool CanMove;
@@ -73,21 +76,31 @@ public partial class Actor : CharacterBody2D
         NumJumps = 2;
         wasOnFloor = false;
         Velocity = Vector2.Zero;
+        EnableGravity();
         Gravity = GetGravity();
         CanMove = true;
     }
 
+    public void DisableGravity() => _gravityEnabled = false;
+
+    public void EnableGravity() => _gravityEnabled = true;
+
     new protected float GetGravity()
     {
-        if (projectileMotionJump)
+        if (_gravityEnabled)
         {
-            if (Velocity.Y < 0.0)
+            if (projectileMotionJump)
             {
-                return FallGravity;
+                if (Velocity.Y < 0.0)
+                {
+                    return FallGravity;
+                }
+                return JumpGravity;
             }
-            return JumpGravity;
+            return DefaultGravity;
         }
-        return DefaultGravity;
+
+        return 0.0f;
     }
 
     public float Gravity
@@ -107,9 +120,12 @@ public partial class Actor : CharacterBody2D
 
     public void ApplyGravity(float delta)
     {
-        var _Velocity = Velocity;
-        _Velocity.Y += delta * Gravity;
-        Velocity = _Velocity;
+        if (_gravityEnabled)
+        {
+            var _Velocity = Velocity;
+            _Velocity.Y += delta * Gravity;
+            Velocity = _Velocity;
+        }
     }
 
     // An admiral feat for a lowlife such as yourself. I have a question for you though.
