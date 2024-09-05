@@ -21,8 +21,12 @@ public partial class Actor : CharacterBody2D
     private float _gravity;
     [Export] protected float DefaultGravity = 400;
 
+    // Actor Speeds
     [Export] public float Speed = 400f;
     [Export] public float RunSpeed = 800f;
+    [Export] public float SwimSpeed = 200;
+    [Export] public float FastSwimSpeed = 400;
+
     public bool CanMove;
 
     //Jump properties
