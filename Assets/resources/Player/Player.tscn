@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bxq4bqokdiwhr"]
+[gd_scene load_steps=60 format=3 uid="uid://bxq4bqokdiwhr"]
 
 [ext_resource type="Texture2D" uid="uid://dvumkhaud4kn4" path="res://Assets/resources/Sprites/WeirdBeard/Idle_01.png" id="1"]
 [ext_resource type="Script" path="res://Source/StateMachine.cs" id="3"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://b7vwaxgwwbh5j" path="res://Assets/resources/Player/Components/weapon_slot.tscn" id="30_45k03"]
 [ext_resource type="Texture2D" uid="uid://cinug0bho4ddl" path="res://Assets/resources/Sprites/WeirdBeard/Hover/Weirdbeard_Hover_98x82.png" id="31"]
 [ext_resource type="Script" path="res://Source/CoinPurse.cs" id="32"]
+[ext_resource type="Script" path="res://Source/Player/ActorStates/Swim.cs" id="34_jkgnq"]
 [ext_resource type="Texture2D" uid="uid://dmms46s0woccn" path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/Cpt_WeirdBeard_Helicopter.png" id="53"]
 
 [sub_resource type="Animation" id="Animation_2asmt"]
@@ -430,3 +431,7 @@ shape = SubResource("RectangleShape2D_7lt1p")
 
 [node name="WeapSpawn" type="Node2D" parent="."]
 position = Vector2(17, 0)
+
+[node name="Swim" type="Node" parent="."]
+script = ExtResource("34_jkgnq")
+StateName = "SWIM"

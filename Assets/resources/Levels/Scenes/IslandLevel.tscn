@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://cmeqprhy6ib77"]
+[gd_scene load_steps=94 format=4 uid="uid://cmeqprhy6ib77"]
 
 [ext_resource type="Script" path="res://Source/Levels/Level.cs" id="1_16fg3"]
 [ext_resource type="PackedScene" uid="uid://dbpl0o8dv4kce" path="res://Assets/resources/Levels/Components/PlayerStartPoint.tscn" id="2_t00cc"]
@@ -50,6 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://dwlvxfbgfp8mh" path="res://Assets/resources/Levels/Components/Ladder_Begin.tscn" id="47_8mf3s"]
 [ext_resource type="PackedScene" uid="uid://dop4a34vi68yo" path="res://Assets/resources/Levels/Components/GoalPost.tscn" id="48_x03ke"]
 [ext_resource type="PackedScene" uid="uid://jjcpamh275yi" path="res://Assets/resources/Levels/Components/Ladder_End.tscn" id="49_xgxc4"]
+[ext_resource type="PackedScene" uid="uid://dt0qgk44p6m2y" path="res://Assets/resources/Levels/Components/SwimDetector.tscn" id="51_8n8j4"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ip6ye"]
 resource_name = "Coin"
@@ -4388,3 +4389,10 @@ position = Vector2(2959, 46)
 
 [node name="Ladder" parent="." instance=ExtResource("49_xgxc4")]
 position = Vector2(2959, -367)
+
+[node name="SwimDetector" parent="." instance=ExtResource("51_8n8j4")]
+position = Vector2(2848, -10)
+
+[node name="SwimDetector2" parent="." instance=ExtResource("51_8n8j4")]
+position = Vector2(3797, 275)
+scale = Vector2(6.96, 1)

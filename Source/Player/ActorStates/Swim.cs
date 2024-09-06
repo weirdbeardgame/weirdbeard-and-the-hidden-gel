@@ -18,7 +18,6 @@ public partial class Swim : State
     public override void Start()
     {
         //Player.AnimationPlayer.Play("Swim");
-        //Player.ActivateSwimGravity();
     }
 
     public override Vector2 GetInput()
@@ -47,7 +46,7 @@ public partial class Swim : State
 
         if (Input.IsActionJustPressed("Jump"))
         {
-            _InputVelocity.Y += 1;
+            _InputVelocity.Y += -1;
         }
 
         else

@@ -12,8 +12,14 @@ public partial class StateMachine : Node
 
     public State CurrentState => _state;
 
-    public string CurrentStateName => CurrentState.StateName;
-
+    public string CurrentStateName()
+    {
+        if (CurrentState != null)
+        {
+            return CurrentState.StateName;
+        }
+        return "ERROR";
+    }
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {

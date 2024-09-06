@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt0qgk44p6m2y"]
+
+[ext_resource type="Script" path="res://Source/Levels/SwimStart.cs" id="1_sy6qt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pf84i"]
+size = Vector2(81, 86)
+
+[node name="SwimDetector" type="Area2D"]
+scale = Vector2(1.00302, 1)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_sy6qt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(30.5, 33)
+shape = SubResource("RectangleShape2D_pf84i")

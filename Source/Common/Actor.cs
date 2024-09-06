@@ -46,6 +46,8 @@ public partial class Actor : CharacterBody2D
     public float JumpGravity;
     public float FallGravity;
 
+    [Export] public float SwimGravity = 200;
+
     public int NumJumps = 2;
     public bool wasOnFloor;
     public Sprite2D Sprite;
@@ -93,15 +95,22 @@ public partial class Actor : CharacterBody2D
     {
         if (_gravityEnabled)
         {
-            if (projectileMotionJump)
+            if (StateMachine.CurrentStateName() == "SWIM")
             {
-                if (Velocity.Y < 0.0)
-                {
-                    return FallGravity;
-                }
-                return JumpGravity;
+                return SwimGravity;
             }
-            return DefaultGravity;
+            else
+            {
+                if (projectileMotionJump)
+                {
+                    if (Velocity.Y < 0.0)
+                    {
+                        return FallGravity;
+                    }
+                    return JumpGravity;
+                }
+                return DefaultGravity;
+            }
         }
 
         return 0.0f;

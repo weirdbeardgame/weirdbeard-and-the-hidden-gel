@@ -1,19 +1,17 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://d2jv44btmqwn8"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://c14s07nkhfewn"]
 
-[ext_resource type="PackedScene" uid="uid://bla0wiy7o7g5j" path="res://Assets/resources/Levels/Scenes/GrassLand1.tscn" id="1_8mh74"]
-[ext_resource type="PackedScene" uid="uid://bxq4bqokdiwhr" path="res://Assets/resources/Player/Player.tscn" id="1_fglub"]
-[ext_resource type="PackedScene" uid="uid://dp7lwe2kqfvoj" path="res://Assets/resources/Levels/Scenes/HubWorld1.tscn" id="2_poycb"]
-[ext_resource type="PackedScene" uid="uid://cmeqprhy6ib77" path="res://Assets/resources/Levels/Scenes/IslandLevel.tscn" id="3_84amy"]
-[ext_resource type="Script" path="res://addons/SceneManager/SceneManagerData.cs" id="5_uq164"]
+[ext_resource type="PackedScene" uid="uid://bxq4bqokdiwhr" path="res://Assets/resources/Player/Player.tscn" id="1_20aoy"]
+[ext_resource type="PackedScene" uid="uid://dp7lwe2kqfvoj" path="res://Assets/resources/Levels/Scenes/HubWorld1.tscn" id="2_22w1w"]
+[ext_resource type="PackedScene" uid="uid://cmeqprhy6ib77" path="res://Assets/resources/Levels/Scenes/IslandLevel.tscn" id="3_1cbmu"]
+[ext_resource type="Script" path="res://addons/SceneManager/SceneManagerData.cs" id="4_aqg7f"]
 
 [resource]
-script = ExtResource("5_uq164")
-_newGameScene = ExtResource("2_poycb")
+script = ExtResource("4_aqg7f")
+_newGameScene = ExtResource("2_22w1w")
 _levels = {
-"GrassLand1": ExtResource("1_8mh74"),
-"HubWorld1": ExtResource("2_poycb"),
-"IslandLevel": ExtResource("3_84amy")
+"HubWorld1": ExtResource("2_22w1w"),
+"IslandLevel": ExtResource("3_1cbmu")
 }
 _CurrentLevel = "Test1"
 _PlayerPath = "res://Assets/resources/Player/Player.tscn"
-_PlayerScene = ExtResource("1_fglub")
+_PlayerScene = ExtResource("1_20aoy")

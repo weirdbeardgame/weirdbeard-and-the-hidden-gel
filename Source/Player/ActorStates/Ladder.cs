@@ -21,7 +21,7 @@ public partial class Ladder : State
     public override void Start()
     {
         base.Start();
-        //Player.Gravity = 0;
+        Player.DisableGravity();
     }
 
     public override Vector2 GetInput()
