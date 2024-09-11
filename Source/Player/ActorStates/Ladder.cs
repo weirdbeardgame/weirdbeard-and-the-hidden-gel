@@ -26,36 +26,45 @@ public partial class Ladder : State
 
     public override Vector2 GetInput()
     {
-        if (Player.LadderState == LadderStates.CLIMBING)
+
+        switch (Player.LadderState)
         {
-            if (Player.IsOnFloor() || Player.LadderState == LadderStates.BEGIN)
-            {
-                if (Input.IsActionPressed("Down"))
+
+            case LadderStates.BEGIN:
+                if (Input.IsActionJustPressed("Down"))
                 {
                     Stop();
                 }
-            }
+                break;
 
-            if (Input.IsActionPressed("Up"))
-            {
-                _InputVelocity.Y = -1 * currentSpeed;
+            case LadderStates.CLIMBING:
+                if (Input.IsActionPressed("Up"))
+                {
+                    _InputVelocity.Y = -1 * currentSpeed;
+                }
 
-                if (Player.LadderState == LadderStates.END)
+                if (Input.IsActionPressed("Down"))
+                {
+                    _InputVelocity.Y = 1 * currentSpeed;
+                }
+                else if (!Input.IsAnythingPressed())
+                {
+                    _InputVelocity = Vector2.Zero;
+                }
+
+                break;
+
+            case LadderStates.END:
+                if (Input.IsActionJustPressed("Up"))
                 {
                     GD.Print("Nothing");
                     Stop();
                 }
-            }
 
-            if (Input.IsActionPressed("Down"))
-            {
-                _InputVelocity.Y = 1 * currentSpeed;
-            }
-            else if (!Input.IsAnythingPressed())
-            {
-                _InputVelocity = Vector2.Zero;
-            }
+                break;
         }
+
+
         return _InputVelocity;
     }
 
@@ -68,6 +77,7 @@ public partial class Ladder : State
         if (Player.LadderState == LadderStates.END)
         {
             Player.DetectPlatform();
+            Stop();
         }
 
         GD.Print("State: ", Player.LadderState.ToString());
@@ -85,7 +95,7 @@ public partial class Ladder : State
             case LadderStates.BEGIN:
                 break;
             case LadderStates.END:
-
+                // Move the player, then reset gravity
                 Player.ResetPlayer();
                 break;
         }
