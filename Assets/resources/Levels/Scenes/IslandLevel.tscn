@@ -4379,19 +4379,23 @@ position = Vector2(463, -64)
 _Spawn = ExtResource("5_f2heu")
 
 [node name="PlayerStartPoint" parent="." instance=ExtResource("2_t00cc")]
-position = Vector2(-184, -42)
+position = Vector2(2572, -161)
 
 [node name="Goal" parent="." instance=ExtResource("48_x03ke")]
 position = Vector2(3870, 998)
+hub = "HubWorld1"
 
 [node name="Ladder_Begin_node" parent="." instance=ExtResource("47_8mf3s")]
+z_index = 2
 position = Vector2(2959, 46)
 
-[node name="Ladder" parent="." instance=ExtResource("49_xgxc4")]
+[node name="Ladder_End_node" parent="." instance=ExtResource("49_xgxc4")]
+z_index = 2
 position = Vector2(2959, -367)
 
 [node name="SwimDetector" parent="." instance=ExtResource("51_8n8j4")]
-position = Vector2(2848, -10)
+position = Vector2(2447, -73)
+scale = Vector2(1.09683, 5.26187)
 
 [node name="SwimDetector2" parent="." instance=ExtResource("51_8n8j4")]
 position = Vector2(3797, 275)

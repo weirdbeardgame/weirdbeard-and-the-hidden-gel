@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bxq4bqokdiwhr"]
+[gd_scene load_steps=50 format=3 uid="uid://bxq4bqokdiwhr"]
 
 [ext_resource type="Texture2D" uid="uid://dvumkhaud4kn4" path="res://Assets/resources/Sprites/WeirdBeard/Idle_01.png" id="1"]
 [ext_resource type="Script" path="res://Source/StateMachine.cs" id="3"]
@@ -32,21 +32,25 @@
 [ext_resource type="PackedScene" uid="uid://b7vwaxgwwbh5j" path="res://Assets/resources/Player/Components/weapon_slot.tscn" id="30_45k03"]
 [ext_resource type="Texture2D" uid="uid://cinug0bho4ddl" path="res://Assets/resources/Sprites/WeirdBeard/Hover/Weirdbeard_Hover_98x82.png" id="31"]
 [ext_resource type="Script" path="res://Source/CoinPurse.cs" id="32"]
+[ext_resource type="Texture2D" uid="uid://bokaqj05um1oc" path="res://Assets/resources/Sprites/Cpt_Beard_Climb.png" id="34_5byml"]
 [ext_resource type="Script" path="res://Source/Player/ActorStates/Swim.cs" id="34_jkgnq"]
 [ext_resource type="Texture2D" uid="uid://dmms46s0woccn" path="res://Assets/resources/Sprites/WeirdBeard/Helicopter/Cpt_WeirdBeard_Helicopter.png" id="53"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lt1p"]
+size = Vector2(32, 44)
+
 [sub_resource type="Animation" id="Animation_2asmt"]
 resource_name = "Climb"
-length = 0.8
+length = 0.79
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CenterContainer/WeirdBeard:frame")
+tracks/0/path = NodePath("CenterContainer/ClimbBeard:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0921294, 0.192129, 0.292129, 0.396852, 0.5, 0.6, 0.7),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
@@ -202,31 +206,31 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CenterContainer/WeirdBeard:frame")
+tracks/0/path = NodePath("CenterContainer/WeirdBeard:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0]
+"values": [ExtResource("1")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CenterContainer/WeirdBeard:texture")
+tracks/1/path = NodePath("CenterContainer/HoverBeard:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ExtResource("1")]
+"values": [0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CenterContainer/HoverBeard:frame")
+tracks/2/path = NodePath("CenterContainer/HelicopterBeard:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -238,13 +242,13 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CenterContainer/HelicopterBeard:frame")
+tracks/3/path = NodePath("CenterContainer/ClimbBeard:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [0]
 }
 
@@ -280,47 +284,6 @@ _data = {
 "RESET": SubResource("3"),
 "Walk": SubResource("4")
 }
-
-[sub_resource type="AnimationNodeAnimation" id="13"]
-animation = &"Heli_Fall"
-
-[sub_resource type="AnimationNodeAnimation" id="14"]
-animation = &"Heli_Jump"
-
-[sub_resource type="AnimationNodeAnimation" id="15"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="16"]
-animation = &"Jump"
-
-[sub_resource type="AnimationNodeAnimation" id="17"]
-animation = &"Walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="18"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="19"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="20"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="21"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="22"]
-
-[sub_resource type="AnimationNodeStateMachine" id="11"]
-states/Heli_Fall/node = SubResource("13")
-states/Heli_Fall/position = Vector2(789, 191)
-states/Heli_Jump/node = SubResource("14")
-states/Heli_Jump/position = Vector2(422, 243)
-states/Idle/node = SubResource("15")
-states/Idle/position = Vector2(799, 39)
-states/Jump/node = SubResource("16")
-states/Jump/position = Vector2(627, 129)
-states/Walk/node = SubResource("17")
-states/Walk/position = Vector2(990, 129)
-transitions = ["Idle", "Walk", SubResource("18"), "Idle", "Jump", SubResource("19"), "Jump", "Heli_Jump", SubResource("20"), "Heli_Jump", "Heli_Fall", SubResource("21"), "Heli_Fall", "Idle", SubResource("22")]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lt1p"]
-size = Vector2(25, 48)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 3
@@ -375,12 +338,6 @@ text = "test"
 [node name="Fall" type="Node" parent="."]
 script = ExtResource("8_qfx8c")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_sja6h")
-}
-autoplay = "Idle"
-
 [node name="Death" type="Node" parent="."]
 script = ExtResource("29_f3e2n")
 StateName = "DEATH"
@@ -399,8 +356,8 @@ one_shot = true
 [node name="CenterContainer" type="CenterContainer" parent="."]
 
 [node name="WeirdBeard" type="Sprite2D" parent="CenterContainer"]
-position = Vector2(-16, -21)
-scale = Vector2(0.820513, 0.854545)
+position = Vector2(-16, -22)
+scale = Vector2(0.820513, 0.874545)
 texture = ExtResource("1")
 centered = false
 
@@ -421,12 +378,14 @@ texture = ExtResource("53")
 hframes = 5
 vframes = 4
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("11")
-anim_player = NodePath("../AnimationPlayer")
+[node name="ClimbBeard" type="Sprite2D" parent="CenterContainer"]
+visible = false
+texture = ExtResource("34_5byml")
+hframes = 4
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 1)
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_7lt1p")
 
 [node name="WeapSpawn" type="Node2D" parent="."]
@@ -435,3 +394,9 @@ position = Vector2(17, 0)
 [node name="Swim" type="Node" parent="."]
 script = ExtResource("34_jkgnq")
 StateName = "SWIM"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sja6h")
+}
+autoplay = "Idle"

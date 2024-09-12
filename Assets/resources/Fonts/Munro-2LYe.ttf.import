@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/Munro-2LYe.ttf-562c9708cdeffbc09ff36184fc8d27
 Rendering=null
 antialiasing=0
 generate_mipmaps=true
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=true
 msdf_pixel_range=8
 msdf_size=48
