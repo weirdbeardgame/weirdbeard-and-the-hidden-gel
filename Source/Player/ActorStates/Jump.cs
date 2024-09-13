@@ -59,7 +59,7 @@ public partial class Jump : State
 
         Player.GetAirState();
 
-        if (Input.IsActionJustPressed("Jump") && Player.CanJumpAgain)
+        if (Input.IsActionJustPressed("Jump") && (Player.CanJumpAgain || Player.CanJump))
         {
             GD.Print("Jump Again");
 

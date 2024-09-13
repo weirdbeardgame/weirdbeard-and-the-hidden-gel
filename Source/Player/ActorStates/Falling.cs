@@ -27,9 +27,10 @@ public partial class Falling : State
         }
     }
 
-    public override void FixedUpdate(double delta)
+    public override void Update(double delta)
     {
-        if (Input.IsActionPressed("Jump") && Player.CanJumpAgain)
+        base.Update(delta);
+        if (Input.IsActionJustPressed("Jump") && (Player.CanJumpAgain || Player.CanJump))
         {
             GD.Print("Jump Again");
 
@@ -57,6 +58,11 @@ public partial class Falling : State
 
             StateMachine.ResetToOldState();
         }
+    }
+
+    public override void FixedUpdate(double delta)
+    {
+        base.FixedUpdate(delta);
         if (Player.IsOnFloor())
         {
             Player.ResetPlayer();
