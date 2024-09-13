@@ -77,7 +77,7 @@ public partial class Actor : CharacterBody2D
         }
     }
 
-    public void ResetActor()
+    public void RestartState()
     {
         NumJumps = 2;
         wasOnFloor = false;

@@ -106,6 +106,11 @@ public partial class Ladder : State
 		switch (Player.LadderState)
 		{
 			case LadderStates.BEGIN:
+				Player.GetNode<Sprite2D>("CenterContainer/WeirdBeard").Visible = true;
+				Player.GetNode<Sprite2D>("CenterContainer/ClimbBeard").Visible = false;
+				Player.AnimationPlayer.Play("RESET");
+				Player.ResetPlayer();
+
 				break;
 			case LadderStates.END:
 				Player.GetNode<Sprite2D>("CenterContainer/WeirdBeard").Visible = true;

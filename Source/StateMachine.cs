@@ -93,7 +93,7 @@ public partial class StateMachine : Node
     }
 
     // Take the current state and restart it's logic, IE. You're going to double jump!
-    public void ResetActor()
+    public void RestartState()
     {
         var stateTemp = GetNode<State>(Nodes[CurrentState.StateName]);
         _state.Stop();
