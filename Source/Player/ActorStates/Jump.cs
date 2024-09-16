@@ -41,7 +41,10 @@ public partial class Jump : State
         _InputVelocity.X = Player.Velocity.X;
         Player.Velocity = _InputVelocity;
 
-        Player.NumJumps -= 1;
+        if (Player.NumJumps > 0)
+        {
+            Player.NumJumps -= 1;
+        }
         Player.wasOnFloor = true;
         GD.Print("Velocity: ", Player.Velocity);
     }
@@ -59,33 +62,36 @@ public partial class Jump : State
 
         Player.GetAirState();
 
-        if (Input.IsActionJustPressed("Jump") && (Player.CanJumpAgain || Player.CanJump))
+        if (Player.CanJumpAgain)
         {
-            GD.Print("Jump Again");
-
-            if (Player.Velocity.X == 0)
+            if (Input.IsActionJustPressed("Jump"))
             {
-                if (Input.IsActionPressed("Right"))
+                GD.Print("Jump Again");
+
+                if (Player.Velocity.X == 0)
                 {
-                    _InputVelocity.X = 1 * Player.Speed;
+                    if (Input.IsActionPressed("Right"))
+                    {
+                        _InputVelocity.X = 1 * Player.Speed;
+                    }
+
+                    else if (Input.IsActionPressed("Left"))
+                    {
+                        _InputVelocity.X = -1 * Player.Speed;
+                    }
+
+                    else
+                    {
+                        _InputVelocity.X = 0;
+                    }
+
+                    Player.Velocity = _InputVelocity;
                 }
 
-                else if (Input.IsActionPressed("Left"))
-                {
-                    _InputVelocity.X = -1 * Player.Speed;
-                }
+                GD.Print("Velocity on Double Jump", Player.Velocity);
 
-                else
-                {
-                    _InputVelocity.X = 0;
-                }
-
-                Player.Velocity = _InputVelocity;
+                StateMachine.RestartState();
             }
-
-            GD.Print("Velocity on Double Jump", Player.Velocity);
-
-            StateMachine.RestartState();
         }
     }
 
