@@ -4391,7 +4391,8 @@ position = Vector2(2959, 46)
 
 [node name="Ladder_End_node" parent="." instance=ExtResource("49_xgxc4")]
 z_index = 2
-position = Vector2(2959, -367)
+position = Vector2(2959, -379)
+scale = Vector2(1, 0.399998)
 
 [node name="SwimDetector" parent="." instance=ExtResource("51_8n8j4")]
 position = Vector2(2447, -73)

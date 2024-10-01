@@ -221,17 +221,23 @@ public partial class Player : Actor
 
     public void LadderDetector()
     {
-        if (LadderState == LadderStates.BEGIN)
+        switch (LadderState)
         {
-            if (Input.IsActionJustPressed("Up"))
-            {
-                StateMachine.UpdateState("LADDER");
-                s_UpdateLadderState(LadderStates.CLIMBING);
-            }
-            else if (StateMachine.CurrentStateName() == "LADDER" && Input.IsActionJustPressed("Down"))
-            {
-                ResetPlayer();
-            }
+            case LadderStates.BEGIN:
+                if (Input.IsActionJustPressed("Up"))
+                {
+                    StateMachine.UpdateState("LADDER");
+                    s_UpdateLadderState(LadderStates.CLIMBING);
+                }
+
+                else if (Input.IsActionJustPressed("Down"))
+                {
+                    ResetPlayer();
+                }
+                break;
+
+            case LadderStates.END:
+                break;
         }
     }
 

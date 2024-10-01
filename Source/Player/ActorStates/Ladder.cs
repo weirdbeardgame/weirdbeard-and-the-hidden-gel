@@ -21,7 +21,7 @@ public partial class Ladder : State
         base.Start();
         Player.GetNode<Sprite2D>("CenterContainer/WeirdBeard").Visible = false;
         Player.GetNode<Sprite2D>("CenterContainer/ClimbBeard").Visible = true;
-        //Player.AnimationPlayer.Play("Climb");
+        Player.AnimationPlayer.Play("Climb");
         Player.DisableGravity();
     }
 
@@ -45,6 +45,8 @@ public partial class Ladder : State
 
                 if (Input.IsActionJustPressed("Jump"))
                 {
+
+                    // Issue is here. State machine never updates when jump reaches end of ladder
                     if (Input.IsActionPressed("Right"))
                     {
                         _InputVelocity.X = 1;
@@ -53,6 +55,12 @@ public partial class Ladder : State
                     }
 
                     _InputVelocity.Y = -2 * currentSpeed;
+
+                    if (Player.LadderState == LadderStates.END)
+                    {
+                        Stop();
+                    }
+
                 }
 
                 if (Input.IsActionPressed("Down"))
