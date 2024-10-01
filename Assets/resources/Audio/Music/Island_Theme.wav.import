@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bkblhq7dchuhh"
-path="res://.godot/imported/Island_Theme.wav-676ea37be7cf744e1774e4c854a4d1ae.sample"
+path="res://.godot/imported/Island_Theme.wav-13fd34446e3373218288142d3a55a9e8.sample"
 
 [deps]
 
-source_file="res://Assets/resources/Audio/Island_Theme.wav"
-dest_files=["res://.godot/imported/Island_Theme.wav-676ea37be7cf744e1774e4c854a4d1ae.sample"]
+source_file="res://Assets/resources/Audio/Music/Island_Theme.wav"
+dest_files=["res://.godot/imported/Island_Theme.wav-13fd34446e3373218288142d3a55a9e8.sample"]
 
 [params]
 

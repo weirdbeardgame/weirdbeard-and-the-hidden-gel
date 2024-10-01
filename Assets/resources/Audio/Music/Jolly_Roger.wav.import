@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://w110y6ummjxa"
-path="res://.godot/imported/Jolly_Roger.wav-200935a627587ff556359ad9b125690f.sample"
+path="res://.godot/imported/Jolly_Roger.wav-feebb4179ab12d7c1251c8b92a918459.sample"
 
 [deps]
 
-source_file="res://Assets/resources/Audio/Jolly_Roger.wav"
-dest_files=["res://.godot/imported/Jolly_Roger.wav-200935a627587ff556359ad9b125690f.sample"]
+source_file="res://Assets/resources/Audio/Music/Jolly_Roger.wav"
+dest_files=["res://.godot/imported/Jolly_Roger.wav-feebb4179ab12d7c1251c8b92a918459.sample"]
 
 [params]
 

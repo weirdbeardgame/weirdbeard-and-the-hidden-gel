@@ -35,10 +35,23 @@ public partial class Jump : State
             _InputVelocity.Y /= 4;
         }
 
+        if (Input.IsActionPressed("Right"))
+        {
+            _InputVelocity.X = Vector2.Right.X * Player.Speed;
+        }
+        else if (Input.IsActionPressed("Left"))
+        {
+            _InputVelocity.X = Vector2.Left.X * Player.Speed;
+        }
+        else
+        {
+            _InputVelocity.X = 0;
+        }
+
         GD.Print("Jump Gravity: ", Player.JumpGravity);
         GD.Print("Jump Velocity: ", Player.JumpVelocity);
 
-        _InputVelocity.X = Player.Velocity.X;
+        //_InputVelocity.X = Player.Velocity.X;
         Player.Velocity = _InputVelocity;
 
         if (Player.NumJumps > 0)

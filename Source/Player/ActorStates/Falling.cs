@@ -36,25 +36,22 @@ public partial class Falling : State
             {
                 GD.Print("Jump Again");
 
-                if (Player.Velocity.X == 0)
+                if (Input.IsActionPressed("Right"))
                 {
-                    if (Input.IsActionPressed("Right"))
-                    {
-                        _InputVelocity.X = 1 * Player.Speed;
-                    }
-
-                    else if (Input.IsActionPressed("Left"))
-                    {
-                        _InputVelocity.X = -1 * Player.Speed;
-                    }
-
-                    else
-                    {
-                        _InputVelocity.X = 0;
-                    }
-
-                    Player.Velocity = _InputVelocity;
+                    _InputVelocity.X = 1 * Player.Speed;
                 }
+
+                else if (Input.IsActionPressed("Left"))
+                {
+                    _InputVelocity.X = -1 * Player.Speed;
+                }
+
+                else
+                {
+                    _InputVelocity.X = 0;
+                }
+
+                Player.Velocity = _InputVelocity;
 
                 GD.Print("Velocity on Double Jump", Player.Velocity);
 

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://18ylixu4rs3r"
-path="res://.godot/imported/Shanty.wav-13762dda7f428178aca7be228469f8e5.sample"
+path="res://.godot/imported/Shanty.wav-b199c160f167e975b6e41e3d4bcb5150.sample"
 
 [deps]
 
-source_file="res://Assets/resources/Audio/Shanty.wav"
-dest_files=["res://.godot/imported/Shanty.wav-13762dda7f428178aca7be228469f8e5.sample"]
+source_file="res://Assets/resources/Audio/Music/Shanty.wav"
+dest_files=["res://.godot/imported/Shanty.wav-b199c160f167e975b6e41e3d4bcb5150.sample"]
 
 [params]
 

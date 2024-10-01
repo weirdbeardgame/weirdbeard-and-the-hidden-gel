@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cc02v545ga530"
-path="res://.godot/imported/Sir_Mustachio.wav-409d835559309bf42838198bd6978cd5.sample"
+path="res://.godot/imported/Sir_Mustachio.wav-1a7e853e8e8e7087b681a490ffe757ec.sample"
 
 [deps]
 
-source_file="res://Assets/resources/Audio/Sir_Mustachio.wav"
-dest_files=["res://.godot/imported/Sir_Mustachio.wav-409d835559309bf42838198bd6978cd5.sample"]
+source_file="res://Assets/resources/Audio/Music/Sir_Mustachio.wav"
+dest_files=["res://.godot/imported/Sir_Mustachio.wav-1a7e853e8e8e7087b681a490ffe757ec.sample"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c3qi7wk85b34v"
-path="res://.godot/imported/Weird_Beard.wav-634de1216a0bc3767a3d20796eb45a42.sample"
+path="res://.godot/imported/Weird_Beard.wav-fd02c6adf55c0407bbf36efa2d404f71.sample"
 
 [deps]
 
-source_file="res://Assets/resources/Audio/Weird_Beard.wav"
-dest_files=["res://.godot/imported/Weird_Beard.wav-634de1216a0bc3767a3d20796eb45a42.sample"]
+source_file="res://Assets/resources/Audio/Music/Weird_Beard.wav"
+dest_files=["res://.godot/imported/Weird_Beard.wav-fd02c6adf55c0407bbf36efa2d404f71.sample"]
 
 [params]
 

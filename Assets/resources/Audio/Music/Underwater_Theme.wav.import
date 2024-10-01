@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b076heh4elhr1"
-path="res://.godot/imported/Underwater_Theme.wav-c3d7be14d56c30e516afe3fe5fe89ae8.sample"
+path="res://.godot/imported/Underwater_Theme.wav-0cdb7fa17f57c98e9381a2a054369b47.sample"
 
 [deps]
 
-source_file="res://Assets/resources/Audio/Underwater_Theme.wav"
-dest_files=["res://.godot/imported/Underwater_Theme.wav-c3d7be14d56c30e516afe3fe5fe89ae8.sample"]
+source_file="res://Assets/resources/Audio/Music/Underwater_Theme.wav"
+dest_files=["res://.godot/imported/Underwater_Theme.wav-0cdb7fa17f57c98e9381a2a054369b47.sample"]
 
 [params]
 
