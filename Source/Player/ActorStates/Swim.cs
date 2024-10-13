@@ -47,7 +47,7 @@ public partial class Swim : State
 
         if (Input.IsActionJustPressed("Jump"))
         {
-            _InputVelocity.Y += -1;
+            _InputVelocity.Y += -3000;
         }
 
         else
@@ -59,26 +59,19 @@ public partial class Swim : State
 
     public override void FixedUpdate(double delta)
     {
-        if (Player.IsOnFloor())
+
+        Player.Velocity = GetInput();
+
+        if (_InputVelocity.Sign().X < 0)
         {
-            Player.Velocity = GetInput();
+            Player.Direction = Vector2.Left;
+            Player.WeirdBeard.FlipH = true;
+        }
 
-            if (_InputVelocity.Sign().X < 0)
-            {
-                Player.Direction = Vector2.Left;
-                Player.WeirdBeard.FlipH = true;
-            }
-
-            else if (_InputVelocity.Sign().X > 0)
-            {
-                Player.Direction = Vector2.Right;
-                Player.WeirdBeard.FlipH = false;
-            }
-
-            if (_InputVelocity == Vector2.Zero)
-            {
-                StateMachine.UpdateState("IDLE");
-            }
+        else if (_InputVelocity.Sign().X > 0)
+        {
+            Player.Direction = Vector2.Right;
+            Player.WeirdBeard.FlipH = false;
         }
     }
 

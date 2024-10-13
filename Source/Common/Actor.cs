@@ -46,7 +46,7 @@ public partial class Actor : CharacterBody2D
     public float JumpGravity;
     public float FallGravity;
 
-    [Export] public float SwimGravity = 200;
+    [Export] public float SwimGravity = 2500;
 
     public int NumJumps = 2;
     public bool wasOnFloor;
