@@ -78,7 +78,7 @@ public partial class Walk : State
     {
         base.Update(delta);
         // Oops, fell off platform.
-        if (Player.Velocity.Y > 0)
+        if (Player.Velocity.Y > 0 && !Player.IsSwimming)
         {
             Player.wasOnFloor = true;
             StateMachine.UpdateState("FALL");

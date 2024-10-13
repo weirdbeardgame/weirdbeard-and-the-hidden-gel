@@ -30,7 +30,7 @@ public partial class Idle : State
 
     public override void FixedUpdate(double delta)
     {
-        if (Player.CanMove)
+        if (Player.CanMove && !Player.IsSwimming)
         {
             if (Player.Direction == Vector2.Left)
             {

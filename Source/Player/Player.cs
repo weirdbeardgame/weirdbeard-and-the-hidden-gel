@@ -8,21 +8,20 @@ public partial class Player : Actor
     private int _Obj;
     private Camera2D _camera;
     private Timer _coyoteTimer;
-    //private TileMapLayer _CurrentMap;
     private Timer _bufferedJumpTimer;
-    public int PlayerLives = 3;
+    //private TileMapLayer _CurrentMap;
+    private RayCast2D _platformRayCast;
 
+    public bool IsSwimming;
+    public int PlayerLives = 3;
     public Sprite2D WeirdBeard;
     public WeaponSlot WeaponSlot;
     public PowerUp CurrentPowerup;
     public AnimationPlayer AnimationPlayer;
 
     public LadderStates LadderState;
-
     public static Action<PowerUp> OnEquip;
     public static Action<LadderStates> s_UpdateLadderState;
-
-    private RayCast2D _platformRayCast;
 
     public void EquipWeapon(PackedScene W, Sprite2D WeaponSprite) => WeaponSlot.SlotWeapon(W, WeaponSprite);
 
@@ -210,7 +209,7 @@ public partial class Player : Actor
 
     public void GetAirState()
     {
-        if (Velocity.Y > 0.0f)
+        if (Velocity.Y > 0.0f && !IsSwimming)
         {
             if (StateMachine.CurrentStateName() != "FALL")
             {
@@ -221,23 +220,26 @@ public partial class Player : Actor
 
     public void LadderDetector()
     {
-        switch (LadderState)
+        if (!IsSwimming)
         {
-            case LadderStates.BEGIN:
-                if (Input.IsActionJustPressed("Up"))
-                {
-                    StateMachine.UpdateState("LADDER");
-                    s_UpdateLadderState(LadderStates.CLIMBING);
-                }
+            switch (LadderState)
+            {
+                case LadderStates.BEGIN:
+                    if (Input.IsActionJustPressed("Up"))
+                    {
+                        StateMachine.UpdateState("LADDER");
+                        s_UpdateLadderState(LadderStates.CLIMBING);
+                    }
 
-                else if (Input.IsActionJustPressed("Down"))
-                {
-                    ResetPlayer();
-                }
-                break;
+                    else if (Input.IsActionJustPressed("Down"))
+                    {
+                        ResetPlayer();
+                    }
+                    break;
 
-            case LadderStates.END:
-                break;
+                case LadderStates.END:
+                    break;
+            }
         }
     }
 
@@ -246,11 +248,12 @@ public partial class Player : Actor
     {
         base._PhysicsProcess(delta);
 
-        Gravity = GetGravity();
         if (Input.IsActionJustPressed("Attack") && WeaponSlot.Weapon != null)
         {
             Attack();
         }
+
+        Gravity = GetGravity();
 
         ApplyGravity((float)delta);
         MoveAndSlide();

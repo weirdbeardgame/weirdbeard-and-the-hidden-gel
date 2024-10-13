@@ -18,6 +18,7 @@ public partial class Swim : State
     public override void Start()
     {
         //Player.AnimationPlayer.Play("Swim");
+        Player.IsSwimming = true;
     }
 
     public override Vector2 GetInput()
@@ -84,21 +85,11 @@ public partial class Swim : State
     public override void Update(double delta)
     {
         base.Update(delta);
-        // Oops, fell off platform.
-        if (Player.Velocity.Y > 0)
-        {
-            Player.wasOnFloor = true;
-            StateMachine.UpdateState("FALL");
-        }
-
-        if (Input.IsActionJustPressed("Jump") && Player.CanJump)
-        {
-            StateMachine.UpdateState("JUMP");
-        }
     }
 
     public override void Stop()
     {
         Player.AnimationPlayer.Stop(true);
+        Player.IsSwimming = false;
     }
 }

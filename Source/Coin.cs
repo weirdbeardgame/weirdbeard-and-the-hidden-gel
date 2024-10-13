@@ -8,6 +8,8 @@ public partial class Coin : Area2D
 
     AnimationPlayer anim;
 
+    AudioStreamPlayer2D effect;
+
     public static Action getCoin;
     public static Action looseCoin;
 
@@ -15,6 +17,7 @@ public partial class Coin : Area2D
     public override void _Ready()
     {
         anim = (AnimationPlayer)GetNode("AnimationPlayer");
+        effect = (AudioStreamPlayer2D)GetNode("AudioStreamPlayer2D");
         BodyEntered += OnCollide;
         anim.Play("spin");
     }
@@ -23,6 +26,7 @@ public partial class Coin : Area2D
     {
         if (body is Player)
         {
+            effect.Play();
             //anim.Play("Collect");
             getCoin.Invoke();
             QueueFree();

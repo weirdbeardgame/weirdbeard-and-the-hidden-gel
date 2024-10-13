@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Source/TitleScreen.cs" id="1_ppcvk"]
 [ext_resource type="Texture2D" uid="uid://bm83nutqyl0ed" path="res://Assets/resources/Sprites/Game_Logo_Background.png" id="2_8152g"]
 [ext_resource type="Texture2D" uid="uid://clk2thfhf7u6w" path="res://Assets/resources/Game_Logo_02.png" id="3_gfgim"]
-[ext_resource type="AudioStream" uid="uid://18ylixu4rs3r" path="res://Assets/resources/Audio/Shanty.wav" id="4_6o26o"]
+[ext_resource type="AudioStream" uid="uid://w110y6ummjxa" path="res://Assets/resources/Audio/Music/Jolly_Roger.wav" id="4_n8a0i"]
 
 [node name="TitleScreen" type="CanvasLayer"]
 script = ExtResource("1_ppcvk")
@@ -45,8 +45,7 @@ scale = Vector2(0.203255, 0.206944)
 texture = ExtResource("3_gfgim")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_6o26o")
-volume_db = -5.0
+stream = ExtResource("4_n8a0i")
 autoplay = true
 
 [connection signal="pressed" from="Camera2D/NewGame" to="." method="NewGame"]

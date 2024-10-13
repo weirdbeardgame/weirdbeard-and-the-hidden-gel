@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://crt8hklu6m07x"]
+[gd_scene load_steps=8 format=3 uid="uid://crt8hklu6m07x"]
 
 [ext_resource type="Texture2D" uid="uid://cm7y5bm25ky24" path="res://Assets/resources/Sprites/Coin/MonedaD.png" id="1"]
 [ext_resource type="Script" path="res://Source/Coin.cs" id="2"]
+[ext_resource type="AudioStream" uid="uid://4mrgv8c3helg" path="res://Assets/resources/Audio/Sound Effects/242857__plasterbrain__coin-get.ogg" id="2_fg6tm"]
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 0.0
@@ -62,3 +63,6 @@ libraries = {
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1")
 hframes = 5
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_fg6tm")
